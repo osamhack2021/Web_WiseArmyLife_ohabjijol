@@ -31,7 +31,7 @@ module.exports = class User extends Sequelize.Model {
       comment: 'User',
       charset: 'utf8mb4',
       collate: 'utf8mb4_general_ci',
-      freezeTableName: true,
+      freezeTableName: false,
     });
   }
   static associate(db) {}

@@ -8,13 +8,16 @@ const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const bodyParser = require('body-parser')
 const dotenv = require('dotenv');
+const passport = require('passport');
 const nunjucks = require('nunjucks');
-const { sequelize } = require('./models');
+
 
 dotenv.config();
 
 //라우팅
-const PageRouter = require("./routes/home");
+const PageRouter = require("./routes/home/home");
+const { sequelize } = require('./models');
+const passportConfig = require('./passport');
 
 const app = express();
 app.set('port', process.env.PORT||3000);
@@ -36,6 +39,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 app.use('/', PageRouter);
 
