@@ -1,26 +1,43 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+"use strict"
+//모듈 가져오기
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+const morgan = require('morgan');
+const bodyParser = require('body-parser')
+const dotenv = require('dotenv');
+const nunjucks = require('nunjucks');
+const { sequelize } = require('./models');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+dotenv.config();
 
-var app = express();
+//라우팅
+const PageRouter = require("./routes/home");
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
+const app = express();
+app.set('port', process.env.PORT||3000);
+app.set('view engine', 'html');
+nunjucks.configure('views', {
+  express: app,
+  watch: true,
+})
+sequelize.sync({ force: false })
+  .then(() => {
+    console.log('database connect');
+  })
+  .catch((err) => {
+    console.log(err);
+  })
 
-app.use(logger('dev'));
+app.use(morgan('dev'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/', PageRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -37,5 +54,10 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
+app.listen(app.get('port')), () => {
+  console.log(app.get('port'), '번 포트에서 대기중');
+}
 
 module.exports = app;
