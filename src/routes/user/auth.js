@@ -9,15 +9,16 @@ const User = require('../../models/users');
 const router = express.Router();
 
 router.post('/join', isNotLoggedIn, async(req, res, next) =>{
-    const {nick, password, unit, isExecutive} = req.body;
+    const {name, militaryNumber, password, unit, isExecutive} = req.body;
     try {
-        const exUser = User.findOne({ where: {email} }); 
+        const exUser = User.findOne({ where: {militaryNumber} }); 
         if (exUser){
             return res.redirect('join?error=exist');
         }
         const hash = await bcrpt.hash(password, 12);
         await User.create({
-            nick,
+            militaryNumber,
+            name,
             password,
             unit,
             isExecutive,
@@ -47,3 +48,11 @@ router.post('/login', isNotLoggedIn, async(req, res, next) => {
         });
     })(req, res, next);
 });
+
+router.get('/logout', isLoggedIn, (req,res) => {
+    req.logout();
+    req.session.destroy();
+    res.redirect('/');
+});
+
+module.exports = router;
