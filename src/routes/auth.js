@@ -2,20 +2,20 @@
 
 const express = require('express');
 const passport = require('passport');
-const bcrpt = require('bcrpt');
+const bcrypt = require('bcrypt');
 const { isLoggedIn, isNotLoggedIn } = require('./check_login');
-const User = require('../../models/users');
+const User = require('../models/users');
 
 const router = express.Router();
 
 router.post('/join', isNotLoggedIn, async(req, res, next) =>{
-    const {name, militaryNumber, password, unit, isExecutive} = req.body;
+    const {name, militaryNumber, unit, password, isExecutive} = req.body;
     try {
-        const exUser = User.findOne({ where: {militaryNumber} }); 
+        const exUser = await User.findOne({ where: {militaryNumber} });
         if (exUser){
             return res.redirect('join?error=exist');
         }
-        const hash = await bcrpt.hash(password, 12);
+        const hash = await bcrypt.hash(password, 12);
         await User.create({
             militaryNumber,
             name,
@@ -23,7 +23,8 @@ router.post('/join', isNotLoggedIn, async(req, res, next) =>{
             unit,
             isExecutive,
         });
-        return redirect('/');
+        console.log('여까지될걸');
+        return res.redirect('/');
     } catch (error) {
         console.error(error);
         return next(error);
@@ -37,7 +38,7 @@ router.post('/login', isNotLoggedIn, async(req, res, next) => {
             return next(authError);
         }
         if (!user){
-            return redirect('/?loginError=$i{info.message}');
+            return res.redirect('/?loginError=$i{info.message}');
         }
         return req.login(user, (loginError) => {
             if (loginError){

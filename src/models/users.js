@@ -6,15 +6,14 @@ const Sequelize = require('sequelize');
 module.exports = class User extends Sequelize.Model {
   static init(sequelize){
     return super.init({
-      name: {
-        type: Sequelize.STRING(20),
-        allowNull: false,
-        unique: false,
-      },
       militaryNumber: {
         type: Sequelize.STRING(20),
         allowNull: false,
         unique: true,
+      },
+      name: {
+        type: Sequelize.STRING(20),
+        allowNull: true,
       },
       password: {
         type: STRING(100),
@@ -22,7 +21,7 @@ module.exports = class User extends Sequelize.Model {
       },
       unit: {
         type: STRING(100),
-        allowNull: false,
+        allowNull: true,
       },
       isExecutive: {
         type: BOOLEAN,
@@ -36,7 +35,6 @@ module.exports = class User extends Sequelize.Model {
       comment: 'User',
       charset: 'utf8mb4',
       collate: 'utf8mb4_general_ci',
-      freezeTableName: false,
     });
   }
   static associate(db) {}

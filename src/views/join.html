@@ -4,11 +4,18 @@
   <div class="timeline">
     <form id="join-form" action="/auth/join" method="post">
       <div class="input-group">
-        <label for="join-email">이메일</label>
-        <input id="join-email" type="email" name="email"></div>
+        <label for="join-militaryNumber">군번</label>
+        <input id="join-militaryNumber" type="militaryNumber" name="militaryNumber"></div>
       <div class="input-group">
-        <label for="join-nick">닉네임</label>
-        <input id="join-nick" type="text" name="nick"></div>
+          <label for="join-isExecutive">간부</label>
+          <input id="join-isExecutive" type="isExecutive" name="isExecutive"></div>
+      <div class="input-group">
+       <div class="input-group">
+          <label for="join-unit">소속</label>
+          <input id="join-unit" type="unit" name="unit"></div>
+      <div class="input-group">
+        <label for="join-name">이름</label>
+        <input id="join-name" type="text" name="name"></div>
       <div class="input-group">
         <label for="join-password">비밀번호</label>
         <input id="join-password" type="password" name="password">
@@ -22,7 +29,7 @@
   <script>
     window.onload = () => {
       if (new URL(location.href).searchParams.get('error')) {
-        alert('이미 존재하는 이메일입니다.');
+        alert('이미 존재하는 군번입니다.');
       }
     };
   </script>

@@ -16,6 +16,7 @@ dotenv.config();
 
 //라우팅
 const PageRouter = require("./routes/home/home");
+const AuthRouter = require("./routes/auth");
 const { sequelize } = require('./models');
 const passportConfig = require('./passport');
 
@@ -26,7 +27,7 @@ nunjucks.configure('views', {
   express: app,
   watch: true,
 })
-sequelize.sync({ force: false })
+sequelize.sync({ force: true })
   .then(() => {
     console.log('database connect');
   })
@@ -45,7 +46,7 @@ app.use(passport.session());
 
 
 app.use('/', PageRouter);
-
+app.use('/auth', AuthRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
