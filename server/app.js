@@ -29,25 +29,21 @@ nunjucks.configure('views', {
   express: app,
   watch: true,
 });
+sequelize.sync({ force: false })
+  .then(() => {
+    console.log('database connected');
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
-const data = fs.readFileSync("./config/config.json");
-const conf = JSON.parse(data);
 
-const connection = mysql.createConnection({
-  host: conf.host,
-  user: conf.user,
-  password: conf.password,
-  port: conf.port,
-  database: conf.database,
-})
-
-connection.connect();
 
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(session({
   resave: false,
   saveUninitialized: false,

@@ -31,11 +31,15 @@ module.exports = class User extends Sequelize.Model {
       sequelize,
       timestamp: true,
       paranoid: true,
+      modelName: 'User',
       tableName: 'users',
       comment: 'User',
       charset: 'utf8mb4',
       collate: 'utf8mb4_general_ci',
     });
   }
-  static associate(db) {}
+  static associate(db) {
+    db.User.hasMany(db.Post, { foreignKey: 'poster', sourceKey: 'id' });
+    db.User.hasMany(db.Comment, { foreignKey: 'commenter', sourceKey: 'id' });
+  }
 };
