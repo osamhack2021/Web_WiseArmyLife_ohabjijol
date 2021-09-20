@@ -18,6 +18,6 @@ router.get('/', homeCTRL.output.home);
 router.get('/login', isNotLoggedIn, homeCTRL.output.login);
 router.get('/profile', isLoggedIn, homeCTRL.output.profile);
 router.get('/join', isNotLoggedIn, homeCTRL.output.join);
-router.post('/login', isNotLoggedIn, homeCTRL.process.login);
+
 
 module.exports = router;

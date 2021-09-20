@@ -1,5 +1,7 @@
 "use strict"
 //모듈 가져오기
+const fs = require('fs');
+const mysql = require('mysql');
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -26,14 +28,20 @@ app.set('view engine', 'html');
 nunjucks.configure('views', {
   express: app,
   watch: true,
+});
+
+const data = fs.readFileSync("./config/config.json");
+const conf = JSON.parse(data);
+
+const connection = mysql.createConnection({
+  host: conf.host,
+  user: conf.user,
+  password: conf.password,
+  port: conf.port,
+  database: conf.database,
 })
-sequelize.sync({ force: false })
-  .then(() => {
-    console.log('database connect');
-  })
-  .catch((err) => {
-    console.log(err);
-  })
+
+connection.connect();
 
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));

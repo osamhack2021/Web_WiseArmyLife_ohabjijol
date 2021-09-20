@@ -19,13 +19,6 @@ const output = {
     }
 }
 
-const process = {
-    login: (req, res) => {
-        const id = req.body.id;
-        psword = req.body.psword;
-    }
-}
-
 
 module.exports = {
     output,
