@@ -16,7 +16,7 @@ dotenv.config();
 
 //라우팅
 const PageRouter = require("./routes/home/home");
-const AuthRouter = require("./routes/auth");
+const AuthRouter = require("./routes/user/auth");
 const { sequelize } = require('./models');
 const passportConfig = require('./passport');
 
@@ -27,7 +27,7 @@ nunjucks.configure('views', {
   express: app,
   watch: true,
 })
-sequelize.sync({ force: true })
+sequelize.sync({ force: false })
   .then(() => {
     console.log('database connect');
   })
@@ -40,7 +40,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-
+app.use(session({
+  resave: false,
+  saveUninitialized: false,
+  secret: process.env.COOKIE_SECRET || 'keyboard cat',
+  cookie: {
+    httpOnly: true,
+    secure: false,
+  }
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 

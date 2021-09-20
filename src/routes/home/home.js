@@ -3,7 +3,8 @@
 const express = require('express');
 
 const homeCTRL = require('./home_ctrl');
-const checkLogin = require('../check_login');
+const { isLoggedIn, isNotLoggedIn } = require('../user/check_login');
+
 
 const router = express.Router();
 
@@ -14,9 +15,9 @@ router.use((req, res, next) => {
 
 /* GET home page. */
 router.get('/', homeCTRL.output.home);
-router.get('/login', homeCTRL.output.login);
-router.get('/profile', homeCTRL.output.profile);
-router.get('/join', homeCTRL.output.join);
-router.post('/login', homeCTRL.process.login);
+router.get('/login', isNotLoggedIn, homeCTRL.output.login);
+router.get('/profile', isLoggedIn, homeCTRL.output.profile);
+router.get('/join', isNotLoggedIn, homeCTRL.output.join);
+router.post('/login', isNotLoggedIn, homeCTRL.process.login);
 
 module.exports = router;

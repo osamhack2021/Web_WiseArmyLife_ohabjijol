@@ -1,10 +1,10 @@
 "use strict"
 
 const express = require('express');
-const passport = require('passport');
+const passport = require('../../passport');
 const bcrypt = require('bcrypt');
 const { isLoggedIn, isNotLoggedIn } = require('./check_login');
-const User = require('../models/users');
+const User = require('../../models/users');
 
 const router = express.Router();
 
@@ -19,11 +19,10 @@ router.post('/join', isNotLoggedIn, async(req, res, next) =>{
         await User.create({
             militaryNumber,
             name,
-            password,
+            password: hash,
             unit,
             isExecutive,
         });
-        console.log('여까지될걸');
         return res.redirect('/');
     } catch (error) {
         console.error(error);
@@ -32,7 +31,8 @@ router.post('/join', isNotLoggedIn, async(req, res, next) =>{
 });
 
 router.post('/login', isNotLoggedIn, async(req, res, next) => {
-    passport.authenticate('local', (authError, user ,info) => {
+    passport.authenticate('local-login', (authError, user ,info) => {
+        
         if (authError){
             console.error(authError);
             return next(authError);
