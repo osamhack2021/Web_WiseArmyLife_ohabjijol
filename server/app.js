@@ -18,7 +18,9 @@ dotenv.config();
 
 //라우팅
 const PageRouter = require("./routes/home/home");
-const AuthRouter = require("./routes/user/auth");
+const SignUpRouter = require("./routes/user/signup");
+const CommunityRouter = require("./routes/community/community");
+
 const { sequelize } = require('./models');
 const passportConfig = require('./passport');
 
@@ -58,7 +60,8 @@ app.use(passport.session());
 
 
 app.use('/', PageRouter);
-app.use('/auth', AuthRouter);
+app.use('/signup', SignUpRouter);
+app.use('/community', CommunityRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

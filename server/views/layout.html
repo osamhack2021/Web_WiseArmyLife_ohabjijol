@@ -23,9 +23,9 @@
             </div>
           <input id="my-id" type="hidden" value="{{user.id}}">
           <a id="my-profile" href="/profile" class="btn">내 프로필</a>
-          <a id="logout" href="/auth/logout" class="btn">로그아웃</a>
+          <a id="logout" href="/signup/logout" class="btn">로그아웃</a>
         {% else %}
-          <form id="login-form" action="/auth/login" method="post">
+          <form id="login-form" action="/signup/login" method="post">
             <div class="input-group">
               <label for="militaryNumber">군번</label>
               <input id="militaryNumber" type="militaryNumber" name="militaryNumber" required autofocus>
@@ -36,7 +36,7 @@
             </div>
             <a id="join" href="/join" class="btn">회원가입</a>
             <button id="login" type="submit" class="btn">로그인</button>
-            <a id="kakao" href="/auth/kakao" class="btn">카카오톡</a>
+            <a id="kakao" href="/signup/kakao" class="btn">카카오톡</a>
           </form>
         {% endif %}
         </div>

@@ -6,10 +6,9 @@ const path = require('path');
 const fs = require('fs');
 
 const Post = require('../../models/post');
-const isLoggedIn = require('./check_login');
-const { router } = require('../../app');
+const isLoggedIn = require('../user/check_login');
 
-const Router = express.Router();
+const router = express.Router();
 const dir = ('./uploadFiles');
 
 if(!fs.existsSync(dir)) fs.mkdirSync(dir);

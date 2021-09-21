@@ -13,10 +13,20 @@ module.exports = class Post extends Sequelize.Model {
             type: Sequelize.STRING(200),
             allowNull: true,
         },
+        createdAt: {
+          type: Sequelize.DATE,
+          allowNull: true,
+          defaultValue: Sequelize.NOW,
+        },
+        updatedAt: {
+          type: Sequelize.DATE,
+          allowNull: true,
+          defaultValue: Sequelize.NOW,
+        },
       }, {
         sequelize,
         timestamp: true,
-        paranoid: true,
+        paranoid: false,
         modelName: 'Post',
         tableName: 'posts',
         comment: 'Post',
