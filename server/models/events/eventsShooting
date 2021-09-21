@@ -1,0 +1,35 @@
+"use strict"
+
+const Sequelize = require('sequelize');
+
+module.exports = class EventsShooting extends Sequelize.Model {
+    static init(sequelize){
+      return super.init({
+       
+        userId : {
+           type : Sequelize.INTEGER,
+           allowNull : false,
+        },       
+
+        shootingId : {
+            type : Sequelize.INTEGER,
+            allowNull : false,
+
+        }
+
+      }, {
+        sequelize,
+        timestamp: false,
+        paranoid: false,
+        modelName: 'EventShooting',
+        tableName: 'eventsShooting',
+        comment: 'eventShooting',
+        charset: 'utf8mb4',
+        collate: 'utf8mb4_general_ci',
+      });
+    }
+    static associate(db) {
+
+
+    }
+  };
