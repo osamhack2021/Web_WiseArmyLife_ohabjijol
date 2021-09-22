@@ -9,10 +9,20 @@ module.exports = class Comment extends Sequelize.Model {
           type: Sequelize.STRING(100),
           allowNull: false,
         },
+        createdAt: {
+          type: Sequelize.DATE,
+          allowNull: true,
+          defaultValue: Sequelize.NOW,
+        },
+        updatedAt: {
+          type: Sequelize.DATE,
+          allowNull: true,
+          defaultValue: Sequelize.NOW,
+        },
       }, {
         sequelize,
-        timestamp: true,
-        paranoid: true,
+        timestamp: false,
+        paranoid: false,
         modelName: 'Comment',
         tableName: 'comments',
         comment: 'Comment',

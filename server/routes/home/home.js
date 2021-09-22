@@ -9,7 +9,11 @@ const { Post, User } = require('../../models');
 const router = express.Router();
 
 router.use((req, res, next) => {
-    if(req.user){
+
+    
+
+    if(req.user) {
+        console.log(req.user.id);
         res.locals.user = req.user;
     }
     next();
@@ -20,25 +24,6 @@ router.get('/', homeCTRL.output.home);
 router.get('/login', isNotLoggedIn, homeCTRL.output.login);
 router.get('/profile', isLoggedIn, homeCTRL.output.profile);
 router.get('/join', isNotLoggedIn, homeCTRL.output.join);
-
-router.get('/community', isLoggedIn, async (req, res, next) => {
-    try {
-        const posts = await Post.findAll({
-            include: {
-                model: User,
-                attributes: ['id', 'militaryNumber', 'name'],
-            },
-            order: [['createdAt', 'DESC']],
-        });
-        res.render('community', {
-            title: 'military Community',
-            posts: posts,
-        });
-    } catch (err) {
-        console.error(err);
-        next(err);
-    }
-});
 
 
 
