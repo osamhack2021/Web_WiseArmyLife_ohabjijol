@@ -7,7 +7,7 @@ const fs = require('fs');
 
 const Post = require('../../models/post');
 const { isLoggedIn } = require('../user/check_login');
-const { Post, User } = require('../../models');
+const { User } = require('../../models');
 
 const router = express.Router();
 const dir = ('./uploadFiles');
