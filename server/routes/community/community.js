@@ -8,7 +8,7 @@ const PostRouter = require('./post');
 
 const router = express.Router();
 
-router.get('/', isLoggedIn, async (req, res) => {
+router.get('/:index', isLoggedIn, async (req, res) => {
     try {
         let page = Math.max(1, parseInt(req.query.page));
         const limit = 10;
@@ -24,17 +24,20 @@ router.get('/', isLoggedIn, async (req, res) => {
             limit: limit,
             skip: skip,
         });
-        res.render('posts/index', {
+        const data = {
             posts: post_10,
             currentPage: page,
             maxPage: maxPage,
-        });
+        }
+        res.send(JSON.stringify(data));
     } catch (err) {
         console.error(err);
         next(err);
     }
-},);
+});
 
 
 
 router.get('/post', isLoggedIn, PostRouter);
+
+module.exports = router;

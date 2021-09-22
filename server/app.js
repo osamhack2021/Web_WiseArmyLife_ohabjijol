@@ -18,7 +18,7 @@ dotenv.config();
 
 //라우팅
 const PageRouter = require("./routes/home/home");
-const SignUpRouter = require("./routes/user/signup");
+const AuthRouter = require("./routes/user/auth");
 const CommunityRouter = require("./routes/community/community");
 
 const { sequelize } = require('./models');
@@ -49,10 +49,10 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(session({
   resave: false,
   saveUninitialized: false,
-  secret: process.env.COOKIE_SECRET || 'keyboard cat',
+  secret: process.env.COOKIE_SECRET || 'ohapjijol',
   cookie: {
     httpOnly: true,
-    secure: false,
+    secure: false, // 배포시 true로 바꿀 것
   }
 }));
 app.use(passport.initialize());
@@ -60,7 +60,7 @@ app.use(passport.session());
 
 
 app.use('/', PageRouter);
-app.use('/signup', SignUpRouter);
+app.use('/auth', AuthRouter);
 app.use('/community', CommunityRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

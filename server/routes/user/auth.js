@@ -15,11 +15,10 @@ router.post('/join', isNotLoggedIn, async(req, res, next) =>{
         if (exUser){
             return res.redirect('join?error=exist');
         }
-        const hash = await bcrypt.hash(password, 12);
         await User.create({
             militaryNumber,
             name,
-            password: hash,
+            password,
             unit,
             isExecutive,
         });

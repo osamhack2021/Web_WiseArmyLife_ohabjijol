@@ -9,7 +9,10 @@ const { Post, User } = require('../../models');
 const router = express.Router();
 
 router.use((req, res, next) => {
-    res.locals.user = req.user;
+    if(req.user) {
+        console.log(req.user.id);
+        res.locals.user = req.user;
+    }
     next();
 });
 
