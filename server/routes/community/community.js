@@ -8,9 +8,10 @@ const PostRouter = require('./post');
 
 const router = express.Router();
 
-router.get('/:index', isLoggedIn, async (req, res) => {
+router.get('/post', isLoggedIn, PostRouter);
+router.get('/:pageIndex', isLoggedIn, async (req, res) => {
     try {
-        let page = Math.max(1, parseInt(req.query.page));
+        let page = Math.max(1, parseInt(req.query.pageIndex));
         const limit = 10;
         let skip = (page - 1) * limit;
         let count = await Post.countDocuments({});
@@ -37,7 +38,5 @@ router.get('/:index', isLoggedIn, async (req, res) => {
 });
 
 
-
-router.get('/post', isLoggedIn, PostRouter);
 
 module.exports = router;

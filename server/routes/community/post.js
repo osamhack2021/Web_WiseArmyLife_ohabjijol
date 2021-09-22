@@ -7,6 +7,7 @@ const fs = require('fs');
 
 const Post = require('../../models/post');
 const { isLoggedIn } = require('../user/check_login');
+const { Post, User } = require('../../models');
 
 const router = express.Router();
 const dir = ('./uploadFiles');
@@ -35,6 +36,7 @@ const upload2 = multer();
 router.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
     try {
         const post = await Post.create({
+            title: req.body.title,
             content: req.body.content,
             img: req.body.url,
             UserId: req.user.id,
@@ -46,7 +48,51 @@ router.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
     }
 });
 
+router.delete('/:postid/delete', isLoggedIn, async (req, res, next) => {
+    let currentPostID = req.params.postid;
+    let currentPost = await Post.findOne({where: { id: currentPostID }})
+    if (currentPost.UserId === req.user.id)
+        await Post.destroy({ where: {id: currentPostID }})
+            .then( result => {
+                console.log('삭제성공');
+                res.json({sucess: true});
+            })
+            .catch(err => {
+                console.error(err);
+                next(error);
+            })
+    else {
+        console.log('삭제실패');
+        return res.json({sucess: false})
+    }
+})
+// 게시글 삭제
 
-// 게시글 삭제하기 해야됨
+router.put('/:postid/update', isLoggedIn, async (req, res, next) => {
+    let currentPostID = req.params.postid;
+    const postBody = req.body;
+    let currentPost = await Post.findOne({where: { id: currentPostID }})
+    if (currentPost.UserId === req.user.id)
+        await Post.update({
+            title: postBody.title,
+            content: postBody.content,
+            updatedAt: postBody.updatedAt,
+            },{
+                where: {id: currentPostID }
+            })
+            .then( result => {
+                console.log('수정 성공');
+                res.json({sucess: true});
+            })
+            .catch(err => {
+                console.error(err);
+                next(error);
+            })
+    else {
+        console.log('수정 실패')
+        return res.json({sucess: false})
+    }
+});
+// 게시글 수정
 
 module.exports = router;
