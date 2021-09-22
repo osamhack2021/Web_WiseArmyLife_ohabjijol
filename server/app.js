@@ -21,6 +21,7 @@ const PageRouter = require("./routes/home/home");
 const AuthRouter = require("./routes/user/auth");
 const { sequelize } = require('./models');
 const passportConfig = require('./passport');
+const ApplyRouter = require("./routes/apply/apply");
 
 const app = express();
 app.set('port', process.env.PORT||3000);
@@ -29,6 +30,7 @@ nunjucks.configure('views', {
   express: app,
   watch: true,
 });
+
 sequelize.sync({ force: false })
   .then(() => {
     console.log('database connected');
@@ -36,8 +38,6 @@ sequelize.sync({ force: false })
   .catch((err) => {
     console.log(err);
   });
-
-
 
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -59,10 +59,12 @@ app.use(passport.session());
 
 app.use('/', PageRouter);
 app.use('/auth', AuthRouter);
+app.use('/apply',ApplyRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
 
 // error handler
 app.use(function(err, req, res, next) {
