@@ -1,26 +1,71 @@
+//날짜 범위구하는 메소드
+        const getThismonth = (year , month )=>{
 
-        
-        now = new Date();	// 현재 날짜 및 시간
-        year = now.getFullYear();
-        
-        thismonth = (now.getMonth()+1).toString().padStart(2,'0');
-        nextmonth = (now.getMonth()+2).toString().padStart(2,'0');
-        shearchtimeFrom = `${year}-${thismonth}`;     
+            if(isNaN(parseInt(month))==false && isNaN(parseInt(year))==false){
+                if(parseInt(month)>=0&&parseInt(month)<=12&&parseInt(year)>1900&&parseInt(year)<2100){
+                    year = parseInt(year);
+                    month = month.toString().padStart(2,'0');                   
+
+                    
+                }
+            }
+            else{
+                year = new Date().getFullYear();
+                month = (new Date().getMonth()+1).toString().padStart(2,'0');
+                
+
+            }
+            ret = `${year}-${month}`;
+            return ret;
+            
+        }
+
+        const getNextMonth = (year , month )=>{
+            
+            console.log(month);
+
+            if(isNaN(parseInt(month))==false && isNaN(parseInt(year))==false){
+            console.log(month);
+
+                if(parseInt(month)>=0 && parseInt(month)<=12 && parseInt(year)>1900 && parseInt(year)<2100){
+                    year = parseInt(year);
+                    month = month.toString().padStart(2,'0');                   
+
+                    
+                }
+            }
+            else{
+                year = new Date().getFullYear();
+                month = (new Date().getMonth()+2).toString().padStart(2,'0');
+
+            }
+
+
+
+            if(month===12){
+                month = '01';
+                ret = `${year+1}-${month}`;
+    
+    
+            }
+            else{
+                ret = `${year}-${month}`;
+                console.log(ret);
+
+    
+            }
+            return ret;
+        }
+
+
+            
       
-        if(thismonth===12){
-            nextmonth = '01';
-            shearchtimeTo = `${year+1}-${nextmonth}`;
-            console.log(shearchtimeTo);
+        
 
 
-        }
-        else{
-            shearchtimeTo = `${year}-${nextmonth}`;
 
-        }
         module.exports = {
-           thismonth,
-           nextmonth,
-           shearchtimeFrom,
-           shearchtimeTo,
+            getThismonth,
+            getNextMonth,
+          
         }
