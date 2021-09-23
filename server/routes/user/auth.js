@@ -45,6 +45,7 @@ router.post('/login', isNotLoggedIn, async(req, res, next) => {
                 return next(loginError);
             }
             return res.redirect('/');
+            // res.json({ sucess: true }); 클라 연동 시 넣을 것
         });
     })(req, res, next);
 });

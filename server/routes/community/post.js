@@ -5,7 +5,6 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 
-const Post = require('../../models/post');
 const { isLoggedIn } = require('../user/check_login');
 const { Post, User } = require('../../models');
 

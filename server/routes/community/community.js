@@ -5,10 +5,12 @@ const express = require('express');
 const { isLoggedIn, isNotLoggedIn } = require('../user/check_login');
 const { Post, User } = require('../../models');
 const PostRouter = require('./post');
+const CommentRouter = require('./comment');
 
 const router = express.Router();
 
 router.get('/post', isLoggedIn, PostRouter);
+router.get('/comment', isLoggedIn, CommentRouter);
 router.get('/:pageIndex', isLoggedIn, async (req, res) => {
     try {
         let page = Math.max(1, parseInt(req.query.pageIndex));
