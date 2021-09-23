@@ -4,8 +4,7 @@
 const Sequelize = require('sequelize');
 const User = require('./users');
 const Post = require('./post');
-const Shooting = require('./applies/shooting');
-
+const Shooting = require('./assessment/shooting');
 
 const Comment = require('./comment');
 
@@ -33,6 +32,8 @@ User.associate(db);
 Post.associate(db);
 Comment.associate(db);
 Shooting.associate(db);
+
+const EventShooting = db.sequelize.models.eventsShooting;
 
 
 module.exports = db;

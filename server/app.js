@@ -23,7 +23,8 @@ const CommunityRouter = require("./routes/community/community");
 
 const { sequelize } = require('./models');
 const passportConfig = require('./passport');
-const ApplyRouter = require("./routes/apply/apply");
+const AssessmentRouter = require("./routes/assessment");
+const ShootingRouter = require("./routes/assessment/shooting");
 
 const app = express();
 app.set('port', process.env.PORT||3000);
@@ -61,8 +62,10 @@ app.use(passport.session());
 
 app.use('/', PageRouter);
 app.use('/auth', AuthRouter);
-app.use('/apply',ApplyRouter);
+app.use('/assessment',AssessmentRouter);
 app.use('/community', CommunityRouter);
+app.use('/assessment/shooting',ShootingRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
