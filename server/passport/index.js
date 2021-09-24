@@ -8,11 +8,15 @@ const User = require('../models/users')
 passport.use('local-login', new LocalStrategy({
     usernameField: 'militaryNumber',
     passwordField: 'password',
+    session: true,
+    passReqToCallback: false,
 }, async (militaryNumber, password, done) => {
     try {
         const exUser = await User.findOne({ where: { militaryNumber }});
         if(exUser){
-            const result = await bcrypt.compare(password, exUser.password);
+            let result = false;
+            if(password == exUser.password)
+                result = true;
             if(result){
                 done(null, exUser);
             } else {

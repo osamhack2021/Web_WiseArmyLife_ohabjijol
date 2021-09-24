@@ -18,11 +18,13 @@ dotenv.config();
 
 //라우팅
 const PageRouter = require("./routes/home/home");
-const SignUpRouter = require("./routes/user/signup");
+const AuthRouter = require("./routes/user/auth");
 const CommunityRouter = require("./routes/community/community");
 
 const { sequelize } = require('./models');
 const passportConfig = require('./passport');
+const AssessmentRouter = require("./routes/assessment");
+const ShootingRouter = require("./routes/assessment/shooting");
 
 const app = express();
 app.set('port', process.env.PORT||3000);
@@ -31,6 +33,7 @@ nunjucks.configure('views', {
   express: app,
   watch: true,
 });
+
 sequelize.sync({ force: false })
   .then(() => {
     console.log('database connected');
@@ -38,8 +41,6 @@ sequelize.sync({ force: false })
   .catch((err) => {
     console.log(err);
   });
-
-
 
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -49,10 +50,10 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(session({
   resave: false,
   saveUninitialized: false,
-  secret: process.env.COOKIE_SECRET || 'keyboard cat',
+  secret: process.env.COOKIE_SECRET || 'ohapjijol',
   cookie: {
     httpOnly: true,
-    secure: false,
+    secure: false, // 배포시 true로 바꿀 것
   }
 }));
 app.use(passport.initialize());
@@ -60,12 +61,16 @@ app.use(passport.session());
 
 
 app.use('/', PageRouter);
-app.use('/signup', SignUpRouter);
+app.use('/auth', AuthRouter);
+app.use('/assessment',AssessmentRouter);
 app.use('/community', CommunityRouter);
+app.use('/assessment/shooting',ShootingRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
 
 // error handler
 app.use(function(err, req, res, next) {

@@ -15,11 +15,10 @@ router.post('/join', isNotLoggedIn, async(req, res, next) =>{
         if (exUser){
             return res.redirect('join?error=exist');
         }
-        const hash = await bcrypt.hash(password, 12);
         await User.create({
             militaryNumber,
             name,
-            password: hash,
+            password,
             unit,
             isExecutive,
         });
@@ -46,6 +45,7 @@ router.post('/login', isNotLoggedIn, async(req, res, next) => {
                 return next(loginError);
             }
             return res.redirect('/');
+            // res.json({ sucess: true }); 클라 연동 시 넣을 것
         });
     })(req, res, next);
 });

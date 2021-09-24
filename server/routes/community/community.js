@@ -5,12 +5,15 @@ const express = require('express');
 const { isLoggedIn, isNotLoggedIn } = require('../user/check_login');
 const { Post, User } = require('../../models');
 const PostRouter = require('./post');
+const CommentRouter = require('./comment');
 
 const router = express.Router();
 
-router.get('/', isLoggedIn, async (req, res) => {
+router.get('/post', isLoggedIn, PostRouter);
+router.get('/comment', isLoggedIn, CommentRouter);
+router.get('/:pageIndex', isLoggedIn, async (req, res) => {
     try {
-        let page = Math.max(1, parseInt(req.query.page));
+        let page = Math.max(1, parseInt(req.query.pageIndex));
         const limit = 10;
         let skip = (page - 1) * limit;
         let count = await Post.countDocuments({});
@@ -24,17 +27,18 @@ router.get('/', isLoggedIn, async (req, res) => {
             limit: limit,
             skip: skip,
         });
-        res.render('posts/index', {
+        const data = {
             posts: post_10,
             currentPage: page,
             maxPage: maxPage,
-        });
+        }
+        res.send(JSON.stringify(data));
     } catch (err) {
         console.error(err);
         next(err);
     }
-},);
+});
 
 
 
-router.get('/post', isLoggedIn, PostRouter);
+module.exports = router;
