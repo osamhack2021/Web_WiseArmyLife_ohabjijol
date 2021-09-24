@@ -4,8 +4,8 @@ const db = require('../../models/index');
 const { User, Shooting ,EventShooting} = require('../../models');
 const {Op} = require('sequelize');
 const applyController = require('./monthCheckController');
-const { mountpath } = require('../../app');
-
+const { isLoggedIn, isNotLoggedIn } = require('../user/check_login');
+const e = require('express');
 
 
 
@@ -51,32 +51,48 @@ router.route('/').get( async (req,res)=>{ // apply/id/shooting Get으로 요청�
 
 });
 router.route('/apply').get(async (req,res)=>{ // apply/id/shooting Post로 요청시 사용자가 신청한 시간을 db에 올려줌
-    
-   
-    try{
-/*
-        const shootingdata = await db.sequelize.models.eventsShooting.findAll({
-            where : {
-                UserId : 3
-            },
-            attributes : ['userId','shootingId','grade'],
+       
+    try{  
+        let post = [];      
+
+        const user = await User.findOne({
+           
+            include : [{
+                model : Shooting,
+                attributes : ['date','expired']
+            }],
+            where:{id:3,},          // 이부분 req.id 로 변경해야함 로그인 구현 완료후 수정바람
+            attributes : ['id'],
+
+        }).then((user1)=>{
+            
+            if(user1.dataValues.Shootings.length!==0){ // 신청한 사격정보가 있을시
+
+                user1.dataValues.Shootings.forEach(element => {
+                    post.push({
+                        date : element.date,
+                        expired : element.expired,
+                        score : element.ShootingEvent.score                        
+
+                    })
+                   
+                });
+
+                res.json(post); 
+
+               }
+               else{                            // 없을시
+
+                   res.send("aaaa");
+               }
+
         });
-        */
 
-        const  shootingdata = await User.findOne({
-            where : {
-                id : 3
-            },
-        });
+       
 
-        let post = [];
 
-        if(shootingdata){
-            post = await shootingdata.getShootings({ where : {expired : 'Applying'} , attributes : ['date','expired']});
-        } // where 가 작동안함 손좀 봐야함
         
 
-       res.send(post );
     }
 
     catch(err){
@@ -88,7 +104,3 @@ router.route('/apply').get(async (req,res)=>{ // apply/id/shooting Post로 요�
 
 module.exports = router;
 
-[{"id":2,"date":"2021-09-25T00:00:00.000Z","expired":"Applying","applicant_capacity":0,"number_of_applicant":0,"createdAt":null,
-"updatedAt":null,"Users":[{"id":3,"militaryNumber":"123123","name":"1","password":"$2b$12$wTLVN6i9Ji/5XR1PzkU4rumXEWImrA2q./iW03uu67L4hY.d69TJO",
-"unit":"1","isExecutive":true,"createdAt":"2021-09-22T06:06:14.000Z","updatedAt":"2021-09-22T06:06:14.000Z","eventsShooting":
-{"createdAt":null,"updatedAt":null,"UserId":3,"ShootingId":2}}],"eventsShooting":{"createdAt":null,"updatedAt":null,"UserId":3,"ShootingId":2}}]

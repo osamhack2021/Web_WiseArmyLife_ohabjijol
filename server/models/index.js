@@ -1,7 +1,7 @@
 'use strict';
 
 // db와 연동
-const Sequelize = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 const User = require('./users');
 const Post = require('./post');
 const Shooting = require('./assessment/shooting');
@@ -23,6 +23,9 @@ db.Shooting = Shooting;
 db.Comment = Comment;
 
 
+db.ShootingEvent = sequelize.define('ShootingEvent', {score: DataTypes.INTEGER,}, { timestamps: false });
+
+
 User.init(sequelize);
 Post.init(sequelize);
 Comment.init(sequelize);
@@ -33,7 +36,7 @@ Post.associate(db);
 Comment.associate(db);
 Shooting.associate(db);
 
-const EventShooting = db.sequelize.models.eventsShooting;
+
 
 
 module.exports = db;
