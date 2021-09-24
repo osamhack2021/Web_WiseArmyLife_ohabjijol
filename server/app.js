@@ -23,6 +23,8 @@ const CommunityRouter = require("./routes/community/community");
 
 const { sequelize } = require('./models');
 const passportConfig = require('./passport');
+const AssessmentRouter = require("./routes/assessment");
+const ShootingRouter = require("./routes/assessment/shooting");
 
 const app = express();
 app.set('port', process.env.PORT||3000);
@@ -31,6 +33,7 @@ nunjucks.configure('views', {
   express: app,
   watch: true,
 });
+
 sequelize.sync({ force: false })
   .then(() => {
     console.log('database connected');
@@ -38,8 +41,6 @@ sequelize.sync({ force: false })
   .catch((err) => {
     console.log(err);
   });
-
-
 
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -61,11 +62,15 @@ app.use(passport.session());
 
 app.use('/', PageRouter);
 app.use('/auth', AuthRouter);
+app.use('/assessment',AssessmentRouter);
 app.use('/community', CommunityRouter);
+app.use('/assessment/shooting',ShootingRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
+
 
 // error handler
 app.use(function(err, req, res, next) {
