@@ -5,7 +5,7 @@
             next();
         } else {
             console.log('간부아님');
-            res.json({sucess: false})
+            res.json({sucess: false, message: 'is not executive'})
         }
     };
     exports.isNotExecutive = (req, res, next) => {
@@ -13,6 +13,6 @@
             next();
         } else {
             console.log('간부임');
-            res.json({sucess: false})
+            res.json({sucess: false, message: 'is executive'})
         }
     };
