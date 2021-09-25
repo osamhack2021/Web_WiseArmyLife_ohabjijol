@@ -14,7 +14,7 @@ router.use((req, res, next) => {
 
     if(req.user) {
         console.log(req.user.id);
-        res.locals.user = req.user;
+        res.locals.user = req.user; //클라 연동 시 필요 없음
     }
     next();
 });

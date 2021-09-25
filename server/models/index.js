@@ -5,7 +5,7 @@ const { Sequelize, DataTypes } = require('sequelize');
 const User = require('./users');
 const Post = require('./post');
 const Shooting = require('./assessment/shooting');
-
+const Forum = require('./forum');
 const Comment = require('./comment');
 
 const env = process.env.NODE_ENV || 'development';
@@ -19,7 +19,7 @@ db.sequelize = sequelize;
 db.User = User;
 db.Post = Post;
 db.Shooting = Shooting;
-
+db.Forum = Forum;
 db.Comment = Comment;
 
 
@@ -30,11 +30,14 @@ User.init(sequelize);
 Post.init(sequelize);
 Comment.init(sequelize);
 Shooting.init(sequelize);
+Forum.init(sequelize);
+
 
 User.associate(db);
 Post.associate(db);
 Comment.associate(db);
 Shooting.associate(db);
+Forum.associate(db);
 
 
 
