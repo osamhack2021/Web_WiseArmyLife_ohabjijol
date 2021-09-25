@@ -6,6 +6,7 @@ const {Op} = require('sequelize');
 const applyController = require('./monthCheckController');
 const { isLoggedIn, isNotLoggedIn } = require('../user/check_login');
 const e = require('express');
+const { enable } = require('../../app');
 
 
 
@@ -51,7 +52,7 @@ router.route('/').get( async (req,res)=>{ // /assessment/shooting Get으로 요�
 
 });
 
-router.route('/result').get(isLoggedIn,async (req,res)=>{ // 사용자가 신청한 사격정보를 json으로 보내줌 이것도 월별로 줘야하나.... 귀찮은데..
+router.route('/result').get(/*isLoggedIn,*/ async (req,res)=>{ // 사용자가 신청한 사격정보를 json으로 보내줌 이것도 월별로 줘야하나.... 귀찮은데..
     try{  
         let post = [];      
 
@@ -61,7 +62,7 @@ router.route('/result').get(isLoggedIn,async (req,res)=>{ // 사용자가 신청
                 model : Shooting,
                 attributes : ['date','expired']
             }],
-            where:{id:10,},          // 이부분 req.id 로 변경해야함 로그인 구현 완료후 수정바람
+            where:{id : 10/* req.user.id,*/},          // 이부분 req.id 로 변경해야함 로그인 구현 완료후 수정바람
             attributes : ['id'],
 
         }).then((user1)=>{
@@ -82,13 +83,12 @@ router.route('/result').get(isLoggedIn,async (req,res)=>{ // 사용자가 신청
                     ShootingInfo : post,
                    
                 }
-                console.log(req.id);
                 res.json(data); 
 
                }
                else{                            // 없을시
 
-                   res.send("aaaa");
+                   res.send("신청 결과 없음");
                }
 
         });   
@@ -103,33 +103,103 @@ router.route('/result').get(isLoggedIn,async (req,res)=>{ // 사용자가 신청
 
 });
 
-router.route('apply').post(isLoggedIn , async (req,res)=>{
+router.route('/apply').get(/*isLoggedIn ,*/ async (req,res)=>{  // front구현 완료되면 post로 받을것
 
     //필요한게 머가 있을까.... 일단 user id 시간
 
 
     const body = {
-        userId : 10,
+        userId : req.user.id,
         date : '2021-09-25',
-
-
     };
 
 
-    const shootingid = -1;
+    let shootingid = -1;
+    let shootingexpired;
+    let shootingNOA;
+    let shootingapplicant_capacity;
 
    const findshootinginfo = await Shooting.findOne({
         where : {
-            where : body.date,
+           date : body.date, // front와 연결 후 req.body.date로 변경
         },
         attributes : ['id','expired','number_of_applicant','applicant_capacity'],
 
     }).then((element)=>{
 
-        
+        if(element){
+        shootingid = element.dataValues.id;
+        shootingexpired = element.dataValues.expired;
+        shootingNOA = element.dataValues.number_of_applicant;
+        shootingapplicant_capacity = element.dataValues.applicant_capacity;
 
+        console.log(`사격정보 있는지 확인했음 현재 지원자수 ${shootingNOA}명 최대인원 ${shootingapplicant_capacity}명`);
+
+    }
+        else{
+            res.send("Aa");
+        }
+
+    }).catch((err)=>{
+        res.redirect('/assessment/shooting');
     });
 
+    if(shootingid===-1){
+        res.send("자료없음");
+    }
+    else{
+        if(shootingexpired === 'Expired' || shootingexpired=== "Full" ){
+            res.send("만료된 평가");
+        }
+        else{
+            const addShootingEvent = await ShootingEvent.findOrCreate({
+                where : {
+                    UserId : req.user.id,
+                    ShootingId : shootingid,
+                },
+
+            });
+
+           const isExist = (!addShootingEvent[1])
+
+
+            if(isExist){
+                res.send(isExist);
+            }
+            else{
+
+                shootingNOA = shootingNOA+1;
+
+                if(shootingNOA === shootingapplicant_capacity){
+                    await Shooting.update(  {number_of_applicant:shootingNOA,expired:'Full'},{
+                        where : {
+                            id : shootingid
+                        }
+                    });
+                }
+                else{
+                    await Shooting.update(  {number_of_applicant:shootingNOA},{
+                        where : {
+                            id : shootingid
+                        }
+                    });
+                }
+
+        console.log(`사격정보 업데이트 : 지원자수 ${shootingNOA}명 최대인원 ${shootingapplicant_capacity}명`);
+
+                res.send(
+
+                    "사용자등록 완료함"
+                );
+            }
+
+
+        }
+
+    }
+
+
+    
 
 });
 
