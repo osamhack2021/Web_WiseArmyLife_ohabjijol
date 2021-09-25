@@ -5,7 +5,7 @@ const Sequelize = require('sequelize');
 module.exports = class Forum extends Sequelize.Model {
     static init(sequelize){
       return super.init({
-        title: {
+        forumName: {
           type: Sequelize.STRING(20),
           allowNull: false,
         },
