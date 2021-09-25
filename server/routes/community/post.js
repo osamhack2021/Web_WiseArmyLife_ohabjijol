@@ -71,7 +71,7 @@ router.route('/:postId')
             },
             ],
         });
-        res.json(currentPost);
+        res.json(currentPost); // parentId.deletedAt 컬럼에 값 존재 시 삭제된 메세지 뜨게 할 것
     } catch (error){
         console.error(error);
         next(error);
@@ -81,18 +81,29 @@ router.route('/:postId')
         try{
         let currentPostID = req.params.postId;
         let currentPost = await Post.findOne({ where: { id: currentPostID } });
-        if (currentPost.UserId === req.user.id)
+        if (currentPost.UserId === req.user.id){
             await Post.destroy({ where: { id: currentPostID } })
-                .then(result => {
-                    console.log('삭제성공');
-                    res.json({ sucess: true });
+                .then((result), async (req, res, next) => {
+                    console.log('게시글 삭제성공');
+                    await Comment.destroy({ where: { postComment: currentPostID } })
+                        .then(result => {
+                            console.log('게시글 댓글 삭제성공');
+                            res.json({ sucess: true });
+                        })
+                        .catch(err => {
+                            console.error(err);
+                            next(error);
+                        })
                 })
                 .catch(err => {
                     console.error(err);
                     next(error);
                 })
+            }
+            
+            
         else {
-            console.log('삭제실패');
+            console.log('게시글 삭제실패');
             return res.json({ sucess: false })
         }
     } catch (error){
@@ -105,11 +116,11 @@ router.route('/:postId')
         let currentPostID = req.params.postId;
         const postBody = req.body;
         let currentPost = await Post.findOne({ where: { id: currentPostID } })
-        if (currentPost.UserId === req.user.id)
+        if (currentPost.UserId === req.user.id){
             await Post.update({
                 title: postBody.title,
                 content: postBody.content,
-                updatedAt: postBody.updatedAt,
+                updatedAt: new Date(),
             }, {
                 where: { id: currentPostID }
             })
@@ -121,6 +132,7 @@ router.route('/:postId')
                     console.error(err);
                     next(error);
                 })
+            }
         else {
             console.log('수정 실패')
             return res.json({ sucess: false })
@@ -131,6 +143,7 @@ router.route('/:postId')
     }
     });// 게시글 수정
 
+    router.post('/:postId/comment', CommentRouter);
     router.use('/:postId/:commentId', CommentRouter);
 
 module.exports = router;
