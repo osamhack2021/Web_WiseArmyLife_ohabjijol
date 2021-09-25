@@ -23,8 +23,8 @@ db.Shooting = Shooting;
 db.Comment = Comment;
 
 
-db.ShootingEvent = sequelize.define('ShootingEvent', {score: DataTypes.INTEGER,}, { timestamps: false });
-
+const ShootingEvent = sequelize.define('ShootingEvent', {score: DataTypes.INTEGER,}, { timestamps: false });
+db.ShootingEvent = ShootingEvent;
 
 User.init(sequelize);
 Post.init(sequelize);
