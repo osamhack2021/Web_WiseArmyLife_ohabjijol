@@ -120,6 +120,9 @@ router.route('/apply').get(isLoggedIn , async (req,res)=>{  // front구현 완�
     //필요한게 머가 있을까.... 일단 user id 시간
 
     try {
+
+        
+
         const body = {
             userId: req.user.id,
             date: '2021-09-25',
@@ -292,7 +295,7 @@ router.route('/cancellation').get(isLoggedIn, async (req,res)=>{ //front구현�
                 ShootingId:findShooting.dataValues.id}});
             
             if(findShooting.dataValues.expired==="Applying"){
-                await Shooting.update({ number_of_applicant: findShooting.dataValues.number_of_applicantnumber_of_applicant - 1 }, {
+                await Shooting.update({ number_of_applicant: findShooting.dataValues.number_of_applicant - 1 }, {
                     where: {
                         id: findShooting.dataValues.id
                     }
@@ -300,8 +303,8 @@ router.route('/cancellation').get(isLoggedIn, async (req,res)=>{ //front구현�
                 console.log("삭제됨");
             }
             else{
-                console.log(findShooting.dataValues.number_of_applicantnumber_of_applicant - 1 ); // findShooting.dataValues.number_of_applicantnumber_of_applicant - 1 이부분 수정해야함
-            await Shooting.update({ number_of_applicant: findShooting.dataValues.number_of_applicantnumber_of_applicant - 1 , expired : "Applying" }, {
+                console.log(findShooting.dataValues.number_of_applicant - 1 ); // findShooting.dataValues.number_of_applicant - 1 이부분 수정해야함
+            await Shooting.update({ number_of_applicant: findShooting.dataValues.number_of_applicant - 1 , expired : "Applying" }, {
                 where: {
                     id: findShooting.dataValues.id
                 }
