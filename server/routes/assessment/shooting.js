@@ -93,7 +93,7 @@ router.route('/result').get(isLoggedIn, async (req,res)=>{ // 사용자가 신�
                }
                else{                            // 없을시
 
-                   res.send("신청 결과 없음");
+                   res.json({success : false, data : null });
                }
 
         });   

@@ -16,9 +16,10 @@ componentDidMount() { // react 내장함수 페이지가 로드
 callApi = async () => { // async 비동기 특성때문에 사용 promise
   try {
     
-    const response = await fetch('/users'); // server.js get방식 /user호출 api받아오기
+    const response = await fetch('/assessment/shooting/result'); // server.js get방식 /user호출 api받아오기
     const body = await response.json();
-    alert(body.message)
+    console.log(body.data)
+    alert(body.data[0])
     if (response.status !== 200) throw Error(body.message);
     return body;
   } catch (error) {
@@ -34,6 +35,7 @@ submitClick = async e => {
     // server.js  post방식 /user호출 api받아오기
   })
   .then( response => {
+    
       alert(response.data.success);
   })  
 
