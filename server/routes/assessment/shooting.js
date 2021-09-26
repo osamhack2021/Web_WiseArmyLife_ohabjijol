@@ -192,6 +192,7 @@ router.route('/apply').get(isLoggedIn , async (req,res)=>{  // front구현 완�
                     where: {
                         UserId: req.user.id,
                         ShootingId: shootingid,
+                      
                     },
 
                 });
