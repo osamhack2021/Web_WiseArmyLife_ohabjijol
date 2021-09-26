@@ -21,7 +21,7 @@ module.exports = class Comment extends Sequelize.Model {
         },
       }, {
         sequelize,
-        timestamp: false,
+        timestamps: true,
         paranoid: true, // deletedAt컬럼
         modelName: 'Comment',
         tableName: 'comments',

@@ -17,6 +17,10 @@ module.exports = class Post extends Sequelize.Model {
             type: Sequelize.STRING(200),
             allowNull: true,
         },
+        commentCount: {
+          type: Sequelize.INTEGER,
+          allowNull: true,
+        },
         createdAt: {
           type: Sequelize.DATE,
           allowNull: true,
@@ -29,7 +33,7 @@ module.exports = class Post extends Sequelize.Model {
         },
       }, {
         sequelize,
-        timestamp: true,
+        timestamps: true,
         paranoid: false,
         modelName: 'Post',
         tableName: 'posts',

@@ -3,7 +3,7 @@
 const express = require('express');
 
 const { isLoggedIn } = require('../user/check_login');
-const { User } = require('../../models');
+const { User, Post, Comment } = require('../../models');
 const PostRouter = require('./post');
 
 const router = express.Router();
@@ -15,15 +15,20 @@ router.get('/:forumId/:pageIndex', isLoggedIn, async (req, res) => {
         let page = Math.max(1, parseInt(req.params.pageIndex));
         const limit = 10;
         let skip = (page - 1) * limit;
-        let count = await Post.countDocuments({});
-        let maxPage = Math.ceil(count/limit);
+        let postCount = await Post.countDocuments({});
+        let maxPage = Math.ceil(postCount/limit);
         const post_10 = await Post.findAll({
             where: { forumId: forumId },
-            include: {
+            include: [{
                 model: User,
                 as: 'posterId',
                 attributes: ['id', 'militaryNumber', 'name'],
             },
+            {
+                model: Comment,
+                attributes: [[sequelize.fn('COUNT', sequelize.col(''))]]
+            },
+            ],
             order: [['createdAt', 'DESC']],
             limit: limit,
             skip: skip,
@@ -39,24 +44,5 @@ router.get('/:forumId/:pageIndex', isLoggedIn, async (req, res) => {
         next(err);
     }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 module.exports = router;

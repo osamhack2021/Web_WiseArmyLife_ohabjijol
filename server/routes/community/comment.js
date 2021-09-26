@@ -18,7 +18,8 @@ router.route('/')
                 commenterId: req.user.id,
                 postComment: currentPost.postId,
             });
-            res.json({ sucess: true });
+            currentPost.commentCount++;
+            res.json({ sucess: true }, comment);
         } catch (err) {
             console.error(err);
             next(err);
@@ -30,12 +31,10 @@ router.route('/:commentId')
         try {
             const currentPost = res.locals.post;
             const currentCommentId = req.params.commentId;
-            const currentComment = await Comment.findOne({ where: { id: currentCommentId } });
             const commentBody = req.body;
-
             if (currentPost.UserId === req.user.id)
                 await Comment.update({
-                    comment: postBody.comment,
+                    comment: commentBody.comment,
                     updatedAt: new Date(),
                 }, {
                     where: { id: currentCommentId }
@@ -60,12 +59,14 @@ router.route('/:commentId')
     })
     .delete(checkPostId, isLoggedIn, async (req, res, next) => {
         try {
+            const currentPost = res.locals.post;
             const currentCommentId = req.params.commentId;
             const currentComment = await Comment.findOne({ where: { id: currentCommentId } });
             if (currentComment.UserId === req.user.id) {
                 await Comment.destroy({ where: { id: currentCommentId } })
                     .then(result => {
                         console.log('삭제성공');
+                        currentPost.commentCount--;
                         res.json({ sucess: true });
                     })
                     .catch(err => {
@@ -84,8 +85,8 @@ router.route('/:commentId')
     })
     .post(checkPostId, isLoggedIn, async (req, res, next) => {
         try {
+            const currentPost = res.locals.post;
             const currentCommentId = req.params.commentId;
-            const currentComment = Comment.findOne({ where: currentCommentId }); // postId는 url로 받아옴
             req.body.commenterId = req.user.id;
             req.body.postComment = currentPost.postId;
             const comment = await Comment.create({
@@ -94,14 +95,14 @@ router.route('/:commentId')
                 postComment: currentPost.postId,
                 parentComment: currentCommentId,
             });
-            res.json({ sucess: true });
+            currentPost.commentCount++;
+            res.json({ sucess: true }, comment);
         } catch (err) {
             console.error(err);
             next(err);
         }
     }
     ); // 대댓글
-
 
 
 // 현재 PostID가 있는 지 확인

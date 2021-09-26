@@ -12,6 +12,9 @@ const router = express.Router();
 
 router.get('/', isLoggedIn, async (req, res) => {
     try {
+        const user = await User.findOne({where: {id: 1}});
+        const posts = await user.getPosts();
+        console.log(posts);
         const forumLimit = 10;
         const allForum = await Forum.findAndCountAll({
             include: [{
@@ -29,8 +32,6 @@ router.get('/', isLoggedIn, async (req, res) => {
     }
 });
 router.get('/:forumId', isLoggedIn, ForumRouter);
-
-
 
 
 module.exports = router;
