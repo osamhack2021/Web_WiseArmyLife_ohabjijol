@@ -8,7 +8,11 @@
     <link rel="stylesheet" href="/main.css">
   </head>
   <body>
+    <a href="https://dbdiagram.io/d/614994fa825b5b01460be063" target="_blank"><font size="6rem" color="331122">
+      db 다이어그램 정보
+      </font></a>
     <div class="container">
+      
       <div class="profile-wrap">
         <div class="profile">
           {% if user and user.id %}
@@ -41,9 +45,14 @@
         {% endif %}
         </div>
         <footer>
-          Made by&nbsp;
-          <a href="/assessment" target="_blank">병기본지원창</a>
+          <a href="/assessment" target="_blank">병기본 지원 정보창</a> <br>
+          <a href="/assessment/shooting/apply" target="_blank">병기본 지원창</a><br>
+          <a href="/assessment/shooting/result" target="_blank">병기본 신청 현황창</a><br>
+          <a href="/assessment/shooting/cancellation" target="_blank">병기본 신청 취소창</a><br>
+
+          
         </footer>
+        
       </div>
       {% block content %}
       {% endblock %}

@@ -7,7 +7,7 @@ module.exports = class Shooting extends Sequelize.Model {
       return super.init({
        
         date : {
-            type : Sequelize.DATE,
+            type : Sequelize.DATEONLY,
             allowNull : false,
             unique : true,
         },
@@ -40,7 +40,7 @@ module.exports = class Shooting extends Sequelize.Model {
     }
     static associate(db) {
 
-      db.Shooting.belongsToMany(db.User , {through : 'eventsShooting'});
+      db.Shooting.belongsToMany(db.User , {through : db.ShootingEvent});
 
     }
   };
