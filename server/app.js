@@ -27,7 +27,7 @@ const AssessmentRouter = require("./routes/assessment");
 const ShootingRouter = require("./routes/assessment/shooting");
 
 const app = express();
-app.set('port', process.env.PORT||3000);
+app.set('port', process.env.PORT||5000);
 app.set('view engine', 'html');
 nunjucks.configure('views', {
   express: app,
