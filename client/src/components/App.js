@@ -2,13 +2,12 @@
 import React, { Component } from 'react';
 import { Router, Route, Switch } from "react-router";
 
-import Api_test from './Api_test' 
+import Api_test from './Api_test'
 
 class App extends Component {
-  constructor (props)
-  {
-    // push test test2
+  constructor (props) {
     super(props);
+    
     this.state = {
     }
 }

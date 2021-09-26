@@ -16,10 +16,9 @@ componentDidMount() { // react 내장함수 페이지가 로드
 callApi = async () => { // async 비동기 특성때문에 사용 promise
   try {
     
-    const response = await fetch('/assessment/shooting/result'); // server.js get방식 /user호출 api받아오기
+    const response = await fetch('/auth/login'); // server.js get방식 /user호출 api받아오기
     const body = await response.json();
-    console.log(body.data)
-    alert(body.data[0])
+    alert(body.data)
     if (response.status !== 200) throw Error(body.message);
     return body;
   } catch (error) {
@@ -29,14 +28,11 @@ callApi = async () => { // async 비동기 특성때문에 사용 promise
 
 // post 호출하기 버튼 클릭시 node api post 호출
 submitClick = async e => {
-  axios.post('/auth/login', { 
-    'militaryNumber':'2',
-    'password':'1'
-    // server.js  post방식 /user호출 api받아오기
+  axios.post('/auth/login', {
+    
   })
   .then( response => {
-    
-      alert(response.data.success);
+      alert(response.data.message)
   })  
 
 }
