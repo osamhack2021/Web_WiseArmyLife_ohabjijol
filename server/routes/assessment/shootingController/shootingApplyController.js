@@ -9,7 +9,7 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
     try {
         const body = { //req.body로 이용
             userId: req.user.id,
-            date: '2021-09-25',
+            date: '2021-09-25', 
         };
 
 
@@ -20,7 +20,7 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
 
         const findshootinginfo = await Shooting.findOne({ // 받아온 사격 일정이 있는지 확인
             where: {
-                date: body.date, // front와 연결 후 req.param.date로 변경
+                date: body.date, // front와 연결 후 req.body.date로 변경
             },
             attributes: ['id', 'expired', 'number_of_applicant', 'applicant_capacity'],
 
@@ -31,8 +31,6 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
                 shootingexpired = element.dataValues.expired;
                 shootingNOA = element.dataValues.number_of_applicant;
                 shootingapplicant_capacity = element.dataValues.applicant_capacity;
-
-                console.log(`사격정보 있는지 확인했음 현재 지원자수 ${shootingNOA}명 최대인원 ${shootingapplicant_capacity}명 현재상태 ${shootingexpired}`);
 
             }
             else { // 검색한 사격 일정이 없을때
@@ -53,7 +51,6 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
 
         });
 
-        console.log(typeof findApply);
 
         if (findApply != null) { // 이미 지원했을 경우
             senderror = {
@@ -86,8 +83,6 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
                     }
 
                 });
-
-                console.log(isupdate[0]);
 
 
                 if (isupdate[0]) {

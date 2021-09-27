@@ -11,6 +11,7 @@ const morgan = require('morgan');
 const dotenv = require('dotenv');
 const passport = require('passport');
 const nunjucks = require('nunjucks');
+
 ///////////////////////////////////////////////////
 
 dotenv.config();
@@ -25,7 +26,7 @@ const passportConfig = require('./passport');
 const AssessmentRouter = require("./routes/assessment");
 const ShootingRouter = require("./routes/assessment/shooting");
 const MangementRouter = require('./routes/management');
-
+const ShootingManagementRouter = require('./routes/management/shooting');
 
 ///////////////////////////////////////////////////////////////////////
 const app = express();
@@ -69,7 +70,7 @@ app.use('/assessment',AssessmentRouter);
 app.use('/community', CommunityRouter);
 app.use('/assessment/shooting',ShootingRouter);
 app.use('/management',MangementRouter);
-
+app.use('/management/shooting',ShootingManagementRouter);
 
 ////////////////////////////////////////////////////
 // catch 404 and forward to error handler
