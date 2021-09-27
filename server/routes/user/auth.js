@@ -22,7 +22,8 @@ router.post('/join', isNotLoggedIn, async(req, res, next) =>{
             unit,
             isExecutive,
         });
-        return res.json({success : true,data : "이진중 대머리"});
+        return res.redirect('/');
+        // return res.json({success : true,data : "이진중 대머리"});// 클라 연동시
     } catch (error) {
         console.error(error);
         return next(error);
@@ -44,8 +45,9 @@ router.post('/login', isNotLoggedIn, async(req, res, next) => {
                 console.error(loginError);
                 return next(loginError);
             }
-            return res.json({success : true, data : "이진중 대머리"});
-            // res.json({ sucess: true }); 클라 연동 시 넣을 것
+            
+            return res.redirect('/');
+            //return res.json({success : true, data : "이진중 대머리"});// 클라연동시
         });
     })(req, res, next);
 });

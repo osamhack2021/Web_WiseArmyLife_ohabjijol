@@ -8,15 +8,14 @@ const path = require('path');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
-const bodyParser = require('body-parser')
 const dotenv = require('dotenv');
 const passport = require('passport');
 const nunjucks = require('nunjucks');
-
+///////////////////////////////////////////////////
 
 dotenv.config();
 
-//라우팅
+//라우팅 모듈
 const PageRouter = require("./routes/home/home");
 const AuthRouter = require("./routes/user/auth");
 const CommunityRouter = require("./routes/community/community");
@@ -25,7 +24,10 @@ const { sequelize } = require('./models');
 const passportConfig = require('./passport');
 const AssessmentRouter = require("./routes/assessment");
 const ShootingRouter = require("./routes/assessment/shooting");
+const MangementRouter = require('./routes/management');
 
+
+///////////////////////////////////////////////////////////////////////
 const app = express();
 app.set('port', process.env.PORT||5000);
 app.set('view engine', 'html');
@@ -47,8 +49,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(process.env.COOKIE_SECRET));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended : true}));
 app.use(session({
   resave: false,
   saveUninitialized: false,
@@ -61,13 +61,17 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
+//라우팅
+//////////////////////////////////////////////////
 app.use('/', PageRouter);
 app.use('/auth', AuthRouter);
 app.use('/assessment',AssessmentRouter);
 app.use('/community', CommunityRouter);
 app.use('/assessment/shooting',ShootingRouter);
+app.use('/management',MangementRouter);
 
+
+////////////////////////////////////////////////////
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
