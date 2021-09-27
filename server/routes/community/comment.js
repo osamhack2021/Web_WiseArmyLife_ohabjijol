@@ -103,7 +103,7 @@ router.route('/:commentId')
         }
     }
     ); // 대댓글
-
+// 댓글 CRUD
 
 // 현재 PostID가 있는 지 확인
 function checkPostId(req, res, next) {

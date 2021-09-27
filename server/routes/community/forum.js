@@ -2,11 +2,12 @@
 
 const express = require('express');
 
-const { isLoggedIn } = require('../user/check_login');
+const { isLoggedIn, isExecutive } = require('../user/check_login');
 const { User, Post, Comment } = require('../../models');
 const PostRouter = require('./post');
 
 const router = express.Router();
+
 
 router.get('/:forumId/post', isLoggedIn, PostRouter);
 router.get('/:forumId/:pageIndex', isLoggedIn, async (req, res) => {
@@ -16,17 +17,13 @@ router.get('/:forumId/:pageIndex', isLoggedIn, async (req, res) => {
         const limit = 10;
         let skip = (page - 1) * limit;
         let postCount = await Post.countDocuments({});
-        let maxPage = Math.ceil(postCount/limit);
+        let maxPage = Math.ceil(postCount / limit);
         const post_10 = await Post.findAll({
             where: { forumId: forumId },
             include: [{
                 model: User,
                 as: 'posterId',
                 attributes: ['id', 'militaryNumber', 'name'],
-            },
-            {
-                model: Comment,
-                attributes: [[sequelize.fn('COUNT', sequelize.col(''))]]
             },
             ],
             order: [['createdAt', 'DESC']],
@@ -44,5 +41,6 @@ router.get('/:forumId/:pageIndex', isLoggedIn, async (req, res) => {
         next(err);
     }
 });
+// 특정 게시판 읽기
 
 module.exports = router;

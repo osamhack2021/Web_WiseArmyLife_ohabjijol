@@ -5,6 +5,8 @@ const LocalStrategy = require('passport-local').Strategy;
 const bcrypt = require('bcrypt');
 const User = require('../models/users')
 
+// let cachedUser = {};
+
 passport.use('local-login', new LocalStrategy({
     usernameField: 'militaryNumber',
     passwordField: 'password',
@@ -37,9 +39,18 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-    User.findOne({where: { id } })
-        .then(user => done(null, user))
-        .catch(err => done(err));
+    // if (cachedUser != null) {
+    //     console.log('실행되나');
+    //     done(null, cachedUser);
+    // }
+    // else {
+        User.findOne({ where: { id } })
+            .then(user => {
+                // cachedUser = user;
+                done(null, user);
+            })
+            .catch(err => done(err));
+    // }
 });
 
 

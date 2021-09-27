@@ -53,6 +53,7 @@ router.post('/login', isNotLoggedIn, async(req, res, next) => {
 });
 
 router.get('/logout', isLoggedIn, (req,res) => {
+    // cachedUser = null;
     req.logout();
     req.session.destroy();
     res.redirect('/');
