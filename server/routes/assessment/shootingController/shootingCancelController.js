@@ -1,4 +1,4 @@
-const { User, Shooting ,ShootingEvent} = require('../../../models');
+const {Shooting ,ShootingEvent} = require('../../../models');
  
 CancelApply = async (req,res)=>{ //front구현후 delete로 받을것
 
@@ -59,11 +59,11 @@ CancelApply = async (req,res)=>{ //front구현후 delete로 받을것
         }
         }
 
-        sendsucces = {
+        sendsuccess = {
             success : true,
             data : "success"
         }
-        return res.send(sendsucces);
+        return res.send(sendsuccess);
 
 
     }
@@ -80,11 +80,11 @@ CancelApply = async (req,res)=>{ //front구현후 delete로 받을것
     catch(err){
         console.error(err);
 
-        const resobject = {
+        const senderror = {
             success : false,
             data : "unexpected Error",
         }
-        return res.json(resobject);
+        return res.json(senderror);
     }
 
 }

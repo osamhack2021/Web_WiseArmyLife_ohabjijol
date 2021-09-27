@@ -1,4 +1,4 @@
-const { User, Shooting ,ShootingEvent} = require('../../../models');
+const {Shooting} = require('../../../models');
 const {Op} = require('sequelize');
 const applyController = require('../monthCheckController');
 
@@ -42,12 +42,12 @@ getShootingInfo = async (req,res)=>{
 
     catch(err){
         console.error(err);
-        const resobject = {
+        const senderror = {
             success : false,
             data : "unexpected Error",
         }
 
-        return res.json(resobject);
+        return res.json(senderror);
     } 
 
 

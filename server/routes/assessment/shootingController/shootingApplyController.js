@@ -1,5 +1,5 @@
 
-const { User, Shooting, ShootingEvent } = require('../../../models');
+const {Shooting, ShootingEvent } = require('../../../models');
 const { Op } = require('sequelize');
 const db = require('../../../models/index');
 
@@ -127,11 +127,11 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
 
         console.error(err);
 
-        const resobject = {
+        const senderror = {
             success: false,
             data: "unexpected Error",
         }
-        return res.json(resobject);
+        return res.json(senderror);
     }
 
 
