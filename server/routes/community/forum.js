@@ -1,34 +1,13 @@
-"use strict";
+"use strict"
 
 const express = require('express');
 
-const { isLoggedIn, isNotLoggedIn } = require('../user/check_login');
-const { Post, User, Forum } = require('../../models');
-const PostRouter = require('./post');
-const CommentRouter = require('./comment');
+const { isLoggedIn } = require('../user/check_login');
+const { User } = require('../../models');
 
 const router = express.Router();
 
-router.get('/', isLoggedIn, async (req, res) => {
-    try {
-        const forumLimit = 10;
-        const allForum = await Forum.findAndCountAll({
-            include: [{
-               model: Post,
-               limit: 1,
-               order: [['createdAt', 'DESC']],
-            }],
-            order: [['forumName', 'DESC']],
-            limit: forumLimit,
-        });
-        res.json(allForum);
-    } catch (err) {
-        console.error(err);
-        next(err);
-    }
-});
 router.get('/:forumId/post', isLoggedIn, PostRouter);
-router.get('/:forumId/:postId/comment', isLoggedIn, CommentRouter);
 router.get('/:forumId/:pageIndex', isLoggedIn, async (req, res) => {
     try {
         const forumId = req.query.forumId;
@@ -59,6 +38,23 @@ router.get('/:forumId/:pageIndex', isLoggedIn, async (req, res) => {
         next(err);
     }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
