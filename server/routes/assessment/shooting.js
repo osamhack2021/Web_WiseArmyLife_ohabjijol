@@ -6,9 +6,11 @@ const getShootingInfo = require('./shootingController/shootinginfoController');
 const getShootingResult = require('./shootingController/shootingresultController');
 const ApplyAssessment = require('./shootingController/shootingApplyController');
 const CancelApply = require('./shootingController/shootingCancelController');
-
+const syncShootingAssessment = require('./shootingController/shootingassessmentsync');
 
 router.route('/').get(getShootingInfo);
+router.route('/sync').get(syncShootingAssessment);
+
 router.use(isLoggedIn,isNotExecutive);
 router.route('/result').get(getShootingResult);
 router.route('/apply').get(ApplyAssessment); // post로 작성 body = {userId : (int) , date : 'yyyy-mm-dd'}

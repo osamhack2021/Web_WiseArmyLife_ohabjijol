@@ -1,4 +1,6 @@
 const {Shooting ,ShootingEvent} = require('../../../models');
+const db = require('../../../models');
+
  
 CancelApply = async (req,res)=>{ //front구현후 delete로 받을것
 
@@ -6,7 +8,7 @@ CancelApply = async (req,res)=>{ //front구현후 delete로 받을것
     //신청한 사격정보 있는지 확인
 
         data = {
-            date : '2021-09-25'
+            date : '2021-10-25'
         }
 
     const findShooting = await Shooting.findOne({
@@ -38,7 +40,7 @@ CancelApply = async (req,res)=>{ //front구현후 delete로 받을것
                 ShootingId:findShooting.dataValues.id}});
             
           
-            await Shooting.update({ number_of_applicant : db.sequelize.literal('applicant_capacity - 1') , expired : "Applying" }, {
+            await Shooting.update({ number_of_applicant : db.sequelize.literal('number_of_applicant - 1') , expired : "Applying" }, {
                 where: {
                     id: findShooting.dataValues.id
                 }

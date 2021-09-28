@@ -22,7 +22,6 @@ const AuthRouter = require("./routes/user/auth");
 const CommunityRouter = require("./routes/community/community");
 
 const { sequelize, Shooting } = require('./models');
-const db = require('./models');
 const passportConfig = require('./passport');
 const AssessmentRouter = require("./routes/assessment");
 const ShootingRouter = require("./routes/assessment/shooting");
@@ -62,31 +61,11 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-const { Op } = require('sequelize');
 
+const syncShootingAssessment = require('./routes/assessment/shootingController/shootingassessmentsync');
 
+schedule.scheduleJob('1 0 0 * * *',syncShootingAssessment);
 
-const dbsync = schedule.scheduleJob('40 * * * * *', () => { // 매시간 00분 1초 마다 함수 실행 
-
-try{
-
-  var now = new Date();
-
-  var year = now.getFullYear();
-  var month = (now.getMonth()+1).toString().padStart(2, '0');
-  var day = now.getDate().toString().padStart(2, '0');
-  var today = year + month + day;
-
-  var toChange = "Expired"
-
-  Shooting.update({ expired : db.sequelize.literal('\'Expired\'') }, { where: {date : {[Op.lte]: today }}});
-  console.log("db업데이트");
-}
-catch(err){
-  console.log(err);
-
-}
-});
 
 
 //라우팅

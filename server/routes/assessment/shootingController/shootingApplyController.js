@@ -9,7 +9,7 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
     try {
         const body = { //req.body로 이용
             userId: req.user.id,
-            date: '2021-09-25', 
+            date: '2021-10-25', 
         };
 
 
@@ -77,7 +77,8 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
 
             }
             else {
-                const isupdate = await Shooting.update({ number_of_applicant: db.sequelize.literal('number_of_applicant + 1') }, {
+                const isupdate = await Shooting.update({ number_of_applicant: db.sequelize.literal('number_of_applicant + 1') }, 
+                {
                     where: {
                         [Op.and]: [{ id: shootingid }, { number_of_applicant: { [Op.lt]: db.sequelize.literal('applicant_capacity') }},{expired : 'Applying'}],
                     }
@@ -94,7 +95,7 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
 
                     await Shooting.update({ expired: 'Full' }, {
                         where: {
-                            [Op.and]: [{ id: shootingid }, { number_of_applicant: db.sequelize.literal('applicant_capacity') }],
+                            [Op.and]: [{ id: shootingid },  db.sequelize.literal('applicant_capacity = number_of_applicant') ],
                         }
 
                     });
