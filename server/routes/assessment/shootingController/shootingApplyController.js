@@ -79,7 +79,7 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
             else {
                 const isupdate = await Shooting.update({ number_of_applicant: db.sequelize.literal('number_of_applicant + 1') }, {
                     where: {
-                        [Op.and]: [{ id: shootingid }, { number_of_applicant: { [Op.lt]: db.sequelize.literal('applicant_capacity') } }],
+                        [Op.and]: [{ id: shootingid }, { number_of_applicant: { [Op.lt]: db.sequelize.literal('applicant_capacity') }},{expired : 'Applying'}],
                     }
 
                 });

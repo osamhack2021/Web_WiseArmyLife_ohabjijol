@@ -11,7 +11,7 @@ const CancelApply = require('./shootingController/shootingCancelController');
 router.route('/').get(getShootingInfo);
 router.use(isLoggedIn,isNotExecutive);
 router.route('/result').get(getShootingResult);
-router.route('/apply').get(ApplyAssessment); // post로 작성
+router.route('/apply').get(ApplyAssessment); // post로 작성 body = {userId : (int) , date : 'yyyy-mm-dd'}
 router.route('/cancellation').get(CancelApply);
 
 

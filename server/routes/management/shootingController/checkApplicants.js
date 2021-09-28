@@ -1,5 +1,4 @@
 const {Shooting ,ShootingEvent} = require('../../../models');
-const { post } = require('../shooting');
 
 checkApplicant = async (req,res)=>{
 
