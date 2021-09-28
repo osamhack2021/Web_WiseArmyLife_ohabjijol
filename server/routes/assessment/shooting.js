@@ -9,9 +9,10 @@ const CancelApply = require('./shootingController/shootingCancelController');
 
 
 router.route('/').get(getShootingInfo);
-router.route('/result').get(isLoggedIn,isNotExecutive,getShootingResult);
-router.route('/apply').get(isLoggedIn,isNotExecutive,ApplyAssessment); // post로 작성
-router.route('/cancellation').get(isLoggedIn,isNotExecutive,CancelApply);
+router.use(isLoggedIn,isNotExecutive);
+router.route('/result').get(getShootingResult);
+router.route('/apply').get(ApplyAssessment); // post로 작성
+router.route('/cancellation').get(CancelApply);
 
 
 

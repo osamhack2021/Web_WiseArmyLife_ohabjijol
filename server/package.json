@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "fuser -k -n tcp 5000 && nodemon app"
+    "start": "nodemon app"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",

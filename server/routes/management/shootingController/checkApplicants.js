@@ -1,13 +1,10 @@
 const {Shooting ,ShootingEvent} = require('../../../models');
+const { post } = require('../shooting');
 
 checkApplicant = async (req,res)=>{
 
     try{
-
-
        
-        // management/shooting/assementinfo?date=2021-09-25
-        
         const findShooting = await Shooting.findOne({where : {
             date : req.query.date,
         },
@@ -25,20 +22,8 @@ checkApplicant = async (req,res)=>{
     }
 
     else{
-/*
-        findUserId = await ShootingEvent.findAll({where:{ShootingId : findShooting.dataValues.id},
-        attributes : ['UserId','score']
-        });
-
-        findUserId.forEach(findUserId => {
-            console.log(findUserId.dataValues);
-            findUserId.dataValues.UserId // 이걸 통해 데이터 접근?
-        });
-
-      //  console.log(findUserId);
-*/
         const findUser = await findShooting.getUsers({attributes : ['name','militaryNumber']});
-        post =[];
+        var post = [];
         findUser.forEach(element => {
             postdata ={
             name : element.dataValues.name,
@@ -48,7 +33,17 @@ checkApplicant = async (req,res)=>{
             
         }
         );
-        res.json(post);
+        
+        sendsuccess = {
+            success : true,
+            data : {shootingdate : req.query.date, 
+                userinfo : post
+                    
+            }
+
+        }
+
+        res.json(sendsuccess);
 
     }
     
