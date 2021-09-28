@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
+import axios from 'axios';
 
-const Community = () => {
-    return (
-        <div>
-            여기는 커뮤니티
-        </div>
-    );
-};
+class Community extends Component{
+    render() {
+        return (
+             <div>
+                 커뮤니티
+             </div>
+        );
+    }
+}
 
 export default Community;

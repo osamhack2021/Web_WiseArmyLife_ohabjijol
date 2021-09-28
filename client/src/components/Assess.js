@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
+import axios from 'axios';
 
-const Assess = () => {
-    return (
-        <div>
-            여기는 병기본 평가
-        </div>
-    );
-};
+class Assess extends Component{
+    render() {
+        return (
+             <div>
+                 병기본평가
+             </div>
+        );
+    }
+}
 
 export default Assess;
