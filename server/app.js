@@ -63,7 +63,7 @@ app.use(passport.session());
 
 
 app.use('/', PageRouter);
-app.use('/auth', AuthRouter);
+app.use('/auth', AuthRouter); //
 app.use('/assessment',AssessmentRouter);
 app.use('/community', CommunityRouter);
 app.use('/assessment/shooting',ShootingRouter);
