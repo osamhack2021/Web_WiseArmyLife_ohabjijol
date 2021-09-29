@@ -17,12 +17,10 @@ router.get('/:forumId/:pageIndex', isLoggedIn, async (req, res) => {
         const limit = 10;
         let skip = (page - 1) * limit;
         let postCount = await Post.countDocuments({});
-        let maxPage = Math.ceil(postCount / limit);
-        const post_10 = await Post.findAll({
+        const post_10 = await Post.findAndCountAll({
             where: { forumId: forumId },
             include: [{
                 model: User,
-                as: 'posterId',
                 attributes: ['id', 'militaryNumber', 'name'],
             },
             ],
@@ -30,12 +28,7 @@ router.get('/:forumId/:pageIndex', isLoggedIn, async (req, res) => {
             limit: limit,
             skip: skip,
         });
-        const data = {
-            posts: post_10,
-            currentPage: page,
-            maxPage: maxPage,
-        }
-        res.send(JSON.stringify(data));
+        res.json({sucess: true, data: post_10, postCount: postCount});
     } catch (err) {
         console.error(err);
         next(err);

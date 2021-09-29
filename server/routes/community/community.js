@@ -31,7 +31,6 @@ router.get('/', isLoggedIn, async (req, res) => {
         next(err);
     }
 });
-// 게시판 읽기
 router.route('/forumAdd')
     .post(isLoggedIn, isExecutive, async (req, res, next) => {
         try {
@@ -54,8 +53,6 @@ router.route('/forumAdd')
     .get(isLoggedIn, isExecutive, (req, res, next) => {
         res.json({ sucess: true });
     });
-// 게시판 추가
-
 router.delete('/:forumId', isLoggedIn, isExecutive, async (req, res, next) => {
     try {
         const currentForumId = req.params.forumId;
@@ -91,7 +88,7 @@ router.delete('/:forumId', isLoggedIn, isExecutive, async (req, res, next) => {
         next(error);
     }
 });
-// 게시판 삭제
+// 게시판 CRUD
 
 router.get('/:forumId', isLoggedIn, ForumRouter);
 
