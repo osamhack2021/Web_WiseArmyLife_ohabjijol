@@ -1,4 +1,6 @@
 const {Shooting ,ShootingEvent} = require('../../../models');
+const db = require('../../../models');
+
  
 CancelApply = async (req,res)=>{ //front구현후 delete로 받을것
 
@@ -6,7 +8,7 @@ CancelApply = async (req,res)=>{ //front구현후 delete로 받을것
     //신청한 사격정보 있는지 확인
 
         data = {
-            date : '2021-09-25'
+            date : '2021-10-25'
         }
 
     const findShooting = await Shooting.findOne({
@@ -37,26 +39,14 @@ CancelApply = async (req,res)=>{ //front구현후 delete로 받을것
             await ShootingEvent.destroy({where:{UserId:req.user.id,
                 ShootingId:findShooting.dataValues.id}});
             
-            if(findShooting.dataValues.expired==="Applying"){
-                await Shooting.update({ number_of_applicant: findShooting.dataValues.number_of_applicant - 1 }, {
-                    where: {
-                        id: findShooting.dataValues.id
-                    }
-                });
-                console.log("삭제됨");
-            }
-            else{
-                console.log(findShooting.dataValues.number_of_applicant - 1 ); // findShooting.dataValues.number_of_applicant - 1 이부분 수정해야함
-            await Shooting.update({ number_of_applicant: findShooting.dataValues.number_of_applicant - 1 , expired : "Applying" }, {
+          
+            await Shooting.update({ number_of_applicant : db.sequelize.literal('number_of_applicant - 1') , expired : "Applying" }, {
                 where: {
                     id: findShooting.dataValues.id
                 }
                 
             });
-            console.log("삭제됨");
 
-            
-        }
         }
 
         sendsuccess = {

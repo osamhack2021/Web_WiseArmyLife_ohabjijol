@@ -11,6 +11,7 @@ const morgan = require('morgan');
 const dotenv = require('dotenv');
 const passport = require('passport');
 const nunjucks = require('nunjucks');
+const schedule = require('node-schedule');
 ///////////////////////////////////////////////////
 
 dotenv.config();
@@ -20,12 +21,12 @@ const PageRouter = require("./routes/home/home");
 const AuthRouter = require("./routes/user/auth");
 const CommunityRouter = require("./routes/community/community");
 
-const { sequelize } = require('./models');
+const { sequelize, Shooting } = require('./models');
 const passportConfig = require('./passport');
 const AssessmentRouter = require("./routes/assessment");
 const ShootingRouter = require("./routes/assessment/shooting");
 const MangementRouter = require('./routes/management');
-
+const ShootingManagementRouter = require('./routes/management/shooting');
 
 ///////////////////////////////////////////////////////////////////////
 const app = express();
@@ -61,6 +62,12 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+const syncShootingAssessment = require('./routes/assessment/shootingController/shootingassessmentsync');
+
+schedule.scheduleJob('1 0 0 * * *',syncShootingAssessment);
+
+
+
 //라우팅
 //////////////////////////////////////////////////
 app.use('/', PageRouter);
@@ -69,7 +76,7 @@ app.use('/assessment',AssessmentRouter);
 app.use('/community', CommunityRouter);
 app.use('/assessment/shooting',ShootingRouter);
 app.use('/management',MangementRouter);
-
+app.use('/management/shooting',ShootingManagementRouter);
 
 ////////////////////////////////////////////////////
 // catch 404 and forward to error handler

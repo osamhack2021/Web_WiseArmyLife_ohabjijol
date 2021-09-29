@@ -16,12 +16,10 @@ getShootingInfo = async (req,res)=>{
         else{            
             month = req.query.month;
             year = req.query.year;  
-            console.log(month,"+",year);
             thismonth =  applyController.getThismonth(year,month);
             nextmonth =  applyController.getNextMonth(year,month);
         }
 
-        console.log(req.url);
         const shootingdata = await Shooting.findAll({        
             attributes : ['date','expired','applicant_capacity','number_of_applicant'],
             where : {
