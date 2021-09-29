@@ -1,7 +1,7 @@
 import React, {useState,Component} from "react";
 import { Link, Route, Switch, BrowserRouter as Router } from "react-router-dom";
-import Header from './HeadList/Header';
-import Footer from './HeadList/Footer';
+import Header from './components/HeadList/Header';
+import Footer from './components/HeadList/Footer';
 
 
 
