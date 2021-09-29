@@ -1,5 +1,6 @@
 const { User, Shooting ,ShootingEvent} = require('../../../models');
 
+//사격의 R
 
 getShootingResult = async (req,res)=>{ // 사용자가 신청한 사격정보를 json으로 보내줌 이것도 월별로 줘야하나.... 귀찮은데..
     try{  

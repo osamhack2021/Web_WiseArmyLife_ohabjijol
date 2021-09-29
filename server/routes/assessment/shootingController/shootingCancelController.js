@@ -1,7 +1,8 @@
 const {Shooting ,ShootingEvent} = require('../../../models');
 const db = require('../../../models');
 
- 
+//사격지원의 D 
+
 CancelApply = async (req,res)=>{ //front구현후 delete로 받을것
 
     try{

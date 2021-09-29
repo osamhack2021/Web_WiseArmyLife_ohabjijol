@@ -1,51 +1,56 @@
-const {Shooting ,ShootingEvent} = require('../../../models');
+const { Shooting, ShootingEvent } = require('../../../models');
 
-checkApplicant = async (req,res)=>{
+//사격지원의 R
 
-    try{
-       
-        const findShooting = await Shooting.findOne({where : {
-            date : req.query.date,
-        },
-        attributes : ['id'],
-    });
+checkApplicant = async (req, res) => {
 
-    //console.log(findShooting);
-    
-    if(findShooting == null){
-        const senderror = {
-            success: false,
-            data: "Not found",
+    try {
+
+        const findShooting = await Shooting.findOne({
+            where: {
+                date: req.query.date,
+            },
+            attributes: ['id'],
+        });
+
+        //console.log(findShooting);
+
+        if (findShooting == null) {
+            const senderror = {
+                success: false,
+                data: "Not found",
+            }
+            return res.json(senderror);
         }
-        return res.json(senderror);
-    }
 
-    else{
-        const findUser = await findShooting.getUsers({attributes : ['name','militaryNumber']});
-        var post = [];
-        findUser.forEach(element => {
-            postdata ={
-            name : element.dataValues.name,
-            militaryNumber : element.dataValues.militaryNumber,
-            score:element.dataValues.ShootingEvent.score,}  ;
+        else {
+            const findUser = await findShooting.getUsers({ attributes: ['name', 'militaryNumber'] });
+            var post = [];
+            findUser.forEach(element => {
+                postdata = {
+                    name: element.dataValues.name,
+                    militaryNumber: element.dataValues.militaryNumber,
+                    score: element.dataValues.ShootingEvent.score,
+                };
                 post.push(postdata);
-            
-        }
-        );
-        
-        sendsuccess = {
-            success : true,
-            data : {shootingdate : req.query.date, 
-                userinfo : post
-                    
+
+            }
+            );
+
+            sendsuccess = {
+                success: true,
+                data: {
+                    shootingdate: req.query.date,
+                    userinfo: post
+
+                }
+
             }
 
+            res.json(sendsuccess);
+
         }
 
-        res.json(sendsuccess);
-
-    }
-    
 
 
     }

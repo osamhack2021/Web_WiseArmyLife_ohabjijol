@@ -10,6 +10,7 @@ const router = express.Router();
 
 router.post('/join', isNotLoggedIn, async(req, res, next) =>{
     const {name, militaryNumber, unit, password, isExecutive} = req.body;
+    
     try {
         const exUser = await User.findOne({ where: {militaryNumber} });
         if (exUser){

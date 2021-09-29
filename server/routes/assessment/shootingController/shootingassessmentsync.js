@@ -3,7 +3,9 @@ const {Shooting} = require('../../../models');
 const {Op} = require('sequelize');
 
 
-syncShootingAssessment = async () => { // 매시간 00분 1초 마다 함수 실행 배포후 '* * 0 * * *'으로 변경해야함
+// 매일 yy시 사격정보 Expired 유무 파악후 db Update
+
+syncShootingAssessment = async () => {
 
     try{
     

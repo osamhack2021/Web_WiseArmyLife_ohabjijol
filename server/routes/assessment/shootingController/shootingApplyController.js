@@ -3,6 +3,7 @@ const {Shooting, ShootingEvent } = require('../../../models');
 const { Op } = require('sequelize');
 const db = require('../../../models/index');
 
+// 사격 지원의 C
 
 ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받을것
 
