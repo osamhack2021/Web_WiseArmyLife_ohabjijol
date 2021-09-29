@@ -32,6 +32,6 @@ router.get('/:pageIndex', isLoggedIn, async (req, res, next) => {
         next(error);
     }
 });
-
+// 마편 READ
 
 module.exports = router;

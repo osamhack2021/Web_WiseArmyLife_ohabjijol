@@ -20,6 +20,7 @@ dotenv.config();
 const PageRouter = require("./routes/home/home");
 const AuthRouter = require("./routes/user/auth");
 const CommunityRouter = require("./routes/community/community");
+const LetterRouter = require("./routes/letter");
 
 const { sequelize, Shooting } = require('./models');
 const passportConfig = require('./passport');
@@ -74,6 +75,7 @@ app.use('/', PageRouter);
 app.use('/auth', AuthRouter);
 app.use('/assessment',AssessmentRouter);
 app.use('/community', CommunityRouter);
+app.use('/letter', LetterRouter);
 app.use('/assessment/shooting',ShootingRouter);
 app.use('/management',MangementRouter);
 app.use('/management/shooting',ShootingManagementRouter);
