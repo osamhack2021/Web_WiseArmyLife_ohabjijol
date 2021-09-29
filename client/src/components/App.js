@@ -1,11 +1,8 @@
 import React, {useState,Component} from "react";
 import { Link, Route, Switch, BrowserRouter as Router } from "react-router-dom";
-import Login from './Login';
-import DetailHome from "./DetailHome";
-import Community from './Community';
-import Assess from "./Assess";
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from './HeadList/Header';
+import Footer from './HeadList/Footer';
+
 
 
 class App extends Component {
