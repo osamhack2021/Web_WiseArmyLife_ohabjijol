@@ -1,6 +1,6 @@
 import React, {useState,Component,useEffect} from "react";
 import { Link, Route, Switch, BrowserRouter as Router } from "react-router-dom";
-import Login from './Login';
+ import Login from './Login';
 import DetailHome from "./DetailHome";
 import Community from './Community';
 import Assess from "./Assess";
@@ -9,35 +9,48 @@ import My from "./My";
 import AuthRoute from "../../Custom/AuthRoute";
 import { signIn } from './../../Custom/Auth';
 import LogoutButton from "./LogoutButton";
-import LoginForm from "./LoginForm";
 import PublicRoute from "../../Custom/PublicRoute";
 import { setCookie,getCookie } from "../../Custom/cook";
-import { isLogin } from "../../Custom/isLogin";
+
+import Main from './Main';
 
 const Header = () => {
 
     const [user,setUser] = useState(null);
-    let authenticated = user !=null;
 
     
+    const [isLogin, setIsLogin] = useState(false)
+    
+    // 경고 무시하세요
+    useEffect(() => {
+        if(sessionStorage.getItem('user_id') === null){
+        // sessionStorage 에 user_id 라는 key 값으로 저장된 값이 없다면
+          console.log('isLogin ?? :: ', isLogin)
+        } else {
+        // sessionStorage 에 user_id 라는 key 값으로 저장된 값이 있다면
+        // 로그인 상태 변경
+          setIsLogin(true)
+          console.log('isLogin ?? :: ', isLogin)
+        }
+    })
 
-    const login = ({ user_id, user_pw }) => {
-        setCookie('login',true)
-        return setUser(signIn({ user_id, user_pw }))
-    };
-    const logout = () => {
-        setCookie('login',false)
-        return setUser(null);
+
+
+    const onLogout = () => {
+    	// sessionStorage 에 user_id 로 저장되어있는 아이템을 삭제한다.
+        sessionStorage.removeItem('user_id')
+        // App 으로 이동(새로고침)
+        document.location.href = '/'
     }
-
+    
     const headrStyle = {
         fontSize: "32px",
         textAlign: "center",
         paddingBottom: "20px"
-      };
-    
-    
-    
+    };
+
+
+
     return (
         <React.Fragment>
 
@@ -58,12 +71,12 @@ const Header = () => {
                     <Link to="/my">
                         <div>마이페이지</div>
                     </Link>
-                    {authenticated ? 
+                    {isLogin ? 
                     (
-                        <LogoutButton auth={authenticated} logout={logout} />
+                        <LogoutButton auth={isLogin} logout={onLogout} />
                     ) : 
                     (<Link to="/login">
-                        <button>Login</button>
+                        <button>로그인</button>
                     </Link>)}
                     <Link to="/auth">
                         <div>회원가입</div>
@@ -71,18 +84,14 @@ const Header = () => {
                 </div>
                 
                 <Switch>
-                    <PublicRoute exact path="/" restricted={false} auth={authenticated} component={DetailHome} />
+                    <PublicRoute exact path="/" restricted={false} auth={isLogin} component={DetailHome} />
                     <Route path="/login" render={(props) => (
-                        <LoginForm
-                            authenticated={authenticated}
-                            login={login}
-                            {...props}
-                        />
+                        <Login />
                         )}
                     />
-                    <PublicRoute path="/community" restricted={false} auth={authenticated}  component={Community} />
-                    <PublicRoute path="/assess" restricted={false} auth={authenticated} component={Assess} />
-                    <AuthRoute path="/my" authenticated={authenticated} render={ () => <My />} />
+                    <PublicRoute path="/community" restricted={false} auth={isLogin}  component={Community} />
+                    <PublicRoute path="/assess" restricted={false} auth={isLogin} component={Assess} />
+                    <AuthRoute path="/my" authenticated={isLogin} render={ () => <My />} />
                 </Switch>
             </Router>
         </React.Fragment>
