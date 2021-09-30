@@ -1,10 +1,16 @@
 import React from 'react';
-import './Footer.css'
+import './Header'
+
 const Footer = () => {
     return (
-        <div className="Footer">
-            대표 이메일 : seulgiarmy@naver.com
-        </div>
+        <div className="footerContainer">
+            <p>슬기로운 병영생활</p>
+            <div className="footerTwo">
+                <p>대표이메일 seulgiarmy@naver.com</p>
+            </div>
+            <p>이용약관</p>
+            <p>개인정보 처리방침</p>
+      </div>
     );
 };
 
