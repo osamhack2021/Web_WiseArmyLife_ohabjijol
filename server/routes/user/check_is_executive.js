@@ -13,7 +13,6 @@
             next();
         } else {
             console.log('간부임');
-
             res.json({sucess: false , data : "병사만 접근 가능함"});
         }
     };

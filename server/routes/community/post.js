@@ -53,84 +53,88 @@ router.route('/')
 
 router.route('/:postId')
     .get(isLoggedIn, async (req, res, next) => {
-        try{
-        const currentPostID = req.params.postId;
-        const currentPost = await Post.findOne({
-            where: { id: currentPostID },
-            include: [{
-                model: User,
-                attributes: ['name'],
-            },
-            {
-                model: Comment,
-                attributes: ['comment', 'createdAt'],
+        try {
+            const currentPostId = req.params.postId;
+            const currentPost = await Post.findOne({
+                where: { id: currentPostId },
                 include: [{
                     model: User,
                     attributes: ['name'],
-                }],
-            },
-            ],
-        });
-        res.json(currentPost);
-    } catch (error){
-        console.error(error);
-        next(error);
-    }
+                },
+                {
+                    model: Comment,
+                    attributes: ['comment', 'createdAt'],
+                    include: [{
+                        model: User,
+                        attributes: ['name'],
+                    }],
+                },
+                ],
+            });
+            res.json(currentPost); // parentId.deletedAt 컬럼에 값 존재 시 삭제된 메세지 뜨게 할 것
+        } catch (error) {
+            console.error(error);
+            next(error);
+        }
     })
     .delete(isLoggedIn, async (req, res, next) => {
-        try{
-        let currentPostID = req.params.postId;
-        let currentPost = await Post.findOne({ where: { id: currentPostID } });
-        if (currentPost.UserId === req.user.id)
-            await Post.destroy({ where: { id: currentPostID } })
-                .then(result => {
-                    console.log('삭제성공');
-                    res.json({ sucess: true });
-                })
-                .catch(err => {
-                    console.error(err);
-                    next(error);
-                })
-        else {
-            console.log('삭제실패');
-            return res.json({ sucess: false })
+        try {
+            let currentPostId = req.params.postId;
+            let currentPost = await Post.findOne({ where: { id: currentPostId } });
+            if (currentPost.UserId === req.user.id) {
+                Post.destroy({ where: { id: currentPostId } })
+                Comment.destroy({ where: { postComment: currentPostId } })
+                    .then(result => {
+                        console.log('게시글 댓글 삭제 성공')
+                        return res.json({sucess: true});
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        next(error);
+                    })
+            }
+            else {
+                console.log('게시글 삭제실패');
+                return res.json({ sucess: false, message: '없는 게시글 입니다' });
+            }
+        } catch (error) {
+            console.error(error);
+            next(error);
         }
-    } catch (error){
-        console.error(error);
-        next(error);
-    }
     })// 게시글 삭제
     .put(isLoggedIn, async (req, res, next) => {
-        try{
-        let currentPostID = req.params.postId;
-        const postBody = req.body;
-        let currentPost = await Post.findOne({ where: { id: currentPostID } })
-        if (currentPost.UserId === req.user.id)
-            await Post.update({
-                title: postBody.title,
-                content: postBody.content,
-                updatedAt: postBody.updatedAt,
-            }, {
-                where: { id: currentPostID }
-            })
-                .then(result => {
-                    console.log('수정 성공');
-                    res.json({ sucess: true });
+        try {
+            let currentPostId = req.params.postId;
+            const postBody = req.body;
+            let currentPost = await Post.findOne({ where: { id: currentPostId } })
+            if (currentPost.UserId === req.user.id) {
+                await Post.update({
+                    title: postBody.title,
+                    content: postBody.content,
+                    updatedAt: new Date(),
+                }, {
+                    where: { id: currentPostId }
                 })
-                .catch(err => {
-                    console.error(err);
-                    next(error);
-                })
-        else {
-            console.log('수정 실패')
-            return res.json({ sucess: false })
+                    .then(result => {
+                        console.log('수정 성공');
+                        res.json({ sucess: true });
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        next(error);
+                    })
+            }
+            else {
+                console.log('수정 실패');
+                return res.json({ sucess: false, message: '없는 게시글 입니다' });
+            }
+        } catch (error) {
+            console.error(error);
+            next(error);
         }
-    } catch (error){
-        console.error(error);
-        next(error);
-    }
     });// 게시글 수정
 
-    router.use('/:postId/:commentId', CommentRouter);
+router.post('/:postId/comment', CommentRouter);
+router.use('/:postId/:commentId', CommentRouter);
 
 module.exports = router;

@@ -5,6 +5,7 @@ const passport = require('../../passport');
 const bcrypt = require('bcrypt');
 const { isLoggedIn, isNotLoggedIn } = require('./check_login');
 const User = require('../../models/users');
+let cachedUser = require('../../passport');
 
 const router = express.Router();
 
@@ -16,10 +17,11 @@ router.post('/join', isNotLoggedIn, async(req, res, next) =>{
         if (exUser){
             return res.redirect('join?error=exist');
         }
+        const hash = await bcrypt.hash(password, 12);
         await User.create({
             militaryNumber,
             name,
-            password,
+            password: hash,
             unit,
             isExecutive,
         });
@@ -54,6 +56,7 @@ router.post('/login', isNotLoggedIn, async(req, res, next) => {
 });
 
 router.get('/logout', isLoggedIn, (req,res) => {
+    cachedUser = {};
     req.logout();
     req.session.destroy();
     res.redirect('/');

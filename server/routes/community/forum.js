@@ -2,60 +2,38 @@
 
 const express = require('express');
 
-const { isLoggedIn } = require('../user/check_login');
-const { User } = require('../../models');
+const { isLoggedIn, isExecutive } = require('../user/check_login');
+const { User, Post, Comment } = require('../../models');
+const PostRouter = require('./post');
 
 const router = express.Router();
+
 
 router.get('/:forumId/post', isLoggedIn, PostRouter);
 router.get('/:forumId/:pageIndex', isLoggedIn, async (req, res) => {
     try {
-        const forumId = req.query.forumId;
-        let page = Math.max(1, parseInt(req.query.pageIndex));
+        const forumId = req.params.forumId;
+        let page = Math.max(1, parseInt(req.params.pageIndex));
         const limit = 10;
         let skip = (page - 1) * limit;
-        let count = await Post.countDocuments({});
-        let maxPage = Math.ceil(count/limit);
-        const post_10 = await Post.findAll({
+        let postCount = await Post.countDocuments({});
+        const post_10 = await Post.findAndCountAll({
             where: { forumId: forumId },
-            include: {
+            include: [{
                 model: User,
-                as: 'poster',
                 attributes: ['id', 'militaryNumber', 'name'],
             },
+            ],
             order: [['createdAt', 'DESC']],
             limit: limit,
             skip: skip,
         });
-        const data = {
-            posts: post_10,
-            currentPage: page,
-            maxPage: maxPage,
-        }
-        res.send(JSON.stringify(data));
+        res.json({sucess: true, data: post_10, postCount: postCount});
     } catch (err) {
         console.error(err);
         next(err);
     }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// 특정 게시판 읽기
 
 module.exports = router;

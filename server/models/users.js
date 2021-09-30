@@ -29,7 +29,7 @@ module.exports = class User extends Sequelize.Model {
       },
     }, {
       sequelize,
-      timestamp: false,
+      timestamps: false,
       paranoid: false,
       modelName: 'User',
       tableName: 'users',
@@ -39,8 +39,10 @@ module.exports = class User extends Sequelize.Model {
     });
   }
   static associate(db) {
-    db.User.hasMany(db.Post, { foreignKey: 'poster', sourceKey: 'id' });
-    db.User.hasMany(db.Comment, { foreignKey: 'commenter', sourceKey: 'id' });
+
+     db.User.hasMany(db.Post, { foreignKey: 'posterId', sourceKey: 'id' });
+    db.User.hasMany(db.Comment, { foreignKey: 'commenterId', sourceKey: 'id' });
     db.User.belongsToMany(db.Shooting , {through : db.ShootingEvent});
+
   }
 };
