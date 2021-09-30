@@ -44,26 +44,26 @@ const Header = () => {
             </div>
             <Router>
                 <div className="container">
-                    <Link to="/">
+                    <Link className="text-link" to="/">
                         <div>홈</div>
                     </Link>
-                    <Link to="/assess">
+                    <Link className="text-link" to="/assess">
                         <div>병기본평가</div>
                     </Link>
-                    <Link to="/community">
+                    <Link className="text-link" to="/community">
                         <div>커뮤니티</div>
                     </Link>
-                    <Link to="/my">
+                    <Link className="text-link" to="/my">
                         <div>마이페이지</div>
                     </Link>
                     {isLogin ? 
                     (
                         <LogoutButton auth={isLogin} />
                     ) : 
-                    (<Link to="/login">
+                    (<Link className="text-link" to="/login">
                         <button>로그인</button>
                     </Link>)}
-                    <Link to="/auth">
+                    <Link className="text-link" to="/auth">
                         <div>회원가입</div>
                     </Link>
                 </div>
