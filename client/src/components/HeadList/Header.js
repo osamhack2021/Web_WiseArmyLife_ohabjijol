@@ -1,4 +1,4 @@
-import React, {useState,Component,useEffect} from "react";
+import React, {useState ,useEffect} from "react";
 import { Link, Route, Switch, BrowserRouter as Router } from "react-router-dom";
  import Login from './Login';
 import DetailHome from "./DetailHome";
@@ -7,16 +7,11 @@ import Assess from "./Assess";
 import './Header.css';
 import My from "./My";
 import AuthRoute from "../../Custom/AuthRoute";
-import { signIn } from './../../Custom/Auth';
 import LogoutButton from "./LogoutButton";
 import PublicRoute from "../../Custom/PublicRoute";
-import { setCookie,getCookie } from "../../Custom/cook";
 
-import Main from './Main';
 
 const Header = () => {
-
-    const [user,setUser] = useState(null);
 
     
     const [isLogin, setIsLogin] = useState(false)
@@ -34,22 +29,12 @@ const Header = () => {
         }
     })
 
-
-
-    const onLogout = () => {
-    	// sessionStorage 에 user_id 로 저장되어있는 아이템을 삭제한다.
-        sessionStorage.removeItem('user_id')
-        // App 으로 이동(새로고침)
-        document.location.href = '/'
-    }
     
     const headrStyle = {
         fontSize: "32px",
         textAlign: "center",
         paddingBottom: "20px"
     };
-
-
 
     return (
         <React.Fragment>
@@ -73,7 +58,7 @@ const Header = () => {
                     </Link>
                     {isLogin ? 
                     (
-                        <LogoutButton auth={isLogin} logout={onLogout} />
+                        <LogoutButton auth={isLogin} />
                     ) : 
                     (<Link to="/login">
                         <button>로그인</button>
@@ -91,7 +76,7 @@ const Header = () => {
                     />
                     <PublicRoute path="/community" restricted={false} auth={isLogin}  component={Community} />
                     <PublicRoute path="/assess" restricted={false} auth={isLogin} component={Assess} />
-                    <AuthRoute path="/my" authenticated={isLogin} render={ () => <My />} />
+                    <AuthRoute path="/my" auth={isLogin} render={ () => <My />} />
                 </Switch>
             </Router>
         </React.Fragment>
