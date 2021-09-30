@@ -5,6 +5,7 @@ import "./Home.css";
 
 function Home() {
   
+  // inline style 지정을 위한 공간. (글씨 한줄의 스타일 같은건 여기서 지정!! 모든 스타일에 class 나 id를 부여하지 않기 위함!)
   const headrStyle = {
    fontSize: "32px",
    textAlign: "center",
@@ -15,6 +16,47 @@ function Home() {
     fontSize: "12px",
     textAlign:"center"
   }
+
+  const bracketSyle = {
+    textAlign:"right"
+
+  }
+
+  const TalkBubbleStyle = {
+   
+      talkBubble: {
+      backgroundColor: "transparent",
+    },
+    talkBubbleSquare: {
+      width: 120,
+      height: 80,
+      backgroundColor: "red",
+      borderRadius: 10,
+    },
+    talkBubbleTriangle: {
+      position: "absolute",
+      left: -26,
+      top: 26,
+      width: 0,
+      height: 0,
+      borderTopColor: "transparent",
+      borderTopWidth: 13,
+      borderRightWidth: 26,
+      borderRightColor: "red",
+      borderBottomWidth: 13,
+      borderBottomColor: "transparent",
+    },
+  }
+
+const bannerStyle = {
+  marginLeft:"100px",
+  marginRight:"91.px",
+  textAlign:"center"
+}
+
+const imgStyle = {
+width:"70%"
+}
 
   return (
 
@@ -28,7 +70,7 @@ function Home() {
      <h1>슬기로운 병영생활</h1>
        </div>
 
-
+<div style = {bannerStyle}>
        <div className="container">
  <p> 홈 </p>
  <p> 병기본평가 </p>
@@ -39,45 +81,131 @@ function Home() {
  <p> 회원가입 </p>
  
     </div>
+</div>
 
     {/* 여기까지가 상위 배너   // 링크는 나중에 추가! 일단 틀만.. */}
 
 <div className="topBanner">
-    <img src={ require('../public/img/wal.jpg') } alt ="상위 배너 사진"/>
-    <button>circle</button>
+    <img style = {imgStyle} src={ require('../public/img/wal.jpg')  } alt ="상위 배너 사진"/>
+    <br></br>
+    <button>next</button>
     </div>
 
 <div className="content">
 
   <h2>병기본평가+</h2>
   <div className="basicTest">
-    <p>사격<br></br>
-    <div style = {smallStyle}>
+
+    <div class="item" style ={TalkBubbleStyle} >
+      <div>사격</div>
+      <br></br>
+    <p style = {smallStyle}>
     사격 평가 일정 안내 및 신청
-    </div>
     </p>
+    <div style = {bracketSyle}> {'>'} </div>
+    </div>
 
-    <p>정신전력평가</p>
+      <div class="item">
+    <div>정신전력평가</div>
+    <br></br>
+    <p style = {smallStyle}>
+    정신전력 평가 일정 안내 및 신청
+    </p>
+    <div style = {bracketSyle}> {'>'} </div>
+    </div>
 
-    <p>체력</p>
+    <div class="item">
+    <div>체력</div>
+    <br></br>
+    <p style = {smallStyle}>
+    체력 평가 일정 안내 및 신청
+    </p>
+    <div style = {bracketSyle}> {'>'} </div>
+    </div>
 
-    <p>구급법 및 화생방</p>
+    <div class="item">
+    <div>구급법 및 화생방</div>
+    <br></br>
+    <div style = {smallStyle}>
+    구급법 및 화생방 평가 일정 안내 및 신청
+    </div>
+    <div style = {bracketSyle}> {'>'} </div>
+    </div>
 
-    <p>각개전투</p>
-    <p>주특기</p>
+    <div class="item">
+    <div>각개전투</div>
+    <br></br>
+    <p style = {smallStyle}>
+    각개전투 평가 일정 안내 및 신청
+    </p>
+    <div style = {bracketSyle}> {'>'} </div>
+    </div>
+
+
+     <div class="item">
+    <div> 주특기</div>
+    <br></br>
+    <p style = {smallStyle}>
+    주특기 평가 일정 안내 및 신청
+    </p>
+    <div style = {bracketSyle}> {'>'} </div>
+    </div>
+
     </div>
 
     <h2>공지사항+</h2>
     <div className="notice">
-   <p>군장병 코로나 방역수칙 안내</p>
-  <p>자유시간 관련 공지</p>
-  <p>휴가 및 외박 일정 안내</p>
+
+    <div class="item">
+    <div> 군장병 코로나 방역수칙 안내</div>
+    <br></br>
+    <p style = {smallStyle}>
+    2021.10.13
+    </p>
+    <div style = {bracketSyle}> {'>'} </div>
+    </div>
+
+    <div class="item">
+    <div> 자유시간 관련 공지</div>
+    <br></br>
+    <p style = {smallStyle}>
+    2021.10.11
+    </p>
+    <div style = {bracketSyle}> {'>'} </div>
+    </div>
+
+    <div class="item">
+    <div> 휴가 및 외박 일정 안내</div>
+    <br></br>
+    <p style = {smallStyle}>
+    2021.10.19
+    </p>
+    <div style = {bracketSyle}> {'>'} </div>
+    </div>
   </div>
 
   <h2>커뮤니티+</h2>
 <div className="community">
-   <p>오늘의 급식</p>
-  <p>마음의 편지</p>
+
+    <div class="item">
+    <div> 오늘의 급식 </div>
+    <br></br>
+    <p style = {smallStyle}>
+    식단표 안내
+    </p>
+    <div style = {bracketSyle}> {'>'} </div>
+    </div>
+
+    <div class="item">
+    <div> 마음의 편지</div>
+    <br></br>
+    <p style = {smallStyle}>
+    익명 게시판
+    </p>
+    <div style = {bracketSyle}> {'>'} </div>
+    </div>
+
+
   </div>
 
 
@@ -101,7 +229,6 @@ function Home() {
  
       {/* nav부분 : Conainer 이용해서 가로정렬!! blank이용해서 가운데 빈 공간 분리. */}
    
-
 
 
 
