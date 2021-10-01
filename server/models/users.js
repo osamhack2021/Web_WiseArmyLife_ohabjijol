@@ -24,7 +24,11 @@ module.exports = class User extends Sequelize.Model {
         allowNull: true,
       },
       isExecutive: {
-        type: BOOLEAN,
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      Position: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
     }, {

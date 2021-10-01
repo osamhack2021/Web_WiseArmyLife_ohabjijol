@@ -12,9 +12,6 @@ const router = express.Router();
 
 router.get('/', isLoggedIn, async (req, res) => {
     try {
-        const user = await User.findOne({ where: { id: 1 } });
-        const posts = await user.getPosts();
-        console.log(posts);
         const forumLimit = 10;
         const allForum = await Forum.findAndCountAll({
             include: [{
@@ -25,7 +22,10 @@ router.get('/', isLoggedIn, async (req, res) => {
             order: [['forumName', 'DESC']],
             limit: forumLimit,
         });
-        res.json(allForum);
+        const data = {
+            allForum: allForum,
+        }
+        return res.json({ sucess: true, data });
     } catch (err) {
         console.error(err);
         next(err);
@@ -37,7 +37,10 @@ router.route('/forumAdd')
             const newForumName = req.body.forumName
             const exForum = Forum.findOne({ where: { forumName: newForumName } })
             if (exForum) {
-                res.json({ sucess: false, message: '같은 이름의 게시판이 존재합니다' });
+                const data = {
+                    message: '같은 이름의 게시판이 존재합니다',
+                }
+                return res.json({ sucess: false, data });
             }
             else {
                 await Forum.create({
@@ -81,7 +84,10 @@ router.delete('/:forumId', isLoggedIn, isExecutive, async (req, res, next) => {
                 });
         }
         else {
-            res.json({ sucess: false, message: '없는 게시판 입니다.' });
+            const data = {
+                message: '없는 게시판 입니다.',
+            }
+            return res.json({ sucess: false, data });
         }
     } catch (error) {
         console.error(error);

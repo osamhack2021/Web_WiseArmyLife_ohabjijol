@@ -1,15 +1,35 @@
 const {Shooting ,ShootingEvent} = require('../../../models');
 
+//사격의 C
+
 createAssessment = async (req,res)=>{
 
     try{
        
         const body = {
-            date : "2021-10-26",
+            date : "2021-10-21", // 21년 10월 26
             applicant_capacity : 3,
         }
 
         console.log(body.date);
+        var gettime = new Date(body.date);
+        var Nowtime = new Date();
+        Nowtime.setHours(Nowtime.getHours()+9);
+        Nowtime.setHours(0); // 21년 10월 25
+        Nowtime.setMinutes(0) // 21년 10월 25
+        Nowtime.setSeconds(0)
+        Nowtime.setUTCMilliseconds(0);
+
+
+        console.log(gettime,Nowtime );
+        if(gettime <= Nowtime){
+    
+            const senderror = {
+                success: false,
+                data: "cannot create on the day",
+            }
+            return res.json(senderror);
+        }
 
        
         const createShootingAssessment = await Shooting.findOrCreate({

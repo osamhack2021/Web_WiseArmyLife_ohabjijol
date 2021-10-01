@@ -3,13 +3,14 @@ const {Shooting, ShootingEvent } = require('../../../models');
 const { Op } = require('sequelize');
 const db = require('../../../models/index');
 
+// 사격 지원의 C
 
 ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받을것
 
     try {
         const body = { //req.body로 이용
             userId: req.user.id,
-            date: '2021-10-25', 
+            date: '2021-10-21', 
         };
 
 

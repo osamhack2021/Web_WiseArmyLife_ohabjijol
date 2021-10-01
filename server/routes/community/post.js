@@ -42,9 +42,9 @@ router.route('/')
                 content: req.body.content,
                 img: req.body.url,
                 UserId: req.user.id,
-                ForumId: req.query.ForumId,
+                ForumId: req.query.forumId,
             });
-            res.json({ sucess: true });
+            res.json({ sucess: true, data: post });
         } catch (error) {
             console.error(error);
             next(error);
@@ -71,7 +71,7 @@ router.route('/:postId')
                 },
                 ],
             });
-            res.json(currentPost); // parentId.deletedAt 컬럼에 값 존재 시 삭제된 메세지 뜨게 할 것
+                res.json({sucess: true, data:currentPost }); // parentId.deletedAt 컬럼에 값 존재 시 삭제된 메세지 뜨게 할 것
         } catch (error) {
             console.error(error);
             next(error);
@@ -95,7 +95,10 @@ router.route('/:postId')
             }
             else {
                 console.log('게시글 삭제실패');
-                return res.json({ sucess: false, message: '없는 게시글 입니다' });
+                const data = {
+                    message: '게시글 삭제실패',
+                }
+                return res.json({ sucess: false, data });
             }
         } catch (error) {
             console.error(error);
@@ -126,7 +129,10 @@ router.route('/:postId')
             }
             else {
                 console.log('수정 실패');
-                return res.json({ sucess: false, message: '없는 게시글 입니다' });
+                const data = {
+                    message: '없는 게시글 입니다',
+                }
+                return res.json({ sucess: false, data });
             }
         } catch (error) {
             console.error(error);

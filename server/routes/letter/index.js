@@ -4,6 +4,7 @@ const express = require('express');
 
 const { isLoggedIn, isExecutive } = require('../user/check_login');
 const { User, Post, Comment, Forum } = require('../../models');
+const PostRouter = require('../community/post');
 
 const router = express.Router();
 
@@ -25,7 +26,11 @@ router.get('/:pageIndex', isLoggedIn, async (req, res, next) => {
                 skip: skip,
                 attributes: ['updatedAt', 'commentCount'],
             });
-            res.json({ sucess: true, data: post_10, postCount: postCount }); // .count에는 post개수, .rows에는 post의 정보가 들어있음
+            const data = {
+                post_10: post_10,
+                postCount: postCount,
+            }
+            return res.json({ sucess: true, data }); // post_10.count에는 post개수, .rows에는 post의 정보가 들어있음
         }
     } catch (error) {
         console.error(error);
@@ -33,5 +38,6 @@ router.get('/:pageIndex', isLoggedIn, async (req, res, next) => {
     }
 });
 // 마편 READ
+router.use('/post', isLoggedIn, PostRouter);
 
 module.exports = router;

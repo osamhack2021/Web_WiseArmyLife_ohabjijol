@@ -65,7 +65,7 @@ app.use(passport.session());
 
 const syncShootingAssessment = require('./routes/assessment/shootingController/shootingassessmentsync');
 
-schedule.scheduleJob('1 0 0 * * *',syncShootingAssessment);
+schedule.scheduleJob('0 0 14 * * *',syncShootingAssessment);
 
 
 
