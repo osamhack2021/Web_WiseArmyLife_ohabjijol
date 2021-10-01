@@ -5,7 +5,6 @@ const passport = require('../../passport');
 const bcrypt = require('bcrypt');
 const { isLoggedIn, isNotLoggedIn } = require('./check_login');
 const User = require('../../models/users');
-let cachedUser = require('../../passport');
 
 const router = express.Router();
 
@@ -56,7 +55,8 @@ router.post('/login', isNotLoggedIn, async(req, res, next) => {
 });
 
 router.get('/logout', isLoggedIn, (req,res) => {
-    cachedUser = {};
+    cachedUser.user = null;
+    delete cachedUser.user;
     req.logout();
     req.session.destroy();
     res.redirect('/');
