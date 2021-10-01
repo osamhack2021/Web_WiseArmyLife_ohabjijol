@@ -1,0 +1,1 @@
+millitaryNumberReg = /^([0-][]|)-d{8} $/

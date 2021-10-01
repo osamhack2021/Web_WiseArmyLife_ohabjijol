@@ -1,3 +1,46 @@
+.Header{
+  width: 100%;
+	height: 100px;
+	text-align: center;
+
+  
+}
+.test2{
+	width: 226px;
+	height: 31px;
+	font-family: NanumSquareEB;
+	color: #000000;
+	font-size: 25px;
+	font-weight: 400;
+	text-align: center;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 14% 14% 14% 14% 14% 14%;
+  text-align: center;
+  font-size: 25px;
+  width: 100%;
+  padding-right: 7%;
+  padding-left: 7%;
+  height: 100px;
+
+
+  }
+
+
+.test{
+	width: 400px;
+	height: 300px;
+	border-bottom-left-radius: 70px;
+	border-bottom-right-radius: 30px;
+	border-top-left-radius: 70px;
+	border-top-right-radius: 70px;
+	background-color: #ffd265;
+}
 .Nav {
     text-align: center;
     width: 10%;
@@ -12,17 +55,12 @@
     color: white;
   }
   
-  .container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1.5fr 1fr 1fr;
-    text-align: center;
-    width: 100%;
-    padding-right: 100px;
-    }
+  
     
     .text-link{
         text-decoration: none;
         color: black;
+        padding-bottom: 20px;
     }
   
   .topBanner {

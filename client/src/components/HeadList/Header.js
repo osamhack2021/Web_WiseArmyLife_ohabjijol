@@ -29,18 +29,10 @@ const Header = () => {
         }
     })
 
-    
-    const headrStyle = {
-        fontSize: "32px",
-        textAlign: "center",
-        paddingBottom: "20px"
-    };
-
     return (
         <React.Fragment>
-
-            <div className="Header" style={headrStyle}>
-                <h1>슬기로운 병영생활</h1>
+            <div className="Header">
+                <div className="test2">슬기로운 병영생활</div>
             </div>
             <Router>
                 <div className="container">
@@ -61,7 +53,7 @@ const Header = () => {
                         <LogoutButton auth={isLogin} />
                     ) : 
                     (<Link className="text-link" to="/login">
-                        <button>로그인</button>
+                        <div>로그인</div>
                     </Link>)}
                     <Link className="text-link" to="/auth">
                         <div>회원가입</div>

@@ -1,5 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import './LogoutButton.css'
 
 function LogoutButton({ history }) {
   
@@ -15,7 +16,7 @@ function LogoutButton({ history }) {
     onLogout();
     history.push("/");
   };
-  return <button onClick={handleClick}>Logout</button>;
+  return <div className="logoutButton" onClick={handleClick}>로그아웃</div>;
 }
 
 export default withRouter(LogoutButton);

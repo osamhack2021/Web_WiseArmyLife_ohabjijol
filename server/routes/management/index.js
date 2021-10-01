@@ -1,11 +1,11 @@
-// 병 자격 인증 신청 router
+// 병 자격 인증 관리페이지 router
 
 const express = require('express');
 const router = express.Router();
 
 router.route('/')
 .get(async (req,res)=>{   
- return res.redirect('/assessment/shooting');
+ await res.redirect('/management/shooting');
 });
 
 

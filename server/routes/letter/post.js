@@ -7,6 +7,7 @@ const fs = require('fs');
 
 const CommentRouter = require('./comment');
 
+const { isExecutive } = require('../user/check_is_executive');
 const { isLoggedIn } = require('../user/check_login');
 const { User, Post } = require('../../models');
 
@@ -44,7 +45,10 @@ router.route('/')
                 UserId: req.user.id,
                 ForumId: req.query.forumId,
             });
-            res.json({ sucess: true, data: post });
+            const data = {
+                post: post,
+            }
+            return res.json({ sucess: true, data });
         } catch (error) {
             console.error(error);
             next(error);
@@ -52,7 +56,7 @@ router.route('/')
     });
 
 router.route('/:postId')
-    .get(isLoggedIn, async (req, res, next) => {
+    .get(isLoggedIn, checkMyPost , async (req, res, next) => {
         try {
             const currentPostId = req.params.postId;
             const currentPost = await Post.findOne({
@@ -71,13 +75,16 @@ router.route('/:postId')
                 },
                 ],
             });
-                res.json({sucess: true, data:currentPost }); // parentId.deletedAt 컬럼에 값 존재 시 삭제된 메세지 뜨게 할 것
+            const data = {
+                currentPost: currentPost,
+            }
+            return res.json({ sucess: false, data }); // parentId.deletedAt 컬럼에 값 존재 시 삭제된 메세지 뜨게 할 것
         } catch (error) {
             console.error(error);
             next(error);
         }
     })
-    .delete(isLoggedIn, async (req, res, next) => {
+    .delete(isLoggedIn, checkMyPost, async (req, res, next) => {
         try {
             let currentPostId = req.params.postId;
             let currentPost = await Post.findOne({ where: { id: currentPostId } });
@@ -96,7 +103,7 @@ router.route('/:postId')
             else {
                 console.log('게시글 삭제실패');
                 const data = {
-                    message: '게시글 삭제실패',
+                    message: 'no exist post',
                 }
                 return res.json({ sucess: false, data });
             }
@@ -105,7 +112,7 @@ router.route('/:postId')
             next(error);
         }
     })// 게시글 삭제
-    .put(isLoggedIn, async (req, res, next) => {
+    .put(isLoggedIn, checkMyPost, async (req, res, next) => {
         try {
             let currentPostId = req.params.postId;
             const postBody = req.body;
@@ -130,7 +137,7 @@ router.route('/:postId')
             else {
                 console.log('수정 실패');
                 const data = {
-                    message: '없는 게시글 입니다',
+                    message: 'no exist post',
                 }
                 return res.json({ sucess: false, data });
             }
@@ -142,5 +149,21 @@ router.route('/:postId')
 
 router.post('/:postId/comment', CommentRouter);
 router.use('/:postId/:commentId', CommentRouter);
+
+function checkMyPost(req, res, next) {
+    
+    Post.findOne({ where: { id: req.params.postId, poster: req.user.id } })
+        .then(post => {
+            res.locals.post = post;
+            next();
+        })
+        .catch(err => {
+            const data = {
+                message: 'no access right',
+            }
+            return res.json({ sucess: false, data });
+        })
+
+}
 
 module.exports = router;

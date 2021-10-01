@@ -16,7 +16,7 @@ const DetailHome = () => {
             <div className="content">
                 <h2>병기본평가+</h2>
                 <div className="basicTest">
-                <p>
+                <p className="test">
                     사격<br></br>
                     <div style={smallStyle}>사격 평가 일정 안내 및 신청</div>
                 </p>
