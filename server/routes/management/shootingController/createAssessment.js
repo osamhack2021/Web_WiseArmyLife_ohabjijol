@@ -7,7 +7,7 @@ createAssessment = async (req,res)=>{
     try{
        
         const body = {
-            date : "2021-09-29", // 21년 10월 26
+            date : "2021-10-21", // 21년 10월 26
             applicant_capacity : 3,
         }
 

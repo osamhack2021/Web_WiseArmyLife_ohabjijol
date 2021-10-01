@@ -9,18 +9,9 @@ const applyController = require('../monthCheckController');
 getShootingInfo = async (req,res)=>{ 
 
     try{     
-        if(req.query.month == undefined||req.query.year == undefined){
-            thismonth = applyController.getThismonth(undefined,undefined);
-            nextmonth = applyController.getNextMonth(undefined,undefined);
-        }
-
-        else{            
-            month = req.query.month;
-            year = req.query.year;  
-            thismonth =  applyController.getThismonth(year,month);
-            nextmonth =  applyController.getNextMonth(year,month);
-        }
-
+         getDate = applyController.getThisAndNextmonth(req.query.year,req.query.month);
+        thismonth = getDate.thisDate;
+        nextmonth = getDate.nextDate;
         const shootingdata = await Shooting.findAll({        
             attributes : ['date','expired','applicant_capacity','number_of_applicant'],
             where : {
@@ -32,6 +23,7 @@ getShootingInfo = async (req,res)=>{
         const resobject = {
             success : true,
             data : shootingdata,
+            xx : req.user.id
         }
 
         return res.json(resobject); // json 형식으로 원하는 달 사격데이터 전송      

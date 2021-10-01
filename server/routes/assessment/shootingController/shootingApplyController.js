@@ -10,7 +10,7 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
     try {
         const body = { //req.body로 이용
             userId: req.user.id,
-            date: '2021-10-25', 
+            date: '2021-10-21', 
         };
 
 
