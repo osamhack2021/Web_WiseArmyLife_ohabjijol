@@ -21,7 +21,7 @@ module.exports = class Comment extends Sequelize.Model {
         },
       }, {
         sequelize,
-        timestamp: false,
+        timestamps: true,
         paranoid: true, // deletedAt컬럼
         modelName: 'Comment',
         tableName: 'comments',
@@ -31,9 +31,9 @@ module.exports = class Comment extends Sequelize.Model {
       });
     }
     static associate(db) {
-        db.Comment.belongsTo(db.User, { foreignKey: 'commenter', targetKey: 'id' });
+        db.Comment.belongsTo(db.User, { foreignKey: 'commenterId', targetKey: 'id' });
         db.Comment.belongsTo(db.Post, { foreignKey: 'postComment', targetKey: 'id' });
-        db.Comment.hasMany(db.Comment, { foreignKey: 'coComment', souuceKey: 'id' });
-        db.Comment.belongsTo(db.Comment, { foreignKey: 'coComment', targetKey: 'id' });
+        db.Comment.hasMany(db.Comment, { foreignKey: 'parentCommentId', souuceKey: 'id' });
+        db.Comment.belongsTo(db.Comment, { foreignKey: 'parentCommentId', targetKey: 'id' });
     }
   };

@@ -3,10 +3,10 @@
 // db와 연동
 const { Sequelize, DataTypes } = require('sequelize');
 const User = require('./users');
-const Post = require('./community/post');
+const Post = require('./post');
 const Shooting = require('./assessment/shooting');
-const Forum = require('./community/forum');
-const Comment = require('./community/comment');
+const Forum = require('./forum');
+const Comment = require('./comment');
 
 const env = process.env.NODE_ENV || 'development';
 const config = require('../config/config')[env];

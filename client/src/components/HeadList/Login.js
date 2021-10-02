@@ -18,7 +18,7 @@ function Login() {
         document.location.href = '/'
         
         /*
-        axios.post('/auth/login', null, {
+        axios.post('/auth/login',  {
             'militaryNumber': inputId,
             'password': inputPw
         })
@@ -36,20 +36,20 @@ function Login() {
                 sessionStorage.setItem('user_id', inputId)
             }
             // 작업 완료 되면 페이지 이동(새로고침)
-            document.location.href = '/'
+//            document.location.href = '/'
         })
         .catch()
 
-        */
+         */
     }
  
-    /*
+    
      useEffect(() => {
          axios.get('/user_inform/login')
          .then(res => console.log(res))
          .catch()
      },[])
-    */
+    
    
     return(
         <div>
