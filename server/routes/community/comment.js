@@ -19,7 +19,10 @@ router.route('/')
                 postComment: currentPost.postId,
             });
             currentPost.commentCount++;
-            res.json({ sucess: true }, comment);
+            const data = {
+                comment: comment,
+            }
+            res.json({ sucess: true, data });
         } catch (err) {
             console.error(err);
             next(err);
@@ -40,9 +43,11 @@ router.route('/:commentId')
                     where: { id: currentCommentId }
                 })
                     .then(result => {
-                        const data = Comment.findOne({ where: { id: currentCommentId } });
                         console.log('수정 성공');
-                        res.json({ sucess: true, message: '수정 성공' });
+                        const data = {
+                            message: '수정 성공',
+                        }
+                        return res.json({ sucess: true, data });
                     })
                     .catch(err => {
                         console.error(err);
@@ -50,7 +55,10 @@ router.route('/:commentId')
                     })
             else {
                 console.log('수정 실패')
-                return res.json({ sucess: false, message: '작성자가 아닙니다' })
+                const data = {
+                    message: '작성자가 아닙니다',
+                }
+                return res.json({ sucess: false, data });
             }
         } catch (err) {
             console.error(err);
@@ -96,7 +104,7 @@ router.route('/:commentId')
                 parentComment: currentCommentId,
             });
             currentPost.commentCount++;
-            res.json({ sucess: true }, comment);
+            res.json({ sucess: true, data: comment });
         } catch (err) {
             console.error(err);
             next(err);

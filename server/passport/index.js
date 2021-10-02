@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt');
 const User = require('../models/users')
 
 let cachedUser = {};
+global.cachedUser = cachedUser
 
 passport.use('local-login', new LocalStrategy({
     usernameField: 'militaryNumber',
@@ -38,17 +39,19 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((id, done) => {
     if (Object.keys(cachedUser).length !== 0) {
-        done(null, cachedUser);
+        console.log('캐쉬됨');
+        console.log(cachedUser.user.militaryNumber);
+        done(null, cachedUser.user);
     } // 유저 정보 캐싱
     else {
+        console.log('캐쉬 안됨');
         User.findOne({ where: { id } })
             .then(user => {
-                cachedUser = user;
+                cachedUser.user = user;
                 done(null, user);
             })
             .catch(err => done(err));
     }
 });
 
-module.exports.cachedUser = cachedUser;
 module.exports = passport;
