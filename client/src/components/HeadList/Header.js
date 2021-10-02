@@ -9,8 +9,8 @@ import My from "./My";
 import AuthRoute from "../../Custom/AuthRoute";
 import LogoutButton from "./LogoutButton";
 import PublicRoute from "../../Custom/PublicRoute";
-
-
+import App6 from "./App6";
+import Letter from "./Letter";
 const Header = () => {
 
     
@@ -45,8 +45,8 @@ const Header = () => {
                     <Link className="text-link" to="/community">
                         <div>커뮤니티</div>
                     </Link>
-                    <Link className="text-link" to="/my">
-                        <div>마이페이지</div>
+                    <Link className="text-link" to="/letter">
+                        <div>마음의편지</div>
                     </Link>
                     {isLogin ? 
                     (
@@ -55,9 +55,14 @@ const Header = () => {
                     (<Link className="text-link" to="/login">
                         <div>로그인</div>
                     </Link>)}
-                    <Link className="text-link" to="/auth">
+                    {isLogin ? 
+                    (<Link className="text-link" to="/my">
+                        <div>마이페이지</div>
+                    </Link>) : 
+                    (<Link className="text-link" to="/auth">
                         <div>회원가입</div>
-                    </Link>
+                    </Link>)
+                    }
                 </div>
                 
                 <Switch>
@@ -69,6 +74,7 @@ const Header = () => {
                     <PublicRoute path="/community" restricted={false} auth={isLogin}  component={Community} />
                     <PublicRoute path="/assess" restricted={false} auth={isLogin} component={Assess} />
                     <AuthRoute path="/my" auth={isLogin} render={ () => <My />} />
+                    <AuthRoute path="/letter" auth={isLogin} render={ () => <Letter />} />
                 </Switch>
             </Router>
         </React.Fragment>
