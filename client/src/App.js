@@ -4,6 +4,7 @@ import Footer from './components/HeadList/Footer';
 
 
 
+
 class App extends Component {
   constructor (props) {
     super(props);
@@ -17,8 +18,10 @@ class App extends Component {
 
     return (
       <div>
+      
         <Header />
         <Footer />
+      
       </div>
     );
   }
