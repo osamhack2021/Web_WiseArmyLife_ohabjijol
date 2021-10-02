@@ -3,7 +3,7 @@
 const express = require('express');
 
 const { isLoggedIn } = require('../user/check_login');
-const { Post, Forum } = require('../../models/community');
+const { Post, Forum } = require('../../models');
 const PostRouter = require('../community/post');
 const { isNotExecutive } = require('../user/check_is_executive');
 
