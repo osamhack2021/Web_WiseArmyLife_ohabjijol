@@ -34,7 +34,6 @@ submitClick = async e => {
   .then( response => {
       alert(response.data.message)
   })  
-
 }
 
 render() {

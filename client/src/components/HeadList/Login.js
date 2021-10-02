@@ -44,13 +44,7 @@ function Login() {
     }
  
     
-     useEffect(() => {
-         axios.get('/user_inform/login')
-         .then(res => console.log(res))
-         .catch()
-     },[])
-    
-   
+     
     return(
         <div>
             <h2>Login</h2>
