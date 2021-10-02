@@ -13,7 +13,7 @@ const DetailHome = () => {
                 <div className="topBanner">
                     <img src="img/wal.jpg" alt="상위 배너 사진" />
                 </div>
-
+        
                 <div className="content" id="first">
                     <div>
                         <h2 className="middleTitle">병기본평가+</h2>
