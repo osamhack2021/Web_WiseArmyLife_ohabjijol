@@ -44,7 +44,7 @@ router.route('/forumAdd')
                 await Forum.create({
                     forumName: newForumName,
                 });
-                res.json({ sucess: true });
+                res.json({ sucess: true, data: null });
             }
         } catch (error) {
             console.error(error);
@@ -62,7 +62,7 @@ router.delete('/:forumId', isLoggedIn, isExecutive, async (req, res, next) => {
             await Post.findAll({ attributes: ['postId'], where: { ForumId: currentForumId } })
                 .then(postId => {
                     if (postId.length == 0) {
-                        return res.json({ sucess: true });
+                        return res.json({ sucess: true, data: null });
                     }
                     return Comment.destroy({ where: { PostId: postId } });
                 })
@@ -74,7 +74,7 @@ router.delete('/:forumId', isLoggedIn, isExecutive, async (req, res, next) => {
             Forum.destroy({ where: { id: currentForumId } })
                 .then(result => {
                     console.log('삭제 성공');
-                    res.json({ sucess: true });
+                    res.json({ sucess: true, data: null });
                 })
                 .catch(error => {
                     console.error(error);
