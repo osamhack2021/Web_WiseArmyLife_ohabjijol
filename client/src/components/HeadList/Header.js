@@ -11,6 +11,11 @@ import LogoutButton from "./LogoutButton";
 import PublicRoute from "../../Custom/PublicRoute";
 import App6 from "./App6";
 import Letter from "./Letter";
+import BoardPage from "../BoardPage/BoardPage";
+import Auth from './Auth';
+import DashBoard from "./DashBoard";
+
+
 const Header = () => {
 
     
@@ -71,10 +76,13 @@ const Header = () => {
                         <Login />
                         )}
                     />
-                    <PublicRoute path="/community" restricted={false} auth={isLogin}  component={Community} />
+                    <PublicRoute path="/community" restricted={false} auth={isLogin}  component={BoardPage} />
                     <PublicRoute path="/assess" restricted={false} auth={isLogin} component={Assess} />
                     <AuthRoute path="/my" auth={isLogin} render={ () => <My />} />
                     <AuthRoute path="/letter" auth={isLogin} render={ () => <Letter />} />
+                    <PublicRoute path="/auth" restricted={true} auth={isLogin} component={Auth} />
+                    <PublicRoute path="/dashboard" restricted={false} auth={isLogin} component={DashBoard} />
+                    
                 </Switch>
             </Router>
         </React.Fragment>
