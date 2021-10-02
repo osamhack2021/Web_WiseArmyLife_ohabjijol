@@ -69,7 +69,7 @@ router.get('/:pageIndex', checkBattalionCommander, isLoggedIn, async (req, res, 
 
 function checkBattalionCommander (req, res, next) {
     try{
-        if(req.user.id === 3){
+        if(req.user.executive === 3){
         next();
         }
         else {
