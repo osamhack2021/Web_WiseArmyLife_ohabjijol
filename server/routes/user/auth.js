@@ -5,12 +5,11 @@ const passport = require('../../passport');
 const bcrypt = require('bcrypt');
 const { isLoggedIn, isNotLoggedIn } = require('./check_login');
 const User = require('../../models/users');
-let cachedUser = require('../../passport');
 
 const router = express.Router();
 
 router.post('/join', isNotLoggedIn, async(req, res, next) =>{
-    const {name, militaryNumber, unit, password, isExecutive} = req.body;
+    const {name, militaryNumber, unit, password, Executive, position} = req.body;
     
     try {
         const exUser = await User.findOne({ where: {militaryNumber} });
@@ -23,7 +22,8 @@ router.post('/join', isNotLoggedIn, async(req, res, next) =>{
             name,
             password: hash,
             unit,
-            isExecutive,
+            Executive,
+            position,
         });
         return res.redirect('/');
         // return res.json({success : true,data : "이진중 대머리"});// 클라 연동시
@@ -48,6 +48,7 @@ router.post('/login', isNotLoggedIn, async(req, res, next) => {
                 console.error(loginError);
                 return next(loginError);
             }
+            
             return res.redirect('/');
             //return res.json({success : true, data : "이진중 대머리"});// 클라연동시
         });
@@ -55,7 +56,8 @@ router.post('/login', isNotLoggedIn, async(req, res, next) => {
 });
 
 router.get('/logout', isLoggedIn, (req,res) => {
-    cachedUser = {};
+    cachedUser.user = null;
+    delete cachedUser.user;
     req.logout();
     req.session.destroy();
     res.redirect('/');

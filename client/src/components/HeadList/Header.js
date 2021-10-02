@@ -76,7 +76,7 @@ const Header = () => {
                         <Login />
                         )}
                     />
-                    <PublicRoute path="/community" restricted={false} auth={isLogin}  component={BoardPage} />
+                    <PublicRoute path="/community" restricted={false} auth={isLogin}  component={Community} />
                     <PublicRoute path="/assess" restricted={false} auth={isLogin} component={Assess} />
                     <AuthRoute path="/my" auth={isLogin} render={ () => <My />} />
                     <AuthRoute path="/letter" auth={isLogin} render={ () => <Letter />} />

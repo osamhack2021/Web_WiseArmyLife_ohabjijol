@@ -9,16 +9,20 @@ const PostRouter = require('./post');
 const router = express.Router();
 
 
-router.get('/:forumId/post', isLoggedIn, PostRouter);
-router.get('/:forumId/:pageIndex', isLoggedIn, async (req, res) => {
+router.get('/post', isLoggedIn, PostRouter);
+router.get('/:pageIndex', isLoggedIn, async (req, res) => {
     try {
-        const forumId = req.params.forumId;
+        res.locals.forumId = req.params.forumId;
         let page = Math.max(1, parseInt(req.params.pageIndex));
         const limit = 10;
         let skip = (page - 1) * limit;
         let postCount = await Post.countDocuments({});
+        const maxPage = ceil(postCount/limit);
+        if(postCount === 0){
+            return res.json({sucess: false}); // 작성된 글이 없을 경우
+        } else {
         const post_10 = await Post.findAndCountAll({
-            where: { forumId: forumId },
+            where: { forumId: res.locals.forumId },
             include: [{
                 model: User,
                 attributes: ['id', 'militaryNumber', 'name'],
@@ -28,7 +32,12 @@ router.get('/:forumId/:pageIndex', isLoggedIn, async (req, res) => {
             limit: limit,
             skip: skip,
         });
-        res.json({sucess: true, data: post_10, postCount: postCount});
+        const data = {
+            post_10: post_10,
+            maxPage: maxPage,
+        }
+        res.json({sucess: true, data});
+    }
     } catch (err) {
         console.error(err);
         next(err);
