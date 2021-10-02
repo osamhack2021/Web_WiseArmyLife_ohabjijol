@@ -1,6 +1,3 @@
-.middleWrap{
-    
-}
 .smallBox{
     
 	width: 400px;
@@ -23,23 +20,23 @@
 	background-color: #ffd265;
     margin: 20px;
 }
-  .topBanner {
-    max-width: 1920px;
-    text-align: center;
-  }
+.topBanner {
+  max-width: 1920px;
+  text-align: center;
+}
+
+.content {
+  text-align: center;
   
-  .content {
-    text-align: center;
-    
-  }
-  
-  .bigBox {
-    display: grid;
-    display: inline-grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    text-align: center;
-    align-content: center;
-    width: 70%;
-    padding: 20px;
-    margin: 20px;
-  }
+}
+
+.bigBox {
+  display: grid;
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: center;
+  align-content: center;
+  width: 70%;
+  padding: 20px;
+  margin: 20px;
+}

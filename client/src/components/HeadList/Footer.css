@@ -3,18 +3,20 @@
     max-width: 1920px;
     display: grid;
     display: inline-grid;
-    grid-template-columns: 200px 500px 200px 200px;
     text-align: center;
     align-content: center;
     width: 100%;
     padding-right: 100px;
-    background-color: gray;
+    padding-left: 400px;
+    background-color: #414141;
     color: white;
+    height: 200px;
   }
   
   .footerTwo {
     max-width: 1920px;
     border-right: 3px white solid;
     text-align: left;
+    height: 74px;
   }
   
