@@ -5,7 +5,9 @@ import axios from "axios";
 
 function Assess() {
 
-    const [data,setData] = useState(false);
+    const [data,setData] = useState({
+        isEx:false
+    });
     const {isEx} = data;
 
     useEffect(() => {

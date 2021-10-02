@@ -13,13 +13,11 @@ class BoardRow extends Component {
     
     render() {
         return(
-            <tr>
-                <td>{this.props.row.brdno}</td>
-                <td><a onClick={this.handleSelectRow}>{this.props.row.brdtitle}</a></td>
-                <td>{this.props.row.brdwriter}</td>
-                <td>{this.props.row.brddate.toLocaleDateString('ko-KR')}</td>
-                <td><button onClick={this.handleRemove}>X</button></td>
-            </tr>
+            <div>
+                <input />
+                <input />
+                <button>글쓰기</button>
+            </div>
         );
     }
 }

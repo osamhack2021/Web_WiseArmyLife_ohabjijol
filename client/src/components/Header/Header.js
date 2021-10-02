@@ -11,6 +11,7 @@ import PublicRoute from "../../Custom/PublicRoute";
 import Letter from "../Letter/Letter";
 import Auth from '../Login/Auth';
 import DashBoard from "../DashBoard";
+import BoardForm from './../Test/App6_BoardForm';
 
 
 const Header = () => {
@@ -87,7 +88,7 @@ const Header = () => {
                         <AuthRoute path="/letter" auth={isLogin} render={ () => <Letter />} />
                         <PublicRoute path="/auth" restricted={true} auth={isLogin} component={Auth} />
                         <PublicRoute path="/dashboard" restricted={false} auth={isLogin} component={DashBoard} />
-                        
+                        <PublicRoute path="/letter/post" restricted={false} component={BoardForm} />
                     </Switch>
                 </Router>
             </div>
