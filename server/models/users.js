@@ -25,7 +25,7 @@ module.exports = class User extends Sequelize.Model {
       },
       executive: {
         type: Sequelize.INTEGER,
-        allowNull: false,
+        allowNull: true,
       },
       position: {
         type: Sequelize.STRING,
