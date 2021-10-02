@@ -48,7 +48,7 @@ router.post('/login', isNotLoggedIn, async(req, res, next) => {
                 console.error(loginError);
                 return next(loginError);
             }
-            
+            cachedUser = user;
             return res.redirect('/');
             //return res.json({success : true, data : "이진중 대머리"});// 클라연동시
         });
@@ -56,8 +56,12 @@ router.post('/login', isNotLoggedIn, async(req, res, next) => {
 });
 
 router.get('/logout', isLoggedIn, (req,res) => {
+<<<<<<< Updated upstream
     cachedUser.user = null;
     delete cachedUser.user;
+=======
+    cachedUser = {};
+>>>>>>> Stashed changes
     req.logout();
     req.session.destroy();
     res.redirect('/');
