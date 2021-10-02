@@ -17,6 +17,7 @@ router.get('/:pageIndex', isLoggedIn, async (req, res) => {
         const limit = 10;
         let skip = (page - 1) * limit;
         let postCount = await Post.countDocuments({});
+        const maxPage = ceil(postCount/limit);
         if(postCount === 0){
             return res.json({sucess: false}); // 작성된 글이 없을 경우
         } else {
@@ -33,7 +34,7 @@ router.get('/:pageIndex', isLoggedIn, async (req, res) => {
         });
         const data = {
             post_10: post_10,
-            postCount: postCount,
+            maxPage: maxPage,
         }
         res.json({sucess: true, data});
     }

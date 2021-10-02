@@ -12,7 +12,6 @@ const router = express.Router();
 
 router.get('/', isLoggedIn, async (req, res) => {
     try {
-        const forumLimit = 10;
         const allForum = await Forum.findAndCountAll({
             include: [{
                 model: Post,
@@ -20,7 +19,6 @@ router.get('/', isLoggedIn, async (req, res) => {
                 order: [['createdAt', 'DESC']],
             }],
             order: [['forumName', 'DESC']],
-            limit: forumLimit,
         });
         const data = {
             allForum: allForum,

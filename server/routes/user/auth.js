@@ -9,7 +9,7 @@ const User = require('../../models/users');
 const router = express.Router();
 
 router.post('/join', isNotLoggedIn, async(req, res, next) =>{
-    const {name, militaryNumber, unit, password, isExecutive} = req.body;
+    const {name, militaryNumber, unit, password, Executive, position} = req.body;
     
     try {
         const exUser = await User.findOne({ where: {militaryNumber} });
@@ -22,7 +22,8 @@ router.post('/join', isNotLoggedIn, async(req, res, next) =>{
             name,
             password: hash,
             unit,
-            isExecutive,
+            Executive,
+            position,
         });
         return res.redirect('/');
         // return res.json({success : true,data : "이진중 대머리"});// 클라 연동시

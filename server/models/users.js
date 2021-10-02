@@ -23,7 +23,7 @@ module.exports = class User extends Sequelize.Model {
         type: STRING(100),
         allowNull: true,
       },
-      isExecutive: {
+      Executive: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },

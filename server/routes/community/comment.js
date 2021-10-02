@@ -43,7 +43,6 @@ router.route('/:commentId')
                     where: { id: currentCommentId }
                 })
                     .then(result => {
-                        const data = Comment.findOne({ where: { id: currentCommentId } });
                         console.log('수정 성공');
                         const data = {
                             message: '수정 성공',
