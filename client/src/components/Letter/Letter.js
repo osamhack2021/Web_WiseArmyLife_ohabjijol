@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import BoardForm from './App6_BoardForm';
-import BoardItem from './App6_BoardItem';
+import BoardForm from '../Test/App6_BoardForm';
+import BoardItem from '../Test/App6_BoardItem';
 
 /*
     component files.
