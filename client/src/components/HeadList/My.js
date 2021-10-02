@@ -1,10 +1,16 @@
-import React,{useEffect} from 'react';
+import React,{useState, useEffect} from 'react';
 import axios from 'axios';
 
-const my = () => {
+const My = () => {
+    const [data,setData] = useState(null);
+
     useEffect(() => {
-        axios.get('/M')
-        .then(res => console.log(res))
+        axios.get('/profile')
+        .then(res => {
+            console.log(res)
+            setData(res);
+        }
+        )
         .catch()
     },[])
 
@@ -15,4 +21,4 @@ const my = () => {
     );
 };
 
-export default my;
+export default My;

@@ -1,11 +1,12 @@
-.Header{
+
+.titleBar{
+  max-width: 1920px;
   width: 100%;
 	height: 100px;
 	text-align: center;
-
-  
 }
-.test2{
+
+.titleName{
 	width: 226px;
 	height: 31px;
 	font-family: NanumSquareEB;
@@ -18,109 +19,18 @@
   margin-right: auto;
 }
 
-.container {
+.mainMenu {
   display: grid;
   grid-template-columns: 14% 14% 14% 14% 14% 14%;
   text-align: center;
   font-size: 25px;
-  width: 100%;
-  padding-right: 7%;
+
+
   padding-left: 7%;
   height: 100px;
-
-
-  }
-
-
-.test{
-	width: 400px;
-	height: 300px;
-	border-bottom-left-radius: 70px;
-	border-bottom-right-radius: 30px;
-	border-top-left-radius: 70px;
-	border-top-right-radius: 70px;
-	background-color: #ffd265;
 }
-.Nav {
-    text-align: center;
-    width: 10%;
-  }
-  
-  .blank {
-    width: 40%;
-  }
-  
-  .Footer {
-    background-color: black;
-    color: white;
-  }
-  
-  
-    
-    .text-link{
-        text-decoration: none;
-        color: black;
-        padding-bottom: 20px;
-    }
-  
-  .topBanner {
-    text-align: center;
-  }
-  
-  .content {
-    text-align: center;
-  }
-  
-  .basicTest {
-    display: grid;
-    display: inline-grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    text-align: center;
-    align-content: center;
-    width: 70%;
-    background-color: #eec906;
-    padding: 20px;
-    margin: 20px;
-  }
-  
-  .notice {
-    display: grid;
-    display: inline-grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    text-align: center;
-    align-content: center;
-    width: 70%;
-    background-color: #e9cf47;
-    padding: 20px;
-    margin: 20px;
-  }
-  
-  .community {
-    display: grid;
-    display: inline-grid;
-    grid-template-columns: 1fr 1fr;
-    text-align: center;
-    align-content: center;
-    width: 70%;
-    background-color: #fcde44;
-    padding: 20px;
-    margin: 20px;
-  }
-  
-  .footerContainer {
-    display: grid;
-    display: inline-grid;
-    grid-template-columns: 200px 500px 200px 200px;
-    text-align: center;
-    align-content: center;
-    width: 100%;
-    padding-right: 100px;
-    background-color: gray;
-    color: white;
-  }
-  
-  .footerTwo {
-    border-right: 3px white solid;
-    text-align: left;
-  }
-  
+.text-link{
+  text-decoration: none;
+  color: black;
+  padding-bottom: 20px;
+}
