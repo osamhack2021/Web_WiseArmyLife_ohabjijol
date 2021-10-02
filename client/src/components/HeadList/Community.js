@@ -43,7 +43,10 @@ callApi = async () => { // async 비동기 특성때문에 사용 promise
         
 
         return (
-             <div>{this.state.response}</div>
+            <div>
+                {/*<div>{this.state.response}</div>*/}
+                커뮤니티
+            </div>
         );
     }
 
