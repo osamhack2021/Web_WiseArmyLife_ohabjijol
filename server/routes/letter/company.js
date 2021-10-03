@@ -69,7 +69,7 @@ router.get('/:pageIndex', checkCompanyCommander, isLoggedIn, async (req, res, ne
 
 function checkCompanyCommander (req, res, next) {
     try{
-        if(req.user.id === 2){
+        if(req.user.executive === 2){
         next();
         }
         else {

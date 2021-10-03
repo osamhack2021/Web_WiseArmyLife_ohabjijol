@@ -54,5 +54,4 @@ passport.deserializeUser((id, done) => {
     }
 });
 
-module.exports.cachedUser = cachedUser;
 module.exports = passport;

@@ -14,10 +14,10 @@ function Login() {
     }
  
     const onClickLogin = (e) => {
-        sessionStorage.setItem('user_id', inputId)
-        document.location.href = '/'
+        //sessionStorage.setItem('user_id', inputId)
+        //document.location.href = '/'
         
-        /*
+        
         axios.post('/auth/login',  {
             'militaryNumber': inputId,
             'password': inputPw
@@ -40,7 +40,7 @@ function Login() {
         })
         .catch()
 
-         */
+         
     }
  
     
