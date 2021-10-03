@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './Login.css'
+import { Link, Route, Switch, BrowserRouter as Router } from "react-router-dom";
 
 function Login() {
     const [inputId, setInputId] = useState('')
@@ -58,7 +59,7 @@ function Login() {
                 </div>
                 <div className="buttonList">
                     <span className="loginButton" type='button' onClick={onClickLogin}>로그인</span>
-                    <span className="loginButton" type='button' onClick={onClickLogin}>회원가입</span>
+                    <Link className="loginButton" to="/auth">회원가입</Link>
                 </div>
             </form>
         </div>

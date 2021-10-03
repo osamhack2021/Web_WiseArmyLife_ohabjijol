@@ -50,6 +50,7 @@ const Auth = () => {
     
     return (
         <div>
+            <div className="marginBox71" />
             <span className="textSignup">회원가입 +</span>
             <div>
                 <input className="exeInput1" type="radio" name="selectEx"></input>
@@ -79,14 +80,8 @@ const Auth = () => {
                     <span className="unit">4. 직책</span>
                     <div className="marginBox48" />
                     <input className="idInput" placeholder="직책" name="position" value={position} onChange={onChange}/>
-                    <div className="marginBox71" />
-                    
-
-
                     <div className="marginBox48" />
-                    <input placeholder="간부" name="isExecutive" value={isExecutive} onChange={onChange}/>
                     <div className="marginBox48" />
-
                     <span className="totalSignup" onClick={onClick}>회원가입</span>
                 </form>
             </div>

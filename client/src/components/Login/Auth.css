@@ -1,27 +1,11 @@
 .textSignup{
+    
     margin-left: 907px;
     margin-top: 160px;
     font-size: 30px;
     color: #000000;
     font-family: "Nanum Square EB";
 }
-
-/*
-.exeInput{
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
-    background-color: #ffffff;
-    border: 3px solid #a2e4ac;
-}
-.exeInput:checked {
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
-    background-color: #000000;
-    border: 30px solid #a2e4ac;
-}
-*/
 
 .exeInput1{
     margin-left: 814px;
@@ -55,7 +39,7 @@
 
 .signupForm{
     width: 1280px;
-    height: 1385px;
+    height: 1100px;
     border-radius: 50px;
     background-color: #cef6d4;
     margin-left: 319px;
@@ -85,10 +69,20 @@
 }
 
 .totalSignup{
-    width: 220px;
-    height: 70px;
+    
+    
+    padding-left: 78px;
+    padding-top: 24px;
+    padding-right: 77px;
+    padding-bottom: 23px;
+    
     border-radius: 35px;
     background-color: #ffffff;
     border: 3px solid #71db81;
-    margin: 50px;
+    font-size: 25px;
+    color: #000000;
+    font-family: "Nanum Square B";
+    margin: 30px;
+    
+    cursor: pointer;
 }

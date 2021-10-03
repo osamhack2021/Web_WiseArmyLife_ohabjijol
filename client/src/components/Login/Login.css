@@ -73,7 +73,7 @@
     padding-top: 24px;
     padding-right: 77px;
     padding-bottom: 23px;
-    
+    cursor: pointer;
     border-radius: 35px;
     background-color: #ffffff;
     border: 3px solid #71db81;
@@ -81,7 +81,7 @@
     color: #000000;
     font-family: "Nanum Square B";
     margin: 30px;
-    
+    text-decoration-line: none;
 }
 
 .signupButton{
