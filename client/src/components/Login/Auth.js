@@ -14,10 +14,11 @@ const Auth = () => {
         user_id:'',
         user_name:'',
         user_pw:'',
-        position:''
+        position:'',
+        isExecutive:''
     })
 
-    const {user_id,user_name,user_pw,position} = inputs;
+    const {user_id,user_name,user_pw,position,isExecutive} = inputs;
 
     const onChange = (e) =>{
         const {name,value} = e.target;
@@ -33,11 +34,16 @@ const Auth = () => {
             'militaryNumber':user_id,
             'name':user_name,
             'password' :user_pw,
-            'position' :position
+            'position' :position,
+            'isExecutive':isExecutive
         }
         axios.post('/auth/join',data)
         .then( response => {
-        alert(response.data)
+            if(response.data.success===true){
+                document.location.href = '/'
+            }else{
+                console.log('가입실패');
+            }
     })  
     }
 
@@ -48,6 +54,7 @@ const Auth = () => {
             <input placeholder="이름" name="user_name" value={user_name} onChange={onChange}/>
             <input placeholder="비밀번호" name="user_pw" value={user_pw} onChange={onChange}/>
             <input placeholder="직책" name="position" value={position} onChange={onChange}/>
+            <input placeholder="간부" name="isExecutive" value={isExecutive} onChange={onChange}/>
 
             <button onClick={onClick}>회원가입</button>
         </form>

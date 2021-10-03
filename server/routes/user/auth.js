@@ -34,6 +34,7 @@ router.post('/join', isNotLoggedIn, async(req, res, next) =>{
             executive,
             position,
         });
+        console.log('회원가입됨');
         // return res.redirect('/');
         return res.json({success : true,data :null});// 클라 연동시
     } catch (error) {
@@ -68,9 +69,10 @@ router.post('/login', isNotLoggedIn, async(req, res, next) => {
 router.get('/logout', isLoggedIn, (req,res) => {
     cachedUser.user = null;
     delete cachedUser.user;
+    console.log(cachedUser);
     req.logout();
     req.session.destroy();
-    res.redirect('/');
+    res.json({success: true, data: null});
 });
 
 module.exports = router;
