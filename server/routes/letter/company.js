@@ -85,6 +85,6 @@ function checkCompanyCommander (req, res, next) {
     }
 }
 
-router.use('/post', isLoggedIn, PostRouter);
+
 
 module.exports = router;
