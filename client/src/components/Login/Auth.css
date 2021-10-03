@@ -1,0 +1,94 @@
+.textSignup{
+    margin-left: 907px;
+    margin-top: 160px;
+    font-size: 30px;
+    color: #000000;
+    font-family: "Nanum Square EB";
+}
+
+/*
+.exeInput{
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    border: 3px solid #a2e4ac;
+}
+.exeInput:checked {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #000000;
+    border: 30px solid #a2e4ac;
+}
+*/
+
+.exeInput1{
+    margin-left: 814px;
+    margin-right: 18px;
+    margin-top: 110px;
+    margin-bottom: 69px;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background-color: #ffffff;
+    border: 3px solid #a2e4ac;
+
+}
+.exeText{
+    font-size: 30px;
+    color: #000000;
+    font-family: "Nanum Square B";
+}
+
+.exeInput2{
+  margin-left: 69px;
+  margin-top: 110px;
+  margin-right: 18px;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: #ffffff;
+  border: 3px solid #a2e4ac;
+  
+}
+
+.signupForm{
+    width: 1280px;
+    height: 1385px;
+    border-radius: 50px;
+    background-color: #cef6d4;
+    margin-left: 319px;
+    text-align: center;
+}
+.marginBox71{
+    height: 71px;
+}
+.unit{
+    font-size: 30px;
+    color: #000000;
+    font-family: "Nanum Square B";
+}
+.marginBox48{
+    height: 48px;
+}
+.idInput{
+    width: 220px;
+    height: 60px;
+    background-color: #a2e4ac;
+}
+.idInput2{
+    width: 220px;
+    height: 60px;
+    background-color: #a2e4ac;
+    margin-right: 20px;
+}
+
+.totalSignup{
+    width: 220px;
+    height: 70px;
+    border-radius: 35px;
+    background-color: #ffffff;
+    border: 3px solid #71db81;
+    margin: 50px;
+}

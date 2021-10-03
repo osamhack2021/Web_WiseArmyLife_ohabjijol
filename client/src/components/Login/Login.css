@@ -42,7 +42,7 @@
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     background-color: #cef6d4;
-
+    font-size: 23px;
 }
 
 .textPw{
@@ -65,6 +65,7 @@
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     background-color: #cef6d4;
+    font-size: 23px;
 }
 
 .loginButton{

@@ -1,10 +1,12 @@
 .titleBar{
   max-width: 1920px;
   width: 100%;
-	height: 100px;
+	height: 70px;
 	text-align: center;
   margin-left: auto;
   margin-right: auto;
+  background-color: rgb(43, 226, 89);
+  padding-top: 20px;
 }
 .titleName{
 	width: 226px;
@@ -24,7 +26,8 @@
   text-align: center;
   font-size: 25px;
   padding-left: 14%;
-  height: 100px;
+  height: 70px;
+  background-color: rgb(43, 226, 89);
 }
 .text-link{
   text-decoration: none;
