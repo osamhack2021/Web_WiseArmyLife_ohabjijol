@@ -8,9 +8,15 @@ CancelApply = async (req,res)=>{ //front구현후 delete로 받을것
     try{
     //신청한 사격정보 있는지 확인
 
-        data = {
-            date : '2021-10-25'
+
+    if(req.query.date==undefined){
+        senderror = {
+            success : false,
+            data : "invalid format"
         }
+        return res.send(senderror);
+    }
+
 
     const findShooting = await Shooting.findOne({
         where : {date : data.date},
