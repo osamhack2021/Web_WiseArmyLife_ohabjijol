@@ -1,5 +1,6 @@
 "use strict"
 
+
 exports.isExecutive = (req, res, next) => {
     if (req.user.Executive) {
         next();

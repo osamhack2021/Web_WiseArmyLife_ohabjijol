@@ -5,16 +5,11 @@ const {Shooting ,ShootingEvent} = require('../../../models');
 updateScores = async (req,res)=>{
 
     try{
-<<<<<<< HEAD
-        body = {
-            date : '2021-10-21',
-            scoreAndId : [{UserId:1,score:70},{UserId:2,score :30}]
-        }
-=======
+
         req.body.date = '2021-10-21';
         req.body.scoreAndId = [{UserId:1,score:70},{UserId:2,score :30}];
         
->>>>>>> 47f728a168de44afe346bc6f837af0cc7b5ca90a
+
 
         const findData = await Shooting.findOne({where : {date : body.date}});
         if(findData == null){
