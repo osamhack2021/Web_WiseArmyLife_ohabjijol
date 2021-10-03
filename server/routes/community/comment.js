@@ -22,7 +22,7 @@ router.route('/')
             const data = {
                 comment: comment,
             }
-            res.json({ sucess: true, data });
+            res.json({ sucess: true }, data);
         } catch (err) {
             console.error(err);
             next(err);
@@ -47,7 +47,7 @@ router.route('/:commentId')
                         const data = {
                             message: '수정 성공',
                         }
-                        return res.json({ sucess: true, data });
+                        return res.json({ sucess: true }, data);
                     })
                     .catch(err => {
                         console.error(err);
@@ -58,7 +58,7 @@ router.route('/:commentId')
                 const data = {
                     message: '작성자가 아닙니다',
                 }
-                return res.json({ sucess: false, data });
+                return res.json({ sucess: false }, data);
             }
         } catch (err) {
             console.error(err);
@@ -75,11 +75,7 @@ router.route('/:commentId')
                     .then(result => {
                         console.log('삭제성공');
                         currentPost.commentCount--;
-<<<<<<< HEAD
                         res.json({ sucess: true, data: null });
-=======
-                        res.json({ sucess: true });
->>>>>>> 47f728a168de44afe346bc6f837af0cc7b5ca90a
                     })
                     .catch(err => {
                         console.error(err);
@@ -88,11 +84,7 @@ router.route('/:commentId')
             }
             else {
                 console.log('삭제실패');
-<<<<<<< HEAD
                 return res.json({ sucess: false, data: null })
-=======
-                return res.json({ sucess: false })
->>>>>>> 47f728a168de44afe346bc6f837af0cc7b5ca90a
             }
         } catch (err) {
             console.error(err);
@@ -112,14 +104,10 @@ router.route('/:commentId')
                 parentComment: currentCommentId,
             });
             currentPost.commentCount++;
-<<<<<<< HEAD
             const data = {
                 comment: comment
             }
             res.json({ sucess: true }, data);
-=======
-            res.json({ sucess: true, data: comment });
->>>>>>> 47f728a168de44afe346bc6f837af0cc7b5ca90a
         } catch (err) {
             console.error(err);
             next(err);

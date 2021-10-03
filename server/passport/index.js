@@ -39,18 +39,9 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((id, done) => {
     if (Object.keys(cachedUser).length !== 0) {
-<<<<<<< HEAD
         done(null, cachedUser.user);
     } // 유저 정보 캐싱
     else {
-=======
-        console.log('캐쉬됨');
-        console.log(cachedUser.user.militaryNumber);
-        done(null, cachedUser.user);
-    } // 유저 정보 캐싱
-    else {
-        console.log('캐쉬 안됨');
->>>>>>> 47f728a168de44afe346bc6f837af0cc7b5ca90a
         User.findOne({ where: { id } })
             .then(user => {
                 cachedUser.user = user;

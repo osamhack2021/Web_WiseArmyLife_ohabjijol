@@ -44,14 +44,10 @@ router.route('/')
                 UserId: req.user.id,
                 ForumId: req.query.forumId,
             });
-<<<<<<< HEAD
             const data = {
                 post: post,
             }
             res.json({ sucess: true }, data);
-=======
-            res.json({ sucess: true, data: post });
->>>>>>> 47f728a168de44afe346bc6f837af0cc7b5ca90a
         } catch (error) {
             console.error(error);
             next(error);
@@ -78,14 +74,10 @@ router.route('/:postId')
                 },
                 ],
             });
-<<<<<<< HEAD
             const data = {
                 currentPost: currentPost,
             }
             res.json({ sucess: true }, data); // parentId.deletedAt 컬럼에 값 존재 시 삭제된 메세지 뜨게 할 것
-=======
-                res.json({sucess: true, data:currentPost }); // parentId.deletedAt 컬럼에 값 존재 시 삭제된 메세지 뜨게 할 것
->>>>>>> 47f728a168de44afe346bc6f837af0cc7b5ca90a
         } catch (error) {
             console.error(error);
             next(error);
@@ -100,11 +92,7 @@ router.route('/:postId')
                 Comment.destroy({ where: { postComment: currentPostId } })
                     .then(result => {
                         console.log('게시글 댓글 삭제 성공')
-<<<<<<< HEAD
                         return res.json({ sucess: true, data: null });
-=======
-                        return res.json({sucess: true});
->>>>>>> 47f728a168de44afe346bc6f837af0cc7b5ca90a
                     })
                     .catch(error => {
                         console.error(error);
@@ -116,11 +104,7 @@ router.route('/:postId')
                 const data = {
                     message: '게시글 삭제실패',
                 }
-<<<<<<< HEAD
                 return res.json({ sucess: false }, data);
-=======
-                return res.json({ sucess: false, data });
->>>>>>> 47f728a168de44afe346bc6f837af0cc7b5ca90a
             }
         } catch (error) {
             console.error(error);
@@ -142,11 +126,7 @@ router.route('/:postId')
                 })
                     .then(result => {
                         console.log('수정 성공');
-<<<<<<< HEAD
                         res.json({ sucess: true, data: null });
-=======
-                        res.json({ sucess: true });
->>>>>>> 47f728a168de44afe346bc6f837af0cc7b5ca90a
                     })
                     .catch(err => {
                         console.error(err);
