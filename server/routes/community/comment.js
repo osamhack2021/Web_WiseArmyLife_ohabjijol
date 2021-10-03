@@ -75,7 +75,7 @@ router.route('/:commentId')
                     .then(result => {
                         console.log('삭제성공');
                         currentPost.commentCount--;
-                        res.json({ sucess: true, data: null });
+                        res.json({ sucess: true });
                     })
                     .catch(err => {
                         console.error(err);
@@ -84,7 +84,7 @@ router.route('/:commentId')
             }
             else {
                 console.log('삭제실패');
-                return res.json({ sucess: false, data: null })
+                return res.json({ sucess: false })
             }
         } catch (err) {
             console.error(err);
@@ -104,10 +104,7 @@ router.route('/:commentId')
                 parentComment: currentCommentId,
             });
             currentPost.commentCount++;
-            const data = {
-                comment: comment
-            }
-            res.json({ sucess: true }, data);
+            res.json({ sucess: true, data: comment });
         } catch (err) {
             console.error(err);
             next(err);
