@@ -15,10 +15,14 @@ const Auth = () => {
         user_name:'',
         user_pw:'',
         position:'',
-        isExecutive:''
+        isExecutive:'',
+        pw1:'',
+        pw2:''
     })
 
-    const {user_id,user_name,user_pw,position,isExecutive} = inputs;
+    
+
+    const {user_id,user_name,user_pw,position,isExecutive,pw1,pw2} = inputs;
 
     const onChange = (e) =>{
         const {name,value} = e.target;
@@ -30,6 +34,18 @@ const Auth = () => {
     }
     const onClick= async(e)=>{
         e.preventDefault();
+
+        if(pw1===pw2){
+            setInputs({
+                ...inputs,
+                user_pw:pw1
+            })
+        }else{
+            alert('비밀번호가 다릅니다.')
+            return;
+        }
+
+
         const data = {
             'militaryNumber':user_id,
             'name':user_name,
@@ -47,15 +63,26 @@ const Auth = () => {
     })  
     }
 
+    const exTrue = () =>{
+        setInputs({
+            isExecutive:true
+        })
+    }
+
+    const exFalse = () =>{
+        setInputs({
+            isExecutive:false
+        })
+    }
     
     return (
         <div>
             <div className="marginBox71" />
             <span className="textSignup">회원가입 +</span>
             <div>
-                <input className="exeInput1" type="radio" name="selectEx"></input>
+                <input className="exeInput1" type="radio" name="selectEx" onClick={exTrue} />
                 <span className="exeText">간부</span>
-                <input className="exeInput2" type="radio" name="selectEx"></input>
+                <input className="exeInput2" type="radio"  name="selectEx" onClick={exFalse} />
                 <span className="exeText">병사</span>
             </div>
             <div  className="signupForm">
@@ -73,8 +100,8 @@ const Auth = () => {
 
                     <span className="unit">3. 비밀번호</span>
                     <div className="marginBox48" />
-                    <input  className="idInput2" placeholder="비밀번호" name="user_pw" value={user_pw} onChange={onChange}/>
-                    <input  className="idInput" placeholder="비밀번호 확인" name="user_pw" value={user_pw} onChange={onChange}/>
+                    <input  className="idInput2" placeholder="비밀번호" name="pw1" value={pw1} onChange={onChange}/>
+                    <input  className="idInput" placeholder="비밀번호 확인" name="pw2" value={pw2} onChange={onChange}/>
                     <div className="marginBox71" />
 
                     <span className="unit">4. 직책</span>
