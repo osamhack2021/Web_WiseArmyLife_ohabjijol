@@ -45,7 +45,6 @@ const Community = ({match}) => {
                     console.log('통신실패')
                     console.log(res.data);
                 }
-                
             })
         }
     },[])

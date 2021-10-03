@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
- 
+import './Login.css'
+
 function Login() {
     const [inputId, setInputId] = useState('')
     const [inputPw, setInputPw] = useState('')
@@ -23,12 +24,9 @@ function Login() {
             'password': inputPw
         })
         .then(res => {
-            console.log(inputId)
-            console.log(inputPw)
             console.log(res.data)
-            if(res.data.success === 'false'){
+            if(res.data.success === false){
                 // id 일치하지 않는 경우 userId = undefined, msg = '입력하신 id 가 일치하지 않습니다.'
-                console.log('======================',res.data.msg)
                 alert('로그인 실패')
             }else if(res.data.success === true) {
                 // id, pw 모두 일치 userId = userId1, msg = undefined
@@ -47,19 +45,22 @@ function Login() {
     
      
     return(
-        <div>
-            <h2>Login</h2>
-            <div>
-                <label htmlFor='input_id'>ID : </label>
-                <input type='text' name='input_id' value={inputId} onChange={handleInputId} />
-            </div>
-            <div>
-                <label htmlFor='input_pw'>PW : </label>
-                <input type='password' name='input_pw' value={inputPw} onChange={handleInputPw} />
-            </div>
-            <div>
-                <button type='button' onClick={onClickLogin}>Login</button>
-            </div>
+        <div className="loginMain">
+            <h2 className="loginText">로그인 +</h2>
+            <form className="loginForm">
+                <div>
+                    <span className="textId">아이디</span>
+                    <input className="inputId" type='text' name='input_id' value={inputId} onChange={handleInputId} />
+                </div>
+                <div>
+                    <span className="textPw">비밀번호</span>
+                    <input className="inputPw" type='password' name='input_pw' value={inputPw} onChange={handleInputPw} />
+                </div>
+                <div className="buttonList">
+                    <span className="loginButton" type='button' onClick={onClickLogin}>로그인</span>
+                    <span className="loginButton" type='button' onClick={onClickLogin}>회원가입</span>
+                </div>
+            </form>
         </div>
     )
 }
