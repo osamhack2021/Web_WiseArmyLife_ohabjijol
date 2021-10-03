@@ -44,7 +44,11 @@ router.route('/forumAdd')
                 await Forum.create({
                     forumName: newForumName,
                 });
+<<<<<<< HEAD
                 res.json({ sucess: true, data: null });
+=======
+                res.json({ sucess: true });
+>>>>>>> 47f728a168de44afe346bc6f837af0cc7b5ca90a
             }
         } catch (error) {
             console.error(error);
@@ -62,7 +66,11 @@ router.delete('/:forumId', isLoggedIn, isExecutive, async (req, res, next) => {
             await Post.findAll({ attributes: ['postId'], where: { ForumId: currentForumId } })
                 .then(postId => {
                     if (postId.length == 0) {
+<<<<<<< HEAD
                         return res.json({ sucess: true, data: null });
+=======
+                        return res.json({ sucess: true });
+>>>>>>> 47f728a168de44afe346bc6f837af0cc7b5ca90a
                     }
                     return Comment.destroy({ where: { PostId: postId } });
                 })
@@ -74,7 +82,11 @@ router.delete('/:forumId', isLoggedIn, isExecutive, async (req, res, next) => {
             Forum.destroy({ where: { id: currentForumId } })
                 .then(result => {
                     console.log('삭제 성공');
+<<<<<<< HEAD
                     res.json({ sucess: true, data: null });
+=======
+                    res.json({ sucess: true });
+>>>>>>> 47f728a168de44afe346bc6f837af0cc7b5ca90a
                 })
                 .catch(error => {
                     console.error(error);

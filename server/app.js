@@ -23,6 +23,10 @@ const CommunityRouter = require("./routes/community/community");
 const LetterRouter = require("./routes/letter");
 
 const { sequelize, Shooting } = require('./models');
+<<<<<<< HEAD
+=======
+const passportConfig = require('./passport');
+>>>>>>> 47f728a168de44afe346bc6f837af0cc7b5ca90a
 const AssessmentRouter = require("./routes/assessment");
 const ShootingRouter = require("./routes/assessment/shooting");
 const MangementRouter = require('./routes/management');

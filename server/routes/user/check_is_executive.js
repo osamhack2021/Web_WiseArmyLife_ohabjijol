@@ -5,7 +5,10 @@ exports.isExecutive = (req, res, next) => {
         next();
     } else {
         console.log('간부아님');
-        res.json({ sucess: false, data: "Not Executive" });
+        const data = {
+            message: "Not Executive",
+        }
+        res.json({ sucess: false }, data);
     }
 };
 exports.isNotExecutive = (req, res, next) => {
@@ -13,6 +16,9 @@ exports.isNotExecutive = (req, res, next) => {
         next();
     } else {
         console.log('간부임');
-        res.json({ sucess: false, data: "병사만 접근 가능함" });
+        const data = {
+            message: "병사만 접근 가능함",
+        }
+        res.json({ sucess: false }, data);
     }
 };

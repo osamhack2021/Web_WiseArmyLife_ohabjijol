@@ -11,7 +11,11 @@ const syncShootingAssessment = require('./shootingController/shootingassessments
 router.route('/').get(getShootingInfo);
 router.route('/sync').get(syncShootingAssessment);
 
+<<<<<<< HEAD
 router.use(isLoggedIn/*,isNotExecutive*/);
+=======
+router.use(isLoggedIn,isNotExecutive);
+>>>>>>> 47f728a168de44afe346bc6f837af0cc7b5ca90a
 router.route('/result').get(getShootingResult);
 router.route('/apply').get(ApplyAssessment); // post로 작성 body = {userId : (int) , date : 'yyyy-mm-dd'}
 router.route('/cancellation').get(CancelApply);
