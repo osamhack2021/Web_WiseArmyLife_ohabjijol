@@ -23,7 +23,7 @@ router.get('/', isLoggedIn, async (req, res) => {
         const data = {
             allForum: allForum,
         }
-        return res.json({ sucess: true, data });
+        return res.json({ success: true }, data);
     } catch (err) {
         console.error(err);
         next(err);
@@ -38,7 +38,7 @@ router.route('/forumAdd')
                 const data = {
                     message: '같은 이름의 게시판이 존재합니다',
                 }
-                return res.json({ sucess: false, data });
+                return res.json({ sucess: false }, data);
             }
             else {
                 await Forum.create({
@@ -85,7 +85,7 @@ router.delete('/:forumId', isLoggedIn, isExecutive, async (req, res, next) => {
             const data = {
                 message: '없는 게시판 입니다.',
             }
-            return res.json({ sucess: false, data });
+            return res.json({ sucess: false }, data);
         }
     } catch (error) {
         console.error(error);

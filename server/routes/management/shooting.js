@@ -5,10 +5,13 @@ const {isNotExecutive,isExecutive} = require('../user/check_is_executive');
 const checkApplicant = require('./shootingController/checkApplicants');
 const createAssessment = require('./shootingController/createAssessment');
 const deleteAssessment = require('./shootingController/deleteAssessment');
+
+;
 const updateScores = require('./shootingController/updateScores');
 const updateAssessment = require('./shootingController/updateAssessment');
 
 router.use(isLoggedIn,isExecutive);
+
 //router.route('/').get();
 router.route('/checkinfo').get(checkApplicant);  // management/shooting/assementinfo?date=2021-09-25
 router.route('/assessment').get(createAssessment);  // management/shooting/create  : body = {date : (yyyy-mm-dd) , applicant_capacity : (int)} //post로 받기
@@ -18,6 +21,7 @@ router.route('/scores').get(updateScores);  /* Patch로 받기! body에는 body 
                                                      scoreAndId = [{UserId:1,score:70},{UserId:2,score :30}]
                                                     } 이런식의 형식임*/                                                       
 router.route('/').patch(updateAssessment);
+
 
 module.exports = router;
 
