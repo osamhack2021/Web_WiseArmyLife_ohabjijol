@@ -23,7 +23,7 @@ router.get('/', isLoggedIn, async (req, res) => {
         const data = {
             allForum: allForum,
         }
-        return res.json({ sucess: true }, data);
+        return res.json({ success: true }, data);
     } catch (err) {
         console.error(err);
         next(err);
