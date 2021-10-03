@@ -155,6 +155,8 @@ header부분 __________________________inline으로 css이용하기! */}
       </React.Fragment>
   );
 }
+    
+
 
 export default Assess;
 
