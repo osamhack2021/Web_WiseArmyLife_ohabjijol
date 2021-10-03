@@ -62,7 +62,7 @@ router.delete('/:forumId', isLoggedIn, isExecutive, async (req, res, next) => {
             await Post.findAll({ attributes: ['postId'], where: { ForumId: currentForumId } })
                 .then(postId => {
                     if (postId.length == 0) {
-                        return res.json({ sucess: true });
+                        return res.json({ sucess: true, data: null });
                     }
                     return Comment.destroy({ where: { PostId: postId } });
                 })

@@ -44,7 +44,10 @@ router.route('/')
                 UserId: req.user.id,
                 ForumId: req.query.forumId,
             });
-            res.json({ sucess: true, data: post });
+            const data = {
+                post: post,
+            }
+            res.json({ sucess: true }, data);
         } catch (error) {
             console.error(error);
             next(error);
@@ -71,7 +74,10 @@ router.route('/:postId')
                 },
                 ],
             });
-                res.json({sucess: true, data:currentPost }); // parentId.deletedAt 컬럼에 값 존재 시 삭제된 메세지 뜨게 할 것
+            const data = {
+                currentPost: currentPost,
+            }
+                res.json({sucess: true }, data); // parentId.deletedAt 컬럼에 값 존재 시 삭제된 메세지 뜨게 할 것
         } catch (error) {
             console.error(error);
             next(error);
@@ -86,7 +92,7 @@ router.route('/:postId')
                 Comment.destroy({ where: { postComment: currentPostId } })
                     .then(result => {
                         console.log('게시글 댓글 삭제 성공')
-                        return res.json({sucess: true});
+                        return res.json({sucess: true, data: null});
                     })
                     .catch(error => {
                         console.error(error);
@@ -98,7 +104,7 @@ router.route('/:postId')
                 const data = {
                     message: '게시글 삭제실패',
                 }
-                return res.json({ sucess: false, data });
+                return res.json({ sucess: false }, data);
             }
         } catch (error) {
             console.error(error);
@@ -120,7 +126,7 @@ router.route('/:postId')
                 })
                     .then(result => {
                         console.log('수정 성공');
-                        res.json({ sucess: true });
+                        res.json({ sucess: true, data: null });
                     })
                     .catch(err => {
                         console.error(err);
@@ -132,7 +138,7 @@ router.route('/:postId')
                 const data = {
                     message: '없는 게시글 입니다',
                 }
-                return res.json({ sucess: false, data });
+                return res.json({ sucess: false }, data);
             }
         } catch (error) {
             console.error(error);
