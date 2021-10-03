@@ -4,7 +4,6 @@ const express = require('express');
 
 const homeCTRL = require('./home_ctrl');
 const { isLoggedIn, isNotLoggedIn } = require('../user/check_login');
-const { Post, User } = require('../../models');
 
 const router = express.Router();
 
