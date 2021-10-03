@@ -10,7 +10,7 @@ const { isNotExecutive, isExecutive } = require('../user/check_is_executive');
 const router = express.Router();
 
 
-router.get('/:pageIndex', isNotExecutive, isLoggedIn, async (req, res, next) => {
+router.get('/:pageIndex', isLoggedIn, checkCompanyCommander, async (req, res, next) => {
     try {
         let page = Math.max(1, parseInt(req.params.pageIndex));
         const limit = 10;
@@ -38,7 +38,7 @@ router.get('/:pageIndex', isNotExecutive, isLoggedIn, async (req, res, next) => 
         next(error);
     }
 });
-router.get('/:pageIndex', checkCompanyCommander, isLoggedIn, async (req, res, next) => {
+router.get('/:pageIndex', isLoggedIn, isNotExecutive, async (req, res, next) => {
     try {
         let page = Math.max(1, parseInt(req.params.pageIndex));
         const limit = 10;
@@ -67,16 +67,14 @@ router.get('/:pageIndex', checkCompanyCommander, isLoggedIn, async (req, res, ne
     }
 });
 
+
 function checkCompanyCommander (req, res, next) {
     try{
         if(req.user.executive === 2){
         next();
         }
         else {
-            const data = {
-                message: 'no right to access'
-            }
-            return res.json({sucess: false}, data);
+            next('route');
         }
 
     } catch(error) {

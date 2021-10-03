@@ -44,7 +44,7 @@ router.route('/forumAdd')
                 await Forum.create({
                     forumName: newForumName,
                 });
-                res.json({ sucess: true });
+                res.json({ sucess: true, data: null });
             }
         } catch (error) {
             console.error(error);
@@ -74,7 +74,7 @@ router.delete('/:forumId', isLoggedIn, isExecutive, async (req, res, next) => {
             Forum.destroy({ where: { id: currentForumId } })
                 .then(result => {
                     console.log('삭제 성공');
-                    res.json({ sucess: true });
+                    res.json({ sucess: true, data: null });
                 })
                 .catch(error => {
                     console.error(error);

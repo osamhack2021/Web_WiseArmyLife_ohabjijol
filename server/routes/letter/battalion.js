@@ -10,7 +10,7 @@ const { isNotExecutive, isExecutive } = require('../user/check_is_executive');
 const router = express.Router();
 
 
-router.get('/:pageIndex', isNotExecutive, isLoggedIn, async (req, res, next) => {
+router.get('/:pageIndex', isLoggedIn, checkBattalionCommander, async (req, res, next) => {
     try {
         let page = Math.max(1, parseInt(req.params.pageIndex));
         const limit = 10;
@@ -38,7 +38,7 @@ router.get('/:pageIndex', isNotExecutive, isLoggedIn, async (req, res, next) => 
         next(error);
     }
 });
-router.get('/:pageIndex', checkBattalionCommander, isLoggedIn, async (req, res, next) => {
+router.get('/:pageIndex', isLoggedIn, isNotExecutive, async (req, res, next) => {
     try {
         let page = Math.max(1, parseInt(req.params.pageIndex));
         const limit = 10;
@@ -73,10 +73,7 @@ function checkBattalionCommander(req, res, next) {
             next();
         }
         else {
-            const data = {
-                message: 'no right to access'
-            }
-            return res.json({ sucess: false }, data);
+            next('route');
         }
 
     } catch (error) {

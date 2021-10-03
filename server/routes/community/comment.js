@@ -27,7 +27,6 @@ router.route('/')
             console.error(err);
             next(err);
         }
-
     });
 router.route('/:commentId')
     .put(checkPostId, isLoggedIn, async (req, res, next) => {
@@ -126,7 +125,7 @@ function checkPostId(req, res, next) {
         .catch(err => {
             return res.json(err);
         })
-
 }
 
 module.exports = router;
+ 
