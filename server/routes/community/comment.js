@@ -22,7 +22,7 @@ router.route('/')
             const data = {
                 comment: comment,
             }
-            res.json({ sucess: true }, data);
+            res.json({ sucess: true, data });
         } catch (err) {
             console.error(err);
             next(err);
@@ -46,7 +46,7 @@ router.route('/:commentId')
                         const data = {
                             message: '수정 성공',
                         }
-                        return res.json({ sucess: true }, data);
+                        return res.json({ sucess: true, data });
                     })
                     .catch(err => {
                         console.error(err);
@@ -57,7 +57,7 @@ router.route('/:commentId')
                 const data = {
                     message: '작성자가 아닙니다',
                 }
-                return res.json({ sucess: false }, data);
+                return res.json({ sucess: false, data });
             }
         } catch (err) {
             console.error(err);
@@ -106,7 +106,7 @@ router.route('/:commentId')
             const data = {
                 comment: comment,
             }
-            res.json({ sucess: true }, data);
+            res.json({ sucess: true, data });
         } catch (err) {
             console.error(err);
             next(err);

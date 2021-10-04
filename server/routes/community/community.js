@@ -23,14 +23,14 @@ router.get('/', isLoggedIn, async (req, res) => {
         const data = {
             allForum: allForum,
         }
-        return res.json({ success: true }, data);
+        return res.json({ success: true, data });
     } catch (err) {
         console.error(err);
         next(err);
     }
 });
 router.route('/forumAdd')
-    .post(isLoggedIn, isExecutive, async (req, res, next) => {
+    .post(isLoggedIn, isExecutive, async (req, res) => {
         try {
             const newForumName = req.body.forumName
             const exForum = Forum.findOne({ where: { forumName: newForumName } })
@@ -38,21 +38,21 @@ router.route('/forumAdd')
                 const data = {
                     message: '같은 이름의 게시판이 존재합니다',
                 }
-                return res.json({ sucess: false }, data);
+                return res.json({ sucess: false, data });
             }
             else {
                 await Forum.create({
                     forumName: newForumName,
                 });
-                res.json({ sucess: true, data: null });
+                return res.json({ sucess: true, data: null });
             }
         } catch (error) {
             console.error(error);
             next(error);
         }
     })
-    .get(isLoggedIn, isExecutive, (req, res, next) => {
-        res.json({ sucess: true });
+    .get(isLoggedIn, isExecutive, (req, res) => {
+        return res.json({ sucess: true, data: null });
     });
 router.delete('/:forumId', isLoggedIn, isExecutive, async (req, res, next) => {
     try {
@@ -85,7 +85,7 @@ router.delete('/:forumId', isLoggedIn, isExecutive, async (req, res, next) => {
             const data = {
                 message: '없는 게시판 입니다.',
             }
-            return res.json({ sucess: false }, data);
+            return res.json({ sucess: false, data });
         }
     } catch (error) {
         console.error(error);

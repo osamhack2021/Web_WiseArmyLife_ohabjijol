@@ -31,7 +31,7 @@ router.get('/:pageIndex', isLoggedIn, checkCompanyCommander, async (req, res, ne
                 post_10: post_10,
                 maxPage: maxPage,
             }
-            return res.json({ sucess: true }, data); // post_10.count에는 post개수, .rows에는 post의 정보가 들어있음
+            return res.json({ sucess: true, data }); // post_10.count에는 post개수, .rows에는 post의 정보가 들어있음
         }
     } catch (error) {
         console.error(error);
@@ -59,7 +59,7 @@ router.get('/:pageIndex', isLoggedIn, isNotExecutive, async (req, res, next) => 
                 post_10: post_10,
                 maxPage: maxPage,
             }
-            return res.json({ sucess: true }, data); // post_10.count에는 post개수, .rows에는 post의 정보가 들어있음
+            return res.json({ sucess: true, data }); // post_10.count에는 post개수, .rows에는 post의 정보가 들어있음
         }
     } catch (error) {
         console.error(error);

@@ -47,7 +47,7 @@ router.route('/')
             const data = {
                 post: post,
             }
-            res.json({ sucess: true }, data);
+            res.json({ sucess: true, data });
         } catch (error) {
             console.error(error);
             next(error);
@@ -77,7 +77,7 @@ router.route('/:postId')
             const data = {
                 currentPost: currentPost,
             }
-                res.json({sucess: true }, data); // parentId.deletedAt 컬럼에 값 존재 시 삭제된 메세지 뜨게 할 것
+                res.json({sucess: true, data }); // parentId.deletedAt 컬럼에 값 존재 시 삭제된 메세지 뜨게 할 것
         } catch (error) {
             console.error(error);
             next(error);
@@ -104,7 +104,7 @@ router.route('/:postId')
                 const data = {
                     message: '게시글 삭제실패',
                 }
-                return res.json({ sucess: false }, data);
+                return res.json({ sucess: false, data });
             }
         } catch (error) {
             console.error(error);
@@ -138,7 +138,7 @@ router.route('/:postId')
                 const data = {
                     message: '없는 게시글 입니다',
                 }
-                return res.json({ sucess: false }, data);
+                return res.json({ sucess: false, data });
             }
         } catch (error) {
             console.error(error);
