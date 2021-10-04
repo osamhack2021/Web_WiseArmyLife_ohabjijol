@@ -21,7 +21,6 @@ const Community = ({match}) => {
                 console.log('hello');
                 const {allForum} = res.data.data;
                 console.log(allForum);
-                console()
                 setData(res.data.data);
             })
         } else if(pageIndex !==undefined){ // 특정게시판 특정페이지
@@ -32,10 +31,12 @@ const Community = ({match}) => {
             })
         } else if( forumId !==undefined){ // 특정게시판 첫페이지
             axios.get(`/Community/${forumId}/1`)
-            .then(res => {
-                console.log(res.data)
-                
-                setData(res.data.data);
+            .then(res =>{
+                test.current=res.data.data.allForum;
+                if(test.current.count != data.count){
+                    setData(test.current)
+                }
+                console.log(test.current)
             })
         } else{ // 그냥 커뮤니티
             axios.get('/Community')

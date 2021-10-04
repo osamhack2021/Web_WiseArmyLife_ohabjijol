@@ -12,8 +12,8 @@ router.post('/join', isNotLoggedIn, async(req, res, next) =>{
     const {name, militaryNumber, unit, password, position, isExecutive} = req.body;
     console.log(req.body)
     try {
-        const exUser = await User.findOne({ where: {militaryNumber} });
-        if (exUser){
+        const exUser = await User.findOne({ where: { militaryNumber } });
+        if (exUser) {
             return res.redirect('join?error=exist');
         }
         let executive = 0;
@@ -43,18 +43,18 @@ router.post('/join', isNotLoggedIn, async(req, res, next) =>{
     }
 });
 
-router.post('/login', isNotLoggedIn, async(req, res, next) => {
-    passport.authenticate('local-login', (authError, user ,info) => {
-        
-        if (authError){
+router.post('/login', isNotLoggedIn, async (req, res, next) => {
+    passport.authenticate('local-login', (authError, user, info) => {
+
+        if (authError) {
             console.error(authError);
             return next(authError);
         }
-        if (!user){
+        if (!user) {
             return res.redirect('/?loginError=$i{info.message}');
         }
         return req.login(user, (loginError) => {
-            if (loginError){
+            if (loginError) {
                 console.error(loginError);
                 return next(loginError);
             }

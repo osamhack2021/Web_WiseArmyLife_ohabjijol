@@ -36,7 +36,7 @@ router.get('/:pageIndex', isLoggedIn, async (req, res) => {
             post_10: post_10,
             maxPage: maxPage,
         }
-        res.json({sucess: true, data});
+        res.json({sucess: true, data });
     }
     } catch (err) {
         console.error(err);

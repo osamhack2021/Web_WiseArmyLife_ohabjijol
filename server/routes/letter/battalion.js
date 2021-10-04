@@ -10,13 +10,13 @@ const { isNotExecutive, isExecutive } = require('../user/check_is_executive');
 const router = express.Router();
 
 
-router.get('/:pageIndex', isNotExecutive, isLoggedIn, async (req, res, next) => {
+router.get('/:pageIndex', isLoggedIn, checkBattalionCommander, async (req, res, next) => {
     try {
         let page = Math.max(1, parseInt(req.params.pageIndex));
         const limit = 10;
         let skip = (page - 1) * limit;
         let postCount = await Post.countDocuments({});
-        const maxPage = ceil(postCount/limit);
+        const maxPage = ceil(postCount / limit);
         if (postCount === 0) {
             res.json({ sucess: false }); // 비어있을 경우
         } else {
@@ -38,13 +38,13 @@ router.get('/:pageIndex', isNotExecutive, isLoggedIn, async (req, res, next) => 
         next(error);
     }
 });
-router.get('/:pageIndex', checkBattalionCommander, isLoggedIn, async (req, res, next) => {
+router.get('/:pageIndex', isLoggedIn, isNotExecutive, async (req, res, next) => {
     try {
         let page = Math.max(1, parseInt(req.params.pageIndex));
         const limit = 10;
         let skip = (page - 1) * limit;
         let postCount = await Post.countDocuments({});
-        const maxPage = ceil(postCount/limit);
+        const maxPage = ceil(postCount / limit);
         if (postCount === 0) {
             res.json({ sucess: false }); // 비어있을 경우
         } else {
@@ -67,19 +67,16 @@ router.get('/:pageIndex', checkBattalionCommander, isLoggedIn, async (req, res, 
     }
 });
 
-function checkBattalionCommander (req, res, next) {
-    try{
-        if(req.user.executive === 3){
-        next();
+function checkBattalionCommander(req, res, next) {
+    try {
+        if (req.user.executive === 3) {
+            next();
         }
         else {
-            const data = {
-                message: 'no right to access'
-            }
-            return res.json({sucess: false}, data);
+            next('route');
         }
 
-    } catch(error) {
+    } catch (error) {
         console.error(error);
         next(error);
     }

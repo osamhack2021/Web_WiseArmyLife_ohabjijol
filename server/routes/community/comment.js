@@ -27,7 +27,6 @@ router.route('/')
             console.error(err);
             next(err);
         }
-
     });
 router.route('/:commentId')
     .put(checkPostId, isLoggedIn, async (req, res, next) => {
@@ -75,7 +74,7 @@ router.route('/:commentId')
                     .then(result => {
                         console.log('삭제성공');
                         currentPost.commentCount--;
-                        res.json({ sucess: true });
+                        res.json({ sucess: true, data: null });
                     })
                     .catch(err => {
                         console.error(err);
@@ -84,7 +83,7 @@ router.route('/:commentId')
             }
             else {
                 console.log('삭제실패');
-                return res.json({ sucess: false })
+                return res.json({ sucess: false, data: null })
             }
         } catch (err) {
             console.error(err);
@@ -104,7 +103,10 @@ router.route('/:commentId')
                 parentComment: currentCommentId,
             });
             currentPost.commentCount++;
-            res.json({ sucess: true, data: comment });
+            const data = {
+                comment: comment,
+            }
+            res.json({ sucess: true, data });
         } catch (err) {
             console.error(err);
             next(err);
@@ -123,7 +125,7 @@ function checkPostId(req, res, next) {
         .catch(err => {
             return res.json(err);
         })
-
 }
 
 module.exports = router;
+ 

@@ -13,8 +13,8 @@ router.route('/sync').get(syncShootingAssessment);
 
 router.use(isLoggedIn,isNotExecutive);
 router.route('/result').get(getShootingResult);
-router.route('/apply').get(ApplyAssessment); // post로 작성 body = {userId : (int) , date : 'yyyy-mm-dd'}
-router.route('/cancellation').get(CancelApply);
+router.route('/application').post(ApplyAssessment); // post로 작성 body = {userId : (int) , date : 'yyyy-mm-dd'}
+router.route('/application/:id').get(CancelApply);
 
 
 
