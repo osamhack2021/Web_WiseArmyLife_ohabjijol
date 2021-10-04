@@ -1,32 +1,22 @@
-import React, { Component } from 'react';
-import BoardForm from '../Test/App6_BoardForm';
+import React,{useEffect,useState} from 'react';
+import axios from 'axios';
 
-import { Link, Route, Switch, BrowserRouter as Router } from "react-router-dom";
-import PublicRoute from './../../Custom/PublicRoute';
-import LetterBoard from './LetterBoard';
+const Letter = () => {
 
-/*
-    component files.
-*/
-class Letter extends Component {
+    useEffect(() => { //battalion or company
+        axios.get('/letter/battalion')
+        .then(res => {
+            console.log(res.data)
+        }
+        )
+        .catch()
+    },[])
 
-    
-    render() {
-        
-
-        return (
-            <div>
-                <Router>
-                    <Link to="/letter/post">글쓰기</Link>
-                    <Switch>
-                        <PublicRoute path="/letter/post" restricted={false} component={BoardForm} />
-                        <PublicRoute path="/letter" restricted={false} component={LetterBoard} />
-                    </Switch>
-                </Router>
-            </div>
-        );
-    }
-}
+    return (
+        <div>
+            마편 of 마편
+        </div>
+    );
+};
 
 export default Letter;
-

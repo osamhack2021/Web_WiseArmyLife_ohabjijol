@@ -7,8 +7,7 @@ const My = () => {
     useEffect(() => {
         axios.get('/profile')
         .then(res => {
-            console.log(res)
-            setData(res);
+            console.log(res.data)
         }
         )
         .catch()

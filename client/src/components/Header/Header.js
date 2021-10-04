@@ -99,6 +99,8 @@ const Header = () => {
                         <AuthRoute path="/letter" auth={isLogin} render={ () => <Letter />} />
                         <PublicRoute path="/auth" restricted={true} auth={isLogin} component={Auth} />
                         <PublicRoute path="/dashboard" restricted={false} auth={isLogin} component={DashBoard} />
+
+                        
                     </Switch>
                 </Router>
             </div>
@@ -107,4 +109,3 @@ const Header = () => {
 };
 
 export default Header;
-

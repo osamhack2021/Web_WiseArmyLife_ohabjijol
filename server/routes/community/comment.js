@@ -22,12 +22,11 @@ router.route('/')
             const data = {
                 comment: comment,
             }
-            res.json({ sucess: true }, data);
+            res.json({ success: true, data });
         } catch (err) {
             console.error(err);
             next(err);
         }
-
     });
 router.route('/:commentId')
     .put(checkPostId, isLoggedIn, async (req, res, next) => {
@@ -47,7 +46,7 @@ router.route('/:commentId')
                         const data = {
                             message: '수정 성공',
                         }
-                        return res.json({ sucess: true }, data);
+                        return res.json({ success: true, data });
                     })
                     .catch(err => {
                         console.error(err);
@@ -58,7 +57,7 @@ router.route('/:commentId')
                 const data = {
                     message: '작성자가 아닙니다',
                 }
-                return res.json({ sucess: false }, data);
+                return res.json({ success: false, data });
             }
         } catch (err) {
             console.error(err);
@@ -75,7 +74,7 @@ router.route('/:commentId')
                     .then(result => {
                         console.log('삭제성공');
                         currentPost.commentCount--;
-                        res.json({ sucess: true, data: null });
+                        res.json({ success: true, data: null });
                     })
                     .catch(err => {
                         console.error(err);
@@ -84,7 +83,7 @@ router.route('/:commentId')
             }
             else {
                 console.log('삭제실패');
-                return res.json({ sucess: false, data: null })
+                return res.json({ success: false, data: null })
             }
         } catch (err) {
             console.error(err);
@@ -107,7 +106,7 @@ router.route('/:commentId')
             const data = {
                 comment: comment,
             }
-            res.json({ sucess: true }, data);
+            res.json({ success: true, data });
         } catch (err) {
             console.error(err);
             next(err);
@@ -126,7 +125,7 @@ function checkPostId(req, res, next) {
         .catch(err => {
             return res.json(err);
         })
-
 }
 
 module.exports = router;
+ 

@@ -19,7 +19,7 @@ router.get('/:pageIndex', isLoggedIn, async (req, res) => {
         let postCount = await Post.countDocuments({});
         const maxPage = ceil(postCount/limit);
         if(postCount === 0){
-            return res.json({sucess: false}); // 작성된 글이 없을 경우
+            return res.json({success: false}); // 작성된 글이 없을 경우
         } else {
         const post_10 = await Post.findAndCountAll({
             where: { forumId: res.locals.forumId },
@@ -36,7 +36,7 @@ router.get('/:pageIndex', isLoggedIn, async (req, res) => {
             post_10: post_10,
             maxPage: maxPage,
         }
-        res.json({sucess: true }, data);
+        res.json({success: true, data });
     }
     } catch (err) {
         console.error(err);
@@ -44,5 +44,6 @@ router.get('/:pageIndex', isLoggedIn, async (req, res) => {
     }
 });
 // 특정 게시판 읽기
+
 
 module.exports = router;
