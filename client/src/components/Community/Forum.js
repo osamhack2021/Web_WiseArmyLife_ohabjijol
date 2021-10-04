@@ -1,11 +1,13 @@
 import React,{useRef,useState,useEffect} from 'react';
 import axios from 'axios';
+import { Route } from 'react-router';
+import { Link } from 'react-router-dom';
 
 
 const Forum = () => {
 
     const [data,setData] = useState({
-        'count':100,
+        'count':100, // 100이면 오류
         'rows':[]
     });
 
@@ -36,6 +38,12 @@ const Forum = () => {
         })
         .then(res =>{
             console.log(res.data)
+            if(res.data.success === true){
+                alert('추가성공!')
+                document.location.href = '/Community'
+            }else{
+                alert(res.data.data.message)
+            }
         })
     }
 
@@ -48,14 +56,28 @@ const Forum = () => {
         })
     }
     const onConsole= ()=>{
-        console.log(data);
+        console.log(rows);
     }
+
+    const goPage  = (id)=>{
+        document.location.href = `/community/${id}`
+    }
+
+    
     return (
         <div>
             <input name="forumName" value={forumName} onChange={onChange} />
             <button onClick={onClick} >포럼만들기</button>
             <button onClick={onConsole}>콘솔</button>
-            포럼화면
+            <div>
+                {rows.map(row =>{
+                    return(
+                        <div>
+                            <span onClick={ ()=> goPage(row.id)}>{row.forumName}</span>
+                        </div>
+                    )
+                })}
+            </div>
         </div>
     );
 };
