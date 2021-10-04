@@ -117,7 +117,7 @@ router.route('/v/:postId')
             const postBody = req.body;
             let currentPost = await Post.findOne({ where: { id: currentPostId } })
             if (currentPost.UserId === req.user.id) {
-                await Post.update({
+                Post.update({
                     title: postBody.title,
                     content: postBody.content,
                     updatedAt: new Date(),
