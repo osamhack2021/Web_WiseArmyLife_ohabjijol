@@ -1,4 +1,4 @@
-const {Shooting ,ShootingEvent} = require('../../../models');
+const {MentalForce ,MentalForceEvent} = require('../../../models');
 
 //사격의 C
 
@@ -30,7 +30,7 @@ createAssessment = async (req,res)=>{
 
         
        
-        const createShootingAssessment = await Shooting.findOrCreate({
+        const createMentalForceAssessment = await MentalForce.findOrCreate({
             where : {
                 date : req.body.date,
                 
@@ -44,9 +44,9 @@ createAssessment = async (req,res)=>{
 
         });
 
-        console.log(createShootingAssessment[1]);
+        console.log(createMentalForceAssessment[1]);
 
-        const isExist = !createShootingAssessment[1];
+        const isExist = !createMentalForceAssessment[1];
         
         if(isExist){
 
