@@ -1,106 +1,81 @@
-.Header {
-    margin-bottom: 0;
-    font-size: 27px;
-    text-align: center;
-    padding-bottom: 20px;
-    padding-top: 5px;
-  }
+.basicTitle{
+  margin-top: 160px;
+  margin-left: 893px;
+  margin-bottom: 108px;
+  font-size: 30px;
+  color: #000000;
+  font-family: "Nanum Square EB";
+}
+
+.margin270{
+  margin-left: 270px;
   
-  .container {
-    display: grid;
-    display: inline-grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1.5fr 1fr 1fr;
-    text-align: center;
-    align-content: center;
-    width: 1203px;
-    padding-right: 0;
-  }
+}
+.clicked {
+  background-color:#ffd265
+}
+
+.basicList :visited{
+  background-color:#ffd265
+}
+.basic2{
+  margin-right: 40px;
+  border-radius: 15px;
+  background-color: #ffffff;
+  border: 3px solid #ffd265;
+  font-size: 25px;
+  color: #000000;
+  font-family: "Nanum Square EB";
   
-  .topBanner {
-    text-align: center;
-    margin-top: 20px;
-  }
+  padding-right: 69px;
+  padding-left: 69px;
+  padding-bottom: 38px;
+  padding-top: 38px;
+}
+
+.basic3{
+  margin-right: 40px;
+  border-radius: 15px;
+  background-color: #ffffff;
+  border: 3px solid #ffd265;
+  font-size: 25px;
+  color: #000000;
+  font-family: "Nanum Square EB";
   
-  .start {
-    width: 70%;
-    text-align: center;
-    margin-left: 15%;
-    margin-bottom: 100px;
-  }
+  padding-right: 57px;
+  padding-left: 57px;
+  padding-bottom: 38px;
+  padding-top: 38px;
+}
+
+.basic4{
+  margin-right: 40px;
+  border-radius: 15px;
+  background-color: #ffffff;
+  border: 3px solid #ffd265;
+  font-size: 25px;
+  color: #000000;
+  font-family: "Nanum Square EB";
   
-  .content {
-    text-align: center;
-    background-color: #fee5a8;
-    margin: 0auto;
-  }
+  padding-right: 46px;
+  padding-left: 46px;
+  padding-bottom: 38px;
+  padding-top: 38px;
+}
+
+.basic6{
+  margin-right: 40px;
+  border-radius: 15px;
+  background-color: #ffffff;
+  border: 3px solid #ffd265;
+  font-size: 25px;
+  color: #000000;
+  font-family: "Nanum Square EB";
   
-  .basicTest {
-    display: grid;
-    display: inline-grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    text-align: center;
-    align-content: center;
-    width: 80%;
-    padding: 20px;
-    margin: 20px;
-    justify-content: center;
-  }
+  padding-right: 23px;
+  padding-left: 23px;
+  padding-bottom: 38px;
+  padding-top: 38px;
+
   
-  .item {
-    background-color: white;
-    padding: 10px;
-    margin: 20px;
-    border: 3px solid #fcd165;
-    width: 80px;
-  }
-  
-  .register {
-    margin-bottom: 50px;
-    background-color: #fee5a8;
-  }
-  
-  .community {
-    display: grid;
-    display: inline-grid;
-    grid-template-columns: 1fr 1fr;
-    text-align: center;
-    align-content: center;
-    width: 70%;
-    padding: 20px;
-    margin: 20px;
-  }
-  
-  #ekffur {
-    width: 50%;
-    text-align: center;
-    margin-left: 25%;
-    size: 600px;
-  }
-  
-  .selectDay {
-    display: grid;
-    display: inline-grid;
-    grid-template-columns: 50px 200px 50px 100px;
-    text-align: center;
-    align-content: center;
-    width: 70%;
-    padding: 20px;
-    margin: 20px;
-  }
-  
-  .footerContainer {
-    display: grid;
-    display: inline-grid;
-    grid-template-columns: 2fr 3fr 2fr 2fr;
-    text-align: center;
-    align-content: center;
-    width: 100%;
-    padding-right: 100px;
-    background-color: #424242;
-    color: white;
-  }
-  
-  .footerTwo {
-    border-right: 3px white solid;
-    text-align: left;
-  }
+}

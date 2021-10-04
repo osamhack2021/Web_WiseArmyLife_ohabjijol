@@ -25,10 +25,8 @@ const Page = ({match}) => {
 
     const test = useRef(null);
     useEffect(() => {
-        console.log('여기는옴?')
         axios.get(`/community/${forumId}`)
         .then(res =>{
-            console.log('바로')
             console.log(res.data.data)
             test.current=res.data.data.allForum;
             if(test.current.count != data.count){
@@ -36,6 +34,8 @@ const Page = ({match}) => {
                 console(test)
             }
         })
+        .catch(err =>console.log(err))
+        
     },[data])
 
     const onPost = () =>{

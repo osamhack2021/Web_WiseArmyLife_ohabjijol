@@ -12,6 +12,7 @@ const Community = ({match}) => {
 
     return (
         <div>
+            <h2>커뮤니티 + </h2>
             <Router>
                 <Switch>
                     <Route path="/Community/:forumId/v/postIndex" component={Post} />

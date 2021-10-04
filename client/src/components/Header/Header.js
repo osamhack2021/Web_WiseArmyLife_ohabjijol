@@ -32,6 +32,7 @@ const Header = () => {
             })
         setIsLogin(false);
         sessionStorage.removeItem('user_id')
+        sessionStorage.removeItem('isExecutive')
         document.location.href = '/'
         
       }

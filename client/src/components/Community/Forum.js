@@ -60,7 +60,19 @@ const Forum = () => {
     }
 
     const goPage  = (id)=>{
-        document.location.href = `/community/${id}`
+        const defaultPageIndex=1
+        document.location.href = `/community/${id}/${defaultPageIndex}`
+    }
+    const onRemove = (id)=>{
+        axios.delete(`/community/${id}`)
+        .then(res=>{
+            console.log(res.data)
+            if(res.data.success === true){
+                alert('삭제 성공')
+            }else{
+                alert('삭제실패')
+            }
+        })
     }
 
     
@@ -74,6 +86,7 @@ const Forum = () => {
                     return(
                         <div>
                             <span onClick={ ()=> goPage(row.id)}>{row.forumName}</span>
+                            <button id={row.id} onClick={onRemove}> X </button>
                         </div>
                     )
                 })}
