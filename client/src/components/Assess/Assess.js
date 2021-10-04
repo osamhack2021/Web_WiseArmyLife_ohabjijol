@@ -2,6 +2,8 @@ import React,{useEffect,useState} from 'react';
 import axios from 'axios';
 import './ss.css'
 import './Assess.css'
+
+
 const Assess = () => {
     const [data,setData] = useState(null);
     const [target,setTarget] = useState("shooting");
