@@ -3,8 +3,8 @@ import axios from 'axios';
 import './ss.css'
 import './Assess.css'
 const Assess = () => {
-
-    const [target,setTarget] = useState("사격");
+    const [data,setData] = useState(null);
+    const [target,setTarget] = useState("shooting");
     const [isExecutive,setIsExecutive] = useState(false)
     const onChange = (e)=>{
         const {value} = e.target;
@@ -12,43 +12,58 @@ const Assess = () => {
         console.log(target)
     }
 
+    // 병기본평가 클릭시 또는 f5시 실행되는 함수
     useEffect(() => {
         const Tf = sessionStorage.getItem('isExecutive')
-        
-        console.log(Tf)
-
         if(Tf === 'true'){
             setIsExecutive(true)
-            console.log('확인')
         }else{
             setIsExecutive(false)
         }
     })
 
+    // target 바뀔때 마다 실행되는 함수
+    useEffect(()=>{
+        axios.get(`/assessment/${target}`)
+        .then( res =>{
+            console.log(res.data);
+            setData(res.data.data)
+            console.log(data);
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+
+    },[target])
 
     return (
         <div>
             <h2 className="basicTitle">병기본평가 +</h2>
             <div>
-                {isExecutive ? <button>추가하기</button> :null}
+                {isExecutive ? 
+                    <form>
+                        <input />
+                        <button>추가하기</button> 
+                    </form>
+                :null}
             </div>
             <span className="basicList" >
                 <span className="margin270"></span>
-                <input onChange={onChange} id="scale0" class="scale" name="scale" type="radio" value="사격" />
+                <input onChange={onChange} id="scale0" class="scale" name="scale" type="radio" value="shooting" />
                 <label for="scale0" class="button">사격</label>
-                <input onChange={onChange} id="scale1" class="scale" name="scale" type="radio" value="정신전력병가" />
+                <input onChange={onChange} id="scale1" class="scale" name="scale" type="radio" value="spirit" />
                 <label for="scale1" class="button">정신전력평가</label>
-                <input onChange={onChange} id="scale2" class="scale" name="scale" type="radio" value="체력" />
+                <input onChange={onChange} id="scale2" class="scale" name="scale" type="radio" value="stamina" />
                 <label for="scale2" class="button">체력</label>
-                <input onChange={onChange} id="scale3" class="scale" name="scale" type="radio" value="화생방" />
+                <input onChange={onChange} id="scale3" class="scale" name="scale" type="radio" value="aid" />
                 <label for="scale3" class="button">화생방</label>
-                <input onChange={onChange} id="scale4" class="scale" name="scale" type="radio" value="각개전투" />
+                <input onChange={onChange} id="scale4" class="scale" name="scale" type="radio" value="rkrrowjsxn" />
                 <label for="scale4" class="button">각개전투</label>
-                <input onChange={onChange} id="scale5" class="scale" name="scale" type="radio" value="주특기" />
+                <input onChange={onChange} id="scale5" class="scale" name="scale" type="radio" value="specialties" />
                 <label for="scale5" class="button">주특기</label>
             </span>
 
-            
+
 
         </div>
 
