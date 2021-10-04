@@ -9,7 +9,9 @@ const Community = ({match}) => {
         'count':100,
         'rows':[]
     });
+    const {count,rows} = data;
     const test = useRef(0);
+
 
     useEffect(() => {
         const {forumId,pageIndex,postId} =match.params;
@@ -36,35 +38,29 @@ const Community = ({match}) => {
                 setData(res.data.data);
             })
         } else{ // 그냥 커뮤니티
-            axios.get(`/Community`)
-            .then(res => {
-                if(res.data.success===true){
-                    test.current = res.data.data.allForum
-                    
-                    dele();
-                    
-                    
-
-                    console.log(data);
-                }else{
-                    console.log('통신실패')
-                    console.log(res.data);
+            axios.get('/Community')
+            .then(res =>{
+                test.current=res.data.data.allForum;
+                if(test.current.count != data.count){
+                    setData(test.current)
                 }
             })
         }
-    },[])
+    },[data])
 
-    async function dele() { 
-        console.log('딜레이전')
-        await timeout(5000);
-        console.log('딜레이후')
-        setData(test.current);
+    const onClick = ()=>{
+        axios.post('/Community/forumAdd',{
+            'forumName':'공지사항'
+        })
+        .then(res =>{
+            console.log(res.data)
+        })
     }
-    function timeout(delay) {
-         return new Promise( res => setTimeout(res, delay) ); }
+
     return (
         <div>
-            까뮤니티
+            
+            <button onClick={onClick}>게시판등록</button>
         </div>
     );
 };

@@ -55,6 +55,7 @@ const Auth = () => {
         }
         axios.post('/auth/join',data)
         .then( response => {
+            console.log(data);
             if(response.data.success===true){
                 document.location.href = '/'
             }else{
