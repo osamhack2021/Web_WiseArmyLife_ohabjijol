@@ -33,7 +33,7 @@ router.route('/forumAdd')
     .post(isLoggedIn, isExecutive, async (req, res) => {
         try {
             const newForumName = req.body.forumName
-            const exForum = Forum.findOne({ where: { forumName: newForumName } })
+            const exForum = await Forum.findOne({ where: { forumName: newForumName } })
             if (exForum) {
                 const data = {
                     message: '같은 이름의 게시판이 존재합니다',
