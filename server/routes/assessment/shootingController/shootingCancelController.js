@@ -8,8 +8,8 @@ CancelApply = async (req,res)=>{ //front구현후 delete로 받을것
     try{
     //신청한 사격정보 있는지 확인
 
-
-    if(req.query.date==undefined){
+    let reg = RegExp(/^(19|20)\d{2}-((01|0[3-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])|(02)-(0[1-9]|1[0-9]|2[0-9]))$/)
+    if(req.query.date==undefined||reg.test(req.query.date)==false){
         senderror = {
             success : false,
             data : "invalid format"
@@ -21,11 +21,7 @@ CancelApply = async (req,res)=>{ //front구현후 delete로 받을것
     const findShooting = await Shooting.findOne({
         where : {date : data.date},
       attributes : ['id','expired','number_of_applicant']  
-    });/*.then(id=>{
-        if(id.dataValues.id.length!==undefined){
-           return res.send("삭제할 데이터를 못찾음");
-        }
-    });*/
+    });
 
     const findeventShooting = await ShootingEvent.findOne({
         where : {UserId:req.user.id, ShootingId : findShooting.dataValues.id}

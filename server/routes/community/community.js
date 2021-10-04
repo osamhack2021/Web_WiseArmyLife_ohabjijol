@@ -4,7 +4,7 @@ const express = require('express');
 
 const { isLoggedIn } = require('../user/check_login');
 const { isExecutive } = require('../user/check_is_executive');
-const { Post, User, Forum } = require('../../models');
+const { Post, Forum } = require('../../models');
 const ForumRouter = require('./forum');
 
 
@@ -38,13 +38,14 @@ router.route('/forumAdd')
                 const data = {
                     message: '같은 이름의 게시판이 존재합니다',
                 }
-                return res.json({ sucess: false, data });
+                return res.json({ success: false, data });
             }
             else {
+                console.log('만들어짐');
                 await Forum.create({
                     forumName: newForumName,
                 });
-                return res.json({ sucess: true, data: null });
+                return res.json({ success: true, data: null });
             }
         } catch (error) {
             console.error(error);
@@ -52,7 +53,7 @@ router.route('/forumAdd')
         }
     })
     .get(isLoggedIn, isExecutive, (req, res) => {
-        return res.json({ sucess: true, data: null });
+        return res.json({ success: true, data: null });
     });
 router.delete('/:forumId', isLoggedIn, isExecutive, async (req, res, next) => {
     try {
@@ -62,7 +63,7 @@ router.delete('/:forumId', isLoggedIn, isExecutive, async (req, res, next) => {
             await Post.findAll({ attributes: ['postId'], where: { ForumId: currentForumId } })
                 .then(postId => {
                     if (postId.length == 0) {
-                        return res.json({ sucess: true, data: null });
+                        return res.json({ success: true, data: null });
                     }
                     return Comment.destroy({ where: { PostId: postId } });
                 })
@@ -74,7 +75,7 @@ router.delete('/:forumId', isLoggedIn, isExecutive, async (req, res, next) => {
             Forum.destroy({ where: { id: currentForumId } })
                 .then(result => {
                     console.log('삭제 성공');
-                    res.json({ sucess: true, data: null });
+                    res.json({ success: true, data: null });
                 })
                 .catch(error => {
                     console.error(error);
@@ -85,7 +86,7 @@ router.delete('/:forumId', isLoggedIn, isExecutive, async (req, res, next) => {
             const data = {
                 message: '없는 게시판 입니다.',
             }
-            return res.json({ sucess: false, data });
+            return res.json({ success: false, data });
         }
     } catch (error) {
         console.error(error);
@@ -94,7 +95,11 @@ router.delete('/:forumId', isLoggedIn, isExecutive, async (req, res, next) => {
 });
 // 게시판 CRUD
 
-router.get('/:forumId', isLoggedIn, ForumRouter);
+router.get('/:forumId', isLoggedIn,storeForumId, ForumRouter);
 
+function storeForumId (req, res, next) {
+    res.locals.forumId = req.params.forumId;
+    next();
+}
 
 module.exports = router;

@@ -6,11 +6,16 @@ module.exports = class Question extends Sequelize.Model {
     static init(sequelize){
       return super.init({
         question: {
-          type: Sequelize.STRING(50),
+          type: Sequelize.STRING(200),
           allowNull: false,
         },
         answer: {
             type: Sequelize.STRING(50),
+            allowNull: false,
+        },
+        category: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
         },
       }, {
         sequelize,
