@@ -6,7 +6,7 @@ import axios from 'axios';
 // 
 const Community = ({match}) => {
     const [data,setData] = useState({
-        'count':1,
+        'count':100,
         'rows':[]
     });
     const test = useRef(0);
@@ -32,6 +32,7 @@ const Community = ({match}) => {
             axios.get(`/Community/${forumId}/1`)
             .then(res => {
                 console.log(res.data)
+                
                 setData(res.data.data);
             })
         } else{ // 그냥 커뮤니티
@@ -39,7 +40,11 @@ const Community = ({match}) => {
             .then(res => {
                 if(res.data.success===true){
                     test.current = res.data.data.allForum
-                    setData(test.current);
+                    
+                    dele();
+                    
+                    
+
                     console.log(data);
                 }else{
                     console.log('통신실패')
@@ -49,9 +54,17 @@ const Community = ({match}) => {
         }
     },[])
 
-
+    async function dele() { 
+        console.log('딜레이전')
+        await timeout(5000);
+        console.log('딜레이후')
+        setData(test.current);
+    }
+    function timeout(delay) {
+         return new Promise( res => setTimeout(res, delay) ); }
     return (
         <div>
+            까뮤니티
         </div>
     );
 };

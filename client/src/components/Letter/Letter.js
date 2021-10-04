@@ -5,7 +5,7 @@ const Letter = () => {
 
     return (
         <div>
-            커뮤니티
+            마편 of 마편
         </div>
     );
 };
