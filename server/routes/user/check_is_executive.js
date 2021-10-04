@@ -9,7 +9,7 @@ exports.isExecutive = (req, res, next) => {
         const data = {
             message: "Not Executive",
         }
-        res.json({ sucess: false, data });
+        res.json({ success: false, data });
     }
 };
 exports.isNotExecutive = (req, res, next) => {
@@ -20,6 +20,6 @@ exports.isNotExecutive = (req, res, next) => {
         const data = {
             message: "병사만 접근 가능함",
         }
-        res.json({ sucess: false, data });
+        res.json({ success: false, data });
     }
 };
