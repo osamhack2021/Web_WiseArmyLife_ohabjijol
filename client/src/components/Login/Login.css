@@ -1,0 +1,98 @@
+.loginText{
+    width: 180px;
+    height: 28px;
+    font-family: NanumSquareEB;
+    color: #000000;
+    font-size: 30px;
+    font-weight: 400;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.loginMain{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 160px;
+    width: 621px;
+    height: 700px;
+}
+
+.loginForm{
+    margin-top: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.textId{
+    margin-right: 30px;
+    height: 29px;
+    font-family: NanumSquareEB;
+    color: #000000;
+    font-size: 30px;
+    font-weight: 400;
+
+}
+.inputId{
+    margin-left: 30px;
+    width: 400px;
+    height: 70px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #cef6d4;
+    font-size: 23px;
+}
+
+.textPw{
+    margin-right: 27px;
+    margin-top: 50px;
+    height: 29px;
+    font-family: NanumSquareEB;
+    color: #000000;
+    font-size: 30px;
+    font-weight: 400;
+
+}
+.inputPw{
+    margin-top: 50px;
+    margin-left: 6px;
+    width: 400px;
+    height: 70px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #cef6d4;
+    font-size: 23px;
+}
+
+.loginButton{
+    padding-left: 78px;
+    padding-top: 24px;
+    padding-right: 77px;
+    padding-bottom: 23px;
+    cursor: pointer;
+    border-radius: 35px;
+    background-color: #ffffff;
+    border: 3px solid #71db81;
+    font-size: 25px;
+    color: #000000;
+    font-family: "Nanum Square B";
+    margin: 30px;
+    text-decoration-line: none;
+}
+
+.signupButton{
+    width: 223px;
+    height: 73px;
+    border-width: 3px;
+    border-color: #71db81;
+    border-style: solid;
+    background-color: #ffffff;
+    
+}
+.buttonList{
+    margin-top: 100px;
+}

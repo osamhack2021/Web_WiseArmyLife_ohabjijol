@@ -2,7 +2,7 @@
 
 
 exports.isExecutive = (req, res, next) => {
-    if (req.user.Executive) {
+    if (!req.user.executive) {
         next();
     } else {
         console.log('간부아님');
@@ -13,7 +13,7 @@ exports.isExecutive = (req, res, next) => {
     }
 };
 exports.isNotExecutive = (req, res, next) => {
-    if (!req.user.Executive) {
+    if (req.user.executive) {
         next();
     } else {
         console.log('간부임');
