@@ -23,7 +23,7 @@ router.get('/', isLoggedIn, async (req, res) => {
         const data = {
             allForum: allForum,
         }
-        return res.json({ success: true, data });
+        res.json({ success: true, data });
     } catch (err) {
         console.error(err);
         next(err);
@@ -55,50 +55,58 @@ router.route('/forumAdd')
     .get(isLoggedIn, isExecutive, (req, res) => {
         return res.json({ success: true, data: null });
     });
+
+
+
+
 router.delete('/:forumId', isLoggedIn, isExecutive, async (req, res, next) => {
-    try {
-        const currentForumId = req.params.forumId;
-        const currentForum = await Forum.findOne({ where: { id: currentForumId } });
-        if (currentForum) {
-            await Post.findAll({ attributes: ['postId'], where: { ForumId: currentForumId } })
-                .then(postId => {
-                    if (postId.length == 0) {
-                        return res.json({ success: true, data: null });
-                    }
-                    return Comment.destroy({ where: { PostId: postId } });
-                })
-                .catch(err => {
-                    console.error(err);
-                    next(error);
-                });
-            Post.destroy({ where: { ForumId: currentForumId } });
-            Forum.destroy({ where: { id: currentForumId } })
-                .then(result => {
-                    console.log('삭제 성공');
-                    res.json({ success: true, data: null });
-                })
-                .catch(error => {
-                    console.error(error);
-                    next(error);
-                });
-        }
-        else {
-            const data = {
-                message: '없는 게시판 입니다.',
+        try {
+            console.log("ㅇㅇ");
+            const currentForumId = req.params.forumId;
+            const currentForum = await Forum.findOne({ where: { id: currentForumId } });
+            if (currentForum) {
+                await Post.findAll({ attributes: ['postId'], where: { ForumId: currentForumId } })
+                    .then(postId => {
+                        if (postId.length == 0) {
+                            return res.json({ success: true, data: null });
+                        }
+                        return Comment.destroy({ where: { PostId: postId } });
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        next(error);
+                    });
+                Post.destroy({ where: { ForumId: currentForumId } });
+                Forum.destroy({ where: { id: currentForumId } })
+                    .then(result => {
+                        console.log('삭제 성공');
+                        res.json({ success: true, data: null });
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        next(error);
+                    });
             }
-            return res.json({ success: false, data });
+            else {
+                const data = {
+                    message: '없는 게시판 입니다.',
+                }
+                return res.json({ success: false, data });
+            }
+        } catch (error) {
+            console.error(error);
+            next(error);
         }
-    } catch (error) {
-        console.error(error);
-        next(error);
-    }
-});
+    });
 // 게시판 CRUD
+router.get('/:forumId/:pageIndex', isLoggedIn, storeForumIdPageIndex, ForumRouter);
 
-router.get('/:forumId', isLoggedIn,storeForumId, ForumRouter);
-
-function storeForumId (req, res, next) {
+function storeForumIdPageIndex(req, res, next) {
     res.locals.forumId = req.params.forumId;
+    res.locals.pageIndex = req.params.pageIndex;
+    console.log(
+        "최태현 대머리"
+    )
     next();
 }
 

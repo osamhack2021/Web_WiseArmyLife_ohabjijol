@@ -4,7 +4,7 @@ import axios from 'axios';
 const Assess = () => {
     
     async function callGet() {
-        axios.get(`/assessment`)
+        axios.get(`/community/1/1`)
         .then(res => {
             console.log(res.data)
         })
