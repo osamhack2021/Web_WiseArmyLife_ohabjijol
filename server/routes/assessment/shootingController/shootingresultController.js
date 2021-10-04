@@ -1,5 +1,6 @@
 const { User, Shooting ,ShootingEvent} = require('../../../models');
 
+//사격의 R
 
 getShootingResult = async (req,res)=>{ // 사용자가 신청한 사격정보를 json으로 보내줌 이것도 월별로 줘야하나.... 귀찮은데..
     try{  
@@ -22,18 +23,16 @@ getShootingResult = async (req,res)=>{ // 사용자가 신청한 사격정보를
                     post.push({
                         date : element.date,
                         expired : element.expired,
-                        score : element.ShootingEvent.score                        
-
+                        score : element.ShootingEvent.score 
                     })
-                   
                 });
 
-                responseData = {
+                sendsuccess = {
                     success : true,
                     data : post,
-                   
                 }
-                return res.json(responseData); 
+
+                return res.json(sendsuccess); 
 
                }
                else{                            // 없을시
@@ -50,12 +49,12 @@ getShootingResult = async (req,res)=>{ // 사용자가 신청한 사격정보를
 
         console.error(err);
 
-        const resobject = {
+        const senderror = {
             success : false,
             data : "unexpected Error",
         }
 
-        return res.json(resobject);
+        return res.json(senderror);
     }
 
 

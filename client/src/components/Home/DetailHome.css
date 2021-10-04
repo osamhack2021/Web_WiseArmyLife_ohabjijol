@@ -1,0 +1,77 @@
+.smallBox{
+      
+  width: 400px;
+  height: 300px;
+  border-radius: 80px;
+  background-color: #ffd265;
+
+  margin: 10px;
+  margin-bottom: 39px;
+  
+}
+.smallBoxLast{
+    margin-left: 50px;
+    width: 625px;
+    height: 300px;
+    border-bottom-left-radius: 70px;
+    border-bottom-right-radius: 30px;
+    border-top-left-radius: 70px;
+    border-top-right-radius: 70px;
+    background-color: #ffd265;
+    margin: 20px;
+}
+.middleTitle{
+  margin-top: 159px;
+  margin-bottom: 109px;
+}
+.topBanner {
+  margin-top: 50px;
+    max-width: 1920px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content {
+    text-align: center;
+}
+
+.bigBox {
+  display: grid;
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: center;
+  align-content: center;
+  margin-bottom: 100px;
+}
+.bigBox2 {
+  display: grid;
+  display: inline-grid;
+  grid-template-columns:  1fr 1fr 1fr;
+  text-align: center;
+  align-content: center;
+  margin-bottom: 100px;
+  margin-left: 320px;
+}
+
+.shoot{
+  text-align: left;
+  margin-top: 114px;
+  margin-left: 89px;
+  font-size: 25px;
+  color: #000000;
+  font-family: "Nanum Square EB";
+}
+.shoot2{
+  text-align: left;
+  margin-top: 106px;
+  margin-left: 56px;
+  font-size: 25px;
+  color: #000000;
+  font-family: "Nanum Square EB";
+}
+
+.shootDetail{
+  margin-left: 89px;
+  text-align: left;
+}

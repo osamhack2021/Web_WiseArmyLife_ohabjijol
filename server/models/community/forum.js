@@ -11,7 +11,7 @@ module.exports = class Forum extends Sequelize.Model {
         },
       }, {
         sequelize,
-        timestamp: false,
+        timestamps: false,
         paranoid: false,
         modelName: 'Forum',
         tableName: 'Forums',

@@ -1,22 +1,27 @@
-const { User, Shooting ,ShootingEvent} = require('../../../models');
- 
+const {Shooting ,ShootingEvent} = require('../../../models');
+const db = require('../../../models');
+
+//사격지원의 D 
+
 CancelApply = async (req,res)=>{ //front구현후 delete로 받을것
 
     try{
     //신청한 사격정보 있는지 확인
 
-        data = {
-            date : '2021-09-25'
+    let reg = RegExp(/^(19|20)\d{2}-((01|0[3-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])|(02)-(0[1-9]|1[0-9]|2[0-9]))$/)
+    if(req.query.date==undefined||reg.test(req.query.date)==false){
+        senderror = {
+            success : false,
+            data : "invalid format"
         }
+        return res.send(senderror);
+    }
+
 
     const findShooting = await Shooting.findOne({
         where : {date : data.date},
       attributes : ['id','expired','number_of_applicant']  
-    });/*.then(id=>{
-        if(id.dataValues.id.length!==undefined){
-           return res.send("삭제할 데이터를 못찾음");
-        }
-    });*/
+    });
 
     const findeventShooting = await ShootingEvent.findOne({
         where : {UserId:req.user.id, ShootingId : findShooting.dataValues.id}
@@ -37,33 +42,21 @@ CancelApply = async (req,res)=>{ //front구현후 delete로 받을것
             await ShootingEvent.destroy({where:{UserId:req.user.id,
                 ShootingId:findShooting.dataValues.id}});
             
-            if(findShooting.dataValues.expired==="Applying"){
-                await Shooting.update({ number_of_applicant: findShooting.dataValues.number_of_applicant - 1 }, {
-                    where: {
-                        id: findShooting.dataValues.id
-                    }
-                });
-                console.log("삭제됨");
-            }
-            else{
-                console.log(findShooting.dataValues.number_of_applicant - 1 ); // findShooting.dataValues.number_of_applicant - 1 이부분 수정해야함
-            await Shooting.update({ number_of_applicant: findShooting.dataValues.number_of_applicant - 1 , expired : "Applying" }, {
+          
+            await Shooting.update({ number_of_applicant : db.sequelize.literal('number_of_applicant - 1') , expired : "Applying" }, {
                 where: {
                     id: findShooting.dataValues.id
                 }
                 
             });
-            console.log("삭제됨");
 
-            
-        }
         }
 
-        sendsucces = {
+        sendsuccess = {
             success : true,
             data : "success"
         }
-        return res.send(sendsucces);
+        return res.send(sendsuccess);
 
 
     }
@@ -80,11 +73,11 @@ CancelApply = async (req,res)=>{ //front구현후 delete로 받을것
     catch(err){
         console.error(err);
 
-        const resobject = {
+        const senderror = {
             success : false,
             data : "unexpected Error",
         }
-        return res.json(resobject);
+        return res.json(senderror);
     }
 
 }

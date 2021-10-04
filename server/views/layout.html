@@ -16,7 +16,7 @@
       <div class="profile-wrap">
         <div class="profile">
           {% if user and user.id %}
-            <div class="user-name">{{'안녕하세요! ' + user.nick + '님'}}</div>
+            <div class="user-name">{{'안녕하세요! ' + user.name + '님'}}</div>
             <div class="half">
               <div>팔로잉</div>
               <div class="count following-count">{{followingCount}}</div>
@@ -49,6 +49,7 @@
           <a href="/assessment/shooting/apply" target="_blank">병기본 지원창</a><br>
           <a href="/assessment/shooting/result" target="_blank">병기본 신청 현황창</a><br>
           <a href="/assessment/shooting/cancellation" target="_blank">병기본 신청 취소창</a><br>
+          <a href="/management/shooting/checkinfo?date=2021-09-25" target="_blank">병기본 간부전용 신청 확인창</a><br>
 
           
         </footer>
