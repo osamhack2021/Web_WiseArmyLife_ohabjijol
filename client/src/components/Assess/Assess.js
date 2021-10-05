@@ -3,18 +3,84 @@ import axios from 'axios';
 import './ss.css'
 import './Assess.css'
 
+import format from "date-fns/format";
+import getDay from "date-fns/getDay";
+import parse from "date-fns/parse";
+import startOfWeek from "date-fns/startOfWeek";
+import { Calendar, dateFnsLocalizer } from "react-big-calendar";
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
+const locales = {
+    "en-US": require("date-fns/locale/en-US"),
+};
+const localizer = dateFnsLocalizer({
+    format,
+    parse,
+    startOfWeek,
+    getDay,
+    locales,
+});
+
+
+const events = [
+    {
+        title: "13시",
+        start: new Date(2021, 9, 12),
+        end: new Date(2021, 9, 12)
+    },
+    {
+        title: "16시",
+        start: new Date(2021, 9, 12),
+        end: new Date(2021, 9, 12)
+    },
+    {
+        title: "14시",
+        start: new Date(2021, 9, 15),
+        end: new Date(2021, 9, 15)
+    },
+];
 
 const Assess = () => {
-    const [data,setData] = useState(null);
-    const [target,setTarget] = useState("shooting");
+    //
+    const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
+    const [allEvents, setAllEvents] = useState(events);
+
+    function handleAddEvent() {
+        setAllEvents([...allEvents, newEvent]);
+    }
+    const list =[
+        {
+            date:"2021-02-25",
+            start:"14:00",
+            end:"16:00"
+        },
+        {
+            date:"2021-03-27",
+            start:"14:00",
+            end:"16:00"
+        }
+    ]
+    const onConsole = () =>{
+        const a = list.map((target) => {
+            const start = target.date+"T"+target.start;
+            const end = target.date+"T"+target.end;
+            var obj={start,end}
+            return obj;
+        })
+        console.log(a)
+    }
+    //
+    const [target,setTarget] = useState(null);
     const [isExecutive,setIsExecutive] = useState(false)
+    
     const onChange = (e)=>{
         const {value} = e.target;
         setTarget(value);
         console.log(target)
     }
 
-    // 병기본평가 클릭시 또는 f5시 실행되는 함수
     useEffect(() => {
         const Tf = sessionStorage.getItem('isExecutive')
         if(Tf === 'true'){
@@ -24,7 +90,8 @@ const Assess = () => {
         }
     })
 
-    // target 바뀔때 마다 실행되는 함수
+
+    /*
     useEffect(()=>{
         axios.get(`/assessment/${target}`)
         .then( res =>{
@@ -35,19 +102,14 @@ const Assess = () => {
         .catch(err=>{
             console.log(err)
         })
-
     },[target])
+ */
 
     return (
         <div>
             <h2 className="basicTitle">병기본평가 +</h2>
             <div>
-                {isExecutive ? 
-                    <form>
-                        <input />
-                        <button>추가하기</button> 
-                    </form>
-                :null}
+                
             </div>
             <span className="basicList" >
                 <span className="margin270"></span>
@@ -65,8 +127,20 @@ const Assess = () => {
                 <label for="scale5" class="button">주특기</label>
             </span>
 
+            {isExecutive ? <div>
+                <input type="text" placeholder="Add Title" style={{ width: "20%", marginRight: "10px" }} value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
+                <DatePicker placeholderText="Start Date" style={{ marginRight: "10px" }} selected={newEvent.start} onChange={(start) => setNewEvent({ ...newEvent, start })} />
+                <DatePicker placeholderText="End Date" selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })} />
+                <button stlye={{ marginTop: "10px" }} onClick={handleAddEvent}>
+                    Add Event
+                </button>
+            </div>:null}
 
-
+            <div className="bigCalendar">
+                <Calendar localizer={localizer} events={allEvents} startAccessor="start" endAccessor="end" 
+                style={{ height: 500, margin: "50px"}}  views={['month']} />
+                <button onClick={onConsole}> 콘솔</button>
+            </div>
         </div>
 
 
