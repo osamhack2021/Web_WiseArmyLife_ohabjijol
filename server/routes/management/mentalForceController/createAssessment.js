@@ -30,7 +30,7 @@ createAssessment = async (req,res)=>{
         }
 
         
-        const exam = axios.get('').catch(err=>{
+        const exam = await axios.get('').catch(err=>{
 
             const senderror = {
                 success: false,
