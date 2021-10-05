@@ -29,5 +29,7 @@ module.exports = class Question extends Sequelize.Model {
       });
     }
     static associate(db) {
+      db.Question.belongsToMany(db.MentalForce , {through : db.ExamEvent});
+
     }
   };

@@ -27,10 +27,14 @@ db.MentalForce = MentalForce;
 
 const ShootingEvent = sequelize.define('ShootingEvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},}, { timestamps: false });
 const MentalForceEvent = sequelize.define('MentalForceEvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},}, { timestamps: false });
+const ExamEvent = sequelize.define('ExamEvent', {}, { timestamps: false });
+
 
 
 db.ShootingEvent = ShootingEvent;
 db.MentalForceEvent = MentalForceEvent;
+db.ExamEvent = ExamEvent;
+
 
 User.init(sequelize);
 Post.init(sequelize);

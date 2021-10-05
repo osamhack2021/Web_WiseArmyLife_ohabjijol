@@ -37,6 +37,7 @@ createAssessment = async (req,res)=>{
             },
             defaults : {
                 date : req.body.date,
+                time : req.bdoy.time,
                 applicant_capacity : req.body.applicant_capacity,
                 number_of_applicant : 0,
                 expired:"Applying"
