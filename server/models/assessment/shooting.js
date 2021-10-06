@@ -11,12 +11,6 @@ module.exports = class Shooting extends Sequelize.Model {
             allowNull : false,
             unique : true,
         },
-        time:{
-          type : Sequelize.STRING,
-          allowNull : false,
-          defaultValue : "12"
-        }
-        ,
         expired : {
             type : Sequelize.ENUM('Full','Applying','Expired'),
             allowNull : false,
@@ -25,8 +19,6 @@ module.exports = class Shooting extends Sequelize.Model {
         applicant_capacity : {
             type : Sequelize.INTEGER,
             allowNull : false,
-            defaultValue : 20,
-
         },
         number_of_applicant : {
             type : Sequelize.INTEGER,
@@ -34,7 +26,6 @@ module.exports = class Shooting extends Sequelize.Model {
             defaultValue : 0,
 
         },        
-
 
       }, {
         sequelize,

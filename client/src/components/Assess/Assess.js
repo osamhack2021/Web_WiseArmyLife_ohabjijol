@@ -27,28 +27,50 @@ const localizer = dateFnsLocalizer({
 const events = [
     {
         title: "13시",
-        start: new Date(2021, 9, 12,0),
-        end: new Date(2021, 9, 12,3),
+        date: new Date(2021, 9, 12,0)
     },
     {
         title: "16시",
-        start: new Date(2021, 9, 12),
-        end: new Date(2021, 9, 13)
+        date: new Date(2021, 9, 12)
     },
     {
         title: "14시",
-        start: new Date(2021, 9, 15),
-        end: new Date(2021, 9, 16)
+        date: new Date(2021, 9, 15)
     },
 ];
 
 const Assess = () => {
     //
-    const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
+    const [newEvent, setNewEvent] = useState({ title: "", date: "", applicant_capacity:"" });
     const [allEvents, setAllEvents] = useState(events);
 
+    //db등록 
     function handleAddEvent() {
-        setAllEvents([...allEvents, newEvent]);
+
+        const targetDate = newEvent.date;
+
+        const year = targetDate.getFullYear();
+        const month = ('0' + (targetDate.getMonth() + 1)).slice(-2);
+        const day = ('0' + targetDate.getDate()).slice(-2);
+
+        const dateString = year + '-' + month  + '-' + day;
+
+        const data ={
+            date: dateString
+        }
+        console.log(data)
+        console()
+        axios.post(`/management/${target}/assessment`,data)
+        .then(res=>{
+            console.log(res)
+        })
+        
+
+        const event ={
+            title:`시간 ${newEvent.title} 인원 ${newEvent.applicant_capacity}`,
+            date: newEvent.date
+        }
+        setAllEvents([...allEvents,event])
     }
     //
     const [target,setTarget] = useState(null); // 종목 선택 값
@@ -101,15 +123,15 @@ const Assess = () => {
 
             {isExecutive ? <div>
                 <input type="text" placeholder="Add Title" style={{ width: "20%", marginRight: "10px" }} value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
-                <DatePicker placeholderText="Start Date" style={{ marginRight: "10px" }} selected={newEvent.start} onChange={(start) => setNewEvent({ ...newEvent, start })} />
-                <DatePicker placeholderText="End Date" selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })} />
+                <input placeholder="applicant_capacity" style={{ width: "20%", marginRight: "10px" }} value={newEvent.applicant_capacity} onChange={(e) => setNewEvent({ ...newEvent, applicant_capacity: e.target.value })} />
+                <DatePicker placeholderText="Start Date" style={{ marginRight: "10px" }} selected={newEvent.date} onChange={(date) => setNewEvent({ ...newEvent, date })} />
                 <button stlye={{ marginTop: "10px" }} onClick={handleAddEvent}>
                     Add Event
                 </button>
             </div>:null}
 
             <div className="bigCalendar">
-                <Calendar localizer={localizer} events={allEvents} startAccessor="start" endAccessor="end" 
+                <Calendar localizer={localizer} events={allEvents} startAccessor="date" endAccessor="date" 
                 style={{ height: 500, margin: "50px"}}  views={['month']} />
 
             </div>

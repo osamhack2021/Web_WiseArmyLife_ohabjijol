@@ -2,10 +2,6 @@
 
 const express = require('express');
 const router = express.Router();
-const ShootingRouter = require('./shooting');
-
-router.use('/shooting',ShootingRouter);
-
 
 router.route('/')
 .get(async (req,res)=>{   
