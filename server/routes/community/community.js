@@ -60,43 +60,62 @@ router.route('/forumAdd')
 
 
 router.delete('/:forumId', isLoggedIn, isExecutive, async (req, res, next) => {
-        try {
-            const currentForumId = req.params.forumId;
-            const currentForum = await Forum.findOne({ where: { id: currentForumId } });
-            if (currentForum) {
-                await Post.findAll({ attributes: ['postId'], where: { ForumId: currentForumId } })
-                    .then(postId => {
-                        if (postId.length == 0) {
-                            return res.json({ success: true, data: null });
-                        }
-                        return Comment.destroy({ where: { PostId: postId } });
-                    })
-                    .catch(err => {
-                        console.error(err);
-                        next(error);
-                    });
-                Post.destroy({ where: { ForumId: currentForumId } });
-                Forum.destroy({ where: { id: currentForumId } })
-                    .then(result => {
-                        console.log('삭제 성공');
-                        res.json({ success: true, data: null });
-                    })
-                    .catch(error => {
-                        console.error(error);
-                        next(error);
-                    });
-            }
-            else {
-                const data = {
-                    message: '없는 게시판 입니다.',
-                }
-                return res.json({ success: false, data });
-            }
-        } catch (error) {
-            console.error(error);
-            next(error);
+    try {
+        const currentForumId = req.params.forumId;
+        const currentForum = await Forum.findOne({ where: { id: currentForumId } });
+        if (currentForum) {
+            await Post.findAll({ attributes: ['postId'], where: { ForumId: currentForumId } })
+                .then(postId => {
+                    if (postId.length == 0) {
+                        return res.json({ success: true, data: null });
+                    }
+                    return Comment.destroy({ where: { PostId: postId } });
+                })
+                .catch(err => {
+                    console.error(err);
+                    next(error);
+                });
+            Post.destroy({ where: { ForumId: currentForumId } });
+            Forum.destroy({ where: { id: currentForumId } })
+                .then(result => {
+                    console.log('삭제 성공');
+                    res.json({ success: true, data: null });
+                })
+                .catch(error => {
+                    console.error(error);
+                    next(error);
+                });
         }
-    });
+        else {
+            const data = {
+                message: '없는 게시판 입니다.',
+            }
+            return res.json({ success: false, data });
+        }
+    } catch (error) {
+        console.error(error);
+        next(error);
+    }
+});
+router.put('/:forumId', isLoggedIn, isExecutive, async (req, res, next) => {
+    try {
+        const currentForumId = req.params.forumId;
+        const currentForum = await Forum.findOne({ where: { id: currentForumId } });
+        if (currentForum) {
+            await Forum.updata({ forumName: req.body.forumName }, { where: { id: currentForumId }});
+            return res.json({ success: true, data: null });
+        }
+        else {
+            const data = {
+                message: '없는 게시판 입니다.',
+            }
+            return res.json({ success: false, data });
+        }
+    } catch (error) {
+        console.error(error);
+        next(error);
+    }
+});
 // 게시판 CRUD
 router.use('/:forumId', isLoggedIn, storeForumId, ForumRouter);
 
