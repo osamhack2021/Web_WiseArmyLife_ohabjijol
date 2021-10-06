@@ -1,6 +1,6 @@
 import React from 'react';
 
-const exeResult = () => {
+const ExeResult = () => {
     return (
         <div>
             간부 3
@@ -8,4 +8,4 @@ const exeResult = () => {
     );
 };
 
-export default exeResult;
+export default ExeResult;
