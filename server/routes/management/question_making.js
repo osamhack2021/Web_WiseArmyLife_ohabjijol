@@ -1,6 +1,7 @@
 "use strict"
 
 const express = require('express');
+const sequelize = require('sequelize');
 
 const { isLoggedIn, isExecutive } = require('../user/check_login');
 const { Question } = require('../../models');
@@ -12,10 +13,27 @@ const mentalStrategy = 0;
 const firstAid = 1
 const guard = 2;
 const cbr = 3;
+const examQuestionNumber = 20; // 병사에게 보여줄 문제 수
 
-
-router.route('/exam/mental')
-    .get(isLoggedIn, checkIsExecutive, async (req, res, next) => {
+router.route('/exam/mental') // 주소는 알아서 바꾸세요
+    .get(isLoggedIn, isNotExecutive, async (req, res, next) => {
+        try {
+            const examCount = await Question.count();
+            if (examCount) {
+                const examQuestion = await Question.findAll({ order: sequelize.literal('rand()'), limit: examQuestionNumber });
+                const data = {
+                    examQuestion: examQuestion,
+                };
+                return res.json({ success: true, data });
+            } else {
+                return res.json({ success: false, data: null });
+            }
+        } catch (error) {
+            console.error(error);
+            next(error);
+        }
+    }) // 병사는 문제 수 정해서 그만큼만 
+    .get(isLoggedIn, checkIsNotExecutive, async (req, res, next) => {
         try {
             const examQuestion = await Question.findAndCountAll({ where: { category: mentalStrategy } });
             const data = {
@@ -26,19 +44,7 @@ router.route('/exam/mental')
             console.error(error);
             next(error);
         }
-    })
-    .get(isLoggedIn, isNotExecutive, async (req, res, next) => {
-        try {
-            const examQuestion = await Question.findAndCountAll(); // 여기부터 수정해야함
-            const data = {
-                examQuestion: examQuestion,
-            };
-            return res.json({ success: true, data });
-        } catch (error) {
-            console.error(error);
-            next(error);
-        }
-    }) // 병사는 문제 수 정해서 그만큼만 
+    }) // 간부일땐 모든 문제
     .post(isLoggedIn, isExecutive, async (req, res, next) => {
         try {
             const { question, answer } = req.body;
@@ -54,7 +60,7 @@ router.route('/exam/mental')
             next(error);
         }
     });
-router.route('/exam/mental/executive/:questionId')
+router.route('/exam/mental/executive/:questionId') // 주소는 알아서 바꾸세요
     .put(isLoggedIn, isExecutive, async (req, res, next) => {
         try {
             const { question, answer, category } = req.body;
@@ -89,11 +95,11 @@ router.route('/exam/mental/executive/:questionId')
             console.error(error);
             next(error);
         }
-    });
+    }); // 정신전력 문제 CRUD
 
-function checkIsExecutive(req, res, next) {
+function checkIsNotExecutive(req, res, next) {
     try {
-        if (req.user.executive) {
+        if (!req.user.executive) {
             next();
         }
         else {
