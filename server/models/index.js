@@ -23,16 +23,16 @@ db.Post = Post;
 db.Shooting = Shooting;
 db.Forum = Forum;
 db.Comment = Comment;
-db.MentalForce = MentalForce;
+// db.MentalForce = MentalForce;
 
 const ShootingEvent = sequelize.define('ShootingEvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},}, { timestamps: false });
-const MentalForceEvent = sequelize.define('MentalForceEvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},}, { timestamps: false });
+// const MentalForceEvent = sequelize.define('MentalForceEvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},}, { timestamps: false });
 const ExamEvent = sequelize.define('ExamEvent', {}, { timestamps: false });
 
 
 
 db.ShootingEvent = ShootingEvent;
-db.MentalForceEvent = MentalForceEvent;
+// db.MentalForceEvent = MentalForceEvent;
 db.ExamEvent = ExamEvent;
 
 
@@ -41,14 +41,14 @@ Post.init(sequelize);
 Comment.init(sequelize);
 Shooting.init(sequelize);
 Forum.init(sequelize);
-MentalForce.init(sequelize);
+// MentalForce.init(sequelize);
 
 User.associate(db);
 Post.associate(db);
 Comment.associate(db);
 Shooting.associate(db);
 Forum.associate(db);
-MentalForce.associate(db);
+// MentalForce.associate(db);
 
 
 
