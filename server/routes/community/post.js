@@ -8,7 +8,7 @@ const fs = require('fs');
 const CommentRouter = require('./comment');
 
 const { isLoggedIn } = require('../user/check_login');
-const { User, Post } = require('../../models');
+const { User, Post, Comment } = require('../../models');
 
 const router = express.Router();
 const dir = ('./uploadFiles');
@@ -34,8 +34,7 @@ router.post('/upload', isLoggedIn, upload.single('image'), (req, res) => {
 });
 
 const upload2 = multer();
-router.route('/')
-    .post(isLoggedIn, upload2.none(), async (req, res, next) => {
+router.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
         try {
             const post = await Post.create({
                 title: req.body.title,
@@ -73,11 +72,16 @@ router.route('/v/:postId')
                     }],
                 },
                 ],
-            });
-            const data = {
-                currentPost: currentPost,
-            }
-                res.json({success: true, data }); // parentId.deletedAt 컬럼에 값 존재 시 삭제된 메세지 뜨게 할 것
+            })
+                .then(result => {
+                    const data = {
+                        currentPost: currentPost,
+                    }
+                        res.json({success: true, data }); // parentId.deletedAt 컬럼에 값 존재 시 삭제된 메세지 뜨게 할 것
+                })
+                .catch(error => {
+                    res.json({success: false, data: null });
+                })
         } catch (error) {
             console.error(error);
             next(error);
@@ -146,7 +150,6 @@ router.route('/v/:postId')
         }
     });// 게시글 수정
 
-router.post('/:postId/comment', CommentRouter);
-router.use('/:postId/:commentId', CommentRouter);
+router.use('/comment', CommentRouter);
 
 module.exports = router;

@@ -61,7 +61,6 @@ router.route('/forumAdd')
 
 router.delete('/:forumId', isLoggedIn, isExecutive, async (req, res, next) => {
         try {
-            console.log("ㅇㅇ");
             const currentForumId = req.params.forumId;
             const currentForum = await Forum.findOne({ where: { id: currentForumId } });
             if (currentForum) {
@@ -99,14 +98,11 @@ router.delete('/:forumId', isLoggedIn, isExecutive, async (req, res, next) => {
         }
     });
 // 게시판 CRUD
-router.get('/:forumId/:pageIndex', isLoggedIn, storeForumIdPageIndex, ForumRouter);
+router.use('/:forumId', isLoggedIn, storeForumId, ForumRouter);
 
-function storeForumIdPageIndex(req, res, next) {
+function storeForumId(req, res, next) {
     res.locals.forumId = req.params.forumId;
-    res.locals.pageIndex = req.params.pageIndex;
-    console.log(
-        "최태현 대머리"
-    )
+    console.log('포럼아이디저장');
     next();
 }
 

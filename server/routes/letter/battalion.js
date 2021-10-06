@@ -12,15 +12,15 @@ const router = express.Router();
 
 router.get('/:pageIndex', isLoggedIn, checkBattalionCommander, async (req, res, next) => {
     try {
+        const letterForumId = await Forum.findOne({ where: { forumName: '대대 마음의 편지' }, attributes: ['id'], });
         let page = Math.max(1, parseInt(req.params.pageIndex));
         const limit = 10;
         let skip = (page - 1) * limit;
-        let postCount = await Post.countDocuments({});
-        const maxPage = ceil(postCount / limit);
+        let postCount = await Post.count({where: {ForumId: letterForumId}});
+        const maxPage = Math.ceil(postCount / limit);
         if (postCount === 0) {
             res.json({ success: false, data: null }); // 비어있을 경우
         } else {
-            const letterForumId = await Forum.findOne({ where: { forumName: '대대 마음의 편지' }, attributes: ['id'], });
             const post_10 = await Post.findAndCountAll({
                 where: { ForumId: letterForumId, poster: req.user.id },
                 limit: limit,
@@ -40,15 +40,15 @@ router.get('/:pageIndex', isLoggedIn, checkBattalionCommander, async (req, res, 
 });
 router.get('/:pageIndex', isLoggedIn, isNotExecutive, async (req, res, next) => {
     try {
+        const letterForumId = await Forum.findOne({ where: { forumName: '대대 마음의 편지' }, attributes: ['id'], });
         let page = Math.max(1, parseInt(req.params.pageIndex));
         const limit = 10;
         let skip = (page - 1) * limit;
-        let postCount = await Post.countDocuments({});
-        const maxPage = ceil(postCount / limit);
+        let postCount = await Post.count({where: {ForumId: letterForumId}});
+        const maxPage = Math.ceil(postCount / limit);
         if (postCount === 0) {
             res.json({ success: false, data: null }); // 비어있을 경우
         } else {
-            const letterForumId = await Forum.findOne({ where: { forumName: '대대 마음의 편지' }, attributes: ['id'], });
             const post_10 = await Post.findAndCountAll({
                 where: { ForumId: letterForumId, poster: req.user.id },
                 limit: limit,

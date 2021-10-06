@@ -15,8 +15,8 @@ router.get('/:pageIndex', isLoggedIn, checkCompanyCommander, async (req, res, ne
         let page = Math.max(1, parseInt(req.params.pageIndex));
         const limit = 10;
         let skip = (page - 1) * limit;
-        let postCount = await Post.countDocuments({});
-        const maxPage = ceil(postCount/limit);
+        let postCount = await Post.count({where: {ForumId: res.locals.forumId}});
+        const maxPage = Math.ceil(postCount/limit);
         if (postCount === 0) {
             res.json({ success: false, data: null }); // 비어있을 경우
         } else {
@@ -43,8 +43,8 @@ router.get('/:pageIndex', isLoggedIn, isNotExecutive, async (req, res, next) => 
         let page = Math.max(1, parseInt(req.params.pageIndex));
         const limit = 10;
         let skip = (page - 1) * limit;
-        let postCount = await Post.countDocuments({});
-        const maxPage = ceil(postCount/limit);
+        let postCount = await Post.count({where: {ForumId: res.locals.forumId}});
+        const maxPage = Math.ceil(postCount/limit);
         if (postCount === 0) {
             res.json({ success: false, data: null }); // 비어있을 경우
         } else {

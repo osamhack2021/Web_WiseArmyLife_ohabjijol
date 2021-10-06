@@ -123,7 +123,10 @@ function checkPostId(req, res, next) {
             next();
         })
         .catch(err => {
-            return res.json(err);
+            const data = {
+                error: err,
+            };
+            return res.json({success: false, data});
         })
 }
 
