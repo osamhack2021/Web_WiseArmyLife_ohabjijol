@@ -76,7 +76,7 @@ app.use('/auth', AuthRouter);
 app.use('/assessment',AssessmentRouter);
 app.use('/community', CommunityRouter);
 app.use('/letter', LetterRouter);
-app.use('/assessment/shooting',ShootingRouter);
+//app.use('/assessment/shooting',ShootingRouter);
 app.use('/management',MangementRouter);
 app.use('/management/shooting',ShootingManagementRouter);
 app.use('/exam/mental/executive', ExamRouter); // 주소는 알아서 바꾸세요 승범씨

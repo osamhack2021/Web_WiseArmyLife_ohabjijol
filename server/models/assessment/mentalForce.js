@@ -2,7 +2,7 @@
 
 const Sequelize = require('sequelize');
 
-module.exports = class Shooting extends Sequelize.Model {
+module.exports = class MentalForce extends Sequelize.Model {
     static init(sequelize){
       return super.init({
        
@@ -15,8 +15,7 @@ module.exports = class Shooting extends Sequelize.Model {
           type : Sequelize.STRING,
           allowNull : false,
           defaultValue : "12"
-        }
-        ,
+        },
         expired : {
             type : Sequelize.ENUM('Full','Applying','Expired'),
             allowNull : false,
@@ -35,21 +34,21 @@ module.exports = class Shooting extends Sequelize.Model {
 
         },        
 
-
       }, {
         sequelize,
         timestamps: true,
         paranoid: false,
-        modelName: 'Shooting',
-        tableName: 'shootings',
-        comment: 'Shooting',
+        modelName: 'MentalForce',
+        tableName: 'mentalForces',
+        comment: 'MentalForce',
         charset: 'utf8mb4',
         collate: 'utf8mb4_general_ci',
       });
     }
     static associate(db) {
 
-      db.Shooting.belongsToMany(db.User , {through : db.ShootingEvent});
+      db.MentalForce.belongsToMany(db.User , {through : db.MentalForceEvent});
+      db.MentalForce.belongsToMany(db.Question , {through : db.ExamEvent});
 
     }
   };

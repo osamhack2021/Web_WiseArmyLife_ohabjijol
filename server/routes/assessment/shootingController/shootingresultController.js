@@ -10,7 +10,7 @@ getShootingResult = async (req,res)=>{ // 사용자가 신청한 사격정보를
            
             include : [{
                 model : Shooting,
-                attributes : ['date','expired']
+                attributes : ['date','time','expired']
             }],
             where:{id : req.user.id},
             attributes : ['id'],
@@ -23,6 +23,7 @@ getShootingResult = async (req,res)=>{ // 사용자가 신청한 사격정보를
                     post.push({
                         date : element.date,
                         expired : element.expired,
+                        time : element.time,
                         score : element.ShootingEvent.score 
                     })
                 });
