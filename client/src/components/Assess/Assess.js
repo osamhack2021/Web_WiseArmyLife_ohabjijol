@@ -11,6 +11,13 @@ import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { Link, Route, Switch, BrowserRouter as Router } from "react-router-dom";
+import exeSubmit from './exeSubmit';
+import exeCurrent from './exeCurrent';
+import exeResult from './exeResult';
+import submit from './submit';
+import current from './current';
+import result from './result';
 
 const locales = {
     "en-US": require("date-fns/locale/en-US"),
@@ -25,52 +32,38 @@ const localizer = dateFnsLocalizer({
 
 
 const events = [
-    {
-        title: "13시",
-        date: new Date(2021, 9, 12,0)
-    },
-    {
-        title: "16시",
-        date: new Date(2021, 9, 12)
-    },
-    {
-        title: "14시",
-        date: new Date(2021, 9, 15)
-    },
 ];
 
 const Assess = () => {
     //
-    const [newEvent, setNewEvent] = useState({ title: "", date: "", applicant_capacity:"" });
+    const [post, setPost] = useState({ start:null,end:null,date:null, applicant_capacity:null});
     const [allEvents, setAllEvents] = useState(events);
 
     //db등록 
     function handleAddEvent() {
-
-        const targetDate = newEvent.date;
-
-        const year = targetDate.getFullYear();
-        const month = ('0' + (targetDate.getMonth() + 1)).slice(-2);
-        const day = ('0' + targetDate.getDate()).slice(-2);
-
-        const dateString = year + '-' + month  + '-' + day;
-
-        const data ={
-            date: dateString
+        const data = {
+            time:`${post.start}~${post.end}`,
+            date:post.date,
+            applicant_capacity:post.applicant_capacity
         }
-        console.log(data)
-        console()
-        axios.post(`/management/${target}/assessment`,data)
-        .then(res=>{
-            console.log(res)
+        axios.post(`/assessment/${target}/application`,data)
+        setPost({
+            ...post,
+            start:null,
+            end:null,
+            date:null,
+            applicant_capacity:null
         })
-        
+        axios.get(`/assessment/${target}`)
+        .then(res =>{
+            const {date,title,expired} = res.data.data;
+            const newEvent ={
+                date:date,
+                
+            }
+        })
 
-        const event ={
-            title:`시간 ${newEvent.title} 인원 ${newEvent.applicant_capacity}`,
-            date: newEvent.date
-        }
-        setAllEvents([...allEvents,event])
+        //setAllEvents([...allEvents,newEvent])
     }
     //
     const [target,setTarget] = useState(null); // 종목 선택 값
@@ -92,7 +85,7 @@ const Assess = () => {
     })
 
     useEffect(() => {
-        axios.get(`/Assessment/${target}`)
+        axios.get(`/assessment/${target}`)
         .then(res =>{
             console.log(res)
         })
@@ -102,9 +95,7 @@ const Assess = () => {
     return (
         <div>
             <h2 className="basicTitle">병기본평가 +</h2>
-            <div>
-                
-            </div>
+
             <span className="basicList" >
                 <span className="margin270"></span>
                 <input onChange={onChange} id="scale0" class="scale" name="scale" type="radio" value="shooting" />
@@ -121,14 +112,48 @@ const Assess = () => {
                 <label for="scale5" class="button">주특기</label>
             </span>
 
-            {isExecutive ? <div>
-                <input type="text" placeholder="Add Title" style={{ width: "20%", marginRight: "10px" }} value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
-                <input placeholder="applicant_capacity" style={{ width: "20%", marginRight: "10px" }} value={newEvent.applicant_capacity} onChange={(e) => setNewEvent({ ...newEvent, applicant_capacity: e.target.value })} />
-                <DatePicker placeholderText="Start Date" style={{ marginRight: "10px" }} selected={newEvent.date} onChange={(date) => setNewEvent({ ...newEvent, date })} />
+            {isExecutive ?
+            <div>
+                <Router>
+                    <Link to="/assess/exeSubmit">평가일정등록 </Link>
+                    <Link to="/assess/exeCurrent">신청인원확인 </Link>
+                    <Link to="/assess/exeResult">평가결과등록 </Link>
+
+
+                    <Switch>
+                        <Route path="/assess/exeCurrent" component={exeCurrent}/>
+                        <Route path="/assess/exeResult" component={exeResult}/>
+                        <Route path="/assess" component={exeSubmit}/>
+                        
+                    </Switch>
+                </Router>
+            </div>
+            :
+            <div>
+                <Router>
+                    <Link to="/assess/submit">평가일정등록 </Link>
+                    <Link to="/assess/current">신청인원확인 </Link>
+                    <Link to="/assess/result">평가결과등록 </Link>
+                    <Switch>
+                        <Route path="/assess/current" component={current}/>
+                        <Route path="/assess/result" component={result}/>
+                        <Route path="/assess" component={submit}/>
+                    </Switch>
+                </Router>
+            </div>
+            }
+
+            {
+            <div>
+                <input placeholder="시간시간" style={{ width: "20%", marginRight: "10px" }} value={post.start} onChange={(e) => setPost({ ...post, start: e.target.value })} />
+                <input placeholder="종료시간" style={{ width: "20%", marginRight: "10px" }} value={post.end} onChange={(e) => setPost({ ...post, end: e.target.value })} />
+                <input placeholder="applicant_capacity" style={{ width: "20%", marginRight: "10px" }} value={post.applicant_capacity} onChange={(e) => setPost({ ...post, applicant_capacity: e.target.value })} />
+                <DatePicker placeholderText="날짜" style={{ marginRight: "10px" }} selected={post.date} onChange={(date) => setPost({ ...post, date })} />
                 <button stlye={{ marginTop: "10px" }} onClick={handleAddEvent}>
-                    Add Event
+                    일정 추가
                 </button>
-            </div>:null}
+            </div>:null
+            }
 
             <div className="bigCalendar">
                 <Calendar localizer={localizer} events={allEvents} startAccessor="date" endAccessor="date" 

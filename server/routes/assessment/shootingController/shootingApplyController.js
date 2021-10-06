@@ -32,7 +32,6 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
                 shootingexpired = element.dataValues.expired;
                 shootingNOA = element.dataValues.number_of_applicant;
                 shootingapplicant_capacity = element.dataValues.applicant_capacity;
-
             }
             else { // 검색한 사격 일정이 없을때
                 senderror = {
@@ -41,7 +40,6 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
                 }
                 return res.send(senderror);
             }
-
         });
 
         findApply = await ShootingEvent.findOne({
