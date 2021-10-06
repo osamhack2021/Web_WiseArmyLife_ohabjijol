@@ -1,6 +1,6 @@
 import React from 'react';
 
-const current = () => {
+const Current = () => {
     return (
         <div>
             용사2
@@ -8,4 +8,4 @@ const current = () => {
     );
 };
 
-export default current;
+export default Current;

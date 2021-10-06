@@ -1,6 +1,6 @@
 import React from 'react';
 
-const exeCurrent = () => {
+const ExeCurrent = () => {
     return (
         <div>
             간부 2
@@ -8,4 +8,4 @@ const exeCurrent = () => {
     );
 };
 
-export default exeCurrent;
+export default ExeCurrent;

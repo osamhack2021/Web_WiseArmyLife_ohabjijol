@@ -1,6 +1,7 @@
 import React from 'react';
 
-const exeSubmit = () => {
+const ExeSubmit = (props) => {
+    const {target} = props;
     return (
         <div>
             간부 1
@@ -8,4 +9,4 @@ const exeSubmit = () => {
     );
 };
 
-export default exeSubmit;
+export default ExeSubmit;
