@@ -1,18 +1,25 @@
 "use strict"
 
-    exports.isExecutive = (req, res, next) => {
-        if(req.user.isExecutive){
-            next();
-        } else {
-            console.log('간부아님');
-            res.json({sucess: false})
+
+exports.isExecutive = (req, res, next) => {
+    if (req.user.executive) {
+        next();
+    } else {
+        console.log('간부아님');
+        const data = {
+            message: "Not Executive",
         }
-    };
-    exports.isNotExecutive = (req, res, next) => {
-        if(!req.user.isExecutive){
-            next();
-        } else {
-            console.log('간부임');
-            res.json({sucess: false})
+        res.json({ success: false, data });
+    }
+};
+exports.isNotExecutive = (req, res, next) => {
+    if (!req.user.executive) {
+        next();
+    } else {
+        console.log('간부임');
+        const data = {
+            message: "병사만 접근 가능함",
         }
-    };
+        res.json({ success: false, data });
+    }
+};

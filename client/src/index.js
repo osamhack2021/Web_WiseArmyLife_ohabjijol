@@ -1,9 +1,11 @@
+
 //client/src/index.js
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import { BrowserRouter } from 'react-router-dom';
-import App from './components/App';
+import App from './App';
+
 
 
 ReactDOM.render((
@@ -11,6 +13,7 @@ ReactDOM.render((
         <App />
     </BrowserRouter>
 ), document.getElementById('root'));
+// 여기 있습니다. 
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

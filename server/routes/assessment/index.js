@@ -3,13 +3,9 @@
 const express = require('express');
 const router = express.Router();
 
-
-
-
-
 router.route('/')
 .get(async (req,res)=>{   
- await res.redirect('/assessment/shooting');
+ return res.redirect('/assessment/shooting');
 });
 
 

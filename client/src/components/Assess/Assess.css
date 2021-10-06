@@ -1,0 +1,95 @@
+.basicTitle{
+  margin-top: 160px;
+  margin-left: 893px;
+  margin-bottom: 108px;
+  font-size: 30px;
+  color: #000000;
+  font-family: "Nanum Square EB";
+}
+
+.margin270{
+  margin-left: 270px;
+  
+}
+.clicked {
+  background-color:#ffd265
+}
+
+.basicList :visited{
+  background-color:#ffd265
+}
+.basic2{
+  margin-right: 40px;
+  border-radius: 15px;
+  background-color: #ffffff;
+  border: 3px solid #ffd265;
+  font-size: 25px;
+  color: #000000;
+  font-family: "Nanum Square EB";
+  
+  padding-right: 69px;
+  padding-left: 69px;
+  padding-bottom: 38px;
+  padding-top: 38px;
+}
+
+.basic3{
+  margin-right: 40px;
+  border-radius: 15px;
+  background-color: #ffffff;
+  border: 3px solid #ffd265;
+  font-size: 25px;
+  color: #000000;
+  font-family: "Nanum Square EB";
+  
+  padding-right: 57px;
+  padding-left: 57px;
+  padding-bottom: 38px;
+  padding-top: 38px;
+}
+
+.basic4{
+  margin-right: 40px;
+  border-radius: 15px;
+  background-color: #ffffff;
+  border: 3px solid #ffd265;
+  font-size: 25px;
+  color: #000000;
+  font-family: "Nanum Square EB";
+  
+  padding-right: 46px;
+  padding-left: 46px;
+  padding-bottom: 38px;
+  padding-top: 38px;
+}
+
+.basic6{
+  margin-right: 40px;
+  border-radius: 15px;
+  background-color: #ffffff;
+  border: 3px solid #ffd265;
+  font-size: 25px;
+  color: #000000;
+  font-family: "Nanum Square EB";
+  
+  padding-right: 23px;
+  padding-left: 23px;
+  padding-bottom: 38px;
+  padding-top: 38px;
+
+  
+}
+
+.assessLinkBox{
+  margin-top: 50px;
+  margin-bottom: 59px;
+  text-align: center;
+  
+}
+.assessLink{
+  font-size: 25px;
+  color: #000000;
+  font-family: "Nanum Square EB";
+  margin-left: 71px;
+  text-decoration: none;
+}

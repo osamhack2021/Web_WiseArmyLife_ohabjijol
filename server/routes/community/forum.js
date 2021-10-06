@@ -2,60 +2,47 @@
 
 const express = require('express');
 
-const { isLoggedIn } = require('../user/check_login');
-const { User } = require('../../models');
+const { isLoggedIn, isExecutive } = require('../user/check_login');
+const { User, Post, Comment } = require('../../models');
+const PostRouter = require('./post');
 
 const router = express.Router();
+// router.get( )
 
-router.get('/:forumId/post', isLoggedIn, PostRouter);
-router.get('/:forumId/:pageIndex', isLoggedIn, async (req, res) => {
+router.use('/post', isLoggedIn, PostRouter);
+router.get('/:pageIndex', isLoggedIn, async (req, res) => {
     try {
-        const forumId = req.query.forumId;
-        let page = Math.max(1, parseInt(req.query.pageIndex));
+        let page = Math.max(1, parseInt(res.locals.pageIndex));
         const limit = 10;
         let skip = (page - 1) * limit;
-        let count = await Post.countDocuments({});
-        let maxPage = Math.ceil(count/limit);
-        const post_10 = await Post.findAll({
-            where: { forumId: forumId },
-            include: {
+        let postCount = await Post.count({where: {ForumId: res.locals.forumId}});
+        const maxPage = Math.ceil(postCount/limit);
+        if(postCount === 0){
+            return res.json({success: true, data: null}); // 작성된 글이 없을 경우
+        } else {
+        const post_10 = await Post.findAndCountAll({
+            where: { forumId: res.locals.forumId },
+            include: [{
                 model: User,
-                as: 'poster',
                 attributes: ['id', 'militaryNumber', 'name'],
             },
+            ],
             order: [['createdAt', 'DESC']],
             limit: limit,
             skip: skip,
         });
         const data = {
-            posts: post_10,
-            currentPage: page,
+            post_10: post_10,
             maxPage: maxPage,
         }
-        res.send(JSON.stringify(data));
+        res.json({success: true, data });
+    }
     } catch (err) {
         console.error(err);
         next(err);
     }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// 특정 게시판 읽기
 
 
 module.exports = router;
