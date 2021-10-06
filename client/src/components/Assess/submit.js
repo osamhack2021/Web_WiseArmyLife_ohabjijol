@@ -27,6 +27,18 @@ const localizer = dateFnsLocalizer({
 
 
 const events = [
+    {
+        date : new Date(2021,9,6),
+        title : "13:00 ~ 16:00",
+        applicant_capacity:30,
+        expired : "Applying"
+    },
+    {
+        date : new Date(2021,9,6),
+        title : "18:00 ~ 19:00",
+        applicant_capacity:40,
+        expired : "Applying"
+    }
 ];
 
 
@@ -35,7 +47,12 @@ const Submit = (props) => {
     const {target} = props;
     const [post, setPost] = useState({ start:null,end:null,date:null, applicant_capacity:null});
     const [allEvents, setAllEvents] = useState(events);
-
+    const [inputs,setInputs] = useState({
+        date:null,
+        time:null,
+        applicant_capacity:null
+        
+    })
     //db등록 
     function handleAddEvent() {
         const data = {
@@ -56,22 +73,45 @@ const Submit = (props) => {
             const {date,title,expired} = res.data.data;
             const newEvent ={
                 date:date,
-                
             }
         })
 
         //setAllEvents([...allEvents,newEvent])
     }
     //
+    const onClick = (e)=>{
+        const {date,title,applicant_capacity,expired} = e
+
+        const tmp = 
+
+        setInputs({
+            ...inputs,
+            date:date,
+            time:title,
+            applicant_capacity:applicant_capacity
+        })
+    }
+    const onChange = (e)=>{
+        const {name,value} = e.target;
+        setInputs({
+            ...inputs,
+            [name]:value
+        })
+    }
 
  
     return (
         <div>
             <div className="bigCalendar">
-                <Calendar localizer={localizer} events={allEvents} startAccessor="date" endAccessor="date" 
+                <Calendar onSelectEvent={onClick} localizer={localizer} events={allEvents} startAccessor="date" endAccessor="date" 
                 style={{ height: 500, margin: "50px"}}  views={['month']} />
-
             </div>
+            <form>
+                <input value={inputs.date} onChange={onChange} />
+                <input value={inputs.time} onChange={onChange} />
+                <input value={inputs.applicant_capacity} onChange={onChange} />
+                <button>등록</button>
+            </form>
         </div>
     );
 };
