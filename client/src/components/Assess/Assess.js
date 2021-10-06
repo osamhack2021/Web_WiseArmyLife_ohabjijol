@@ -27,18 +27,18 @@ const localizer = dateFnsLocalizer({
 const events = [
     {
         title: "13시",
-        start: new Date(2021, 9, 12),
-        end: new Date(2021, 9, 12)
+        start: new Date(2021, 9, 12,0),
+        end: new Date(2021, 9, 12,3),
     },
     {
         title: "16시",
         start: new Date(2021, 9, 12),
-        end: new Date(2021, 9, 12)
+        end: new Date(2021, 9, 13)
     },
     {
         title: "14시",
         start: new Date(2021, 9, 15),
-        end: new Date(2021, 9, 15)
+        end: new Date(2021, 9, 16)
     },
 ];
 
@@ -50,29 +50,8 @@ const Assess = () => {
     function handleAddEvent() {
         setAllEvents([...allEvents, newEvent]);
     }
-    const list =[
-        {
-            date:"2021-02-25",
-            start:"14:00",
-            end:"16:00"
-        },
-        {
-            date:"2021-03-27",
-            start:"14:00",
-            end:"16:00"
-        }
-    ]
-    const onConsole = () =>{
-        const a = list.map((target) => {
-            const start = target.date+"T"+target.start;
-            const end = target.date+"T"+target.end;
-            var obj={start,end}
-            return obj;
-        })
-        console.log(a)
-    }
     //
-    const [target,setTarget] = useState(null);
+    const [target,setTarget] = useState(null); // 종목 선택 값
     const [isExecutive,setIsExecutive] = useState(false)
     
     const onChange = (e)=>{
@@ -90,20 +69,13 @@ const Assess = () => {
         }
     })
 
-
-    /*
-    useEffect(()=>{
-        axios.get(`/assessment/${target}`)
-        .then( res =>{
-            console.log(res.data);
-            setData(res.data.data)
-            console.log(data);
-        })
-        .catch(err=>{
-            console.log(err)
+    useEffect(() => {
+        axios.get(`/Assessment/${target}`)
+        .then(res =>{
+            console.log(res)
         })
     },[target])
- */
+
 
     return (
         <div>
@@ -139,7 +111,7 @@ const Assess = () => {
             <div className="bigCalendar">
                 <Calendar localizer={localizer} events={allEvents} startAccessor="start" endAccessor="end" 
                 style={{ height: 500, margin: "50px"}}  views={['month']} />
-                <button onClick={onConsole}> 콘솔</button>
+
             </div>
         </div>
 
