@@ -79,3 +79,17 @@
 
   
 }
+
+.assessLinkBox{
+  margin-top: 50px;
+  margin-bottom: 59px;
+  text-align: center;
+  
+}
+.assessLink{
+  font-size: 25px;
+  color: #000000;
+  font-family: "Nanum Square EB";
+  margin-left: 71px;
+  text-decoration: none;
+}

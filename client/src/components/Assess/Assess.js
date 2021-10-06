@@ -64,10 +64,11 @@ const Assess = () => {
             {isExecutive ?
             <div>
                 <Router>
-                    <Link to="/assess/exeSubmit">평가일정등록 </Link>
-                    <Link to="/assess/exeCurrent">신청인원확인 </Link>
-                    <Link to="/assess/exeResult">평가결과등록 </Link>
-
+                    <div className="assessLinkBox">
+                        <Link className="assessLink" to="/assess/exeSubmit">평가일정등록 </Link>
+                        <Link className="assessLink" to="/assess/exeCurrent">신청인원확인 </Link>
+                        <Link className="assessLink" to="/assess/exeResult">평가결과등록 </Link>
+                    </div>
 
                     <Switch>
                         <Route path="/assess/exeCurrent" component={ExeCurrent}/>
@@ -80,9 +81,11 @@ const Assess = () => {
             :
             <div>
                 <Router>
-                    <Link to="/assess/submit">평가일정등록 </Link>
-                    <Link to="/assess/current">신청인원확인 </Link>
-                    <Link to="/assess/result">평가결과등록 </Link>
+                    <div className="assessLinkBox">
+                        <Link className="assessLink" to="/assess/submit">평가일정등록 </Link>
+                        <Link className="assessLink" to="/assess/current">신청인원확인 </Link>
+                        <Link className="assessLink" to="/assess/result">평가결과등록 </Link>
+                    </div>
                     <Switch>
                         <Route path="/assess/current" component={Current}/>
                         <Route path="/assess/result" component={Result}/>
