@@ -20,7 +20,7 @@ router.route('/scores').patch(updateScores);  /* Patch로 받기! body에는 bod
                                                         date : '2021-10-21',
                                                      scoreAndId = [{UserId:1,score:70},{UserId:2,score :30}]
                                                     } 이런식의 형식임*/                                                       
-//router.route('/').patch(updateAssessment);
+//router.route('/assessment').patch(updateAssessment);
 
 
 module.exports = router;

@@ -3,9 +3,9 @@
 const express = require('express');
 const sequelize = require('sequelize');
 
-const { isLoggedIn, isExecutive } = require('../user/check_login');
+const { isLoggedIn } = require('../user/check_login');
+const { isExecutive } = require('../user/check_is_executive');
 const { Question } = require('../../models');
-const { isNotExecutive } = require('../user/check_is_executive');
 
 const router = express.Router();
 
@@ -15,10 +15,11 @@ const guard = 2;
 const cbr = 3;
 const examQuestionNumber = 20; // 병사에게 보여줄 문제 수
 
-router.route('/exam/mental') // 주소는 알아서 바꾸세요
-    .get(isLoggedIn, isNotExecutive, async (req, res, next) => {
+router.route('/') // 주소는 알아서 바꾸세요
+    .get(isLoggedIn, checkIsNotExecutive, async (req, res, next) => {
         try {
-            const examCount = await Question.count();
+            console.log('병사면 들어옴');
+            const examCount = await Question.count({});
             if (examCount) {
                 const examQuestion = await Question.findAll({ order: sequelize.literal('rand()'), limit: examQuestionNumber });
                 const data = {
@@ -33,7 +34,7 @@ router.route('/exam/mental') // 주소는 알아서 바꾸세요
             next(error);
         }
     }) // 병사는 문제 수 정해서 그만큼만 
-    .get(isLoggedIn, checkIsNotExecutive, async (req, res, next) => {
+    .get(isLoggedIn, isExecutive, async (req, res, next) => {
         try {
             const examQuestion = await Question.findAndCountAll({ where: { category: mentalStrategy } });
             const data = {
@@ -60,7 +61,7 @@ router.route('/exam/mental') // 주소는 알아서 바꾸세요
             next(error);
         }
     });
-router.route('/exam/mental/executive/:questionId') // 주소는 알아서 바꾸세요
+router.route('/executive/:questionId')
     .put(isLoggedIn, isExecutive, async (req, res, next) => {
         try {
             const { question, answer, category } = req.body;
@@ -103,6 +104,7 @@ function checkIsNotExecutive(req, res, next) {
             next();
         }
         else {
+            console.log('여기가 실행됨');
             next('route');
         }
     } catch (error) {

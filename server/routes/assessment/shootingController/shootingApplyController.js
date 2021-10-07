@@ -8,10 +8,7 @@ const db = require('../../../models/index');
 ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받을것
 
     try {
-        const body = { //req.body로 이용
-            userId: req.user.id,
-            date: '2021-10-21', 
-        };
+       
 
 
         let shootingid = -1;
@@ -21,7 +18,7 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
 
         const findshootinginfo = await Shooting.findOne({ // 받아온 사격 일정이 있는지 확인
             where: {
-                date: body.date, // front와 연결 후 req.body.date로 변경
+                date: req.body.date, // front와 연결 후 req.body.date로 변경
             },
             attributes: ['id', 'expired', 'number_of_applicant', 'applicant_capacity'],
 
@@ -32,6 +29,7 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
                 shootingexpired = element.dataValues.expired;
                 shootingNOA = element.dataValues.number_of_applicant;
                 shootingapplicant_capacity = element.dataValues.applicant_capacity;
+
             }
             else { // 검색한 사격 일정이 없을때
                 senderror = {
@@ -40,6 +38,7 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
                 }
                 return res.send(senderror);
             }
+
         });
 
         findApply = await ShootingEvent.findOne({
