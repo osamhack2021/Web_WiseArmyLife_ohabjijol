@@ -59,7 +59,7 @@ const ExeSubmit = (props) => {
         const data={
             date:dateString,
             aplicant_capacity:newPost.aplicant_capacity,
-            time:newPost.aplicant_capacity
+            time:newPost.time
         }
 
         console.log(data);
@@ -75,7 +75,7 @@ const ExeSubmit = (props) => {
         })
     }
     return (
-        <div>
+        <div className="assessBox">
             <div className="bigCalendar">
                 <Calendar onDrillDown={onCalenderClick} localizer={localizer} events={allEvents} startAccessor="date" endAccessor="date" 
                 style={{ height: 500, margin: "50px"}}  views={['month']} />

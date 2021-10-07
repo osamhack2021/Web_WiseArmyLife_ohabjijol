@@ -23,8 +23,8 @@ const Forum = () => {
     useEffect(() => {
             axios.get('/Community')
             .then(res =>{
-                console.log(res.data.data)
                 test.current=res.data.data.allForum;
+                
                 if(test.current.count != data.count){
                     setData(test.current)
                 }
