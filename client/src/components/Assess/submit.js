@@ -28,16 +28,10 @@ const localizer = dateFnsLocalizer({
 
 const events = [
     {
-        date : new Date(2021,9,6),
-        title : "13:00 ~ 16:00",
-        applicant_capacity:30,
-        expired : "Applying"
-    },
-    {
-        date : new Date(2021,9,6),
-        title : "18:00 ~ 19:00",
-        applicant_capacity:40,
-        expired : "Applying"
+        date: new Date(2021,9,7),
+        title: "13시~14시",
+        applicantText : "20/30",
+        expired:"Applying"
     }
 ];
 
@@ -50,45 +44,21 @@ const Submit = (props) => {
     const [inputs,setInputs] = useState({
         date:null,
         time:null,
-        applicant_capacity:null
-        
+        applicantText:null
     })
+    
     //db등록 
-    function handleAddEvent() {
-        const data = {
-            time:`${post.start}~${post.end}`,
-            date:post.date,
-            applicant_capacity:post.applicant_capacity
-        }
-        axios.post(`/assessment/${target}/application`,data)
-        setPost({
-            ...post,
-            start:null,
-            end:null,
-            date:null,
-            applicant_capacity:null
-        })
-        axios.get(`/assessment/${target}`)
-        .then(res =>{
-            const {date,title,expired} = res.data.data;
-            const newEvent ={
-                date:date,
-            }
-        })
 
         //setAllEvents([...allEvents,newEvent])
-    }
+    
     //
     const onClick = (e)=>{
-        const {date,title,applicant_capacity,expired} = e
-
-        const tmp = 
-
+        const {date,title,applicantText,expired} = e
         setInputs({
             ...inputs,
             date:date,
             time:title,
-            applicant_capacity:applicant_capacity
+            applicantText:applicantText
         })
     }
     const onChange = (e)=>{
@@ -98,7 +68,20 @@ const Submit = (props) => {
             [name]:value
         })
     }
+    const onSubmit = (e)=>{
+        e.preventDefault()
+        const godate = inputs.date;
 
+        const year = godate.getFullYear();
+        const month = ('0' + (godate.getMonth() + 1)).slice(-2);
+        const day = ('0' + godate.getDate()).slice(-2);
+
+        const dateString = year + '-' + month  + '-' + day;
+        axios.post(`/assessment/${target}/application`,dateString)
+        .then(res=>{
+            console.log(res)
+        })
+    }
  
     return (
         <div>
@@ -107,10 +90,10 @@ const Submit = (props) => {
                 style={{ height: 500, margin: "50px"}}  views={['month']} />
             </div>
             <form>
-                <input value={inputs.date} onChange={onChange} />
-                <input value={inputs.time} onChange={onChange} />
-                <input value={inputs.applicant_capacity} onChange={onChange} />
-                <button>등록</button>
+                <input placeholder="date" value={inputs.date} />
+                <input placeholder="time" value={inputs.time} />
+                <input placeholder="applicantText" value={inputs.applicantText}  />
+                <button onClick={onSubmit}>등록</button>
             </form>
         </div>
     );
