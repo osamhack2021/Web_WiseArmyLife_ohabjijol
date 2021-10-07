@@ -1,0 +1,25 @@
+.peopleCheck{
+    margin-top: 160px;
+    margin-left: 893px;
+    margin-bottom: 108px;
+    font-size: 30px;
+    color: #000000;
+    font-family: "Nanum Square EB";
+
+}
+
+
+
+.currentConfirm {
+    margin-top: 160px;
+    margin-left: 893px;
+    margin-bottom: 108px;
+    font-size: 30px;
+    color: #000000;
+    font-family: "Nanum Square EB";
+    border-collapse: collapse;
+    border: 2px solid gray;
+    border-top: 2px solid red;
+    border-bottom: 5px solid red;
+
+}
