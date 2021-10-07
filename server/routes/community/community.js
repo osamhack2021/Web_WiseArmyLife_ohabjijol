@@ -23,7 +23,7 @@ router.get('/', isLoggedIn, async (req, res) => {
         const data = {
             allForum: allForum,
         }
-        return res.json({ success: true, data });
+        res.json({ success: true, data });
     } catch (err) {
         console.error(err);
         next(err);
@@ -55,6 +55,10 @@ router.route('/forumAdd')
     .get(isLoggedIn, isExecutive, (req, res) => {
         return res.json({ success: true, data: null });
     });
+
+
+
+
 router.delete('/:forumId', isLoggedIn, isExecutive, async (req, res, next) => {
     try {
         const currentForumId = req.params.forumId;
@@ -93,12 +97,31 @@ router.delete('/:forumId', isLoggedIn, isExecutive, async (req, res, next) => {
         next(error);
     }
 });
+router.put('/:forumId', isLoggedIn, isExecutive, async (req, res, next) => {
+    try {
+        const currentForumId = req.params.forumId;
+        const currentForum = await Forum.findOne({ where: { id: currentForumId } });
+        if (currentForum) {
+            await Forum.updata({ forumName: req.body.forumName }, { where: { id: currentForumId }});
+            return res.json({ success: true, data: null });
+        }
+        else {
+            const data = {
+                message: '없는 게시판 입니다.',
+            }
+            return res.json({ success: false, data });
+        }
+    } catch (error) {
+        console.error(error);
+        next(error);
+    }
+});
 // 게시판 CRUD
+router.use('/:forumId', isLoggedIn, storeForumId, ForumRouter);
 
-router.get('/:forumId', isLoggedIn,storeForumId, ForumRouter);
-
-function storeForumId (req, res, next) {
+function storeForumId(req, res, next) {
     res.locals.forumId = req.params.forumId;
+    console.log('포럼아이디저장');
     next();
 }
 

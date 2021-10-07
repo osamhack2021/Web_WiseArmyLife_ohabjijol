@@ -69,7 +69,6 @@ router.post('/login', isNotLoggedIn, async (req, res, next) => {
 router.get('/logout', isLoggedIn, (req,res) => {
     cachedUser.user = null;
     delete cachedUser.user;
-    console.log(cachedUser);
     req.logout();
     req.session.destroy();
     res.json({success: true, data: null});
