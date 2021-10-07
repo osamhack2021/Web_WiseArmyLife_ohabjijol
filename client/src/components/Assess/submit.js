@@ -26,21 +26,12 @@ const localizer = dateFnsLocalizer({
 
 
 
-const events = [
-    {
-        date: new Date(2021,9,7),
-        title: "13시~14시",
-        applicantText : "20/30",
-        expired:"Applying"
-    }
-];
-
 
 const Submit = (props) => {
 
-    const {target} = props;
+    const {target,allEvents} = props;
     const [post, setPost] = useState({ start:null,end:null,date:null, applicant_capacity:null});
-    const [allEvents, setAllEvents] = useState(events);
+    
     const [inputs,setInputs] = useState({
         date:null,
         time:null,

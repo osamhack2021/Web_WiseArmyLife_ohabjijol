@@ -10,11 +10,20 @@ import Current from './Current';
 import Result from './Result';
 import Submit from './Submit';
 
+const events = [
+    {
+        date: new Date(2021,9,7),
+        title: "13시~14시",
+        applicantText:"20/30",
+        expired:"Applying"
+    }
+];
 
 const Assess = () => {
     //
     const [target,setTarget] = useState(null); // 종목 선택 값
     const [isExecutive,setIsExecutive] = useState(false)
+    const [allEvents, setAllEvents] = useState(events);
 
     useEffect(() => {
         const Tf = sessionStorage.getItem('isExecutive')
@@ -73,7 +82,7 @@ const Assess = () => {
                     <Switch>
                         <Route path="/assess/exeCurrent" component={ExeCurrent}/>
                         <Route path="/assess/exeResult" component={ExeResult}/>
-                        <Route path="/assess" render={ () => <ExeSubmit target={target} />}/>
+                        <Route path="/assess" render={ () => <ExeSubmit target={target} allEvents={allEvents} />}/>
                         
                     </Switch>
                 </Router>
@@ -89,7 +98,7 @@ const Assess = () => {
                     <Switch>
                         <Route path="/assess/current" component={Current}/>
                         <Route path="/assess/result" component={Result}/>
-                        <Route path="/assess" render={ () => <Submit target={target} />}/>
+                        <Route path="/assess" render={ () => <Submit target={target} allEvents={allEvents} />}/>
                     </Switch>
                 </Router>
             </div>
