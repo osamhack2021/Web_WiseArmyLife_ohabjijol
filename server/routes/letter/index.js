@@ -9,8 +9,8 @@ const BattalionRouter = require('./battalion');
 
 const router = express.Router();
 
-router.get('/company', isLoggedIn, CompanyRouter);
-router.get('/battalion', isLoggedIn, BattalionRouter);
+router.use('/company', isLoggedIn, CompanyRouter);
+router.use('/battalion', isLoggedIn, BattalionRouter);
 
 // 마편 READ
 
