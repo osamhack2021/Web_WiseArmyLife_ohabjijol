@@ -21,7 +21,7 @@ const events = [
 
 const Assess = () => {
     //
-    const [target,setTarget] = useState(null); // 종목 선택 값
+    const [target,setTarget] = useState("shooting"); // 종목 선택 값
     const [isExecutive,setIsExecutive] = useState(false)
     const [allEvents, setAllEvents] = useState(events);
 
@@ -42,7 +42,6 @@ const Assess = () => {
     },[target])
 
 
-       
     const onChange = (e)=>{
         const {value} = e.target;
         setTarget(value);

@@ -30,7 +30,6 @@ const localizer = dateFnsLocalizer({
 const Submit = (props) => {
 
     const {target,allEvents} = props;
-    const [post, setPost] = useState({ start:null,end:null,date:null, applicant_capacity:null});
     
     const [inputs,setInputs] = useState({
         date:null,
@@ -50,13 +49,6 @@ const Submit = (props) => {
             date:date,
             time:title,
             applicantText:applicantText
-        })
-    }
-    const onChange = (e)=>{
-        const {name,value} = e.target;
-        setInputs({
-            ...inputs,
-            [name]:value
         })
     }
     const onSubmit = (e)=>{
