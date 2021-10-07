@@ -25,34 +25,17 @@ const localizer = dateFnsLocalizer({
 });
 
 
-const events = [
-    {
-        date: new Date(2021,9,7),
-        title: "13시~14시",
-        applicant_capacity: 30,
-        number_of_applicant: 20,
-        expired:"Applying"
-    }
-];
 
 const ExeSubmit = (props) => {
-    const {target} = props;
+    const {target,allEvents} = props;
 
     const [newPost,setNewPost] = useState({
         date:null,
         aplicant_capacity:null,
         time:null
     })
-
-    const [allEvents, setAllEvents] = useState(events);
     
-    const callGet = ()=>{
-        axios.get(`/assessment/${target}`)
-        .then(res=>{
-            const {date,expired,applicant_capacity,number_of_applicant,time} = res.data.data
-            
-        })
-    }
+    
 
     const onConsole = (e)=>{
         console.log(target)
