@@ -9,6 +9,7 @@ const MentalForce = require('./assessment/mentalForce');
 
 const Forum = require('./community/forum');
 const Comment = require('./community/comment');
+const Question = require('./assessment/question');
 
 const env = process.env.NODE_ENV || 'development';
 const config = require('../config/config')[env];
@@ -23,7 +24,10 @@ db.Post = Post;
 db.Shooting = Shooting;
 db.Forum = Forum;
 db.Comment = Comment;
-// db.MentalForce = MentalForce;
+
+db.MentalForce = MentalForce;
+db.Question = Question;
+
 
 const ShootingEvent = sequelize.define('ShootingEvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},}, { timestamps: false });
 // const MentalForceEvent = sequelize.define('MentalForceEvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},}, { timestamps: false });
@@ -41,14 +45,20 @@ Post.init(sequelize);
 Comment.init(sequelize);
 Shooting.init(sequelize);
 Forum.init(sequelize);
-// MentalForce.init(sequelize);
+
+MentalForce.init(sequelize);
+Question.init(sequelize);
+
 
 User.associate(db);
 Post.associate(db);
 Comment.associate(db);
 Shooting.associate(db);
 Forum.associate(db);
-// MentalForce.associate(db);
+
+MentalForce.associate(db);
+Question.associate(db);
+
 
 
 
