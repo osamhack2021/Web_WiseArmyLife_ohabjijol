@@ -84,16 +84,22 @@ const Submit = (props) => {
     }
  
     return (
-        <div>
+        <div className="assessBox">
+            <div className="assessTextBox">
+                <div className="assessText">응시 희망 날짜 및 시간</div>
+            </div>
             <div className="bigCalendar">
                 <Calendar onSelectEvent={onClick} localizer={localizer} events={allEvents} startAccessor="date" endAccessor="date" 
                 style={{ height: 500, margin: "50px"}}  views={['month']} />
             </div>
-            <form>
+            <form className="assessForm">
+                <span>날짜: </span>
                 <input placeholder="date" value={inputs.date} />
+                <span>시간: </span>
                 <input placeholder="time" value={inputs.time} />
+                <span>인원현황: </span>
                 <input placeholder="applicantText" value={inputs.applicantText}  />
-                <button onClick={onSubmit}>등록</button>
+                <button onClick={onSubmit}>신청</button>
             </form>
         </div>
     );

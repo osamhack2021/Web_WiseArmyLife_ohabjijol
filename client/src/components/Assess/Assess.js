@@ -46,7 +46,7 @@ const Assess = () => {
             <h2 className="basicTitle">병기본평가 +</h2>
 
             <span className="basicList" >
-                <span className="margin270"></span>
+                <span className="margin230"></span>
                 <input onChange={onChange} id="scale0" class="scale" name="scale" type="radio" value="shooting" />
                 <label for="scale0" class="button">사격</label>
                 <input onChange={onChange} id="scale1" class="scale" name="scale" type="radio" value="spirit" />

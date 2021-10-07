@@ -9,7 +9,9 @@
 
 .margin270{
   margin-left: 270px;
-  
+}
+.margin230{
+  margin-left: 230px;
 }
 .clicked {
   background-color:#ffd265
@@ -80,6 +82,10 @@
   
 }
 
+.basicList{
+  margin-left: auto;
+  margin-right: auto;
+}
 .assessLinkBox{
   margin-top: 50px;
   margin-bottom: 59px;
@@ -90,12 +96,46 @@
   font-size: 25px;
   color: #000000;
   font-family: "Nanum Square EB";
-  margin-left: 71px;
+  margin-right: 35px;
+  margin-left: 35px;
   text-decoration: none;
+  
 }
 
 .bigCalendar{
-  margin-left: 200px;
-  margin-right: 200px;
+  margin-left: 100px;
+  margin-right: 100px;
   margin-bottom: 50px;
+}
+
+.assessBox{
+  width: 1100px;
+  height: 800px;
+  border-radius: 80px;
+  background-color: #ffd265;
+
+  padding-top: 100px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 39px;
+
+}
+
+.assessText{
+  margin-left: auto;
+  margin-right: auto;
+  width: 330px;
+  text-align: center;
+  align-content: center;
+  font-size: 30px;
+  font-size: 30px;
+  color: #000000;
+  font-family: "Nanum Square B";
+}
+
+.assessForm{
+  margin-left: auto;
+  margin-right: auto;
+  align-content: center;
+  text-align: center;
 }
