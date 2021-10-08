@@ -8,15 +8,6 @@ const tableStyle = {
     width: "200px",
 }
 
-const numberStyle = {
-    paddingRight: "10px",
-    fontSize: "21px",
-    margin: "20px",
-   
-
-
-}
-
 
     return (
         <>
@@ -46,13 +37,13 @@ const numberStyle = {
                 </div>
 
                 <div className="selectBox">
-                <div className="container">
-                  <p style={numberStyle}>1</p>
-                  <p style={numberStyle}>2</p>
-                  <p style={numberStyle}>3</p>
-                  <p style={numberStyle}>4</p>
-                  <p style={numberStyle}>5</p>
-                </div>
+                <button>{"<"}</button>  
+             <button>1</button>  
+             <button>2</button>  
+             <button>3</button>  
+             <button>4</button>  
+             <button>5</button>  
+             <button>{">"}</button>  
                 </div>
 {/* 일단 그냥 이렇게 해놀겡 */}
 
