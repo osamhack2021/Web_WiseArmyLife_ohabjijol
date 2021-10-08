@@ -1,11 +1,56 @@
 import React from 'react';
+import './ExeCurrent.css';
 
 const ExeCurrent = () => {
+
+    const tableStyle = {
+        borderBottom: "1px solid gray",
+        width: "200px",
+    }
+
     return (
-        <div>
-            용진페이지 ㅎㅎ 굳굳  어차피 그 부탁한 4페이지는 병기목 종목당 달라지는거없어서 하나만해도될거야 map 쓰고 만 그런것들
-            
-        </div>
+        <>
+        <div className = "entire">
+           <h2 className="peopleCheck">  인원확인 +  </h2>
+          
+            <table className="currentConfirm">
+                <thead>
+                    <tr>
+                        <th style={tableStyle}>군번</th>  
+                        <th style={tableStyle}>이름</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style={tableStyle}>20-12345678</td>
+                        <td style={tableStyle}>홍길동</td>
+                    </tr>
+                    <tr>
+                        <td style={tableStyle}>20-0124816</td>
+                        <td style={tableStyle}>둘리</td>
+                    </tr>
+                </tbody>            
+                </table>
+
+
+                </div>
+
+                <div className="selectBox">
+                <button>{"<"}</button>  
+             <button>1</button>  
+             <button>2</button>  
+             <button>3</button>  
+             <button>4</button>  
+             <button>5</button>  
+             <button>{">"}</button>  
+                </div>
+{/* 일단 그냥 이렇게 해놀겡 */}
+
+           
+        
+      
+
+        </>
     );
 };
 

@@ -3,79 +3,52 @@ import "./Result.css";
 
 const Result = () => {
 
-    const tableStyle = {
-        borderBottom: "1px solid gray",
-        width: "200px",
+    const hTwoStyle = {
+        padding:"20px",
+        margin:"20px",
     }
 
-    const saveStyle = {
-        marginBottom: "50px",
-        borderRadius:"10px",
-        backgroundColor:"#ffd265",
-        width:"120px",
-    }
+   const abcStyle={
+       textAlign:"right",
+   }
 
-    const buttonStyle = {
-        padding:"5px",
-        margin:"5px"
-    }
 
     return (
         <>
-        <div className = "entireTwo">
-        <h2 className="resultRegister">  결과등록 +  </h2>
-       
-         <table className="resultTable">
-             <thead>
-                 <tr>
-                     <th style={tableStyle}>군번</th>  
-                     <th style={tableStyle}>이름</th>
-                     <th style={tableStyle}>점수</th>
-                     <th style={tableStyle}>등급</th>
-                 </tr>
-             </thead>
-             <tbody>
-                 <tr>
-                     <td style={tableStyle}>20-12345678</td>
-                     <td style={tableStyle}>홍길동</td>
-                     <td style={tableStyle}>95</td>
-                     <td style={tableStyle}>A</td>
+        <div className="content">
 
-                 </tr>
-                 <tr>
-                     <td style={tableStyle}>20-0124816</td>
-                     <td style={tableStyle}>둘리</td>
-                     <td style={tableStyle}>80</td>
-                     <td style={tableStyle}>B</td>
-                 </tr>
-             </tbody>            
-             </table>
+      <h2 style={hTwoStyle}> 평가결과 +</h2>
 
-             <button style={saveStyle}>저장</button>    
-             {/* onclick 함수 추가 */}
-             <br></br>
 
-             </div>
+      <div className="result">
+          <span>체력</span>
+          <span>2021.10.14</span>
+          <span>16:00~17:00</span>
+          <span>A</span>
+      </div>
 
-             <div className="buttonGroup">
-             <button style={buttonStyle}>{"<"}</button>  
-             <button style={buttonStyle}>1</button>  
-             <button style={buttonStyle}>2</button>  
-             <button style={buttonStyle}>3</button>  
-             <button style={buttonStyle}>4</button>  
-             <button style={buttonStyle}>5</button>  
-             <button style={buttonStyle}>{">"}</button>  
+      <div className="result">
+      <span>사격</span>
+          <span>2021.09.30</span>
+          <span>18:00~19:00</span>
+          <span>B</span>
+      </div>
 
-             </div>
+      <div className="result">
+      <span>구급법</span>
+          <span>2021.09.07</span>
+          <span>15:00~16:00</span>
+          <span>C</span>
+      </div>
 
-</>
-             
 
-       
+<span id="abc">※ A등급: 특급전사(조기진급) / B등급: 진급가능 / C등급 이하: 진급 누락</span>
 
+
+
+      </div>
+      </>
     );
 };
 
 export default Result;
-
-//여기용진
