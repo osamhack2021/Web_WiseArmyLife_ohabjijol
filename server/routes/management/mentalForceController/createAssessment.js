@@ -1,15 +1,17 @@
 const axios =require('axios');
 const {MentalForce ,MentalForceEvent} = require('../../../models');
 
+//사격의 C
 
 createAssessment = async (req,res)=>{
 
     try{
+       
+        
 
         console.log(req.body.date);
-
-        let gettime = new Date(req.body.date);
-        let Nowtime = new Date();
+        var gettime = new Date(req.body.date);
+        var Nowtime = new Date();
         Nowtime.setHours(Nowtime.getHours()+9);
         Nowtime.setHours(0); // 21년 10월 25
         Nowtime.setMinutes(0) // 21년 10월 25
