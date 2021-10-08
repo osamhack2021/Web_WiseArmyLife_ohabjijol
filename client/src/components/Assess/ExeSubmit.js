@@ -48,7 +48,6 @@ const ExeSubmit = (props) => {
         })
     }
     const goPost = (e)=>{
-        e.preventDefault();
         const godate = newPost.date;
 
         const year = godate.getFullYear();

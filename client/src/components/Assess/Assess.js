@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react';
+import React,{useEffect,useState,useRef} from 'react';
 import axios from 'axios';
 import './ss.css'
 import './Assess.css'
@@ -37,10 +37,27 @@ const Assess = () => {
     useEffect(() => {
         axios.get(`/assessment/${target}`)
         .then(res =>{
-            console.log(res)
+            console.log(res.data.data)
+            const getData = res.data.data;
+            const inDateList = getData.map( res=> {
+                return {
+                    date : new Date(res.date),
+                    title : res.time,
+                    applicantText : `${res.number_of_applicant}/${res.applicant_capacity}`,
+                    expired : res.expired
+                }
+            })
+            setAllEvents([...inDateList])
         })
     },[target])
 
+    /**
+     *  applicant_capacity: 20
+        date: "2021-10-26"
+        expired: "Applying"
+        number_of_applicant: 0
+        time: "12:00 ~ 13:00"
+     */
 
     const onChange = (e)=>{
         const {value} = e.target;
@@ -55,7 +72,7 @@ const Assess = () => {
 
             <span className="basicList" >
                 <span className="margin230"></span>
-                <input checked={target} onChange={onChange} id="scale0" class="scale" name="scale" type="radio" value="shooting" />
+                <input checked={target === "shooting"} onChange={onChange} id="scale0" class="scale" name="scale" type="radio" value="shooting" />
                 <label for="scale0" class="button">사격</label>
                 <input onChange={onChange} id="scale1" class="scale" name="scale" type="radio" value="spirit" />
                 <label for="scale1" class="button">정신전력평가</label>
