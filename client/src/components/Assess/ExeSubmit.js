@@ -34,7 +34,7 @@ const ExeSubmit = (props) => {
         aplicant_capacity:null,
         time:null
     })
-    
+    const [inputDate,setInputDate]= useState(null)
     
 
     const onConsole = (e)=>{
@@ -48,18 +48,14 @@ const ExeSubmit = (props) => {
         })
     }
     const goPost = (e)=>{
-        const godate = newPost.date;
 
-        const year = godate.getFullYear();
-        const month = ('0' + (godate.getMonth() + 1)).slice(-2);
-        const day = ('0' + godate.getDate()).slice(-2);
-
-        const dateString = year + '-' + month  + '-' + day;
+        const dateString =toDateString(newPost.date)
         const data={
             date:dateString,
             aplicant_capacity:newPost.aplicant_capacity,
             time:newPost.time
         }
+
 
         console.log(data);
         axios.post(`/management/${target}/assessment`,data)
@@ -72,6 +68,18 @@ const ExeSubmit = (props) => {
             ...newPost,
             date:e
         })
+        setInputDate(toDateString(e))
+    }
+    const toDateString = (godate)=>{
+        
+
+        const year = godate.getFullYear();
+        const month = ('0' + (godate.getMonth() + 1)).slice(-2);
+        const day = ('0' + godate.getDate()).slice(-2);
+
+        const dateString = year + '-' + month  + '-' + day;
+
+        return dateString;
     }
     return (
         <div className="assessBox">
@@ -82,7 +90,7 @@ const ExeSubmit = (props) => {
             <button onClick={onConsole}>콘솔</button>
 
             <form>
-                <input placeholder="date" name="date" value={newPost.date} onChange={onChange}/>
+                <input placeholder="date" name="date" value={inputDate} onChange={onChange}/>
                 <input placeholder="aplicant_capacity" name="aplicant_capacity" value={newPost.aplicant_capacity} onChange={onChange}/>
                 <input placeholder="time" name="time" value={newPost.time} onChange={onChange}/>
                 <button onClick={goPost}>간부 등록</button>
