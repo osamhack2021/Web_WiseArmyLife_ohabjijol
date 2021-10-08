@@ -1,17 +1,15 @@
 const axios =require('axios');
 const {MentalForce ,MentalForceEvent} = require('../../../models');
 
-//사격의 C
 
 createAssessment = async (req,res)=>{
 
     try{
-       
-        
 
         console.log(req.body.date);
-        var gettime = new Date(req.body.date);
-        var Nowtime = new Date();
+
+        let gettime = new Date(req.body.date);
+        let Nowtime = new Date();
         Nowtime.setHours(Nowtime.getHours()+9);
         Nowtime.setHours(0); // 21년 10월 25
         Nowtime.setMinutes(0) // 21년 10월 25
@@ -30,15 +28,9 @@ createAssessment = async (req,res)=>{
         }
 
         
-        const exam = await axios.get('').catch(err=>{
+       //여기서 태현이형이 만든 시험 가져올 것 {id : int} 문제 아이디만 줘도 될듯. 만든 사격 아이디 + 가져온 시험정보id bulkCreate통해 사격평가와 문제를 N:M관계로 만듬
 
-            const senderror = {
-                success: false,
-                data: "cannot Get Questions",
-            }
-            return res.json(senderror);
-
-        });//여기서 태현이형이 만든 시험 가져올 것 {id : int} 문제 아이디만 줘도 될듯. 만든 사격 아이디 + 가져온 시험정보id bulkCreate통해 사격평가와 문제를 N:M관계로 만듬
+       
 
        
         const createMentalForceAssessment = await MentalForce.findOrCreate({
