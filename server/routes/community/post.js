@@ -56,6 +56,7 @@ router.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
 router.route('/v/:postId')
     .get(isLoggedIn, async (req, res, next) => {
         try {
+            console.log('포스트 읽어짐');
             const currentPostId = req.params.postId;
             const currentPost = await Post.findOne({
                 where: { id: currentPostId },
