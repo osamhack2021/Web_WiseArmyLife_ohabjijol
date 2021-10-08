@@ -55,7 +55,7 @@ const Assess = () => {
 
             <span className="basicList" >
                 <span className="margin230"></span>
-                <input onChange={onChange} id="scale0" class="scale" name="scale" type="radio" value="shooting" />
+                <input checked={target} onChange={onChange} id="scale0" class="scale" name="scale" type="radio" value="shooting" />
                 <label for="scale0" class="button">사격</label>
                 <input onChange={onChange} id="scale1" class="scale" name="scale" type="radio" value="spirit" />
                 <label for="scale1" class="button">정신전력평가</label>
