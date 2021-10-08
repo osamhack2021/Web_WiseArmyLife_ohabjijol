@@ -25,7 +25,7 @@ getShootingInfo = async (req, res) => {
         }
 
         const shootingdata = await Shooting.findAll({        
-            attributes : ['date','expired','applicant_capacity','number_of_applicant'],
+            attributes : ['date','time','expired','applicant_capacity','number_of_applicant'],
             where : {
                 date : { [Op.gte] : thismonth , [Op.lt] : nextmonth},
             },
