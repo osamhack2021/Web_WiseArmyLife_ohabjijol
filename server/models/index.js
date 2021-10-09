@@ -31,7 +31,8 @@ db.Question = Question;
 
 const ShootingEvent = sequelize.define('ShootingEvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},}, { timestamps: false });
 const MentalForceEvent = sequelize.define('MentalForceEvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},}, { timestamps: false });
-const ExamEvent = sequelize.define('ExamEvent', {}, { timestamps: false });
+
+const ExamEvent = sequelize.define('ExamEvent', {type : {type : DataTypes.INTEGER}, orderQ : {type : DataTypes.INTEGER,}}, { timestamps: false });
 
 
 
@@ -55,10 +56,12 @@ Post.associate(db);
 Comment.associate(db);
 Shooting.associate(db);
 Forum.associate(db);
-
+/*
+let query = 'CREATE TABLE IF NOT EXISTS `ExamEvents` (`type` INTEGER, `order` INTEGER, `MentalForceId` INTEGER , `QuestionId` INTEGER , PRIMARY KEY (`MentalForceId`, `QuestionId`,`type`), FOREIGN KEY (`MentalForceId`) REFERENCES `mentalForces` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, FOREIGN KEY (`QuestionId`) REFERENCES `questions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE) ENGINE=InnoDB';
+sequelize.query(query);
+*/
 MentalForce.associate(db);
 Question.associate(db);
-
 
 
 
