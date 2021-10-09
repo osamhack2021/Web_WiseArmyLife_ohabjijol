@@ -5,6 +5,9 @@ const router = express.Router();
 const ShootingRouter = require('./shooting');
 const CBRRouter = require('./cBR');
 const FirstAidRouter = require('./firstAid');
+const IndividualBattleRouter = require('./individualBattle');
+const SpecialityRouter = require('./speciality');
+const StrengthRouter = require('./strength');
 
 
 //
@@ -13,6 +16,9 @@ const resultCtrl = 1;
 router.use('/shooting',ShootingRouter);
 router.use('/cBR',CBRRouter);
 router.use('/firstAid',FirstAidRouter);
+router.use('/individualBattle',IndividualBattleRouter);
+router.use('/speciality',SpecialityRouter);
+router.use('/strength',StrengthRouter);
 
 
 
