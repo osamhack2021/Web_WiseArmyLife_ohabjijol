@@ -108,8 +108,8 @@ const Assess = () => {
                 <Router>
                     <div className="assessLinkBox">
                         <Link className="assessLink" to="/assess/submit">평가일정등록 </Link>
-                        <Link className="assessLink" to="/assess/current">신청인원확인 </Link>
-                        <Link className="assessLink" to="/assess/result">평가결과등록 </Link>
+                        <Link className="assessLink" to="/assess/current">신청결과확인 </Link>
+                        <Link className="assessLink" to="/assess/result">평가결과확인 </Link>
                     </div>
                     <Switch>
                         <Route path="/assess/current" component={Current}/>
