@@ -30,7 +30,9 @@ checkApplicant = async (req, res) => {
                 postdata = {
                     name: element.dataValues.name,
                     militaryNumber: element.dataValues.militaryNumber,
-                    score: element.dataValues.StrengthEvent.score,
+                    pushUpscore: element.dataValues.StrengthEvent.pushUpscore,
+                    sitUpscore: element.dataValues.StrengthEvent.sitUpscore,
+                    runningscore: element.dataValues.StrengthEvent.runningscore,
                 };
                 post.push(postdata);
 

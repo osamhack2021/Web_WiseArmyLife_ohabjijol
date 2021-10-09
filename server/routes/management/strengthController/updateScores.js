@@ -6,8 +6,8 @@ updateScores = async (req,res)=>{
 
     try{
 
-        req.body.date = '2021-10-21';
-        req.body.scoreAndId = [{UserId:1,score:70},{UserId:2,score :30}];
+        // req.body.date = '2021-10-21';
+        // req.body.scoreAndId = [{UserId:1,score:70},{UserId:2,score :30}];
         
 
 
@@ -26,7 +26,7 @@ updateScores = async (req,res)=>{
        failNum = 0;
        var failInfo = [];
        body.scoreAndId.forEach(element => {
-            StrengthEvent.update({score : element.score},{where : {UserId : element.UserId}}).then(res=>{
+            StrengthEvent.update({pushUpscore : element.pushUpscore,sitUpscore : element.sitUpscore,runningUpscore : element.runningscore},{where : {UserId : element.UserId}}).then(res=>{
                seccessNum =seccessNum+1;
            }).catch(err=>{
                failNum = failNum + 1;

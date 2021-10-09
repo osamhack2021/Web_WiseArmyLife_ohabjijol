@@ -24,7 +24,9 @@ getStrengthResult = async (req,res)=>{ // 사용자가 신청한 사격정보를
                         date : element.date,
                         expired : element.expired,
                         time : element.time,
-                        score : element.StrengthEvent.score 
+                        pushUpscore : element.StrengthEvent.pushUpscore, 
+                        sitUpscore : element.StrengthEvent.sitUpscore, 
+                        runningscore : element.StrengthEvent.runningscore,
                     })
                 });
 
