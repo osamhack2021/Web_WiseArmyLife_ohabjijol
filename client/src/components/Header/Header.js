@@ -26,14 +26,14 @@ const Header = () => {
             .then(res => {
                 if(res.data.success===true){
                     console.log('로그아웃')
-                    setIsLogin(false);
-                    sessionStorage.removeItem('user_id')
-                    document.location.href = '/'
                 }else{
                     console.log('로그아웃 실패');
                 }
             })
-
+        setIsLogin(false);
+        sessionStorage.removeItem('user_id')
+        sessionStorage.removeItem('isExecutive')
+        document.location.href = '/'
         
       }
     // 경고 무시하세요
@@ -92,8 +92,8 @@ const Header = () => {
                             <Login />
                             )}
                         />
-                        <PublicRoute path="/community/:forumId/v/:postId" restricted={false} auth={isLogin}  component={Community} />
-                        <PublicRoute path="/community/:forumId?/:pageIndex?" restricted={false} auth={isLogin}  component={Community} />
+                        <PublicRoute path="/community/:forumId/v/:postId" restricted={false} auth={isLogin}  component={Community} /> {/*이건 홈페이지에서 인덱스 치고 들어갈때를 위한 라우터 */}
+                        <PublicRoute path="/community/:forumId?/:pageIndex?" restricted={false} auth={isLogin}  component={Community} /> {/*동일 */}
                         <PublicRoute path="/assess" restricted={false} auth={isLogin} component={Assess} />
                         <AuthRoute path="/my" auth={isLogin} render={ () => <My />} />
                         <AuthRoute path="/letter" auth={isLogin} render={ () => <Letter />} />

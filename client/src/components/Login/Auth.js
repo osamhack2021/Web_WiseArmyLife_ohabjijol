@@ -58,6 +58,7 @@ const Auth = () => {
             console.log(data);
             if(response.data.success===true){
                 document.location.href = '/'
+                
             }else{
                 console.log('가입실패');
             }

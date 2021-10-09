@@ -33,6 +33,13 @@ function Login() {
                 // id, pw 모두 일치 userId = userId1, msg = undefined
                 console.log('======================','로그인 성공')
                 sessionStorage.setItem('user_id', inputId)
+                const exe = res.data.data.isExecutive
+                if (exe === 0 ){
+                    sessionStorage.setItem('isExecutive', false)
+                }else{
+                    sessionStorage.setItem('isExecutive', true)
+                }
+
                 document.location.href = '/'
             }
             // 작업 완료 되면 페이지 이동(새로고침)

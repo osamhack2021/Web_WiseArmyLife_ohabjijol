@@ -19,12 +19,14 @@ router.route('/') // 주소는 알아서 바꾸세요
     .get(isLoggedIn, checkIsNotExecutive, async (req, res, next) => {
         try {
             console.log('병사면 들어옴');
+            //////////////////////////////////
             const examCount = await Question.count({});
             if (examCount) {
                 const examQuestion = await Question.findAll({ order: sequelize.literal('rand()'), limit: examQuestionNumber });
                 const data = {
                     examQuestion: examQuestion,
                 };
+                console.log(examQuestion[0].dataValues);
                 return res.json({ success: true, data });
             } else {
                 return res.json({ success: false, data: null });
@@ -34,7 +36,7 @@ router.route('/') // 주소는 알아서 바꾸세요
             next(error);
         }
     }) // 병사는 문제 수 정해서 그만큼만 
-    .get(isLoggedIn, isExecutive, async (req, res, next) => {
+    router.route('/').get(isLoggedIn, isExecutive, async (req, res, next) => {
         try {
             const examQuestion = await Question.findAndCountAll({ where: { category: mentalStrategy } });
             const data = {

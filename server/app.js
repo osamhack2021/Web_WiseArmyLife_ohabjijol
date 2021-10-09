@@ -24,10 +24,10 @@ const LetterRouter = require("./routes/letter");
 
 const { sequelize, Shooting } = require('./models');
 const AssessmentRouter = require("./routes/assessment"); 
-const ShootingRouter = require("./routes/assessment/shooting");
+//const ShootingRouter = require("./routes/assessment/shooting");
 const MangementRouter = require('./routes/management');
-const ShootingManagementRouter = require('./routes/management/shooting');
-const ExamRouter = require("./routes/management/question_making");
+//const ShootingManagementRouter = require('./routes/management/shooting');
+//const ExamRouter = require("./routes/management/question_making");
 
 ///////////////////////////////////////////////////////////////////////
 const app = express();
@@ -78,8 +78,8 @@ app.use('/community', CommunityRouter);
 app.use('/letter', LetterRouter);
 //app.use('/assessment/shooting',ShootingRouter);
 app.use('/management',MangementRouter);
-app.use('/management/shooting',ShootingManagementRouter);
-app.use('/exam/mental/executive', ExamRouter); // 주소는 알아서 바꾸세요 승범씨
+//app.use('/management/shooting',ShootingManagementRouter);
+//app.use('/exam/mental/executive', ExamRouter); // 주소는 알아서 바꾸세요 승범씨
 
 ////////////////////////////////////////////////////
 // catch 404 and forward to error handler

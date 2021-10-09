@@ -65,7 +65,11 @@ router.post('/login', isNotLoggedIn, async (req, res, next) => {
             const data = {
                 isExecutive: req.user.executive,
             };
+<<<<<<< HEAD
             return res.json({ success: true, data });// 클라연동시
+=======
+            return res.json({ success: true, data });
+>>>>>>> 43224d935be73994ec3e5e9cccbfa5fad7c00274
         });
     })(req, res, next);
 });
