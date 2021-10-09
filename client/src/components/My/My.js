@@ -11,13 +11,17 @@ const My = () => {
     useEffect(() => {
         axios.get('/profile')
         .then(res => {
-            console.log(res.data)
-            const {name,militaryNumber,position} = res.data
-            setData({
-                name:name,
-                militaryNumber:militaryNumber,
-                position:position
-            })
+            if(res.data.success===true){
+                console.log(res.data)
+                const {name,militaryNumber,position} = res.data
+                setData({
+                    name:name,
+                    militaryNumber:militaryNumber,
+                    position:position
+                }
+            )}else{
+                alert('받아오기 실패')
+            }
         })
     },[])
 

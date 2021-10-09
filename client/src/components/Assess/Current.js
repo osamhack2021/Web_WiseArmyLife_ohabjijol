@@ -20,13 +20,13 @@ const Current = (props) => {
     const [data,setData] = useState([defalutDate])
 
     useEffect(()=>{
-        axios.get(`/assessment/result`)
+        axios.get(`/assessment/shooting/result`)
         .then(res=>{
             const dataList = res.data.data;
             console.log(dataList)
             setData(dataList);
-            })
-    })
+        })
+    },[target])
     
     const hTwoStyle = {
         padding:"20px",
@@ -41,7 +41,6 @@ const Current = (props) => {
             <h2 style={hTwoStyle}>신청결과확인 +</h2>
             <input placeholder="2021-10"/>
             <button>확인하기</button>
-
 
             {data.map(res=>{
                 return(

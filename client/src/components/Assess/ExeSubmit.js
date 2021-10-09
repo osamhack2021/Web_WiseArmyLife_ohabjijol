@@ -28,7 +28,7 @@ const localizer = dateFnsLocalizer({
 
 
 const ExeSubmit = (props) => {
-    const {target,allEvents} = props;
+    const {target,allEvents,onRangeChange} = props;
     const history = useHistory();
 
     const [newPost,setNewPost] = useState({
@@ -38,7 +38,7 @@ const ExeSubmit = (props) => {
     })
     const [inputDate,setInputDate]= useState(null)
     const [delDate,setDelDate] = useState("")
-
+    const [applicantText,setApplicantText] = useState("")
     const onConsole = (e)=>{
         console.log(target)
     }
@@ -66,8 +66,6 @@ const ExeSubmit = (props) => {
             }else{
                 alert(`${res.data.data}`)
             }
-        
-            
         })
     }
     const onCalenderClick = (e)=>{
@@ -75,6 +73,7 @@ const ExeSubmit = (props) => {
             ...newPost,
             date:e
         })
+        
         setInputDate(toDateString(e))
     }
     const toDateString = (godate)=>{
@@ -89,6 +88,7 @@ const ExeSubmit = (props) => {
         return dateString;
     }
     const selectCal = (e)=>{
+        setApplicantText(e.applicantText)
         setDelDate(toDateString(e.date))
     }
     const onRemove = (e)=>{
@@ -106,7 +106,7 @@ const ExeSubmit = (props) => {
     return (
         <div className="assessBox">
             <div className="bigCalendar">
-                <Calendar onSelectEvent={selectCal} onDrillDown={onCalenderClick} localizer={localizer} events={allEvents} startAccessor="date" endAccessor="date" 
+                <Calendar onRangeChange={onRangeChange} onSelectEvent={selectCal} onDrillDown={onCalenderClick} localizer={localizer} events={allEvents} startAccessor="date" endAccessor="date" 
                 style={{ height: 500, margin: "50px"}}  views={['month']} />
             </div>
             <button onClick={onConsole}>콘솔</button>
@@ -118,6 +118,7 @@ const ExeSubmit = (props) => {
                 <button onClick={goPost}>간부 등록</button>
             </form>
             <form>
+                <input placeholder='applicantText' value={applicantText} />
                 <input placeholder='delete date' value={delDate} />
                 <button onClick={onRemove}>삭제하기</button>
             </form>

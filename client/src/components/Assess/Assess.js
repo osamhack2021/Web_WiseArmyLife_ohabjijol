@@ -38,7 +38,6 @@ const Assess = () => {
     useEffect(() => {
         axios.get(`/assessment/${target}`)
         .then(res =>{
-            console.log(res.data.data)
             const getData = res.data.data;
             const inDateList = getData.map( res=> {
                 return {
@@ -49,6 +48,7 @@ const Assess = () => {
                 }
             })
             setAllEvents([...inDateList])
+            console.log(inDateList)
         })
     },[target])
 
@@ -65,6 +65,27 @@ const Assess = () => {
         setTarget(value);
         console.log(target)
     }
+    const onRangeChange = (e)=>{
+        const year = e.start.getFullYear();
+        const month = parseInt(('0' + (e.start.getMonth() + 1)).slice(-2))+parseInt(1);
+        console.log(month)
+
+        axios.get(`/assessment/${target}?year=${year}&month=${month}`)
+        .then(res =>{
+            const getData = res.data.data;
+            const inDateList = getData.map( res=> {
+                return {
+                    date : new Date(res.date),
+                    title : res.time,
+                    applicantText : `${res.number_of_applicant}/${res.applicant_capacity}`,
+                    expired : res.expired
+                }
+            })
+            setAllEvents([...inDateList])
+            console.log(inDateList)
+        })
+    
+    }
 
     
     return (
@@ -80,7 +101,7 @@ const Assess = () => {
                 <input onChange={onChange} id="scale2" class="scale" name="scale" type="radio" value="stamina" />
                 <label for="scale2" class="button">체력</label>
                 <input onChange={onChange} id="scale3" class="scale" name="scale" type="radio" value="aid" />
-                <label for="scale3" class="button">화생방</label>
+                <label for="scale3" class="button">화생방/구급법</label>
                 <input onChange={onChange} id="scale4" class="scale" name="scale" type="radio" value="rkrrowjsxn" />
                 <label for="scale4" class="button">각개전투</label>
                 <input onChange={onChange} id="scale5" class="scale" name="scale" type="radio" value="specialties" />
@@ -99,7 +120,7 @@ const Assess = () => {
                     <Switch>
                         <Route path="/assess/exeCurrent" component={ExeCurrent}/>
                         <Route path="/assess/exeResult" component={ExeResult}/>
-                        <Route path="/assess" render={ () => <ExeSubmit target={target} allEvents={allEvents} />}/>
+                        <Route path="/assess" render={ () => <ExeSubmit target={target} onRangeChange={onRangeChange} allEvents={allEvents} />}/>
                         
                     </Switch>
                 </Router>
@@ -115,7 +136,7 @@ const Assess = () => {
                     <Switch>
                         <Route path="/assess/current" render={()=><Current target={target} />}/>
                         <Route path="/assess/result" component={Result}/>
-                        <Route path="/assess" render={ () => <Submit target={target} allEvents={allEvents} />}/>
+                        <Route path="/assess" render={ () => <Submit target={target} onRangeChange={onRangeChange} allEvents={allEvents} />}/>
                     </Switch>
                 </Router>
             </div>

@@ -53,15 +53,17 @@ const Auth = () => {
             'position' :position,
             'isExecutive':isExecutive
         }
+        console.log(data)
         axios.post('/auth/join',data)
         .then( response => {
             console.log(data);
             if(response.data.success===true){
+                alert('가입성공')
                 document.location.href = '/'
-                
             }else{
-                console.log('가입실패');
-            }
+                alert('가입실패')
+        }
+        
     })  
     }
 

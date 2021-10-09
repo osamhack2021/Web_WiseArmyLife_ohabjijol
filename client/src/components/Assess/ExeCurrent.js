@@ -15,8 +15,9 @@ const ExeCurrent = () => {
         e.preventDefault()
         axios.get(`/management/shooting/checkinfo?date=${getdate}`)
         .then(res=>{
-            console.log(res.data.data.userinfo)
-            setDataList(res.data.data.userinfo)
+            console.log(res.data.data)
+            console()
+            setDataList(res.data.data)
         })
     }
     return (
