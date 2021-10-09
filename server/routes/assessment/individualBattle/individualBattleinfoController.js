@@ -1,12 +1,12 @@
-const { FirstAid } = require('../../../models');
+const { IndividualBattle } = require('../../../models');
 const { Op } = require('sequelize');
 const applyController = require('../monthCheckController');
 
 
-// /assessment/firstAid Get으로 요청시 로그인된 유저정보를 응답해줌 또한 현재 월의 사격 정보를 응답해줌. 년도와 월은 쿼리스트링으로 받을거임
-// 쿼리스트링이 없이 Get요청시 디폴드 값으로 현재 년월이 들어감 ex /assessment/firstAid?year=2021&month=3&limit=5
+// /assessment/individualBattle Get으로 요청시 로그인된 유저정보를 응답해줌 또한 현재 월의 사격 정보를 응답해줌. 년도와 월은 쿼리스트링으로 받을거임
+// 쿼리스트링이 없이 Get요청시 디폴드 값으로 현재 년월이 들어감 ex /assessment/individualBattle?year=2021&month=3&limit=5
 
-getFirstAidInfo = async (req, res) => {
+getIndividualBattleInfo = async (req, res) => {
 
 
 
@@ -24,12 +24,8 @@ getFirstAidInfo = async (req, res) => {
             req.query.limit = null;
         }
 
-        const firstAiddata = await FirstAid.findAll({        
-<<<<<<< HEAD
+        const individualBattledata = await IndividualBattle.findAll({        
             attributes : ['date','expired','applicant_capacity','number_of_applicant'],
-=======
-            attributes : ['date','time','expired','applicant_capacity','number_of_applicant'],
->>>>>>> 43224d935be73994ec3e5e9cccbfa5fad7c00274
             where : {
                 date : { [Op.gte] : thismonth , [Op.lt] : nextmonth},
             },
@@ -41,7 +37,7 @@ getFirstAidInfo = async (req, res) => {
 
         const resobject = {
             success : true,
-            data : firstAiddata,
+            data : individualBattledata,
 
         }
 
@@ -63,4 +59,4 @@ getFirstAidInfo = async (req, res) => {
 
 }
 
-module.exports = getFirstAidInfo;
+module.exports = getIndividualBattleInfo;

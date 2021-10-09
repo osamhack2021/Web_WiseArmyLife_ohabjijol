@@ -38,17 +38,23 @@ db.Strength = Strength;
 db.IndividualBattle = IndividualBattle;
 
 
+
 db.MentalForce = MentalForce;
 db.Question = Question;
 
 
 const ShootingEvent = sequelize.define('ShootingEvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},}, { timestamps: false });
+<<<<<<< HEAD
+const MentalForceEvent = sequelize.define('MentalForceEvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},}, { timestamps: false });
+const ExamEvent = sequelize.define('ExamEvent', {}, { timestamps: false });
+=======
 const MentalForceEvent = sequelize.define('MentalForceEvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},type : {type : DataTypes.INTEGER}}, { timestamps: false });
 const FirstAidEvent =  sequelize.define('FirstAidEvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},}, { timestamps: false });
 const CBREvent =  sequelize.define('CBREvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},}, { timestamps: false });
 const SpecialityEvent =  sequelize.define('SpecialityEvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},}, { timestamps: false });
 const StrengthEvent =  sequelize.define('StrengthEvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},}, { timestamps: false });
 const IndividualBattleEvent =  sequelize.define('IndividualBattleEvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},}, { timestamps: false });
+>>>>>>> 43224d935be73994ec3e5e9cccbfa5fad7c00274
 
 
 const ExamEvent = sequelize.define('ExamEvent', {type : {type : DataTypes.INTEGER}, orderQ : {type : DataTypes.INTEGER,}}, { timestamps: false });
@@ -62,7 +68,10 @@ db.IndividualBattleEvent = IndividualBattleEvent;
 
 db.ShootingEvent = ShootingEvent;
 db.MentalForceEvent = MentalForceEvent;
+<<<<<<< HEAD
+=======
 
+>>>>>>> 43224d935be73994ec3e5e9cccbfa5fad7c00274
 db.ExamEvent = ExamEvent;
 
 
@@ -87,6 +96,8 @@ Post.associate(db);
 Comment.associate(db);
 Shooting.associate(db);
 Forum.associate(db);
+<<<<<<< HEAD
+=======
 FirstAid.associate(db);
 CBR.associate(db);
 Speciality.associate(db);
@@ -94,6 +105,7 @@ Strength.associate(db);
 IndividualBattle.associate(db);
 
 
+>>>>>>> 43224d935be73994ec3e5e9cccbfa5fad7c00274
 MentalForce.associate(db);
 Question.associate(db);
 
