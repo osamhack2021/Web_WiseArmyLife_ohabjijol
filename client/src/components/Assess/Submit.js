@@ -54,9 +54,13 @@ const Submit = (props) => {
         setInputDate(dateString)
     }
     const onSubmit = (e)=>{
-        e.preventDefault()
         const dateString = toDateString(inputs.date)
-        axios.post(`/assessment/${target}/application`,dateString)
+        console.log(dateString)
+
+
+        axios.post(`/assessment/${target}/application`,{
+            'date':dateString
+        })
         .then(res=>{
             console.log(res)
         })

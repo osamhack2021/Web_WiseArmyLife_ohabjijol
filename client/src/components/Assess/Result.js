@@ -1,53 +1,44 @@
 import React from 'react';
 import "./Result.css";
+import Line from './line';
+
+const data =[
+  {
+    "id": "shooting",
+    "data": [
+      { "x": "2018-01-01", "y": 70 },
+      { "x": "2018-02-09", "y": 80 },
+      { "x": "2018-03-22", "y": 90 },
+      { "x": "2018-04-04", "y": 40 },
+      { "x": "2018-05-15", "y": 50 },
+      { "x": "2018-06-06", "y": 80 },
+      { "x": "2018-07-21", "y": 90 },
+      { "x": "2018-08-31", "y": 90 }
+    ]
+  },
+  {
+    "id": "sprit",
+    "data": [
+      { "x": "2018-01-01", "y": 80 },
+      { "x": "2018-02-09", "y": 70 },
+      { "x": "2018-03-22", "y": 80 },
+      { "x": "2018-04-04", "y": 80 },
+      { "x": "2018-05-15", "y": 100 },
+      { "x": "2018-06-06", "y": 90 },
+      { "x": "2018-07-21", "y": 70 },
+      { "x": "2018-08-31", "y": 10 }
+    ]
+  }
+]
+
 
 const Result = () => {
 
-    const hTwoStyle = {
-        padding:"20px",
-        margin:"20px",
-    }
-
-   const abcStyle={
-       textAlign:"right",
-   }
-
-
     return (
         <>
-        <div className="Ycontent">
-
-      <h2 style={hTwoStyle}> 평가결과 +</h2>
-
-
-      <div className="Yresult">
-          <span>체력</span>
-          <span>2021.10.14</span>
-          <span>16:00~17:00</span>
-          <span>A</span>
-      </div>
-
-      <div className="Yresult">
-      <span>사격</span>
-          <span>2021.09.30</span>
-          <span>18:00~19:00</span>
-          <span>B</span>
-      </div>
-
-      <div className="Yresult">
-      <span>구급법</span>
-          <span>2021.09.07</span>
-          <span>15:00~16:00</span>
-          <span>C</span>
-      </div>
-
-
-<span id="Yabc">※ A등급: 특급전사(조기진급) / B등급: 진급가능 / C등급 이하: 진급 누락</span>
-
-
-
-      </div>
-      </>
+          <div>여기가맞긴한데;</div>
+            <Line />
+        </>
     );
 };
 
