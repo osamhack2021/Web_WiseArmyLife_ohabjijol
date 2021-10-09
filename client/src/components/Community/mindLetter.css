@@ -1,3 +1,44 @@
-.title{
+.Ypage{
+    text-align: center
+  }
+  
+  
+  .title{
     font-size: smaller;
-}
+  }
+  
+  .Ycale {
+    background-color: rgb(214, 193, 70);
+    margin-bottom: 50px;
+  }
+  
+  .Ycontent {
+    margin-top: 50px;
+    background-color: rgb(238, 221, 146);
+    border-radius: 10px;
+   width:70%;
+   display: inline-block;
+   padding-top: 50px;
+   padding-bottom: 100px;
+  
+  
+  }
+  
+  .Ytable{
+   border-top: 2px solid black;
+   border-bottom: 2px solid black;
+  width: 900px;
+  margin-left:200px;
+  
+  
+  
+  }
+  
+  
+  .YselectBox{
+    padding:50px;
+    text-align:center;
+    
+  }
+  
+  
