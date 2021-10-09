@@ -1,11 +1,14 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 
 const Result = () => {
-  return (
-    <div>
-      
-    </div>
-  );
+
+    
+
+    return (
+        <div>
+            그래프 작성중
+        </div>
+    );
 };
 
 export default Result;
