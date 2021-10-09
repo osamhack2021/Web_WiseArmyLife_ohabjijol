@@ -2,6 +2,7 @@ import React,{useEffect,useState,useRef} from 'react';
 import axios from 'axios';
 import { Link, Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import Post from './Post';
+import Community from './Community';
 
 const Page = ({match}) => {
 
@@ -58,7 +59,7 @@ const Page = ({match}) => {
         })
     }
     const onRemove = (id)=>{
-        axios.delete(`/community/${forumId}/${id}`)
+        axios.delete(`/community/${forumId}/v/${id}`)
         .then(res=>{
             console.log(res.data);
         })
@@ -81,11 +82,10 @@ const Page = ({match}) => {
             {post===false ? <div>
                 {data.maxPage !==0 ?
                     rows.map(res=>{
+                        console.log(res)
                         return (
                             <div>
-                                <Router>
-                                    <div onClick={gogoPost}>gggg</div>
-                                </Router>
+                                <div onClick={gogoPost}> 글!! id값 : {res.id}</div>
                                 <button onClick={()=> onRemove(res.id)}>X</button>
                             </div>
                         )

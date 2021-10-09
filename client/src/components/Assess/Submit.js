@@ -36,7 +36,7 @@ const Submit = (props) => {
         time:null,
         applicantText:null
     })
-    
+    const [inputDate,setInputDate]= useState(null)
     //db등록 
 
         //setAllEvents([...allEvents,newEvent])
@@ -50,20 +50,27 @@ const Submit = (props) => {
             time:title,
             applicantText:applicantText
         })
+        const dateString = toDateString(date)
+        setInputDate(dateString)
     }
     const onSubmit = (e)=>{
         e.preventDefault()
-        const godate = inputs.date;
+        const dateString = toDateString(inputs.date)
+        axios.post(`/assessment/${target}/application`,dateString)
+        .then(res=>{
+            console.log(res)
+        })
+    }
+    const toDateString = (godate)=>{
+        
 
         const year = godate.getFullYear();
         const month = ('0' + (godate.getMonth() + 1)).slice(-2);
         const day = ('0' + godate.getDate()).slice(-2);
 
         const dateString = year + '-' + month  + '-' + day;
-        axios.post(`/assessment/${target}/application`,dateString)
-        .then(res=>{
-            console.log(res)
-        })
+
+        return dateString;
     }
  
     return (
@@ -77,7 +84,7 @@ const Submit = (props) => {
             </div>
             <form className="assessForm">
                 <span>날짜: </span>
-                <input placeholder="date" value={inputs.date} />
+                <input placeholder="date" value={inputDate} />
                 <span>시간: </span>
                 <input placeholder="time" value={inputs.time} />
                 <span>인원현황: </span>

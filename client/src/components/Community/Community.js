@@ -14,11 +14,9 @@ const Community = ({match}) => {
         <div>
             <h2>커뮤니티 + </h2>
             <Router>
-                <Switch>
-                    <Route path="/Community/:forumId/v/postIndex" component={Post} />
-                    <Route path="/Community/:forumId/:page?" component={Page} />
-                    <Route path="/Community" render={() => <Forum />} />
-                </Switch>
+                <Route exact path="/Community/:forumId/v/postIndex" component={Post} />
+                <Route exact path="/Community/:forumId/:page?" component={Page} />
+                <Route exact path="/Community" render={() => <Forum />} />
             </Router>
         </div>
     );
