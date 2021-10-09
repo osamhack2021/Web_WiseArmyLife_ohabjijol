@@ -33,6 +33,7 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
             unit,
             executive,
             position,
+            joinArmyDay: null,
         });
         console.log('회원가입됨');
         // return res.redirect('/');
@@ -76,5 +77,14 @@ router.get('/logout', isLoggedIn, (req, res) => {
     req.session.destroy();
     res.json({ success: true, data: null });
 });
+
+router.get('/profile', isLoggedIn, (req, res) => {
+    const data = {
+        name: req.user.name,
+        militaryNumber: req.user.militaryNumber,
+        position: req.user.position,
+    };
+    res.json({success: true, data});
+})
 
 module.exports = router;

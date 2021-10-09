@@ -31,7 +31,7 @@ module.exports = class User extends Sequelize.Model {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      dischargeDay: {
+      joinArmyDay: {
         type: Sequelize.DATE,
         allowNull: true,
       },
