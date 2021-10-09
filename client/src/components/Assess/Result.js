@@ -7,13 +7,10 @@ const Result = () => {
         padding:"20px",
         margin:"20px",
         fontSize:"30px",
-        fontFamily:"Na:num Square EB",
+        fontFamily:"Nanum Square EB",
     }
 
-   const abcStyle={
-       textAlign:"right",
-   }
-
+ 
 
     return (
         <>
