@@ -1,12 +1,17 @@
 import React,{useEffect} from 'react';
+import axios from 'axios';
 
 const Result = () => {
 
-    
+    useEffect(()=>{
+        axios.get()
+    })
 
     return (
         <div>
-            그래프 작성중
+            <h1>
+                그래프 패치중
+            </h1>
         </div>
     );
 };
