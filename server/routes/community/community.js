@@ -117,7 +117,7 @@ router.put('/:forumId', isLoggedIn, isExecutive, async (req, res, next) => {
     }
 });
 // 게시판 CRUD
-router.use('/:forumId', isLoggedIn, storeForumId, require('./forum'));
+router.use('/:forumId', isLoggedIn, storeForumId, ForumRouter);
 
 function storeForumId(req, res, next) {
     res.locals.forumId = req.params.forumId;

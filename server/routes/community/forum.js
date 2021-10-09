@@ -7,8 +7,6 @@ const { User, Post, Comment } = require('../../models');
 const PostRouter = require('./post');
 
 const router = express.Router();
-// router.get( )
-console.log('포럼 읽힘');
 router.use('/post', isLoggedIn, PostRouter);
 router.get('/:pageIndex', isLoggedIn, async (req, res) => {
     try {

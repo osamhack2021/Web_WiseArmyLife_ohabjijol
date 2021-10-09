@@ -2,7 +2,7 @@
 
 const Sequelize = require('sequelize');
 
-module.exports = class Cbr extends Sequelize.Model {
+module.exports = class IndividualBattle extends Sequelize.Model {
     static init(sequelize){
       return super.init({
        
@@ -40,16 +40,16 @@ module.exports = class Cbr extends Sequelize.Model {
         sequelize,
         timestamps: true,
         paranoid: false,
-        modelName: 'Cbr',
-        tableName: 'cbrs',
-        comment: 'Cbr',
+        modelName: 'IndividualBattle',
+        tableName: 'individualBattles',
+        comment: 'IndividualBattle',
         charset: 'utf8mb4',
         collate: 'utf8mb4_general_ci',
       });
     }
     static associate(db) {
 
-      db.Cbr.belongsToMany(db.User , {through : db.CbrEvent});
+      db.IndividualBattle.belongsToMany(db.User , {through : db.IndividualBattleEvent});
 
     }
   };

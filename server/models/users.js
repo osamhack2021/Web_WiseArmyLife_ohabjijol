@@ -31,6 +31,10 @@ module.exports = class User extends Sequelize.Model {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      dischargeDay: {
+        type: Sequelize.DATE,
+        allowNull: true,
+      },
     }, {
       sequelize,
       timestamps: false,
