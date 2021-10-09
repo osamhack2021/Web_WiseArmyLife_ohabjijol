@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import './ExeCurrent.css';
+import axios from 'axios';
 
 const ExeCurrent = () => {
 
@@ -7,14 +8,25 @@ const ExeCurrent = () => {
         borderBottom: "1px solid gray",
         width: "200px",
     }
-    const [date,setDate] = useState("")
+    const [getdate,setGetDate] = useState("")
+    const [dataList,setDataList] = useState([])
 
-    
+    const getData = (e)=>{
+        e.preventDefault()
+        axios.get(`/management/shooting/checkinfo?date=${getdate}`)
+        .then(res=>{
+            console.log(res.data.data.userinfo)
+            setDataList(res.data.data.userinfo)
+        })
+    }
     return (
         <>
         <div className = "Yentire">
             <h2 className="YpeopleCheck">  인원확인 +  </h2>
-            <input placeholder="YYYY-MM-DD" value={date} onChange={(e)=>{setDate(e.target.value)}}/>
+            <input placeholder="YYYY-MM-DD" value={getdate} onChange={(e)=>{setGetDate(e.target.value)}}/>
+            <button onClick={getData}>확인하기</button>
+
+
             <table className="YcurrentConfirm">
                 <thead>
                     <tr>
@@ -22,15 +34,17 @@ const ExeCurrent = () => {
                         <th style={tableStyle}>이름</th>
                     </tr>
                 </thead>
+
+
                 <tbody>
-                    <tr>
-                        <td style={tableStyle}>20-12345678</td>
-                        <td style={tableStyle}>홍길동</td>
-                    </tr>
-                    <tr>
-                        <td style={tableStyle}>20-0124816</td>
-                        <td style={tableStyle}>둘리</td>
-                    </tr>
+                    {dataList.map(data=>{
+                        return (
+                            <tr>
+                                <td style={tableStyle}>20-12345678</td>
+                                <td style={tableStyle}>홍길동</td>
+                            </tr>
+                        )
+                    })}
                 </tbody>            
                 </table>
 

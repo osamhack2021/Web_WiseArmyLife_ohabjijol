@@ -1,4 +1,5 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
+import axios from 'axios';
 import "./Current.css";
 
 
@@ -17,10 +18,18 @@ const Current = () => {
 
     const [data,setData] = useState([defalutDate])
 
+    useEffect(()=>{
+        axios.get('/assessment/shooting/result')
+        .then(res=>{
+            console.log(res.data)
+        })
+    })
+
     const hTwoStyle = {
         padding:"20px",
         margin:"20px",
     }
+
 
     return (
         <>
@@ -28,6 +37,7 @@ const Current = () => {
 
         <h2 style={hTwoStyle}>신청결과확인 +</h2>
         <input placeholder="2021-10"/>
+        <button>확인하기</button>
 
       <div className="Yresult">
           <span>2021.10.08</span>

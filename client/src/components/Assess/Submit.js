@@ -54,6 +54,7 @@ const Submit = (props) => {
         setInputDate(dateString)
     }
     const onSubmit = (e)=>{
+        e.preventDefault()
         const dateString = toDateString(inputs.date)
         console.log(dateString)
 
@@ -62,7 +63,8 @@ const Submit = (props) => {
             'date':dateString
         })
         .then(res=>{
-            console.log(res)
+            console.log(res.data.data)
+            alert(res.data.data.message)
         })
     }
     const toDateString = (godate)=>{
