@@ -6,6 +6,8 @@ const Current = () => {
     const hTwoStyle = {
         padding:"20px",
         margin:"20px",
+        fontSize: "30px",
+        fontFamily: "Nanum Square EB",
     }
 
    
@@ -15,7 +17,7 @@ const Current = () => {
         <>
         <div className="content">
 
-      <h2 style={hTwoStyle}>신청인원확인 +</h2>
+      <h2 style={hTwoStyle}>신청결과확인 +</h2>
 
 
       <div className="result">

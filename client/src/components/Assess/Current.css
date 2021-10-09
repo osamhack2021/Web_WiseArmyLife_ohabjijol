@@ -1,27 +1,30 @@
 .content{
-    background-color: #f7e4b8;
-    width: 69%;
     margin-left: 15%;
     margin-right: 15%;
-    border-radius: 10px;
     text-align:left;
     margin-bottom: 200px;
     padding-bottom: 100px;
-      
+    width: 1280px;
+    height: 510px;
+    border-radius: 50px;
+    background-color: #fff6e1;
+
 }
 
 .result{
-    width: 80%;
+    width: 373px;
+    height: 70px;
     text-align: center;
-    border-left: 2px solid black;
-    border-right: 2px solid black;
-    background-color: #e0c218;
-   display: grid;
-  grid-template-columns:1fr 1fr 1fr;
-  font-size: 25px;
-  font-family: 'Times New Roman', Times, serif;
-  margin-left: 10%;
-   margin-right: 10%;
-   padding:10px;
-   margin-bottom: 20px;
+    border-left: 1px solid #000000;
+    border-right: 1px solid #000000;
+    background-color:#ffe4a2;
+    display: grid;
+    grid-template-columns:373px 373px 373px;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding:10px;
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-family: "Nanum Square B";
+   
 }

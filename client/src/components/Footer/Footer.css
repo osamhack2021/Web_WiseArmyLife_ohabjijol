@@ -1,21 +1,24 @@
 
   .footerContainer {
-    background-color: #414141;
-    font-size: 18px;
+    background-color: rgb(65,65,65,255);
+    font-size: 25px;
+    color: #ffffff;
+    font-family: "Nanum Square B";
     list-style-type: none;
-    height: 60px;
-    color:white
+    height: 200px;
+    padding-top: 70px;
+
   }
   
   .footerTwo {
     max-width: 1920px;
     display: grid;
     display: inline-grid;
-    grid-template-columns: 200px 500px 200px 200px;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     text-align: center;
     align-content: center;
     width: 100%;
-    padding-right: 100px;
+    
     
   }
   
@@ -25,7 +28,7 @@
   }
   .footer2 {
     display: inline-block;
-    padding-left: 400px;
+    padding-left: 200px;
   }
   .footer3 {
     display: inline-block;

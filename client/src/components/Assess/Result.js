@@ -6,6 +6,8 @@ const Result = () => {
     const hTwoStyle = {
         padding:"20px",
         margin:"20px",
+        fontSize:"30px",
+        fontFamily:"Na:num Square EB",
     }
 
    const abcStyle={

@@ -5,15 +5,14 @@
 	text-align: center;
   margin-left: auto;
   margin-right: auto;
-  background-color: rgb(43, 226, 89);
+ background-color: rgb(113,219,129,255);
   padding-top: 20px;
 }
 .titleName{
-	width: 226px;
+	width: 300px;
 	height: 31px;
 	font-family: NanumSquareEB;
-	color: #000000;
-	font-size: 25px;
+  font-size: 30px;
 	font-weight: 400;
 	text-align: center;
   margin-top: 10px;
@@ -23,11 +22,13 @@
 .mainMenu {
   display: grid;
   grid-template-columns: 14% 14% 14% 14% 14% 14%;
+  background-color: rgb(113,219,129,255);
   text-align: center;
   font-size: 25px;
   padding-left: 14%;
   height: 70px;
-  background-color: rgb(43, 226, 89);
+  font-family: "Nanum Square B";
+
 }
 .text-link{
   text-decoration: none;

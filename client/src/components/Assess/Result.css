@@ -1,5 +1,5 @@
 .content{
-    background-color: #f7e4b8;
+    background-color: #fff6e1;
     width: 69%;
     margin-left: 15%;
     margin-right: 15%;
@@ -13,16 +13,16 @@
     width: 80%;
     text-align: center;
     
-    background-color: #e0c218;
+    background-color:#ffe4a2;
    display: grid;
-  grid-template-columns:1fr 1fr 1fr 100px;
+  grid-template-columns:330px 330px 330px 130px;
   font-size: 25px;
   font-family: 'Times New Roman', Times, serif;
-  margin-left: 10%;
-   margin-right: 10%;
-  
-   margin-bottom: 20px;
-}
+    margin-left: 10%;
+      margin-right: 10%;
+     margin-bottom: 20px;
+   height: 70px;
+    border: 1px solid #000000;}
 
 span.result{
     border-left: 2px solid black;
@@ -31,9 +31,10 @@ span.result{
 
 #abc{
     text-align: right;
-    font-size: 16px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin-left: auto;
     float: right;
     padding: 20px;
+    font-size: 25px;
+    color: #797979;
+    font-family: "Nanum Square EB";
 }
