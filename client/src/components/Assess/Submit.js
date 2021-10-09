@@ -64,7 +64,8 @@ const Submit = (props) => {
         })
         .then(res=>{
             console.log(res.data.data)
-            alert(res.data.data.message)
+            alert(res.data.data)
+            window.location.replace("/assess")
         })
     }
     const toDateString = (godate)=>{

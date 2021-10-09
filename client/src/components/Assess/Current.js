@@ -12,19 +12,22 @@ const defalutDate = [
     }
 ]
 
-const Current = () => {
+const Current = (props) => {
 
+    const {target} = props;
     // useEffect쓰기
 
     const [data,setData] = useState([defalutDate])
 
     useEffect(()=>{
-        axios.get('/assessment/shooting/result')
+        axios.get(`/assessment/result`)
         .then(res=>{
-            console.log(res.data)
-        })
+            const dataList = res.data.data;
+            console.log(dataList)
+            setData(dataList);
+            })
     })
-
+    
     const hTwoStyle = {
         padding:"20px",
         margin:"20px",
@@ -35,34 +38,21 @@ const Current = () => {
         <>
         <div className="Ycontent">
 
-        <h2 style={hTwoStyle}>신청결과확인 +</h2>
-        <input placeholder="2021-10"/>
-        <button>확인하기</button>
-
-      <div className="Yresult">
-          <span>2021.10.08</span>
-          <span>18:00~19:00</span>
-          <span>확인중</span>
-      </div>
-
-      <div className="Yresult">
-          <span>2021.10.07</span>
-          <span>13:00~15:00</span>
-          <span>승인</span>
-      </div>
-
-      <div className="Yresult">
-          <span>2021.10.09</span>
-          <span>13:00~14:00</span>
-          <span>미승인</span>
-      </div>
+            <h2 style={hTwoStyle}>신청결과확인 +</h2>
+            <input placeholder="2021-10"/>
+            <button>확인하기</button>
 
 
-
-
-
-
-      </div>
+            {data.map(res=>{
+                return(
+                    <div className="Yresult">
+                        <span>{res.date}</span>
+                        <span>{res.time}</span>
+                        <span>{res.expire}</span>
+                    </div>
+                )
+            })}
+        </div>
       </>
     );
 };

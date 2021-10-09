@@ -113,7 +113,7 @@ const Assess = () => {
                         <Link className="assessLink" to="/assess/result">평가결과확인 </Link>
                     </div>
                     <Switch>
-                        <Route path="/assess/current" component={Current}/>
+                        <Route path="/assess/current" render={()=><Current target={target} />}/>
                         <Route path="/assess/result" component={Result}/>
                         <Route path="/assess" render={ () => <Submit target={target} allEvents={allEvents} />}/>
                     </Switch>
