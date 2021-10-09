@@ -56,6 +56,7 @@ router.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
 router.route('/v/:postId')
     .get(isLoggedIn, async (req, res, next) => {
         try {
+            console.log('포스트 읽어짐');
             const currentPostId = req.params.postId;
             const currentPost = await Post.findOne({
                 where: { id: currentPostId },
@@ -89,6 +90,7 @@ router.route('/v/:postId')
     })
     .delete(isLoggedIn, async (req, res, next) => {
         try {
+            console.log('게시글 삭제');
             let currentPostId = req.params.postId;
             let currentPost = await Post.findOne({ where: { id: currentPostId } });
             if (currentPost.UserId === req.user.id) {
@@ -117,6 +119,7 @@ router.route('/v/:postId')
     })// 게시글 삭제
     .put(isLoggedIn, async (req, res, next) => {
         try {
+            console.log('게시글 수정');
             let currentPostId = req.params.postId;
             const postBody = req.body;
             let currentPost = await Post.findOne({ where: { id: currentPostId } })

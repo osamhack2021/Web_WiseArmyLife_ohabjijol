@@ -7,11 +7,10 @@ const { User, Post, Comment } = require('../../models');
 const PostRouter = require('./post');
 
 const router = express.Router();
-// router.get( )
-
 router.use('/post', isLoggedIn, PostRouter);
 router.get('/:pageIndex', isLoggedIn, async (req, res) => {
     try {
+        console.log('포럼 들어와짐');
         let page = Math.max(1, parseInt(res.locals.pageIndex));
         const limit = 10;
         let skip = (page - 1) * limit;
