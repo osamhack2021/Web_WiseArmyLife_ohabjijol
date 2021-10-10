@@ -11,16 +11,23 @@ import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import resourceTimeGridPlugin from "@fullcalendar/resource-timegrid";
 import { toDateString } from '../../Custom/toDateString';
+import ExeCurrent from './ExeCurrent'
 
 
 
 const ExeSubmit = (props) => {
 
     const {allEvents,onRangeChange} = props;
+    const [check,setCheck] = useState(false)
 
+    const [cur,setCur] = useState({
+        'target':"",
+        'date':""
+    })
 
     const onConsole = (e)=>{
         console.log(allEvents)
+        setCheck(true)
     }
 
     //신청인원확인
@@ -28,7 +35,11 @@ const ExeSubmit = (props) => {
         const date =toDateString(event.event._instance.range.start)
         const target = (event.event._def.title.split(" ")[0])
         alert(`${date} 신청인원확인하기`)
-        window.location.href = `/assess/exeCurrent?target=${target}&date=${date}`;
+        setCheck(true)
+        setCur({
+            target:target,
+            date:date
+        })
     }
 
     // 이벤트 작성
@@ -68,40 +79,51 @@ const ExeSubmit = (props) => {
                 }
             }
         }
-
-        
-       
+    }
+    const onOn = ()=>{
+        setCheck(true)
+    }
+    const onOff =()=>{
+        setCheck(false)
     }
 
     return (
-        <div className="assessBox">
-            <div className="bigCalendar">
-                <FullCalendar
-                    schedulerLicenseKey="GPL-My-Project-Is-Open-Source"
-                    defaultView="dayGridMonth"
-                    displayEventTime={true}
-                    header={{
-                        left: "prev,next today",
-                        center: "title",
-                        right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek"
-                    }}
-                    selectable={true}
-                    plugins={[
-                        dayGridPlugin,
-                        interactionPlugin,
-                        timeGridPlugin,
-                        resourceTimeGridPlugin
-                    ]}
-                    eventClick={eventClick}
-                    events={allEvents}
-                    select={onCalenderClick}
-                    eventLimit={3}
-                />
+        <div>
+            {check===false ?
+            <div className="assessBox">
+                <div className="bigCalendar">
+                    <FullCalendar
+                        schedulerLicenseKey="GPL-My-Project-Is-Open-Source"
+                        defaultView="dayGridMonth"
+                        displayEventTime={true}
+                        header={{
+                            left: "prev,next today",
+                            center: "title",
+                            right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek"
+                        }}
+                        selectable={true}
+                        plugins={[
+                            dayGridPlugin,
+                            interactionPlugin,
+                            timeGridPlugin,
+                            resourceTimeGridPlugin
+                        ]}
+                        eventClick={eventClick}
+                        events={allEvents}
+                        select={onCalenderClick}
+                        eventLimit={3}
+                    />
+                </div>
+                <button onClick={onOn}>콘솔</button>
             </div>
-            <button onClick={onConsole}>콘솔</button>
+            
+            :
+            <div>
+                <button onClick={onOff}>뒤로가기</button>
+                <ExeCurrent target={cur.target} date={cur.date}/>
+            </div>
+            }
         </div>
-        
-        
     );
 };
 

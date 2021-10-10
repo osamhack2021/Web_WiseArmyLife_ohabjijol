@@ -108,9 +108,9 @@ const Assess = () => {
             <div>
                 <Router>
                     <div className="assessLinkBox">
-                        <Link className="assessLink" to="/assess/exeSubmit">평가일정등록 </Link>
+                        {/*<Link className="assessLink" to="/assess/exeSubmit">평가일정등록 </Link>
                         <Link className="assessLink" to="/assess/exeCurrent">신청인원확인 </Link>
-                        <Link className="assessLink" to="/assess/exeResult">평가결과등록 </Link>
+                        <Link className="assessLink" to="/assess/exeResult">평가결과등록 </Link>*/}
                     </div>
 
                     <Switch>

@@ -1,6 +1,5 @@
 .titleBar{
-  max-width: 1920px;
-  width: 100%;
+  width: auto;
 	height: 70px;
 	text-align: center;
   margin-left: auto;
