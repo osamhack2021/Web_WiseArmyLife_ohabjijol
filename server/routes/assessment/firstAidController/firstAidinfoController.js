@@ -25,11 +25,7 @@ getFirstAidInfo = async (req, res) => {
         }
 
         const firstAiddata = await FirstAid.findAll({        
-<<<<<<< HEAD
-            attributes : ['date','expired','applicant_capacity','number_of_applicant'],
-=======
             attributes : ['date','time','expired','applicant_capacity','number_of_applicant'],
->>>>>>> 43224d935be73994ec3e5e9cccbfa5fad7c00274
             where : {
                 date : { [Op.gte] : thismonth , [Op.lt] : nextmonth},
             },
