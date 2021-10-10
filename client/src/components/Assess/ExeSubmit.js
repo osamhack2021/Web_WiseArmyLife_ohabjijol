@@ -29,6 +29,7 @@ const ExeSubmit = (props) => {
         const date =toDateString(event.event._instance.range.start)
         console.log(date)
         alert(`${date} 신청인원확인`)
+        window.location = '/assess/exeCurrent';
         // 인원확인창으로 보내기
     }
 
@@ -43,11 +44,12 @@ const ExeSubmit = (props) => {
             applicant_capacity:applicant_capacity,
             time:time
         }
+
         if(time !=="" && time !==null && applicant_capacity !== "" && applicant_capacity !==null){
             console.log(data)
             axios.post(`/management/${goTarget}/assessment`,data)
             .then(res=>{
-                
+
                 if(res.data.success===true){
                     alert('등록 성공')
                     window.location.replace("/assess")

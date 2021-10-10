@@ -37,7 +37,7 @@ getFirstAidInfo = async (req, res) => {
 
         const resobject = {
             success : true,
-            data : firstAiddata,
+            data : {target :"firstAid",data:firstAiddata},
 
         }
 

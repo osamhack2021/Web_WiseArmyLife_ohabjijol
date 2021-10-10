@@ -43,12 +43,13 @@ const Assess = () => {
             setIsExecutive(false)
         }
         async function getEvents() {
+            
             const res1 = await axios.get(`/assessment/shooting`)
             const res2 = await axios.get(`/assessment/cBR`)
             const res3 = await axios.get(`/assessment/firstAid`)
             const res4 = await axios.get(`/assessment/individualBattle`)
             const res5 = await axios.get(`/assessment/speciality`)
-            const res6 = await axios.get(`/assessment/strength`)
+            const res6 = await axios.get(`/assessment/strength`)            
 
             const getData = [
                 ...res1.data.data,
@@ -58,7 +59,6 @@ const Assess = () => {
                 ...res5.data.data,
                 ...res6.data.data
             ];
-
             const inDateList = getData.map( res=> {
                 return {
                     target : res.target,
@@ -72,7 +72,8 @@ const Assess = () => {
         }
         getEvents()
     },[])
-     
+
+
     const onRangeChange = async (e)=>{
         const year = e.start.getFullYear();
         const month = parseInt(('0' + (e.start.getMonth() + 1)).slice(-2))+parseInt(1);
@@ -103,7 +104,6 @@ const Assess = () => {
             }
         })
         setAllEvents([...inDateList])
-    
     }
 
     

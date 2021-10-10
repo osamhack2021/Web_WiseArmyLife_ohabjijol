@@ -1,11 +1,11 @@
-const {Shooting} = require('../../../models');
+const {CBR} = require('../../../models');
 
 const {Op} = require('sequelize');
 
 
 // 매일 yy시 사격정보 Expired 유무 파악후 db Update
 
-syncShootingAssessment = async () => {
+syncCBRAssessment = async () => {
 
     try{
     
@@ -19,7 +19,7 @@ syncShootingAssessment = async () => {
     
       var toChange = "Expired"
     
-      const aa = await Shooting.update({expired : "Expired",updatedAt : now1},
+      const aa = await CBR.update({expired : "Expired",updatedAt : now1},
       {where : {
           date : { [Op.lte] : today },
           [Op.not] :{expired: "Expired"}
@@ -34,4 +34,4 @@ syncShootingAssessment = async () => {
     }
     }
 
-    module.exports = syncShootingAssessment ;
+    module.exports = syncCBRAssessment ;

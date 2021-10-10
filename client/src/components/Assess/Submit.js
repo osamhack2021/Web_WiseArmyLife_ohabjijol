@@ -24,9 +24,6 @@ const localizer = dateFnsLocalizer({
     locales,
 });
 
-
-
-
 const Submit = (props) => {
 
     const {target,allEvents,onRangeChange} = props;
@@ -41,7 +38,7 @@ const Submit = (props) => {
 
         //setAllEvents([...allEvents,newEvent])
     
-    //
+    
     const onClick = (e)=>{
         const {date,title,applicantText,expired} = e
         setInputs({
@@ -53,11 +50,11 @@ const Submit = (props) => {
         const dateString = toDateString(date)
         setInputDate(dateString)
     }
+
     const onSubmit = (e)=>{
         e.preventDefault()
         const dateString = toDateString(inputs.date)
         console.log(dateString)
-
 
         axios.post(`/assessment/${target}/application`,{
             'date':dateString
@@ -69,7 +66,6 @@ const Submit = (props) => {
         })
     }
     const toDateString = (godate)=>{
-        
 
         const year = godate.getFullYear();
         const month = ('0' + (godate.getMonth() + 1)).slice(-2);
@@ -79,15 +75,6 @@ const Submit = (props) => {
 
         return dateString;
     }
-    function CustomDateHeader({ label, drilldownView, onDrillDown }) {
-        return (
-            <span>
-                <a  className='qqwe' href="#" onClick={onDrillDown}>
-                    {label}
-                </a>
-            </span>
-        )
-    }
     
     return (
         <div className="assessBox">
@@ -95,8 +82,8 @@ const Submit = (props) => {
                 <div className="assessText">응시 희망 날짜 및 시간</div>
             </div>
             <div className="bigCalendar">
-                <Calendar select components={{toolbar:CustomToolbar,month:{dateHeader:CustomDateHeader}}} onRangeChange={onRangeChange} onSelectEvent={onClick} localizer={localizer} events={allEvents} startAccessor="date" endAccessor="date" 
-                style={{ height: 500, margin: "50px"}}  views={['month']} />
+
+
             </div>
             <form className="assessForm">
                 <span>날짜: </span>
