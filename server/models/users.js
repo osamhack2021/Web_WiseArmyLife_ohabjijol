@@ -56,6 +56,7 @@ module.exports = class User extends Sequelize.Model {
     db.User.belongsToMany(db.CBR, {through : db.CBREvent});
     db.User.belongsToMany(db.Speciality, {through : db.SpecialityEvent});
     db.User.belongsToMany(db.IndividualBattle, {through : db.IndividualBattleEvent});
+    db.User.belongsToMany(db.Strength, {through : db.StrengthEvent});
      
 
   }

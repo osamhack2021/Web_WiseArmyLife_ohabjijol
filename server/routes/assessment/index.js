@@ -8,18 +8,17 @@ const FirstAidRouter = require('./firstAid');
 const IndividualBattleRouter = require('./individualBattle');
 const SpecialityRouter = require('./speciality');
 const StrengthRouter = require('./strength');
+const AllRouter = require('./All');
 
 
-//
-const resultCtrl = 1;
-
+router.use('/All',AllRouter)
 router.use('/shooting',ShootingRouter);
 router.use('/cBR',CBRRouter);
 router.use('/firstAid',FirstAidRouter);
 router.use('/individualBattle',IndividualBattleRouter);
 router.use('/speciality',SpecialityRouter);
 router.use('/strength',StrengthRouter);
-
+    
 
 
 router.route('/result')
