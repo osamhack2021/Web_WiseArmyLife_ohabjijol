@@ -3,7 +3,6 @@ import React,{useState} from 'react';
 import axios from 'axios';
 import './ss.css'
 import './Assess.css'
-import { Redirect ,useHistory} from 'react-router-dom';
 
 
 import FullCalendar from "@fullcalendar/react";
@@ -27,38 +26,51 @@ const ExeSubmit = (props) => {
     //신청인원확인
     const eventClick = (event)=>{
         const date =toDateString(event.event._instance.range.start)
-        console.log(date)
-        alert(`${date} 신청인원확인`)
-        window.location = '/assess/exeCurrent';
-        // 인원확인창으로 보내기
+        const target = (event.event._def.title.split(" ")[0])
+        alert(`${date} 신청인원확인하기`)
+        window.location.href = `/assess/exeCurrent?target=${target}&date=${date}`;
     }
 
     // 이벤트 작성
     const onCalenderClick = (e)=>{
         
-        const goTarget = prompt("종목 : ex) shooting")
-        const time = prompt("시간설정 :");
-        const applicant_capacity =prompt("인원설정 : (명)");
-        const data={
-            date:toDateString(e.start),
-            applicant_capacity:applicant_capacity,
-            time:time
-        }
+        let goTarget = prompt("종목 : shooting, cBR, firstAid, individualBattle, speciality, strength")
+        let intime = ""
+        let applicant_capacity = ""
 
-        if(time !=="" && time !==null && applicant_capacity !== "" && applicant_capacity !==null){
-            console.log(data)
-            axios.post(`/management/${goTarget}/assessment`,data)
-            .then(res=>{
+        if(goTarget !=="" && goTarget !==null){
+            intime = prompt("시간설정 :");
 
-                if(res.data.success===true){
-                    alert('등록 성공')
-                    window.location.replace("/assess")
-                }else{
-                    console.log(data)
-                    alert(`${res.data.data}`)
+            if(intime !=="" && intime !==null){
+                const time = goTarget+" " + intime
+                applicant_capacity =prompt("인원설정 : (명)");
+
+                if(applicant_capacity !=="" && applicant_capacity !==null){
+
+                    const data={
+                        date:toDateString(e.start),
+                        applicant_capacity:applicant_capacity,
+                        time:time
+                    }
+                    if(time !=="" && time !==null && applicant_capacity !== "" && applicant_capacity !==null){
+                        console.log(data)
+                        axios.post(`/management/${goTarget}/assessment`,data)
+                        .then(res=>{
+                            if(res.data.success===true){
+                                alert('등록 성공')
+                                window.location.replace("/assess")
+                            }else{
+                                console.log(res.data)
+                                alert(`${res.data.data.message}`)
+                            }
+                        })
+                    }
                 }
-            })
+            }
         }
+
+        
+       
     }
 
     return (

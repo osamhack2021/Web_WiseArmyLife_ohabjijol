@@ -11,14 +11,6 @@ import Result from './Result';
 import Submit from './Submit';
 
 
-const events = [
-    {
-        date: new Date(2021,9,7),
-        title: "13시~14시",
-        applicantText:"20/30",
-        expired:"Applying"
-    }
-];
 
 // 사격 화생방 구급법 각개 주특기 체력
 const targetList = [
@@ -33,7 +25,8 @@ const targetList = [
 const Assess = () => {
     //
     const [isExecutive,setIsExecutive] = useState(false)
-    const [allEvents, setAllEvents] = useState(events);
+    const [allEvents, setAllEvents] = useState([]);
+
 
     useEffect(() => {
         const Tf = sessionStorage.getItem('isExecutive')
@@ -59,20 +52,20 @@ const Assess = () => {
                 ...res5.data.data,
                 ...res6.data.data
             ];
+            console.log(getData)
             const inDateList = getData.map( res=> {
                 return {
-                    target : res.target,
                     date : new Date(res.date),
-                    title : res.target+" " +res.time+" "+res.number_of_applicant+"/"+res.applicant_capacity,
+                    title : res.time+" "+res.number_of_applicant+"/"+res.applicant_capacity,
                     expired : res.expired,
-                    allDay:true
+                    allDay:true,
+                    dd: res.date
                 }
             })
             setAllEvents([...inDateList])
         }
         getEvents()
     },[])
-
 
     const onRangeChange = async (e)=>{
         const year = e.start.getFullYear();

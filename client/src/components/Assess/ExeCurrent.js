@@ -1,8 +1,8 @@
-import React,{useState} from 'react';
+import React,{useEffect,useState} from 'react';
 import './ExeCurrent.css';
 import axios from 'axios';
 
-const ExeCurrent = () => {
+const ExeCurrent = (props) => {
 
     const tableStyle = {
         borderBottom: "1px solid gray",
@@ -16,17 +16,35 @@ const ExeCurrent = () => {
         axios.get(`/management/shooting/checkinfo?date=${getdate}`)
         .then(res=>{
             console.log(res.data.data)
-            console()
             setDataList(res.data.data)
         })
+    }
+
+    useEffect(()=>{
+        const search = (props.location.search)
+        const list = (search.split("&"))
+        const target = (list[0].split("=")[1])
+        const date = (list[1].split("=")[1])
+
+        async function get() {
+            const res = await axios.get(`/management/${target}/checkinfo?date=${date}`)
+            await setGetDate(res.data.data.userinfo)
+        }
+
+        get()
+        get()
+    })
+
+    const onConsole = ()=>{
+        console.log(dataList)
     }
     return (
         <>
         <div className = "Yentire">
+            <button onClick={onConsole}>콘솔</button>
             <h2 className="YpeopleCheck">  인원확인 +  </h2>
             <input placeholder="YYYY-MM-DD" value={getdate} onChange={(e)=>{setGetDate(e.target.value)}}/>
             <button onClick={getData}>확인하기</button>
-
 
             <table className="YcurrentConfirm">
                 <thead>

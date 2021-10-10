@@ -1,0 +1,36 @@
+.pageBox{
+    align-content: center;
+    text-align: center;
+    width: 1341px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(200, 255, 0);
+    border-radius: 30px;
+    padding-bottom: 100px;
+    padding-top: 50px;
+}
+
+.pageHr{
+    margin: 50px;
+    color: black;
+    border-color: black;
+}
+
+.pageHader1{
+    padding-right: 650px;
+    font-size: 30px;
+    color: #000000;
+    font-family: "Nanum Square EB";
+}
+.pageHader2{
+    padding-right: 150px;
+    font-size: 30px;
+    color: #000000;
+    font-family: "Nanum Square EB";
+}
+.pageHader3{
+    font-size: 30px;
+    color: #000000;
+    font-family: "Nanum Square EB";
+}
