@@ -37,7 +37,7 @@ getCBRInfo = async (req, res) => {
 
         const resobject = {
             success : true,
-            data : {target :"cBR",data:cBRdata},
+            data : cBRdata
 
         }
 

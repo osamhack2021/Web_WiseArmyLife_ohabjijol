@@ -37,7 +37,7 @@ getSpecialityInfo = async (req, res) => {
 
         const resobject = {
             success : true,
-            data : {target :"speciality",data:specialitydata},
+            data : specialitydata
 
         }
 
