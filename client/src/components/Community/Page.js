@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link, Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import Post from './Post';
 import Community from './Community';
+import './Page.css'
 
 const Page = ({match}) => {
 
@@ -73,25 +74,34 @@ const Page = ({match}) => {
 
     return (
         <div>
+            
             <button onClick={onConsole}>콘솔</button>
-            {post === false ? <form>
-                <input name="title" value={title} onChange={onChange} placeholder="제목" />
-                <input name="content" value={content} onChange={onChange} placeholder="내용" />
-                <button onClick={onPost}>글쓰기</button>    
-            </form>:null}
-            {post===false ? <div>
+            {post===false ? 
+
+            <div>
                 {data.maxPage !==0 ?
                     rows.map(res=>{
                         console.log(res)
                         return (
-                            <div>
+                            <div className="pageBox">
+                                <hr className='pageHr'/>
+                                <div>
+                                    <span className='pageHader1'>제목</span>
+                                    <span className='pageHader2'>날짜</span>
+                                    <span className='pageHader3'>작성자</span>
+                                </div>
                                 <div onClick={gogoPost}> 글!! id값 : {res.id}</div>
                                 <button onClick={()=> onRemove(res.id)}>X</button>
                             </div>
                         )
                     })
                 :<div>없음</div>}
-            </div>:
+            </div>
+            
+
+            :
+
+
             <div>
                 <div onClick={back}>뒤로가기</div>
                 <Post />
