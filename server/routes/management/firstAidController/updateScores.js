@@ -6,8 +6,8 @@ updateScores = async (req,res)=>{
 
     try{
 
-        req.body.date = '2021-10-21';
-        req.body.scoreAndId = [{UserId:1,score:70},{UserId:2,score :30}];
+        // req.body.date = '2021-10-21';
+        // req.body.scoreAndId = [{UserId:1,score:70},{UserId:2,score :30}];
         
 
 

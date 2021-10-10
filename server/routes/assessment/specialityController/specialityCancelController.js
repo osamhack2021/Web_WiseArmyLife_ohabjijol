@@ -1,4 +1,4 @@
-const {Cbr ,CbrEvent} = require('../../../models');
+const {Speciality ,SpecialityEvent} = require('../../../models');
 const db = require('../../../models');
 
 //사격지원의 D 
@@ -18,19 +18,19 @@ CancelApply = async (req,res)=>{ //front구현후 delete로 받을것
     }
 
 
-    const findCbr = await Cbr.findOne({
+    const findSpeciality = await Speciality.findOne({
         where : {date : req.params.date},
       attributes : ['id','expired','number_of_applicant']  
     });
 
-    const findeventCbr = await CbrEvent.findOne({
-        where : {UserId:req.user.id, CbrId : findCbr.dataValues.id}
+    const findeventSpeciality = await SpecialityEvent.findOne({
+        where : {UserId:req.user.id, SpecialityId : findSpeciality.dataValues.id}
     });
 
 
-    if(findeventCbr!==null){
+    if(findeventSpeciality!==null){
 
-        if(findCbr.dataValues.expired==="Expired"){
+        if(findSpeciality.dataValues.expired==="Expired"){
             
             senderror = {
                 success : false,
@@ -39,13 +39,13 @@ CancelApply = async (req,res)=>{ //front구현후 delete로 받을것
             return res.send(senderror);
         }
         else{
-            await CbrEvent.destroy({where:{UserId:req.user.id,
-                CbrId:findCbr.dataValues.id}});
+            await SpecialityEvent.destroy({where:{UserId:req.user.id,
+                SpecialityId:findSpeciality.dataValues.id}});
             
           
-            await Cbr.update({ number_of_applicant : db.sequelize.literal('number_of_applicant - 1') , expired : "Applying" }, {
+            await Speciality.update({ number_of_applicant : db.sequelize.literal('number_of_applicant - 1') , expired : "Applying" }, {
                 where: {
-                    id: findCbr.dataValues.id
+                    id: findSpeciality.dataValues.id
                 }
                 
             });

@@ -62,10 +62,12 @@ router.post('/login', isNotLoggedIn, async (req, res, next) => {
             cachedUser = user;
             // return res.redirect('/');
             console.log('로그인 성공');
+
             const data = {
                 isExecutive: req.user.executive,
             };
             return res.json({ success: true, data });
+
         });
     })(req, res, next);
 });

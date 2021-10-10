@@ -1,12 +1,12 @@
-const { Cbr } = require('../../../models');
+const { Speciality } = require('../../../models');
 const { Op } = require('sequelize');
 const applyController = require('../monthCheckController');
 
 
-// /assessment/cbr Get으로 요청시 로그인된 유저정보를 응답해줌 또한 현재 월의 사격 정보를 응답해줌. 년도와 월은 쿼리스트링으로 받을거임
-// 쿼리스트링이 없이 Get요청시 디폴드 값으로 현재 년월이 들어감 ex /assessment/cbr?year=2021&month=3&limit=5
+// /assessment/speciality Get으로 요청시 로그인된 유저정보를 응답해줌 또한 현재 월의 사격 정보를 응답해줌. 년도와 월은 쿼리스트링으로 받을거임
+// 쿼리스트링이 없이 Get요청시 디폴드 값으로 현재 년월이 들어감 ex /assessment/speciality?year=2021&month=3&limit=5
 
-getCbrInfo = async (req, res) => {
+getSpecialityInfo = async (req, res) => {
 
 
 
@@ -24,8 +24,8 @@ getCbrInfo = async (req, res) => {
             req.query.limit = null;
         }
 
-        const cbrdata = await Cbr.findAll({        
-            attributes : ['date','expired','applicant_capacity','number_of_applicant'],
+        const specialitydata = await Speciality.findAll({        
+            attributes : ['date','time','expired','applicant_capacity','number_of_applicant'],
             where : {
                 date : { [Op.gte] : thismonth , [Op.lt] : nextmonth},
             },
@@ -37,7 +37,7 @@ getCbrInfo = async (req, res) => {
 
         const resobject = {
             success : true,
-            data : cbrdata,
+            data : specialitydata
 
         }
 
@@ -59,4 +59,4 @@ getCbrInfo = async (req, res) => {
 
 }
 
-module.exports = getCbrInfo;
+module.exports = getSpecialityInfo;

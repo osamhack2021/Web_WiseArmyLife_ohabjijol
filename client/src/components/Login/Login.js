@@ -31,9 +31,11 @@ function Login() {
                 alert('로그인 실패')
             }else if(res.data.success === true) {
                 // id, pw 모두 일치 userId = userId1, msg = undefined
-                console.log('======================','로그인 성공')
                 sessionStorage.setItem('user_id', inputId)
-                const exe = res.data.data.isExecutive
+                console.log(res.data.data)
+
+                //const exe = res.data.data.isExecutive
+                const exe = false
                 if (exe === 0 ){
                     sessionStorage.setItem('isExecutive', false)
                 }else{

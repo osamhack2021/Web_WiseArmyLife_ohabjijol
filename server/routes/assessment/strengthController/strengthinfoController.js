@@ -1,12 +1,12 @@
-const { IndividualBattle } = require('../../../models');
+const { Strength } = require('../../../models');
 const { Op } = require('sequelize');
 const applyController = require('../monthCheckController');
 
 
-// /assessment/individualBattle Get으로 요청시 로그인된 유저정보를 응답해줌 또한 현재 월의 사격 정보를 응답해줌. 년도와 월은 쿼리스트링으로 받을거임
-// 쿼리스트링이 없이 Get요청시 디폴드 값으로 현재 년월이 들어감 ex /assessment/individualBattle?year=2021&month=3&limit=5
+// /assessment/strength Get으로 요청시 로그인된 유저정보를 응답해줌 또한 현재 월의 사격 정보를 응답해줌. 년도와 월은 쿼리스트링으로 받을거임
+// 쿼리스트링이 없이 Get요청시 디폴드 값으로 현재 년월이 들어감 ex /assessment/strength?year=2021&month=3&limit=5
 
-getIndividualBattleInfo = async (req, res) => {
+getStrengthInfo = async (req, res) => {
 
 
 
@@ -24,8 +24,8 @@ getIndividualBattleInfo = async (req, res) => {
             req.query.limit = null;
         }
 
-        const individualBattledata = await IndividualBattle.findAll({        
-            attributes : ['date','expired','applicant_capacity','number_of_applicant'],
+        const strengthdata = await Strength.findAll({        
+            attributes : ['date','time','expired','applicant_capacity','number_of_applicant'],
             where : {
                 date : { [Op.gte] : thismonth , [Op.lt] : nextmonth},
             },
@@ -37,8 +37,7 @@ getIndividualBattleInfo = async (req, res) => {
 
         const resobject = {
             success : true,
-            data : individualBattledata,
-
+            data : strengthdata
         }
 
         return res.json(resobject); // json 형식으로 원하는 달 사격데이터 전송      
@@ -59,4 +58,4 @@ getIndividualBattleInfo = async (req, res) => {
 
 }
 
-module.exports = getIndividualBattleInfo;
+module.exports = getStrengthInfo;

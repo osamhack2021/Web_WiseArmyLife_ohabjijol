@@ -49,19 +49,21 @@ const Auth = () => {
         const data = {
             'militaryNumber':user_id,
             'name':user_name,
-            'password' :user_pw,
+            'password' :pw1,
             'position' :position,
             'isExecutive':isExecutive
         }
+        console.log(data)
         axios.post('/auth/join',data)
         .then( response => {
             console.log(data);
             if(response.data.success===true){
+                alert('가입성공')
                 document.location.href = '/'
-                
             }else{
-                console.log('가입실패');
-            }
+                alert('가입실패')
+        }
+        
     })  
     }
 
