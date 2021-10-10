@@ -36,7 +36,8 @@ const ExeSubmit = (props) => {
     const onCalenderClick = (e)=>{
         
         const goTarget = prompt("종목 : ex) shooting")
-        const time = prompt("시간설정 :");
+        const intime = prompt("시간설정 :");
+        const time = goTarget+" " + intime
         const applicant_capacity =prompt("인원설정 : (명)");
         const data={
             date:toDateString(e.start),
