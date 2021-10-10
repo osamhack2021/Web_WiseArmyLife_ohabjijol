@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from 'react';
+import React,{useEffect,useState, Component} from 'react';
 import axios from 'axios';
 import './ss.css'
 import './Assess.css'
@@ -12,7 +12,6 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-
 const locales = {
     "en-US": require("date-fns/locale/en-US"),
 };
@@ -24,12 +23,52 @@ const localizer = dateFnsLocalizer({
     locales,
 });
 
+const CustomToolbar = (props)=>{
 
+    const [month,setMonth] = useState(0)
+
+    useEffect(()=>{
+        setMonth(toMonth(props.date))
+    })
+
+    const toMonth = (godate)=>{
+        const year = godate.getFullYear();
+        const month = ('0' + (godate.getMonth() + 1)).slice(-2);
+        const day = ('0' + godate.getDate()).slice(-2);
+
+        const dateString = month
+
+        return dateString;
+    }
+    
+    const change = (e)=>{
+        const str = toMonth(props.date)
+        console.log(str)
+      }
+    const navigate = action => {
+        console.log(action);
+        
+        props.onNavigate(action)
+    }
+
+    return (
+      <div className='rbc-toolbar'>
+        <span className="rbc-btn-group">
+          <button className="rbc=toolbar-side" type="button" onClick={() => navigate('PREV')}>◀</button>
+          <span className="rbc-toolbar-label">{month}</span>
+          <button type="button" onClick={() => navigate('NEXT')}>▶</button>
+          
+        </span>
+      </div>
+    );
+    
+  
+  }
 
 
 const Submit = (props) => {
 
-    const {target,allEvents} = props;
+    const {target,allEvents,onRangeChange} = props;
     
     const [inputs,setInputs] = useState({
         date:null,
@@ -55,10 +94,17 @@ const Submit = (props) => {
     }
     const onSubmit = (e)=>{
         e.preventDefault()
-        const dateString = {date :toDateString(inputs.date)}
-        axios.post(`/assessment/${target}/application`,dateString)
+        const dateString = toDateString(inputs.date)
+        console.log(dateString)
+
+
+        axios.post(`/assessment/${target}/application`,{
+            'date':dateString
+        })
         .then(res=>{
-            console.log(res)
+            console.log(res.data.data)
+            alert(res.data.data)
+            window.location.replace("/assess")
         })
     }
     const toDateString = (godate)=>{
@@ -79,7 +125,7 @@ const Submit = (props) => {
                 <div className="assessText">응시 희망 날짜 및 시간</div>
             </div>
             <div className="bigCalendar">
-                <Calendar onSelectEvent={onClick} localizer={localizer} events={allEvents} startAccessor="date" endAccessor="date" 
+                <Calendar components={{toolbar:CustomToolbar}} onRangeChange={onRangeChange} onSelectEvent={onClick} localizer={localizer} events={allEvents} startAccessor="date" endAccessor="date" 
                 style={{ height: 500, margin: "50px"}}  views={['month']} />
             </div>
             <form className="assessForm">
