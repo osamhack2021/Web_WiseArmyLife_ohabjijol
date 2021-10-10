@@ -37,8 +37,7 @@ getStrengthInfo = async (req, res) => {
 
         const resobject = {
             success : true,
-            data : strengthdata,
-
+            data : strengthdata
         }
 
         return res.json(resobject); // json 형식으로 원하는 달 사격데이터 전송      

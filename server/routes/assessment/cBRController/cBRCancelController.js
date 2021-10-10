@@ -1,4 +1,4 @@
-const {Shooting ,ShootingEvent} = require('../../../models');
+const {CBR ,CBREvent} = require('../../../models');
 const db = require('../../../models');
 
 //사격지원의 D 
@@ -18,19 +18,19 @@ CancelApply = async (req,res)=>{ //front구현후 delete로 받을것
     }
 
 
-    const findShooting = await Shooting.findOne({
+    const findCBR = await CBR.findOne({
         where : {date : req.params.date},
       attributes : ['id','expired','number_of_applicant']  
     });
 
-    const findeventShooting = await ShootingEvent.findOne({
-        where : {UserId:req.user.id, ShootingId : findShooting.dataValues.id}
+    const findeventCBR = await CBREvent.findOne({
+        where : {UserId:req.user.id, CBRId : findCBR.dataValues.id}
     });
 
 
-    if(findeventShooting!==null){
+    if(findeventCBR!==null){
 
-        if(findShooting.dataValues.expired==="Expired"){
+        if(findCBR.dataValues.expired==="Expired"){
             
             senderror = {
                 success : false,
@@ -39,13 +39,13 @@ CancelApply = async (req,res)=>{ //front구현후 delete로 받을것
             return res.send(senderror);
         }
         else{
-            await ShootingEvent.destroy({where:{UserId:req.user.id,
-                ShootingId:findShooting.dataValues.id}});
+            await CBREvent.destroy({where:{UserId:req.user.id,
+                CBRId:findCBR.dataValues.id}});
             
           
-            await Shooting.update({ number_of_applicant : db.sequelize.literal('number_of_applicant - 1') , expired : "Applying" }, {
+            await CBR.update({ number_of_applicant : db.sequelize.literal('number_of_applicant - 1') , expired : "Applying" }, {
                 where: {
-                    id: findShooting.dataValues.id
+                    id: findCBR.dataValues.id
                 }
                 
             });
