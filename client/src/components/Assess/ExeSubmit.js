@@ -115,6 +115,7 @@ const ExeSubmit = (props) => {
     }
     const on = (e)=>{
         e.preventDefault()
+        const string = month+e.target.name
         console.log(e.target.name)
     }
     return (
