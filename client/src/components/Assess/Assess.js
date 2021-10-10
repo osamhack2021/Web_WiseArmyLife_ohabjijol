@@ -41,10 +41,11 @@ const Assess = () => {
             const getData = res.data.data;
             const inDateList = getData.map( res=> {
                 return {
-                    date : new Date(res.date),
+                    date : new Date(getData),
                     title : res.time,
                     applicantText : `${res.number_of_applicant}/${res.applicant_capacity}`,
-                    expired : res.expired
+                    expired : res.expired,
+                    allDay:true
                 }
             })
             setAllEvents([...inDateList])

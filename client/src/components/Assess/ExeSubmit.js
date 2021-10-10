@@ -15,6 +15,52 @@ import './Assess.css'
 import { Redirect ,useHistory} from 'react-router-dom';
 import { CustomToolbar,CustomDateHeader } from './CustomCal';
 
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import resourceTimeGridPlugin from "@fullcalendar/resource-timegrid";
+
+const defaultEvents = [
+    {
+        title: "각개전투 14:00 1/30",
+        date: new Date("2021-10-21"),
+        allDay:true,
+        day : new Date("2021-10-21")
+    },
+    {
+      title: "event 2",
+      start: "2019-12-01",
+      end: "2019-12-05",
+      allDay: true,
+      HostName: "William"
+    },
+    {
+      title: "event 3",
+      start: "2019-12-05",
+      end: "2019-12-07",
+      allDay: true
+    },
+    {
+      title: "event 4",
+      start: "2019-12-05",
+      end: "2019-12-07",
+      allDay: true
+    },
+    {
+      title: "event 5",
+      start: "2019-12-05",
+      end: "2019-12-07",
+      allDay: true
+    },
+    {
+      title: "event 6",
+      start: "2019-12-05",
+      end: "2019-12-07",
+      allDay: true
+    }
+  ]
+
 const locales = {
     "en-US": require("date-fns/locale/en-US"),
 };
@@ -34,14 +80,14 @@ const ExeSubmit = (props) => {
 
     const [newPost,setNewPost] = useState({
         date:null,
-        aplicant_capacity:null,
+        applicant_capacity:null,
         time:null
     })
     const [inputDate,setInputDate]= useState(null)
     const [delDate,setDelDate] = useState("")
     const [applicantText,setApplicantText] = useState("")
     const onConsole = (e)=>{
-        console.log(target)
+        console.log(allEvents)
     }
     const onChange = (e)=>{
         const {name,value} = e.target;
@@ -50,36 +96,43 @@ const ExeSubmit = (props) => {
             [name]:value,
         })
     }
-    const goPost = (e)=>{
-        e.preventDefault()
-        const dateString =toDateString(newPost.date)
-        const data={
-            date:dateString,
-            aplicant_capacity:newPost.aplicant_capacity,
-            time:newPost.time
-        }
-
-        axios.post(`/management/${target}/assessment`,data)
-        .then(res=>{
-            if(res.data.success===true){
-                alert('등록 성공')
-                window.location.replace("/assess")
-            }else{
-                alert(`${res.data.data}`)
-            }
-        })
+    const eventClick = (event)=>{
+        const date =toDateString(event.event._instance.range.start)
+        console.log(date)
+        alert(`${date} 신청인원확인`)
+        // 인원확인창으로 보내기
     }
     const onCalenderClick = (e)=>{
         setNewPost({
             ...newPost,
-            date:e
+            date:e.start
         })
-        
-        setInputDate(toDateString(e))
-    }
-    const toDateString = (godate)=>{
+        setInputDate(toDateString(e.start))
+        const goTarget = prompt("종목 : ex) shooting")
+        const time = prompt("시간설정 :");
+        const applicant_capacity =prompt("인원설정 : (명)");
+
+        const data={
+            date:inputDate,
+            applicant_capacity:applicant_capacity,
+            time:time
+        }
+
+        if(time !=="" && time !==null && applicant_capacity !== "" && applicant_capacity !==null){
+            axios.post(`/management/${goTarget}/assessment`,data)
+            .then(res=>{
+                if(res.data.success===true){
+                    alert('등록 성공')
+                    window.location.replace("/assess")
+                }else{
+                    alert(`${res.data.data}`)
+                }
+            })
+        }
         
 
+    }
+    const toDateString = (godate)=>{
         const year = godate.getFullYear();
         const month = ('0' + (godate.getMonth() + 1)).slice(-2);
         const day = ('0' + godate.getDate()).slice(-2);
@@ -104,41 +157,31 @@ const ExeSubmit = (props) => {
             }
         })
     }
-    function CustomDateHeader({ label, drilldownView, onDrillDown }) {
-        return (
-            <span>
-                <a name={label} className='qqwe' href="#" onClick={on}>
-                    {label}
-                </a>
-            </span>
-        )
-    }
-    const on = (e)=>{
-        e.preventDefault()
-        const string = month+e.target.name
-        console.log(e.target.name)
-    }
     return (
         <div className="assessBox">
             <div className="bigCalendar">
-            <Calendar components={{toolbar:CustomToolbar,month:{dateHeader:CustomDateHeader}}}
-             onRangeChange={onRangeChange} localizer={localizer}
-              events={allEvents} startAccessor="date" endAccessor="date" 
-                style={{ height: 500, margin: "50px"}}  views={['month']} />
+                <FullCalendar
+                    schedulerLicenseKey="GPL-My-Project-Is-Open-Source"
+                    defaultView="dayGridMonth"
+                    displayEventTime={true}
+                    header={{
+                    left: "prev,next today",
+                    center: "title",
+                    right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek"
+                    }}
+                    selectable={true}
+                    plugins={[
+                    dayGridPlugin,
+                    interactionPlugin,
+                    timeGridPlugin,
+                    resourceTimeGridPlugin
+                    ]}
+                    eventClick={eventClick}
+                    events={defaultEvents}
+                    select={onCalenderClick}
+                    eventLimit={3}
+                />
             </div>
-            <button onClick={onConsole}>콘솔</button>
-
-            <form>
-                <input placeholder="date" name="date" value={inputDate} onChange={onChange}/>
-                <input placeholder="aplicant_capacity" name="aplicant_capacity" value={newPost.aplicant_capacity} onChange={onChange}/>
-                <input placeholder="time" name="time" value={newPost.time} onChange={onChange}/>
-                <button onClick={goPost}>간부 등록</button>
-            </form>
-            <form>
-                <input placeholder='applicantText' value={applicantText} />
-                <input placeholder='delete date' value={delDate} />
-                <button onClick={onRemove}>삭제하기</button>
-            </form>
         </div>
         
         
