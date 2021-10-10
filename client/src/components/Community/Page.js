@@ -74,11 +74,11 @@ const Page = ({match}) => {
     return (
         <div>
             <button onClick={onConsole}>콘솔</button>
-            <form>
+            {post === false ? <form>
                 <input name="title" value={title} onChange={onChange} placeholder="제목" />
                 <input name="content" value={content} onChange={onChange} placeholder="내용" />
                 <button onClick={onPost}>글쓰기</button>    
-            </form>
+            </form>:null}
             {post===false ? <div>
                 {data.maxPage !==0 ?
                     rows.map(res=>{
