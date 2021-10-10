@@ -48,10 +48,10 @@ const Submit = (props) => {
             .then(res=>{
                 console.log(res.data)
                 if(res.data.success === 'true'){
-                    alert(res.data.data)
+                    alert('신청완료')
                     window.location.replace("/assess")
                 }else{
-                    alert(`${res.data.data.message}`)
+                    alert(`${res.data.data}`)
                 }
         }).catch(()=>{
             alert('문자열 오류')

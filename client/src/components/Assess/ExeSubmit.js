@@ -26,15 +26,15 @@ const ExeSubmit = (props) => {
     //신청인원확인
     const eventClick = (event)=>{
         const date =toDateString(event.event._instance.range.start)
-        console.log(date)
-        alert(`${date} 신청인원확인`)
-        window.location.href = '/assess/exeCurrent?';
+        const target = (event.event._def.title.split(" ")[0])
+        alert(`${date} 신청인원확인하기`)
+        window.location.href = `/assess/exeCurrent?target=${target}&date=${date}`;
     }
 
     // 이벤트 작성
     const onCalenderClick = (e)=>{
         
-        let goTarget = prompt("종목(select 1) : shooting, cBR, firstAid, individualBattle, speciality, strength")
+        let goTarget = prompt("종목 : shooting, cBR, firstAid, individualBattle, speciality, strength")
         let intime = ""
         let applicant_capacity = ""
 
@@ -56,7 +56,6 @@ const ExeSubmit = (props) => {
                         console.log(data)
                         axios.post(`/management/${goTarget}/assessment`,data)
                         .then(res=>{
-                            
                             if(res.data.success===true){
                                 alert('등록 성공')
                                 window.location.replace("/assess")
