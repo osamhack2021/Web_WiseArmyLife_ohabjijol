@@ -49,7 +49,7 @@ const Auth = () => {
         const data = {
             'militaryNumber':user_id,
             'name':user_name,
-            'password' :user_pw,
+            'password' :pw1,
             'position' :position,
             'isExecutive':isExecutive
         }
