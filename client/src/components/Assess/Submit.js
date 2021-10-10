@@ -11,6 +11,7 @@ import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { CustomToolbar } from './CustomCal';
 
 const locales = {
     "en-US": require("date-fns/locale/en-US"),
@@ -23,47 +24,7 @@ const localizer = dateFnsLocalizer({
     locales,
 });
 
-const CustomToolbar = (props)=>{
 
-    const [month,setMonth] = useState(0)
-
-    useEffect(()=>{
-        setMonth(toMonth(props.date))
-    })
-
-    const toMonth = (godate)=>{
-        const year = godate.getFullYear();
-        const month = ('0' + (godate.getMonth() + 1)).slice(-2);
-        const day = ('0' + godate.getDate()).slice(-2);
-
-        const dateString = month
-
-        return dateString;
-    }
-    
-    const change = (e)=>{
-        const str = toMonth(props.date)
-        console.log(str)
-      }
-    const navigate = action => {
-        console.log(action);
-        
-        props.onNavigate(action)
-    }
-
-    return (
-      <div className='rbc-toolbar'>
-        <span className="rbc-btn-group">
-          <button className="rbc=toolbar-side" type="button" onClick={() => navigate('PREV')}>◀</button>
-          <span className="rbc-toolbar-label">{month}</span>
-          <button type="button" onClick={() => navigate('NEXT')}>▶</button>
-          
-        </span>
-      </div>
-    );
-    
-  
-  }
 
 
 const Submit = (props) => {
@@ -118,14 +79,23 @@ const Submit = (props) => {
 
         return dateString;
     }
- 
+    function CustomDateHeader({ label, drilldownView, onDrillDown }) {
+        return (
+            <span>
+                <a  className='qqwe' href="#" onClick={onDrillDown}>
+                    {label}
+                </a>
+            </span>
+        )
+    }
+    
     return (
         <div className="assessBox">
             <div className="assessTextBox">
                 <div className="assessText">응시 희망 날짜 및 시간</div>
             </div>
             <div className="bigCalendar">
-                <Calendar components={{toolbar:CustomToolbar}} onRangeChange={onRangeChange} onSelectEvent={onClick} localizer={localizer} events={allEvents} startAccessor="date" endAccessor="date" 
+                <Calendar select components={{toolbar:CustomToolbar,month:{dateHeader:CustomDateHeader}}} onRangeChange={onRangeChange} onSelectEvent={onClick} localizer={localizer} events={allEvents} startAccessor="date" endAccessor="date" 
                 style={{ height: 500, margin: "50px"}}  views={['month']} />
             </div>
             <form className="assessForm">

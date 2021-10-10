@@ -13,6 +13,7 @@ import axios from 'axios';
 import './ss.css'
 import './Assess.css'
 import { Redirect ,useHistory} from 'react-router-dom';
+import { CustomToolbar,CustomDateHeader } from './CustomCal';
 
 const locales = {
     "en-US": require("date-fns/locale/en-US"),
@@ -103,10 +104,25 @@ const ExeSubmit = (props) => {
             }
         })
     }
+    function CustomDateHeader({ label, drilldownView, onDrillDown }) {
+        return (
+            <span>
+                <a name={label} className='qqwe' href="#" onClick={on}>
+                    {label}
+                </a>
+            </span>
+        )
+    }
+    const on = (e)=>{
+        e.preventDefault()
+        console.log(e.target.name)
+    }
     return (
         <div className="assessBox">
             <div className="bigCalendar">
-                <Calendar onRangeChange={onRangeChange} onSelectEvent={selectCal} onDrillDown={onCalenderClick} localizer={localizer} events={allEvents} startAccessor="date" endAccessor="date" 
+            <Calendar components={{toolbar:CustomToolbar,month:{dateHeader:CustomDateHeader}}}
+             onRangeChange={onRangeChange} localizer={localizer}
+              events={allEvents} startAccessor="date" endAccessor="date" 
                 style={{ height: 500, margin: "50px"}}  views={['month']} />
             </div>
             <button onClick={onConsole}>콘솔</button>
