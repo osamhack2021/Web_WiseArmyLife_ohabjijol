@@ -37,7 +37,7 @@ getIndividualBattleInfo = async (req, res) => {
 
         const resobject = {
             success : true,
-            data : individualBattledata,
+            data : {target :"individual",data:individualBattledata},
 
         }
 

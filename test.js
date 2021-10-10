@@ -1,8 +1,32 @@
+let postshooting = [];      
+        const user = User.findOne({
+            include : [{
+                model : Shooting,
+                attributes : ['date','time','expired']
+            }],
+            where:{id : req.user.id},
+            attributes : ['id'],
 
-let reg = RegExp(/^(19|20)\d{2}-((01|0[3-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])|(02)-(0[1-9]|1[0-9]|2[0-9]))$/)
+        }).then((user1)=>{
+            
+            if(user1.dataValues.Shootings.length!==0){ // 신청한 사격정보가 있을시
 
+                user1.dataValues.Shootings.forEach(element => {
+                    post.push({
+                        date : element.date,
+                        expired : element.expired,
+                        time : element.time,
+                        score : element.ShootingEvent.score 
+                    })
+                });
+                
+                sendsuccess = {
+                    target : 'shooting',
+                    data : post,
+                }
 
-let a = new Date();
-
-let b = new Date('2021-10-0323');
-console.log(reg.test('2020-12-28'))
+                }
+               else{                            // 없을시
+            
+                }
+        });
