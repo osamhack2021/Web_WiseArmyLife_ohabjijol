@@ -25,7 +25,9 @@ const ExeCurrent = (props) => {
         <>
         <div className = "Yentire">
             <button onClick={onConsole}>콘솔</button>
-            <h2 className="YpeopleCheck">  인원확인 +  </h2>
+            <h2 className="YpeopleCheck">  {target}  </h2>
+            <h2 >  {date}  </h2>
+
 
             <table className="YcurrentConfirm">
                 <thead>
