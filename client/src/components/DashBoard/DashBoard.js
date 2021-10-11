@@ -1,7 +1,14 @@
 import React from 'react';
-import imgA from './Error/404.jpg';
+import './DashBoard.css';
+import imgA from './Error.png';
 
-const Error = () => {
+const DashBoard = () => {
+
+    const imgStyle = {
+        marginTop:"200px"
+    }
+
+
 
     const hTwoStyle = {
         fontSize: "40px",
@@ -26,7 +33,7 @@ const Error = () => {
 
      <div id="one">
 
-       <img src= {require('./Error/404.jpg')} width='250px' height = '260px' alt='error'/>
+       <img src = {imgA} alt='Error' style ={imgStyle} />
 
         <h2 style={hTwoStyle}>요청하신 페이지를 찾을 수 없습니다.</h2>
 
@@ -48,4 +55,4 @@ const Error = () => {
 
     );
 };
-export default Error;
+export default DashBoard;

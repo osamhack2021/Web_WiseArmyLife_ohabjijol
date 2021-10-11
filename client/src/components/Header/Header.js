@@ -10,7 +10,7 @@ import AuthRoute from "../../Custom/AuthRoute";
 import PublicRoute from "../../Custom/PublicRoute";
 import Letter from "../Letter/Letter";
 import Auth from '../Login/Auth';
-import DashBoard from "../DashBoard";
+import DashBoard from "../DashBoard/DashBoard";
 import axios from "axios";
 
 
@@ -98,7 +98,7 @@ const Header = () => {
                         <AuthRoute path="/my" auth={isLogin} render={ () => <My />} />
                         <AuthRoute path="/letter" auth={isLogin} render={ () => <Letter />} />
                         <PublicRoute path="/auth" restricted={true} auth={isLogin} component={Auth} />
-                        <PublicRoute path="/dashboard" restricted={false} auth={isLogin} component={DashBoard} />
+                        <PublicRoute path="/" restricted={false} auth={isLogin} component={DashBoard} />
 
                         
                     </Switch>
