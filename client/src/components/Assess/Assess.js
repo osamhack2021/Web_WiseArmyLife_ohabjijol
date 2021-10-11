@@ -25,6 +25,8 @@ const targetList = [
 const Assess = () => {
     //
     const [isExecutive,setIsExecutive] = useState(false)
+
+
     const [allEvents, setAllEvents] = useState([]);
 
 
@@ -35,6 +37,7 @@ const Assess = () => {
         }else{
             setIsExecutive(false)
         }
+        
         async function getEvents() {
             const res1 = await axios.get(`/assessment/shooting`) // 두개뜸
             const res2 = await axios.get(`/assessment/cBR`) // 적용안됨

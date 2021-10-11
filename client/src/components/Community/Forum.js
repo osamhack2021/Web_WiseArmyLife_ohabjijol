@@ -18,11 +18,16 @@ const Forum = () => {
         forumName:''
     })
     
-    const test = useRef(0);
     const {forumName} = inputs;
-
+    
+    const test = useRef(0);
     useEffect(() => {
-        if(sessionStorage.getItem('isExecutive')=== true)
+        const Tf = sessionStorage.getItem('isExecutive')
+        if(Tf === 'true'){
+            setIsExecutive(true)
+        }else{
+            setIsExecutive(false)
+        }
 
             axios.get('/Community')
             .then(res =>{
@@ -34,7 +39,6 @@ const Forum = () => {
             })
         }
     ,[data])
-
     const onClick = ()=>{
         axios.post('/Community/forumAdd',{
             'forumName':inputs.forumName
@@ -49,7 +53,6 @@ const Forum = () => {
             }
         })
     }
-
     const onChange = (e)=>{
         const {name,value} = e.target;
 
@@ -58,15 +61,8 @@ const Forum = () => {
             [name]:value
         })
     }
-    const onConsole= ()=>{
-        console.log(rows);
-    }
-
-    const goPage  = (id)=>{
-        const defaultPageIndex=1
-        document.location.href = `/community/${id}/${defaultPageIndex}`
-    }
     const onRemove = (id)=>{
+        console.log(id)
         axios.delete(`/community/${id}`)
         .then(res=>{
             console.log(res.data)
@@ -81,15 +77,20 @@ const Forum = () => {
     
     return (
         <div>
-            <input name="forumName" value={forumName} onChange={onChange} />
-            <button onClick={onClick} >포럼만들기</button>
-            <button onClick={onConsole}>콘솔</button>
+            <h2>커뮤니티 + </h2>
+            {isExecutive ?
+            <div>
+                <input name="forumName" value={forumName} onChange={onChange} />
+                <button onClick={onClick} >포럼만들기</button>
+            </div>
+            :null}
+
             <div>
                 {rows.map(row =>{
                     return(
                         <div>
-                            <span onClick={ ()=> goPage(row.id)}>{row.forumName}</span>
-                            <button id={row.id} onClick={onRemove}> X </button>
+                            <Link to={`/community/${row.id}`}>{row.forumName}</Link>
+                            <button id={row.id} onClick={ ()=> onRemove(row.id)}> X </button>
                         </div>
                     )
                 })}

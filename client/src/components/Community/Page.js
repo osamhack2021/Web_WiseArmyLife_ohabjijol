@@ -71,66 +71,16 @@ const Page = ({match}) => {
     const back = ()=>{
         setPost(false)
     }
+    const postOn = ()=>{
+        setPost(true);
+    }
 
     let index =0;
 
     return (
         <div>
-            
-            <button onClick={onConsole}>콘솔</button>
-            {post===false ? 
-
-            <div>
-                {data.maxPage !==0 ?
-                            <div className="pageBox">
-                                <hr className='pageHr'/>
-                                <div>
-                                    <span className='pageHader'>No.1</span>
-                                    <span className='pageHader1'>제목</span>
-                                    <span className='pageHader2'>날짜</span>
-                                    <span className='pageHader3'>작성자</span>
-                                </div>
-                                <div  className='pageBoard'>
-                                    <div>
-                                        <hr className='pageBoardHr' />
-                                        <div>
-                                        {
-                                            data.post_10.rows.map(res=>{
-                                                index += parseInt(1); 
-                                                return(
-                                                    <div className='postpost'>
-                                                        <span className='postIndex'>
-                                                            <span>{index} </span>
-                                                        </span>
-                                                        <span  onClick={gogoPost} className='postTitle'>
-                                                            <span>{res.title} </span>
-                                                        </span>
-                                                        <span className='postCreateAt'>
-                                                            <span>{res.createdAt} </span>
-                                                        </span>
-                                                    </div>
-                                                )
-                                            })
-                                        }
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                                
-                    
-                :<div>없음</div>}
-            </div>
-            
-
-            :
-
-
-            <div>
-                <div onClick={back}>뒤로가기</div>
-                <Post />
-            </div>}
+            <Link to={`/community/newpost`}>글쓰기</Link>
         </div>
-
     );
 };
 

@@ -4,6 +4,7 @@ import Forum from './Forum';
 import Post from './Post';
 import Page from './Page';
 import './Community.css'
+import Newpost from './Newpost';
 
 // match.params 사용
 // 
@@ -13,12 +14,10 @@ const Community = ({match}) => {
 
     return (
         <div>
-            <h2 className='fourmTitle'>커뮤니티 + </h2>
-            <Router>
-                <Route exact path="/Community/:forumId/v/postIndex" component={Post} />
-                <Route exact path="/Community/:forumId/:page?" component={Page} />
-                <Route exact path="/Community" component={Forum} />
-            </Router>
+            <Route exact path="/Community/newpost:id" render={(props)=> <Newpost key={props.match.params.id} />} />
+            <Route exact path="/Community/:forumId/v/postIndex" render={(props)=>(Page)} />
+            <Route exact path="/Community/:forumId/:page?" component={Page} />
+            <Route exact path="/Community" component={Forum} />
         </div>
     );
 };
