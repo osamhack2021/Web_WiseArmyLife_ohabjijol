@@ -38,7 +38,6 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((id, done) => {
     User.findOne({ where: { id } })
         .then(user => {
-            cachedUser.user = user;
             done(null, user);
         })
         .catch(err => done(err));
