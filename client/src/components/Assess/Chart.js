@@ -1,14 +1,14 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect,useState } from "react";
 import Chart from "chart.js";
 import "chartjs-plugin-annotation";
 import axios from "axios";
 
-const config = {
+const defaultConfig = {
   type: "scatter",
   data: {
     datasets: [
       {
-        label: "shooting",
+        label: "사격",
         fill: false,
         borderColor: "Red",
         showLine: true,
@@ -20,7 +20,51 @@ const config = {
         ]
       },
       {
-        label: "cBR",
+        label: "화생방",
+        fill: false,
+        borderColor: "Orange",
+        showLine: true,
+        data: [
+          { x: 202105, y: 60 },
+          { x: 202108, y: 100 },
+          { x: 202111, y: 80 }
+        ]
+      },
+      {
+        label: "구급법",
+        fill: false,
+        borderColor: "Yellow",
+        showLine: true,
+        data: [
+          { x: 202105, y: 60 },
+          { x: 202108, y: 100 },
+          { x: 202111, y: 80 }
+        ]
+      },
+      {
+        label: "각개전투",
+        fill: false,
+        borderColor: "Green",
+        showLine: true,
+        data: [
+          { x: 202105, y: 60 },
+          { x: 202108, y: 100 },
+          { x: 202111, y: 80 }
+        ]
+      },
+      {
+        label: "주특기",
+        fill: false,
+        borderColor: "Purple",
+        showLine: true,
+        data: [
+          { x: 202105, y: 60 },
+          { x: 202108, y: 100 },
+          { x: 202111, y: 80 }
+        ]
+      },
+      {
+        label: "체력",
         fill: false,
         borderColor: "Black",
         showLine: true,
@@ -57,7 +101,76 @@ const config = {
 
 export default function MyChart() {
     const chartRef = useRef();
+    const test = useRef(null)
+    const test2 = useRef(null)
 
+    const [config,setConfig] = useState(defaultConfig)
+    const [dataList,setDataList] = useState([
+        [],[],[],[],[],[]
+    ])
+
+    const setData = ()=>{
+        setConfig({
+            ...config,
+            data:{
+                datasets: [
+                    {
+                      label: "사격",
+                      fill: false,
+                      borderColor: "Red",
+                      showLine: true,
+                      data: dataList[0]
+                    },
+                    {
+                      label: "화생방",
+                      fill: false,
+                      borderColor: "Orange",
+                      showLine: true,
+                      data: dataList[1]
+                    },
+                    {
+                      label: "구급법",
+                      fill: false,
+                      borderColor: "Yellow",
+                      showLine: true,
+                      data: dataList[2]
+                    },
+                    {
+                      label: "각개전투",
+                      fill: false,
+                      borderColor: "Green",
+                      showLine: true,
+                      data: dataList[3]
+                    },
+                    {
+                      label: "주특기",
+                      fill: false,
+                      borderColor: "Purple",
+                      showLine: true,
+                      data: dataList[4]
+                    },
+                    {
+                      label: "체력",
+                      fill: false,
+                      borderColor: "Black",
+                      showLine: true,
+                      data: dataList[5]
+                    }
+                  ]
+            }
+        })
+    }
+
+    const getData =useRef()
+    const getYYYYMM = (date2)=>{
+        const date = new Date(date2)
+
+        const year = date.getFullYear();
+        const month = ('0' + (date.getMonth() + 1)).slice(-2);
+        const day = ('0' + date.getDate()).slice(-2);
+        const dateString = year + month  + day;
+        return parseInt(dateString);
+    }
     useEffect(()=>{
         const canvas = chartRef.current.getContext("2d");
 
@@ -89,22 +202,58 @@ export default function MyChart() {
             if(res6.data.data ===null){
                 res6.data.data = []
             }
+            const Data1 = res1.data.data.map(res=>{
+                return(
+                    {x:getYYYYMM(res.date),y:parseInt(res.score)}
+                )
+            })
+            console.log(Data1)
             
-            
-            const getData = [
-                res1.data.data,
-                res2.data.data,
-                res3.data.data,
-                res4.data.data,
-                res5.data.data,
-                res6.data.data
+            getData.current = [
+                res1.data.data.map(res=>{
+                    return(
+                        {x:getYYYYMM(res.date),y:parseInt(res.score)}
+                    )
+                }),
+                res2.data.data.map(res=>{
+                    return(
+                        {x:getYYYYMM(res.date),y:parseInt(res.score)}
+                    )
+                }),
+                res3.data.data.map(res=>{
+                    return(
+                        {x:getYYYYMM(res.date),y:parseInt(res.score)}
+                    )
+                }),
+                res4.data.data.map(res=>{
+                    return(
+                        {x:getYYYYMM(res.date),y:parseInt(res.score)}
+                    )
+                }),
+                res5.data.data.map(res=>{
+                    return(
+                        {x:getYYYYMM(res.date),y:parseInt(res.score)}
+                    )
+                }),
+                res6.data.data.map(res=>{
+                    return(
+                        {x:getYYYYMM(res.date),y:parseInt(res.score)}
+                    )
+                })
             ];
-            console.log(getData)
+            console.log(getData.current)
+            if(test.current != 1){
+                test.current= 1
+                await setDataList(res => getData.current)
+                await setData()
+            }
 
-
+            await setDataList(res => getData.current)
+            await setData()
+            console.log(config)
         }
         getEvents()
-    },[])
+    },[test.current])
 
   return <canvas className="chartCanvas" ref={chartRef} />;
 }
