@@ -31,8 +31,13 @@ const ExeCurrent = (props) => {
 
         axios.get(`/management/${newTarget}/checkinfo?date=${newDate}`)
         .then(res=>{
-            setDataList(res.data.data.userinfo);
-            console.log(res.data.data.userinfo)
+            if(res.data.success === true ){
+                setDataList(res.data.data.userinfo);
+                console.log(res.data.data.userinfo)
+            }else{
+                alert('Not Executive')
+            }
+            
         })
     },[date,target])
 
@@ -52,7 +57,11 @@ const ExeCurrent = (props) => {
         console.log(data)
         axios.patch(`/management/${target}/scores`,data)
         .then(res=>{
-            console.log(res.data)
+            if(res.data.success === true){
+                alert("등록성공")
+            }else{
+                alert("등록실패")
+            }
         })
         
         axios.get(`/management/${target}/checkinfo?date=${date}`)

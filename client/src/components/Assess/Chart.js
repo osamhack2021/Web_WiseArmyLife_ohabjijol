@@ -13,10 +13,6 @@ const defaultConfig = {
         borderColor: "Red",
         showLine: true,
         data: [
-          { x: 202104, y: 0 },
-          { x: 202105, y: 80 },
-          { x: 202108, y: 50 },
-          { x: 202111, y: 70 }
         ]
       },
       {
@@ -25,9 +21,6 @@ const defaultConfig = {
         borderColor: "Orange",
         showLine: true,
         data: [
-          { x: 202105, y: 60 },
-          { x: 202108, y: 100 },
-          { x: 202111, y: 80 }
         ]
       },
       {
@@ -36,9 +29,6 @@ const defaultConfig = {
         borderColor: "Yellow",
         showLine: true,
         data: [
-          { x: 202105, y: 60 },
-          { x: 202108, y: 100 },
-          { x: 202111, y: 80 }
         ]
       },
       {
@@ -47,9 +37,6 @@ const defaultConfig = {
         borderColor: "Green",
         showLine: true,
         data: [
-          { x: 202105, y: 60 },
-          { x: 202108, y: 100 },
-          { x: 202111, y: 80 }
         ]
       },
       {
@@ -58,9 +45,6 @@ const defaultConfig = {
         borderColor: "Purple",
         showLine: true,
         data: [
-          { x: 202105, y: 60 },
-          { x: 202108, y: 100 },
-          { x: 202111, y: 80 }
         ]
       },
       {
@@ -69,9 +53,6 @@ const defaultConfig = {
         borderColor: "Black",
         showLine: true,
         data: [
-          { x: 202105, y: 60 },
-          { x: 202108, y: 100 },
-          { x: 202111, y: 80 }
         ]
       }
     ]
@@ -101,15 +82,10 @@ const defaultConfig = {
 
 export default function MyChart() {
     const chartRef = useRef();
-    const test = useRef(null)
-    const test2 = useRef(null)
 
     const [config,setConfig] = useState(defaultConfig)
-    const [dataList,setDataList] = useState([
-        [],[],[],[],[],[]
-    ])
 
-    const setData = ()=>{
+    const setData = (dataList)=>{
         setConfig({
             ...config,
             data:{
@@ -161,7 +137,6 @@ export default function MyChart() {
         })
     }
 
-    const getData =useRef()
     const getYYYYMM = (date2)=>{
         const date = new Date(date2)
 
@@ -171,11 +146,14 @@ export default function MyChart() {
         const dateString = year + month  + day;
         return parseInt(dateString);
     }
+
+    const test = useRef()
     useEffect(()=>{
         const canvas = chartRef.current.getContext("2d");
 
         new Chart(canvas, config);
 
+        
         async function getEvents() {
             const res1 = await axios.get(`/assessment/shooting/result`)
             const res2 = await axios.get(`/assessment/cBR/result`)
@@ -209,7 +187,7 @@ export default function MyChart() {
             })
             console.log(Data1)
             
-            getData.current = [
+            const getData = [
                 res1.data.data.map(res=>{
                     return(
                         {x:getYYYYMM(res.date),y:parseInt(res.score)}
@@ -241,15 +219,13 @@ export default function MyChart() {
                     )
                 })
             ];
-            console.log(getData.current)
-            if(test.current != 1){
-                test.current= 1
-                await setDataList(res => getData.current)
-                await setData()
-            }
 
-            await setDataList(res => getData.current)
-            await setData()
+            if(test.current !== getData.length){
+                test.current = getData.length
+                setData(getData)
+            }
+            console.log(test.current)
+            
             console.log(config)
         }
         getEvents()

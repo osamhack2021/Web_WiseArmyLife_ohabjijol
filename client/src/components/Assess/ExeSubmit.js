@@ -81,7 +81,7 @@ const ExeSubmit = (props) => {
                                 window.location.replace("/assess")
                             }else{
                                 console.log(res.data)
-                                alert(`${res.data.data.message}`)
+                                alert(`${res.data.data}`)
                             }
                         })
                     }
