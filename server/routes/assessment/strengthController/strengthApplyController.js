@@ -3,7 +3,7 @@ const {Strength, StrengthEvent } = require('../../../models');
 const { Op } = require('sequelize');
 const db = require('../../../models/index');
 
-// 사격 지원의 C
+// 체력 지원의 C
 
 ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받을것
 
@@ -16,7 +16,7 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
         let strengthNOA;
         let strengthapplicant_capacity;
 
-        const findstrengthinfo = await Strength.findOne({ // 받아온 사격 일정이 있는지 확인
+        const findstrengthinfo = await Strength.findOne({ // 받아온 체력 일정이 있는지 확인
             where: {
                 date: req.body.date, // front와 연결 후 req.body.date로 변경
             },
@@ -31,7 +31,7 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
                 strengthapplicant_capacity = element.dataValues.applicant_capacity;
 
             }
-            else { // 검색한 사격 일정이 없을때
+            else { // 검색한 체력 일정이 없을때
                 senderror = {
                     success: false,
                     data: "not exist info"
@@ -58,7 +58,7 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
             return res.send(senderror);
 
         }
-        else { // 사격이 만료되었거나 인원이 꽉 차 있을 경우
+        else { // 체력이 만료되었거나 인원이 꽉 차 있을 경우
             if (strengthexpired === 'Expired') {
                 senderror = {
                     success: false,

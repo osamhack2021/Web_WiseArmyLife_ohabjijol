@@ -3,7 +3,7 @@ const {IndividualBattle, IndividualBattleEvent } = require('../../../models');
 const { Op } = require('sequelize');
 const db = require('../../../models/index');
 
-// 사격 지원의 C
+// 각개전투 지원의 C
 
 ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받을것
 
@@ -16,7 +16,7 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
         let individualBattleNOA;
         let individualBattleapplicant_capacity;
 
-        const findindividualBattleinfo = await IndividualBattle.findOne({ // 받아온 사격 일정이 있는지 확인
+        const findindividualBattleinfo = await IndividualBattle.findOne({ // 받아온 각개전투 일정이 있는지 확인
             where: {
                 date: req.body.date, // front와 연결 후 req.body.date로 변경
             },
@@ -31,7 +31,7 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
                 individualBattleapplicant_capacity = element.dataValues.applicant_capacity;
 
             }
-            else { // 검색한 사격 일정이 없을때
+            else { // 검색한 각개전투 일정이 없을때
                 senderror = {
                     success: false,
                     data: "not exist info"
@@ -58,7 +58,7 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
             return res.send(senderror);
 
         }
-        else { // 사격이 만료되었거나 인원이 꽉 차 있을 경우
+        else { // 각개전투이 만료되었거나 인원이 꽉 차 있을 경우
             if (individualBattleexpired === 'Expired') {
                 senderror = {
                     success: false,

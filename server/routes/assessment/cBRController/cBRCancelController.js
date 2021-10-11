@@ -1,12 +1,12 @@
 const {CBR ,CBREvent} = require('../../../models');
 const db = require('../../../models');
 
-//사격지원의 D 
+//화생방지원의 D 
 
 CancelApply = async (req,res)=>{ //front구현후 delete로 받을것
 
     try{
-    //신청한 사격정보 있는지 확인
+    //신청한 화생방정보 있는지 확인
     console.log(req.params.date);
     let reg = RegExp(/^(19|20)\d{2}-((01|0[3-9]|1[012])-(0[1-9]|[12][0-9]|3[0-1])|(02)-(0[1-9]|1[0-9]|2[0-9]))$/)
     if(req.params.date==undefined||reg.test(req.params.date)==false){

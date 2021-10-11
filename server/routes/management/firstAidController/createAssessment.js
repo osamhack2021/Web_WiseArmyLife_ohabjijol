@@ -1,6 +1,6 @@
 const {FirstAid ,FirstAidEvent} = require('../../../models');
 
-//사격의 C
+//구급법의 C
 
 createAssessment = async (req,res)=>{
 

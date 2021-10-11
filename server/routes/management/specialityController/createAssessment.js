@@ -1,6 +1,6 @@
 const {Speciality ,SpecialityEvent} = require('../../../models');
 
-//사격의 C
+//주특기의 C
 
 createAssessment = async (req,res)=>{
 

@@ -14,7 +14,7 @@ router.post('/join', isNotLoggedIn, async (req, res, next) => {
     try {
         const exUser = await User.findOne({ where: { militaryNumber } });
         if (exUser) {
-            return res.redirect('join?error=exist');
+            return res.json({success : false , data : "이미 가입된 회원입니다."});
         }
         let executive = 0;
         if (isExecutive) {

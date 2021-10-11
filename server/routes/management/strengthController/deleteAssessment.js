@@ -1,6 +1,6 @@
 const { Strength, StrengthEvent } = require('../../../models');
 
-//사격의 D
+//체력의 D
 
 deleteAssessment = async (req, res) => {
 

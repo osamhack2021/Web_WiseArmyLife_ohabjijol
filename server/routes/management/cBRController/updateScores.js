@@ -1,6 +1,6 @@
 const {CBR ,CBREvent} = require('../../../models');
 
-//사격 지원의 U
+//화생방 지원의 U
 
 updateScores = async (req,res)=>{
 

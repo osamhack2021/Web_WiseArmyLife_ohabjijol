@@ -1,6 +1,6 @@
 const {IndividualBattle ,IndividualBattleEvent} = require('../../../models');
 
-//사격의 C
+//각개전투의 C
 
 createAssessment = async (req,res)=>{
 

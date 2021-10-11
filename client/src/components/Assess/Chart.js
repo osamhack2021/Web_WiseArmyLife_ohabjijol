@@ -96,7 +96,7 @@ export default function MyChart() {
                 res2.data.data,
                 res3.data.data,
                 res4.data.data,
-                //res5.data.data,
+                res5.data.data,
                 res6.data.data
             ];
             console.log(getData)

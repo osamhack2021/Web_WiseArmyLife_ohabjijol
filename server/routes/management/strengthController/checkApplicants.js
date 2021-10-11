@@ -1,6 +1,6 @@
 const { Strength, StrengthEvent } = require('../../../models');
 
-//사격지원의 R
+//체력지원의 R
 
 checkApplicant = async (req, res) => {
 

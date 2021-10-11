@@ -21,8 +21,7 @@ router.use('/strength',StrengthRouter);
     
 
 
-router.route('/result')
-.get();
+
 
 
 module.exports = router;

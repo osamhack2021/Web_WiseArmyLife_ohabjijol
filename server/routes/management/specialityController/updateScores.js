@@ -1,6 +1,6 @@
 const {Speciality ,SpecialityEvent} = require('../../../models');
 
-//사격 지원의 U
+//주특기 지원의 U
 
 updateScores = async (req,res)=>{
 

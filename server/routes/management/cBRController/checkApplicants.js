@@ -1,6 +1,6 @@
 const { CBR, CBREvent } = require('../../../models');
 
-//사격지원의 R
+//화생방지원의 R
 
 checkApplicant = async (req, res) => {
 

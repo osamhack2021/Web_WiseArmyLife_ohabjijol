@@ -1,8 +1,8 @@
 const { User, IndividualBattle ,IndividualBattleEvent} = require('../../../models');
 
-//사격의 R
+//각개전투의 R
 
-getIndividualBattleResult = async (req,res)=>{ // 사용자가 신청한 사격정보를 json으로 보내줌 이것도 월별로 줘야하나.... 귀찮은데..
+getIndividualBattleResult = async (req,res)=>{ // 사용자가 신청한 각개전투정보를 json으로 보내줌 이것도 월별로 줘야하나.... 귀찮은데..
     try{  
         let post = [];      
 
@@ -17,7 +17,7 @@ getIndividualBattleResult = async (req,res)=>{ // 사용자가 신청한 사격�
 
         }).then((user1)=>{
             
-            if(user1.dataValues.IndividualBattles.length!==0){ // 신청한 사격정보가 있을시
+            if(user1.dataValues.IndividualBattles.length!==0){ // 신청한 각개전투정보가 있을시
 
                 user1.dataValues.IndividualBattles.forEach(element => {
                     post.push({
