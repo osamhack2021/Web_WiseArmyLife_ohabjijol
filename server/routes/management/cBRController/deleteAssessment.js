@@ -1,6 +1,6 @@
 const { CBR, CBREvent } = require('../../../models');
 
-//사격의 D
+//화생방의 D
 
 deleteAssessment = async (req, res) => {
 

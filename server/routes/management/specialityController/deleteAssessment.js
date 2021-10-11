@@ -1,6 +1,6 @@
 const { Speciality, SpecialityEvent } = require('../../../models');
 
-//사격의 D
+//주특기의 D
 
 deleteAssessment = async (req, res) => {
 

@@ -3,7 +3,7 @@ const {Strength} = require('../../../models');
 const {Op} = require('sequelize');
 
 
-// 매일 yy시 사격정보 Expired 유무 파악후 db Update
+// 매일 yy시 체력정보 Expired 유무 파악후 db Update
 
 syncStrengthAssessment = async () => {
 

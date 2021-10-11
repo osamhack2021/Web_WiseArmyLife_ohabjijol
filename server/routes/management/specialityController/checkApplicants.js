@@ -1,6 +1,6 @@
 const { Speciality, SpecialityEvent } = require('../../../models');
 
-//사격지원의 R
+//주특기지원의 R
 
 checkApplicant = async (req, res) => {
 

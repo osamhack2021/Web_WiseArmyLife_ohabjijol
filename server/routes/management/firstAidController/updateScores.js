@@ -1,6 +1,6 @@
 const {FirstAid ,FirstAidEvent} = require('../../../models');
 
-//사격 지원의 U
+//구급법 지원의 U
 
 updateScores = async (req,res)=>{
 

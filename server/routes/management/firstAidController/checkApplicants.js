@@ -1,6 +1,6 @@
 const { FirstAid, FirstAidEvent } = require('../../../models');
 
-//사격지원의 R
+//구급법지원의 R
 
 checkApplicant = async (req, res) => {
 

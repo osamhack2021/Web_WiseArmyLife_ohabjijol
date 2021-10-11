@@ -1,6 +1,6 @@
 const { IndividualBattle, IndividualBattleEvent } = require('../../../models');
 
-//사격의 D
+//각개전투의 D
 
 deleteAssessment = async (req, res) => {
 

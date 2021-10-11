@@ -1,6 +1,6 @@
 const {Strength ,StrengthEvent} = require('../../../models');
 
-//사격 지원의 U
+//체력 지원의 U
 
 updateScores = async (req,res)=>{
 

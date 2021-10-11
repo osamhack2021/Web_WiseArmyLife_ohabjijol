@@ -1,6 +1,6 @@
 const {CBR ,CBREvent} = require('../../../models');
 
-//사격의 C
+//화생방의 C
 
 createAssessment = async (req,res)=>{
 

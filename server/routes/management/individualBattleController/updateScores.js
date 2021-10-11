@@ -1,6 +1,6 @@
 const {IndividualBattle ,IndividualBattleEvent} = require('../../../models');
 
-//사격 지원의 U
+//각개전투 지원의 U
 
 updateScores = async (req,res)=>{
 

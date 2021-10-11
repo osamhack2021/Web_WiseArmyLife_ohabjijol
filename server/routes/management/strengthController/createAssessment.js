@@ -1,6 +1,6 @@
 const {Strength ,StrengthEvent} = require('../../../models');
 
-//사격의 C
+//체력의 C
 
 createAssessment = async (req,res)=>{
 

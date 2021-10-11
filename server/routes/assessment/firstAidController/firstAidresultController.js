@@ -1,8 +1,8 @@
 const { User, FirstAid ,FirstAidEvent} = require('../../../models');
 
-//사격의 R
+//구급법의 R
 
-getFirstAidResult = async (req,res)=>{ // 사용자가 신청한 사격정보를 json으로 보내줌 이것도 월별로 줘야하나.... 귀찮은데..
+getFirstAidResult = async (req,res)=>{ // 사용자가 신청한 구급법정보를 json으로 보내줌 이것도 월별로 줘야하나.... 귀찮은데..
     try{  
         let post = [];      
 
@@ -17,7 +17,7 @@ getFirstAidResult = async (req,res)=>{ // 사용자가 신청한 사격정보를
 
         }).then((user1)=>{
             
-            if(user1.dataValues.FirstAids.length!==0){ // 신청한 사격정보가 있을시
+            if(user1.dataValues.FirstAids.length!==0){ // 신청한 구급법정보가 있을시
 
                 user1.dataValues.FirstAids.forEach(element => {
                     post.push({

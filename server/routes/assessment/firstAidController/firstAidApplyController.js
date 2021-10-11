@@ -3,7 +3,7 @@ const {FirstAid, FirstAidEvent } = require('../../../models');
 const { Op } = require('sequelize');
 const db = require('../../../models/index');
 
-// 사격 지원의 C
+// 구급법 지원의 C
 
 ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받을것
 
@@ -16,7 +16,7 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
         let firstAidNOA;
         let firstAidapplicant_capacity;
 
-        const findfirstAidinfo = await FirstAid.findOne({ // 받아온 사격 일정이 있는지 확인
+        const findfirstAidinfo = await FirstAid.findOne({ // 받아온 구급법 일정이 있는지 확인
             where: {
                 date: req.body.date, // front와 연결 후 req.body.date로 변경
             },
@@ -31,7 +31,7 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
                 firstAidapplicant_capacity = element.dataValues.applicant_capacity;
 
             }
-            else { // 검색한 사격 일정이 없을때
+            else { // 검색한 구급법 일정이 없을때
                 senderror = {
                     success: false,
                     data: "not exist info"
@@ -58,7 +58,7 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
             return res.send(senderror);
 
         }
-        else { // 사격이 만료되었거나 인원이 꽉 차 있을 경우
+        else { // 구급법이 만료되었거나 인원이 꽉 차 있을 경우
             if (firstAidexpired === 'Expired') {
                 senderror = {
                     success: false,
