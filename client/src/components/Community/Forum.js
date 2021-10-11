@@ -93,7 +93,7 @@ const Forum = () => {
 
 
        
-       <h3>공지사항 +</h3>
+       <h2>공지사항 +</h2>
 
 
        <div className="Fcontent">
