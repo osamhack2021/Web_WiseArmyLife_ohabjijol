@@ -1,17 +1,17 @@
 .basicTitle{
-  margin-top: 160px;
-  margin-left: 893px;
-  margin-bottom: 108px;
-  font-size: 30px;
+  margin-top: 120px;
+  margin-left: 669px;
+  margin-bottom: 81px;
+  font-size: 22.5px;
   color: #000000;
   font-family: "Nanum Square EB";
 }
 
 .margin270{
-  margin-left: 270px;
+  margin-left: 202.5px;
 }
 .margin230{
-  margin-left: 230px;
+  margin-left: 172.5px;
 }
 .clicked {
   background-color:#ffd265
@@ -21,7 +21,7 @@
   background-color:#ffd265
 }
 .basic2{
-  margin-right: 40px;
+  margin-right: 40*0.75px;
   border-radius: 15px;
   background-color: #ffffff;
   border: 3px solid #ffd265;

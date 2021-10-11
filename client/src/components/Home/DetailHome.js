@@ -8,7 +8,7 @@ const DetailHome = () => {
         <React.Fragment>
             <div middleWrap>
                 <div className="topBanner">
-                    <img src="img/wal.jpg" alt="상위 배너 사진" />
+                    <img src="img/wal.jpg" width='920px' alt="상위 배너 사진" />
                 </div>
         
                 <div className="content" id="first">

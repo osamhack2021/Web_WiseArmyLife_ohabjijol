@@ -1,7 +1,7 @@
 .smallBox{
       
-  width: 400px;
-  height: 300px;
+  width: 300px;
+  height: 225px;
   border-radius: 80px;
   background-color: #ffd265;
 
@@ -11,22 +11,25 @@
 }
 .smallBoxLast{
     margin-left: 50px;
-    width: 625px;
-    height: 300px;
+    width: 468.75px;
+    height: 225px;
     border-bottom-left-radius: 70px;
     border-bottom-right-radius: 30px;
     border-top-left-radius: 70px;
     border-top-right-radius: 70px;
     background-color: #ffd265;
     margin: 20px;
+    margin-bottom: 39px;
+
 }
 .middleTitle{
-  margin-top: 159px;
-  margin-bottom: 109px;
+  margin-top: 100px;
+  margin-bottom: 30px;
+ 
 }
 .topBanner {
   margin-top: 50px;
-    max-width: 1920px;
+    max-width: 1440px;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -43,35 +46,48 @@
   text-align: center;
   align-content: center;
   margin-bottom: 100px;
+  padding-top: 15px;
+  border-top: 2px solid #dadadada;
 }
+
 .bigBox2 {
   display: grid;
   display: inline-grid;
-  grid-template-columns:  1fr 1fr 1fr;
+  grid-template-columns:  1fr 1fr;
   text-align: center;
   align-content: center;
   margin-bottom: 100px;
-  margin-left: 320px;
+  
 }
 
 .shoot{
-  text-align: left;
-  margin-top: 114px;
-  margin-left: 89px;
-  font-size: 25px;
+  text-align: center;
+
+  margin-top: 15%;
+  margin-bottom: 15%;
+  font-size: 18.75px;
   color: #000000;
   font-family: "Nanum Square EB";
+
+  padding-bottom: 25px;
+
+  border-bottom: 2px dotted #ffffff;
+  border-bottom-style: double;
+  
 }
+
 .shoot2{
-  text-align: left;
-  margin-top: 106px;
-  margin-left: 56px;
-  font-size: 25px;
+  text-align: center;
+
+  margin-top: 33%;
+  margin-bottom: 25%;
+  font-size: 18.75px;
   color: #000000;
   font-family: "Nanum Square EB";
 }
 
+
 .shootDetail{
-  margin-left: 89px;
-  text-align: left;
+  /*margin-left: 10%;*/
+  text-align: center;
 }

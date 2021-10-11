@@ -9,6 +9,7 @@ const submitClick = async data => {
         alert(response.data)
     })  
 }
+
 const Auth = () => {
     const [inputs, setInputs] = useState({
         user_id:'',
