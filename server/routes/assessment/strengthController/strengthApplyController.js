@@ -86,17 +86,20 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
 
                 if (isupdate[0]) {
 
-                    const addStrengthEvent = await StrengthEvent.create({
+                    const addStrengthEvent =  StrengthEvent.create({
                         UserId: req.user.id,
                         StrengthId: strengthid,
                     });
 
-                    await Strength.update({ expired: 'Full' }, {
+                    const updateStrength = Strength.update({ expired: 'Full' }, {
                         where: {
                             [Op.and]: [{ id: strengthid },  db.sequelize.literal('applicant_capacity = number_of_applicant') ],
                         }
 
                     });
+
+                    await Promise.all([addStrengthEvent,updateStrength]);
+
                     sendsuccess = {
                         success: true,
                         data: "success"

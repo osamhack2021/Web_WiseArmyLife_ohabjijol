@@ -86,19 +86,19 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
 
                 if (isupdate[0]) {
 
-                    const addMentalForceEvent = await MentalForceEvent.create({
+                    const addMentalForceEvent =  MentalForceEvent.create({
                         UserId: req.user.id,
                         MentalForceId: mentalForceid,
                     });
 
-                    await MentalForce.update({ expired: 'Full' }, {
+                    const updateMentalForce = MentalForce.update({ expired: 'Full' }, {
                         where: {
                             [Op.and]: [{ id: mentalForceid },  db.sequelize.literal('applicant_capacity = number_of_applicant') ],
                         }
 
                     });
 
-                    
+                    await Promise.all([addMentalForceEvent,updateMentalForce]);
 
                     sendsuccess = {
                         success: true,

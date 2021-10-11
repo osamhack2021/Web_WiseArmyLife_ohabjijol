@@ -37,20 +37,24 @@ const Assess = () => {
         }
         async function getEvents() {
             
-            const res1 = await axios.get(`/assessment/shooting`)
-            const res2 = await axios.get(`/assessment/cBR`)
-            const res3 = await axios.get(`/assessment/firstAid`)
-            const res4 = await axios.get(`/assessment/individualBattle`)
-            const res5 = await axios.get(`/assessment/speciality`)
-            const res6 = await axios.get(`/assessment/strength`)            
+            const res1 =  axios.get(`/assessment/shooting`)
+            const res2 = axios.get(`/assessment/cBR`)
+            const res3 =  axios.get(`/assessment/firstAid`)
+            const res4 =  axios.get(`/assessment/individualBattle`)
+            const res5 =  axios.get(`/assessment/speciality`)
+            const res6 =  axios.get(`/assessment/strength`)            
+
+            let [ress1,ress2,ress3,ress4,ress5,ress6] = await Promise.all([res1,res2,res3,res4,res5,res6]);
+
+            console.log(res1);
 
             const getData = [
-                ...res1.data.data,
-                ...res2.data.data,
-                ...res3.data.data,
-                ...res4.data.data,
-                ...res5.data.data,
-                ...res6.data.data
+                ...ress1.data.data,
+                ...ress2.data.data,
+                ...ress3.data.data,
+                ...ress4.data.data,
+                ...ress5.data.data,
+                ...ress6.data.data
             ];
             console.log(getData)
             const inDateList = getData.map( res=> {
@@ -72,20 +76,22 @@ const Assess = () => {
         const year = e.start.getFullYear();
         const month = parseInt(('0' + (e.start.getMonth() + 1)).slice(-2))+parseInt(1);
 
-        const res1 = await axios.get(`/assessment/shooting?year=${year}?month=${month}`)
-        const res2 = await axios.get(`/assessment/cBR?year=${year}?month=${month}`)
-        const res3 = await axios.get(`/assessment/firstAid?year=${year}?month=${month}`)
-        const res4 = await axios.get(`/assessment/individualBattle?year=${year}?month=${month}`)
-        const res5 = await axios.get(`/assessment/speciality?year=${year}?month=${month}`)
-        const res6 = await axios.get(`/assessment/strength?year=${year}?month=${month}`)
+        const res1 =  axios.get(`/assessment/shooting?year=${year}?month=${month}`)
+        const res2 =  axios.get(`/assessment/cBR?year=${year}?month=${month}`)
+        const res3 =  axios.get(`/assessment/firstAid?year=${year}?month=${month}`)
+        const res4 =  axios.get(`/assessment/individualBattle?year=${year}?month=${month}`)
+        const res5 =  axios.get(`/assessment/speciality?year=${year}?month=${month}`)
+        const res6 =  axios.get(`/assessment/strength?year=${year}?month=${month}`)
+        let [ress1,ress2,ress3,ress4,ress5,ress6] = await Promise.all([res1,res2,res3,res4,res5,res6]);
+
 
         const getData = [
-            ...res1.data.data,
-            ...res2.data.data,
-            ...res3.data.data,
-            ...res4.data.data,
-            ...res5.data.data,
-            ...res6.data.data
+            ...ress1.data.data,
+            ...ress2.data.data,
+            ...ress3.data.data,
+            ...ress4.data.data,
+            ...ress5.data.data,
+            ...ress6.data.data
         ];
         console.log(getData)
         const inDateList = getData.map( res=> {

@@ -86,17 +86,20 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
 
                 if (isupdate[0]) {
 
-                    const addIndividualBattleEvent = await IndividualBattleEvent.create({
+                    const addIndividualBattleEvent =  IndividualBattleEvent.create({
                         UserId: req.user.id,
                         IndividualBattleId: individualBattleid,
                     });
 
-                    await IndividualBattle.update({ expired: 'Full' }, {
+                    const updateIndividualBattle = IndividualBattle.update({ expired: 'Full' }, {
                         where: {
                             [Op.and]: [{ id: individualBattleid },  db.sequelize.literal('applicant_capacity = number_of_applicant') ],
                         }
 
                     });
+
+                    await Promise.all([addIndividualBattleEvent,updateIndividualBattle])
+
                     sendsuccess = {
                         success: true,
                         data: "success"

@@ -86,17 +86,21 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
 
                 if (isupdate[0]) {
 
-                    const addCBREvent = await CBREvent.create({
+                    const addCBREvent =  CBREvent.create({
                         UserId: req.user.id,
                         CBRId: cBRid,
                     });
 
-                    await CBR.update({ expired: 'Full' }, {
+                    const updateCBR =  CBR.update({ expired: 'Full' }, {
                         where: {
                             [Op.and]: [{ id: cBRid },  db.sequelize.literal('applicant_capacity = number_of_applicant') ],
                         }
 
                     });
+
+
+                    await Promise.all([addCBREvent,updateCBR]);
+                    
                     sendsuccess = {
                         success: true,
                         data: "success"

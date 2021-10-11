@@ -86,17 +86,19 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
 
                 if (isupdate[0]) {
 
-                    const addFirstAidEvent = await FirstAidEvent.create({
+                    const addFirstAidEvent =  FirstAidEvent.create({
                         UserId: req.user.id,
                         FirstAidId: firstAidid,
                     });
 
-                    await FirstAid.update({ expired: 'Full' }, {
+                    updateFirstAid = FirstAid.update({ expired: 'Full' }, {
                         where: {
                             [Op.and]: [{ id: firstAidid },  db.sequelize.literal('applicant_capacity = number_of_applicant') ],
                         }
 
                     });
+
+                    await Promise.all([addFirstAidEvent,updateFirstAid]);
                     sendsuccess = {
                         success: true,
                         data: "success"
