@@ -1,4 +1,4 @@
-const {Shooting ,ShootingEvent} = require('../../../models');
+const {IndividualBattle ,IndividualBattleEvent} = require('../../../models');
 
 //사격 지원의 U
 
@@ -11,7 +11,7 @@ updateScores = async (req,res)=>{
         
 
 
-        const findData = await Shooting.findOne({where : {date : req.body.date}});
+        const findData = await IndividualBattle.findOne({where : {date : req.body.date}});
         if(findData == null){
 
             const senderror = {
@@ -26,7 +26,7 @@ updateScores = async (req,res)=>{
        failNum = 0;
        var failInfo = [];
        req.body.scoreAndId.forEach(element => {
-            ShootingEvent.update({score : element.score},{where : {UserId : element.UserId}}).then(res=>{
+            IndividualBattleEvent.update({score : element.score},{where : {UserId : element.UserId}}).then(res=>{
                seccessNum =seccessNum+1;
            }).catch(err=>{
                failNum = failNum + 1;

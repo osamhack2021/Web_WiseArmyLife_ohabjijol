@@ -1,15 +1,15 @@
-const { User, IndividualBattle ,IndividualBattleEvent} = require('../../../models');
+const { User, Speciality ,SpecialityEvent} = require('../../../models');
 
 //사격의 R
 
-getIndividualBattleResult = async (req,res)=>{ // 사용자가 신청한 사격정보를 json으로 보내줌 이것도 월별로 줘야하나.... 귀찮은데..
+getSpecialityResult = async (req,res)=>{ // 사용자가 신청한 사격정보를 json으로 보내줌 이것도 월별로 줘야하나.... 귀찮은데..
     try{  
         let post = [];      
 
         const user = await User.findOne({
            
             include : [{
-                model : IndividualBattle,
+                model : Speciality,
                 attributes : ['date','time','expired']
             }],
             where:{id : req.user.id},
@@ -17,14 +17,14 @@ getIndividualBattleResult = async (req,res)=>{ // 사용자가 신청한 사격�
 
         }).then((user1)=>{
             
-            if(user1.dataValues.IndividualBattles.length!==0){ // 신청한 사격정보가 있을시
+            if(user1.dataValues.Specialitys.length!==0){ // 신청한 사격정보가 있을시
 
-                user1.dataValues.IndividualBattles.forEach(element => {
+                user1.dataValues.Specialitys.forEach(element => {
                     post.push({
                         date : element.date,
                         expired : element.expired,
                         time : element.time,
-                        score : element.IndividualBattleEvent.score 
+                        score : element.SpecialityEvent.score 
                     })
                 });
 
@@ -61,4 +61,4 @@ getIndividualBattleResult = async (req,res)=>{ // 사용자가 신청한 사격�
 
 }
 
-module.exports = getIndividualBattleResult;
+module.exports = getSpecialityResult;

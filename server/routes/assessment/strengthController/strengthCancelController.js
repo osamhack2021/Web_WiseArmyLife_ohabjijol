@@ -1,4 +1,4 @@
-const {IndividualBattle ,IndividualBattleEvent} = require('../../../models');
+const {Strength ,StrengthEvent} = require('../../../models');
 const db = require('../../../models');
 
 //사격지원의 D 
@@ -18,19 +18,19 @@ CancelApply = async (req,res)=>{ //front구현후 delete로 받을것
     }
 
 
-    const findIndividualBattle = await IndividualBattle.findOne({
+    const findStrength = await Strength.findOne({
         where : {date : req.params.date},
       attributes : ['id','expired','number_of_applicant']  
     });
 
-    const findeventIndividualBattle = await IndividualBattleEvent.findOne({
-        where : {UserId:req.user.id, IndividualBattleId : findIndividualBattle.dataValues.id}
+    const findeventStrength = await StrengthEvent.findOne({
+        where : {UserId:req.user.id, StrengthId : findStrength.dataValues.id}
     });
 
 
-    if(findeventIndividualBattle!==null){
+    if(findeventStrength!==null){
 
-        if(findIndividualBattle.dataValues.expired==="Expired"){
+        if(findStrength.dataValues.expired==="Expired"){
             
             senderror = {
                 success : false,
@@ -39,13 +39,13 @@ CancelApply = async (req,res)=>{ //front구현후 delete로 받을것
             return res.send(senderror);
         }
         else{
-            await IndividualBattleEvent.destroy({where:{UserId:req.user.id,
-                IndividualBattleId:findIndividualBattle.dataValues.id}});
+            await StrengthEvent.destroy({where:{UserId:req.user.id,
+                StrengthId:findStrength.dataValues.id}});
             
           
-            await IndividualBattle.update({ number_of_applicant : db.sequelize.literal('number_of_applicant - 1') , expired : "Applying" }, {
+            await Strength.update({ number_of_applicant : db.sequelize.literal('number_of_applicant - 1') , expired : "Applying" }, {
                 where: {
-                    id: findIndividualBattle.dataValues.id
+                    id: findStrength.dataValues.id
                 }
                 
             });

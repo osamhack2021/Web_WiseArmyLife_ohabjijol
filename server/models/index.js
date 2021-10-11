@@ -48,7 +48,7 @@ const MentalForceEvent = sequelize.define('MentalForceEvent', {score: {type : Da
 const FirstAidEvent =  sequelize.define('FirstAidEvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},}, { timestamps: false });
 const CBREvent =  sequelize.define('CBREvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},}, { timestamps: false });
 const SpecialityEvent =  sequelize.define('SpecialityEvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},}, { timestamps: false });
-const StrengthEvent =  sequelize.define('StrengthEvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},}, { timestamps: false });
+const StrengthEvent =  sequelize.define('StrengthEvent', {pushUpscore: {type : DataTypes.INTEGER,defaultValue : -1},sitUpscore: {type : DataTypes.INTEGER,defaultValue : -1},runningscore: {type : DataTypes.INTEGER,defaultValue : -1}}, { timestamps: false });
 const IndividualBattleEvent =  sequelize.define('IndividualBattleEvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},}, { timestamps: false });
 
 

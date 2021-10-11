@@ -2,20 +2,40 @@ import React,{useState, useEffect} from 'react';
 import axios from 'axios';
 
 const My = () => {
-    const [data,setData] = useState(null);
+    const [data,setData] = useState({
+        name:"",
+        militaryNumber:"",
+        position:""
+    });
 
     useEffect(() => {
         axios.get('/profile')
         .then(res => {
-            console.log(res.data)
-        }
-        )
-        .catch()
+            if(res.data.success===true){
+                console.log(res.data)
+                const {name,militaryNumber,position} = res.data
+                setData({
+                    name:name,
+                    militaryNumber:militaryNumber,
+                    position:position
+                }
+            )}else{
+                alert('받아오기 실패')
+            }
+        })
     },[])
 
     return (
         <div>
-            My
+            <div>
+                군번 : {data.militaryNumber} 
+            </div>
+            <div>
+                이름 : {data.name}
+            </div>
+            <div>
+                직책 : {data.position}
+            </div>
         </div>
     );
 };

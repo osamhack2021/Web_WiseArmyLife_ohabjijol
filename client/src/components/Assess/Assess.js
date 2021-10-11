@@ -1,4 +1,4 @@
-import React,{useEffect,useState,useRef} from 'react';
+import React,{useEffect,useState} from 'react';
 import axios from 'axios';
 import './ss.css'
 import './Assess.css'
@@ -10,6 +10,7 @@ import Current from './Current';
 import Result from './Result';
 import Submit from './Submit';
 
+
 const events = [
     {
         date: new Date(2021,9,7),
@@ -19,9 +20,18 @@ const events = [
     }
 ];
 
+// 사격 화생방 구급법 각개 주특기 체력
+const targetList = [
+    'shooting',
+    'cBR',
+    'firstAid',
+    'individualBattle',
+    'speciality',
+    'strength'
+]
+
 const Assess = () => {
     //
-    const [target,setTarget] = useState("shooting"); // 종목 선택 값
     const [isExecutive,setIsExecutive] = useState(false)
     const [allEvents, setAllEvents] = useState(events);
 
@@ -32,59 +42,74 @@ const Assess = () => {
         }else{
             setIsExecutive(false)
         }
-    })
+        async function getEvents() {
+            
+            const res1 = await axios.get(`/assessment/shooting`)
+            const res2 = await axios.get(`/assessment/cBR`)
+            const res3 = await axios.get(`/assessment/firstAid`)
+            const res4 = await axios.get(`/assessment/individualBattle`)
+            const res5 = await axios.get(`/assessment/speciality`)
+            const res6 = await axios.get(`/assessment/strength`)            
 
-    useEffect(() => {
-        axios.get(`/assessment/${target}`)
-        .then(res =>{
-            console.log(res.data.data)
-            const getData = res.data.data;
+            const getData = [
+                ...res1.data.data,
+                ...res2.data.data,
+                ...res3.data.data,
+                ...res4.data.data,
+                ...res5.data.data,
+                ...res6.data.data
+            ];
             const inDateList = getData.map( res=> {
                 return {
+                    target : res.target,
                     date : new Date(res.date),
-                    title : res.time,
-                    applicantText : `${res.number_of_applicant}/${res.applicant_capacity}`,
-                    expired : res.expired
+                    title : res.target+" " +res.time+" "+res.number_of_applicant+"/"+res.applicant_capacity,
+                    expired : res.expired,
+                    allDay:true
                 }
             })
             setAllEvents([...inDateList])
+        }
+        getEvents()
+    },[])
+
+
+    const onRangeChange = async (e)=>{
+        const year = e.start.getFullYear();
+        const month = parseInt(('0' + (e.start.getMonth() + 1)).slice(-2))+parseInt(1);
+
+        const res1 = await axios.get(`/assessment/shooting?year=${year}?month=${month}`)
+        const res2 = await axios.get(`/assessment/cBR?year=${year}?month=${month}`)
+        const res3 = await axios.get(`/assessment/firstAid?year=${year}?month=${month}`)
+        const res4 = await axios.get(`/assessment/individualBattle?year=${year}?month=${month}`)
+        const res5 = await axios.get(`/assessment/speciality?year=${year}?month=${month}`)
+        const res6 = await axios.get(`/assessment/strength?year=${year}?month=${month}`)
+
+        const getData = [
+            ...res1.data.data,
+            ...res2.data.data,
+            ...res3.data.data,
+            ...res4.data.data,
+            ...res5.data.data,
+            ...res6.data.data
+        ];
+
+        const inDateList = getData.map( res=> {
+            return {
+                target : res.target,
+                date : new Date(res.date),
+                title : res.target+" " +res.time+" "+res.number_of_applicant+"/"+res.applicant_capacity,
+                expired : res.expired,
+                allDay:true
+            }
         })
-    },[target])
-
-    /**
-     *  applicant_capacity: 20
-        date: "2021-10-26"
-        expired: "Applying"
-        number_of_applicant: 0
-        time: "12:00 ~ 13:00"
-     */
-
-    const onChange = (e)=>{
-        const {value} = e.target;
-        setTarget(value);
-        console.log(target)
+        setAllEvents([...inDateList])
     }
 
     
     return (
         <div>
             <h2 className="basicTitle">병기본평가 +</h2>
-
-            <span className="basicList" >
-                <span className="margin230"></span>
-                <input checked={target === "shooting"} onChange={onChange} id="scale0" class="scale" name="scale" type="radio" value="shooting" />
-                <label for="scale0" class="button">사격</label>
-                <input onChange={onChange} id="scale1" class="scale" name="scale" type="radio" value="spirit" />
-                <label for="scale1" class="button">정신전력평가</label>
-                <input onChange={onChange} id="scale2" class="scale" name="scale" type="radio" value="stamina" />
-                <label for="scale2" class="button">체력</label>
-                <input onChange={onChange} id="scale3" class="scale" name="scale" type="radio" value="aid" />
-                <label for="scale3" class="button">화생방</label>
-                <input onChange={onChange} id="scale4" class="scale" name="scale" type="radio" value="rkrrowjsxn" />
-                <label for="scale4" class="button">각개전투</label>
-                <input onChange={onChange} id="scale5" class="scale" name="scale" type="radio" value="specialties" />
-                <label for="scale5" class="button">주특기</label>
-            </span>
 
             {isExecutive ?
             <div>
@@ -98,8 +123,7 @@ const Assess = () => {
                     <Switch>
                         <Route path="/assess/exeCurrent" component={ExeCurrent}/>
                         <Route path="/assess/exeResult" component={ExeResult}/>
-                        <Route path="/assess" render={ () => <ExeSubmit target={target} allEvents={allEvents} />}/>
-                        
+                        <Route path="/assess" render={ () => <ExeSubmit onRangeChange={onRangeChange} allEvents={allEvents} />}/>
                     </Switch>
                 </Router>
             </div>
@@ -108,13 +132,13 @@ const Assess = () => {
                 <Router>
                     <div className="assessLinkBox">
                         <Link className="assessLink" to="/assess/submit">평가일정등록 </Link>
-                        <Link className="assessLink" to="/assess/current">신청인원확인 </Link>
-                        <Link className="assessLink" to="/assess/result">평가결과등록 </Link>
+                        <Link className="assessLink" to="/assess/current">신청결과확인 </Link>
+                        <Link className="assessLink" to="/assess/result">평가결과확인 </Link>
                     </div>
                     <Switch>
-                        <Route path="/assess/current" component={Current}/>
-                        <Route path="/assess/result" component={Result}/>
-                        <Route path="/assess" render={ () => <Submit target={target} allEvents={allEvents} />}/>
+                        <Route path="/assess/current" render={()=><Current />}/>
+                        <Route path="/assess/result" component={Result }/>
+                        <Route path="/assess" render={ () => <Submit onRangeChange={onRangeChange} allEvents={allEvents} />}/>
                     </Switch>
                 </Router>
             </div>

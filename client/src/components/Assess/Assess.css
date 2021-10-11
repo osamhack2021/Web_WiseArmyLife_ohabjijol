@@ -81,7 +81,14 @@
 
   
 }
-
+.qqwe{
+  
+  text-decoration: none;
+  color: black;
+  padding-left: 90px;
+  padding-right: 8px;
+  padding-bottom: 47px;
+}
 .basicList{
   margin-left: auto;
   margin-right: auto;
@@ -103,14 +110,20 @@
 }
 
 .bigCalendar{
-  margin-left: 100px;
-  margin-right: 100px;
+  margin-left: 50px;
+  margin-right: 50px;
+  padding-top: 50px;
+  padding-left: 100px;
+  padding-right: 100px;
   margin-bottom: 50px;
+  padding-bottom: 100px;
+  background-color: white;
+  border-radius: 80px;
 }
 
 .assessBox{
-  width: 1100px;
-  height: 800px;
+  width: 1400px;
+  height: 1200px;
   border-radius: 80px;
   background-color: #ffd265;
 
@@ -120,6 +133,8 @@
   margin-bottom: 39px;
 
 }
+
+
 
 .assessText{
   margin-left: auto;
@@ -138,4 +153,17 @@
   margin-right: auto;
   align-content: center;
   text-align: center;
+}
+
+
+.rbc-toolbar-label{
+  font-size: 40px;
+  color: #000000;
+  font-family: "Nanum Square EB";
+}
+
+.rbc-toolbar-side{
+  font-size: 30px;
+  color: #8e8e8e;
+  font-family: "Nanum Square EB";
 }

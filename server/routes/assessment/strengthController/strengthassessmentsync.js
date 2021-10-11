@@ -1,11 +1,11 @@
-const {IndividualBattle} = require('../../../models');
+const {Strength} = require('../../../models');
 
 const {Op} = require('sequelize');
 
 
 // 매일 yy시 사격정보 Expired 유무 파악후 db Update
 
-syncIndividualBattleAssessment = async () => {
+syncStrengthAssessment = async () => {
 
     try{
     
@@ -19,7 +19,7 @@ syncIndividualBattleAssessment = async () => {
     
       var toChange = "Expired"
     
-      const aa = await IndividualBattle.update({expired : "Expired",updatedAt : now1},
+      const aa = await Strength.update({expired : "Expired",updatedAt : now1},
       {where : {
           date : { [Op.lte] : today },
           [Op.not] :{expired: "Expired"}
@@ -34,4 +34,4 @@ syncIndividualBattleAssessment = async () => {
     }
     }
 
-    module.exports = syncIndividualBattleAssessment ;
+    module.exports = syncStrengthAssessment ;
