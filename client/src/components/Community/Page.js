@@ -4,6 +4,7 @@ import { Link, Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import Post from './Post';
 import Community from './Community';
 import './Page.css'
+import Newpost from './Newpost';
 
 const Page = ({match}) => {
 
@@ -15,7 +16,7 @@ const Page = ({match}) => {
             rows:[]
         }
     });
-    const [post,setPost] =useState(false)
+    const [post,setPost] =useState(1)
     const [inputs,setInputs] =useState({
         title:'',
         content:''
@@ -39,7 +40,7 @@ const Page = ({match}) => {
     useEffect(() => {
         axios.get(`/community/${forumId}/1`)
         .then(res =>{
-            console.log(res.data.data)
+            console.log(res.data)
             test.current = res.data.data
             if(test.current.maxPage !== data.maxPage){
                 setData(test.current)
@@ -48,38 +49,48 @@ const Page = ({match}) => {
         .catch(err =>console.log(err))
     },[data])
 
-    const onPost = () =>{
-        const post ={
-            title:title,
-            content:content
-        }
-        console.log(post)
-        axios.post(`/community/${forumId}/post`,post)
-        .then(res=>{
-            console.log(res.data)
-        })
-    }
     const onRemove = (id)=>{
         axios.delete(`/community/${forumId}/v/${id}`)
         .then(res=>{
             console.log(res.data);
         })
     }
-    const gogoPost = ()=>{
-        setPost(true);
-    }
-    const back = ()=>{
-        setPost(false)
-    }
-    const postOn = ()=>{
-        setPost(true);
-    }
 
     let index =0;
 
+    const onOne = (e)=>{
+        e.preventDefault()
+        setPost(1)
+    }
+    const onTwo = (e)=>{
+        e.preventDefault()
+        setPost(2)
+    }
+    const onThree = (e)=>{
+        e.preventDefault()
+        setPost(3)
+    }
     return (
         <div>
-            <Link to={`/community/newpost`}>글쓰기</Link>
+            <h2>게시판 +</h2>
+            <button onClick={onOne}>1</button>
+            <button onClick={onTwo}>2</button>
+            <button onClick={onThree}>3</button>
+            
+            {post===1 ?
+            <div>
+                <div>게시글리스트</div>
+                <div onClick={onTwo}>글쓰기</div>
+            </div>
+            :null}
+            
+            {post===2 ?
+            <Newpost forumId={forumId} onOne={onOne}/>
+            :null}
+
+            {post===3 ?
+            <Post onOne={onOne}/>
+            :null}
         </div>
     );
 };

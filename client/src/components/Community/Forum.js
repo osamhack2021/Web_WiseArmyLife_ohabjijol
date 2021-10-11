@@ -77,7 +77,7 @@ const Forum = () => {
     
     return (
         <div>
-            <h2>커뮤니티 + </h2>
+            <h2>커뮤니티+ </h2>
             {isExecutive ?
             <div>
                 <input name="forumName" value={forumName} onChange={onChange} />
