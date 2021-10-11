@@ -36,20 +36,29 @@ const ExeCurrent = (props) => {
         })
     },[date,target])
 
-    
+
     const onScore = (militaryNumber)=>{
         const score = prompt("점수입력 : ")
         const data =
-            [
-                {
-                    "UserId":militaryNumber,
-                    score:score
-                }
-            ]
-        
+            {       
+                date : date,
+                scoreAndId : [
+                    {
+                        "UserId":militaryNumber,
+                        "score":score
+                    }
+                ]
+            }
+        console.log(data)
         axios.patch(`/management/${target}/scores`,data)
         .then(res=>{
             console.log(res.data)
+        })
+        
+        axios.get(`/management/${target}/checkinfo?date=${date}`)
+        .then(res=>{
+            setDataList(res.data.data.userinfo);
+            console.log(dataList)
         })
     }
     const onCon = ()=>{
