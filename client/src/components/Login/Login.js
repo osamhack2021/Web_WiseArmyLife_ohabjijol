@@ -34,8 +34,8 @@ function Login() {
                 sessionStorage.setItem('user_id', inputId)
                 console.log(res.data.data)
 
-                //const exe = res.data.data.isExecutive
-                const exe = false
+                const exe = res.data.data.isExecutive
+                //const exe = false
                 if (exe === 0 ){
                     sessionStorage.setItem('isExecutive', false)
                 }else{

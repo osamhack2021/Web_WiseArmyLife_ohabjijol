@@ -11,14 +11,6 @@ import Result from './Result';
 import Submit from './Submit';
 
 
-const events = [
-    {
-        date: new Date(2021,9,7),
-        title: "13시~14시",
-        applicantText:"20/30",
-        expired:"Applying"
-    }
-];
 
 // 사격 화생방 구급법 각개 주특기 체력
 const targetList = [
@@ -33,7 +25,8 @@ const targetList = [
 const Assess = () => {
     //
     const [isExecutive,setIsExecutive] = useState(false)
-    const [allEvents, setAllEvents] = useState(events);
+    const [allEvents, setAllEvents] = useState([]);
+
 
     useEffect(() => {
         const Tf = sessionStorage.getItem('isExecutive')
@@ -43,14 +36,13 @@ const Assess = () => {
             setIsExecutive(false)
         }
         async function getEvents() {
-            
-            const res1 = await axios.get(`/assessment/shooting`)
-            const res2 = await axios.get(`/assessment/cBR`)
-            const res3 = await axios.get(`/assessment/firstAid`)
+            const res1 = await axios.get(`/assessment/shooting`) // 두개뜸
+            const res2 = await axios.get(`/assessment/cBR`) // 적용안됨
+            const res3 = await axios.get(`/assessment/firstAid`) 
             const res4 = await axios.get(`/assessment/individualBattle`)
             const res5 = await axios.get(`/assessment/speciality`)
-            const res6 = await axios.get(`/assessment/strength`)            
-
+            const res6 = await axios.get(`/assessment/strength`)
+            
             const getData = [
                 ...res1.data.data,
                 ...res2.data.data,
@@ -59,20 +51,20 @@ const Assess = () => {
                 ...res5.data.data,
                 ...res6.data.data
             ];
+            console.log(getData)
             const inDateList = getData.map( res=> {
                 return {
-                    target : res.target,
                     date : new Date(res.date),
-                    title : res.target+" " +res.time+" "+res.number_of_applicant+"/"+res.applicant_capacity,
+                    title : res.time+" "+res.number_of_applicant+"/"+res.applicant_capacity,
                     expired : res.expired,
-                    allDay:true
+                    allDay:true,
+                    dd: res.date
                 }
             })
             setAllEvents([...inDateList])
         }
         getEvents()
     },[])
-
 
     const onRangeChange = async (e)=>{
         const year = e.start.getFullYear();
@@ -104,6 +96,7 @@ const Assess = () => {
             }
         })
         setAllEvents([...inDateList])
+    
     }
 
     
@@ -115,9 +108,9 @@ const Assess = () => {
             <div>
                 <Router>
                     <div className="assessLinkBox">
-                        <Link className="assessLink" to="/assess/exeSubmit">평가일정등록 </Link>
+                        {/*<Link className="assessLink" to="/assess/exeSubmit">평가일정등록 </Link>
                         <Link className="assessLink" to="/assess/exeCurrent">신청인원확인 </Link>
-                        <Link className="assessLink" to="/assess/exeResult">평가결과등록 </Link>
+                        <Link className="assessLink" to="/assess/exeResult">평가결과등록 </Link>*/}
                     </div>
 
                     <Switch>

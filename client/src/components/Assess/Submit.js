@@ -3,26 +3,21 @@ import axios from 'axios';
 import './ss.css'
 import './Assess.css'
 
-import format from "date-fns/format";
-import getDay from "date-fns/getDay";
-import parse from "date-fns/parse";
-import startOfWeek from "date-fns/startOfWeek";
-import { Calendar, dateFnsLocalizer } from "react-big-calendar";
-import "react-big-calendar/lib/css/react-big-calendar.css";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import { CustomToolbar } from './CustomCal';
 
-const locales = {
-    "en-US": require("date-fns/locale/en-US"),
-};
-const localizer = dateFnsLocalizer({
-    format,
-    parse,
-    startOfWeek,
-    getDay,
-    locales,
-});
+import { toDateString } from '../../Custom/toDateString';
+
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import resourceTimeGridPlugin from "@fullcalendar/resource-timegrid";
+
+
+
+
+
+
+
 
 const Submit = (props) => {
 
@@ -38,43 +33,32 @@ const Submit = (props) => {
 
         //setAllEvents([...allEvents,newEvent])
     
-    
+    //
     const onClick = (e)=>{
-        const {date,title,applicantText,expired} = e
-        setInputs({
-            ...inputs,
-            date:date,
-            time:title,
-            applicantText:applicantText
+        const target = e.event._def.title.split(" ")[0]
+        const data = {
+            'date': e.event._def.extendedProps.dd
+        }
+        console.log(target)
+        
+        let conf = window.confirm(`신청종목 : ${target} 날짜 : ${data.date} 신청하기`)
+
+        if (conf){
+            axios.post(`/assessment/${target}/application`,data)
+            .then(res=>{
+                console.log(res.data)
+                if(res.data.success === 'true'){
+                    alert('신청완료')
+                    window.location.replace("/assess")
+                }else{
+                    alert(`${res.data.data}`)
+                }
+        }).catch(()=>{
+            alert('문자열 오류')
         })
-        const dateString = toDateString(date)
-        setInputDate(dateString)
+        }
     }
 
-    const onSubmit = (e)=>{
-        e.preventDefault()
-        const dateString = toDateString(inputs.date)
-        console.log(dateString)
-
-        axios.post(`/assessment/${target}/application`,{
-            'date':dateString
-        })
-        .then(res=>{
-            console.log(res.data.data)
-            alert(res.data.data)
-            window.location.replace("/assess")
-        })
-    }
-    const toDateString = (godate)=>{
-
-        const year = godate.getFullYear();
-        const month = ('0' + (godate.getMonth() + 1)).slice(-2);
-        const day = ('0' + godate.getDate()).slice(-2);
-
-        const dateString = year + '-' + month  + '-' + day;
-
-        return dateString;
-    }
     
     return (
         <div className="assessBox">
@@ -82,18 +66,28 @@ const Submit = (props) => {
                 <div className="assessText">응시 희망 날짜 및 시간</div>
             </div>
             <div className="bigCalendar">
-
-
+                <FullCalendar
+                        schedulerLicenseKey="GPL-My-Project-Is-Open-Source"
+                        defaultView="dayGridMonth"
+                        displayEventTime={true}
+                        header={{
+                            left: "prev,next today",
+                            center: "title",
+                            right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek"
+                        }}
+                        selectable={true}
+                        plugins={[
+                            dayGridPlugin,
+                            interactionPlugin,
+                            timeGridPlugin,
+                            resourceTimeGridPlugin
+                        ]}
+                        eventClick={onClick}
+                        events={allEvents}
+                        //select={onCalenderClick}
+                        eventLimit={3}
+                    />
             </div>
-            <form className="assessForm">
-                <span>날짜: </span>
-                <input placeholder="date" value={inputDate} />
-                <span>시간: </span>
-                <input placeholder="time" value={inputs.time} />
-                <span>인원현황: </span>
-                <input placeholder="applicantText" value={inputs.applicantText}  />
-                <button onClick={onSubmit}>신청</button>
-            </form>
         </div>
     );
 };
