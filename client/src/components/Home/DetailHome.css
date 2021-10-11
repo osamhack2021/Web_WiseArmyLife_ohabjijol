@@ -36,7 +36,11 @@
 }
 
 .content {
+    align-content: center;
+    margin-right: auto;
+    margin-left: auto;
     text-align: center;
+    
 }
 
 .bigBox {

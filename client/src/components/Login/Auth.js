@@ -165,7 +165,7 @@ const Auth = () => {
  
 
     return (
-        <div>
+        <div className='toto'>
             <div className="marginBox71" />
             <span className="textSignup">회원가입 +</span>
             <div>

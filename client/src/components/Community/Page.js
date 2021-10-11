@@ -102,7 +102,7 @@ const Page = ({match}) => {
                                                         <span className='postIndex'>
                                                             <span>{index} </span>
                                                         </span>
-                                                        <span className='postTitle'>
+                                                        <span  onClick={gogoPost} className='postTitle'>
                                                             <span>{res.title} </span>
                                                         </span>
                                                         <span className='postCreateAt'>

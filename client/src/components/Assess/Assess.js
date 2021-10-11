@@ -68,6 +68,7 @@ const Assess = () => {
     },[])
 
     const onRangeChange = async (e)=>{
+        console.log(12)
         const year = e.start.getFullYear();
         const month = parseInt(('0' + (e.start.getMonth() + 1)).slice(-2))+parseInt(1);
 

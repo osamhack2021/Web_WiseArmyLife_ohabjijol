@@ -54,7 +54,7 @@ const Current = (props) => {
                 ...res2.data.data,
                 ...res3.data.data,
                 ...res4.data.data,
-                //...res5.data.data,
+                ...res5.data.data,
                 ...res6.data.data
             ];
             console.log(getData)
@@ -79,7 +79,7 @@ const Current = (props) => {
                 return(
                     <div className="Yresult">
                         <span>{res.date}</span>
-                        <span>{res.time}</span>
+                        <span>{res.time}{res.score !== -1 ? <span> ({res.score})</span> : null}</span>
                     </div>
                 )
             })}
