@@ -10,6 +10,7 @@ const Forum = () => {
         'count':100, // 100이면 오류
         'rows':[]
     });
+    const [isExecutive,setIsExecutive] = useState(false)
 
     const {count,rows} = data;
     
@@ -21,6 +22,8 @@ const Forum = () => {
     const {forumName} = inputs;
 
     useEffect(() => {
+        if(sessionStorage.getItem('isExecutive')=== true)
+
             axios.get('/Community')
             .then(res =>{
                 test.current=res.data.data.allForum;
