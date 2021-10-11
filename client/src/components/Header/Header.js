@@ -12,6 +12,7 @@ import Letter from "../Letter/Letter";
 import Auth from '../Login/Auth';
 import DashBoard from "../DashBoard/DashBoard";
 import axios from "axios";
+import Forum from "../Community/Forum";
 
 
 const Header = () => {
@@ -99,6 +100,8 @@ const Header = () => {
                         <AuthRoute path="/letter" auth={isLogin} render={ () => <Letter />} />
                         <PublicRoute path="/auth" restricted={true} auth={isLogin} component={Auth} />
                         <PublicRoute path="/" restricted={false} auth={isLogin} component={DashBoard} />
+                        <Route path="/"  component={Forum}  />
+                        <Route path="/"  component={Letter}  />
 
                         
                     </Switch>

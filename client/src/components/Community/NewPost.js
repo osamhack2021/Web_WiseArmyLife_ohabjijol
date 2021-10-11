@@ -1,16 +1,12 @@
 import React from 'react';
 
-const Bulletin = () => {
-
-
+const NewPost = () => {
 
     return (
         <div>
-            hi
+         글쓰기
         </div>
     );
 };
 
-
-export default Bulletin;
-
+export default NewPost;

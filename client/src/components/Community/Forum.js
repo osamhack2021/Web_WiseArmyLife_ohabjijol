@@ -1,7 +1,9 @@
 import React,{useRef,useState,useEffect} from 'react';
 import axios from 'axios';
 import { Route } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'; 
+import "./Forum.css";
+
 
 
 const Forum = () => {
@@ -75,24 +77,93 @@ const Forum = () => {
         })
     }
 
+
+    const bottomLine = {
+        borderBottomWidth: "0px",
+    }
+
+
     
     return (
-        <div>
-            <input name="forumName" value={forumName} onChange={onChange} />
-            <button onClick={onClick} >포럼만들기</button>
-            <button onClick={onConsole}>콘솔</button>
-            <div>
-                {rows.map(row =>{
-                    return(
-                        <div>
-                            <span onClick={ ()=> goPage(row.id)}>{row.forumName}</span>
-                            <button id={row.id} onClick={onRemove}> X </button>
-                        </div>
-                    )
-                })}
+
+
+        <>
+
+        <div id="entire">
+
+
+       
+       <h3>공지사항 +</h3>
+
+
+       <div className="Fcontent">
+           <div id="table">
+            <table className="Ftable">
+                <thead>
+                    <th>    제목     </th>
+                    <th>    날짜     </th>
+                                  </thead>
+              
+                <tbody >
+                    <tr>
+                    <td >군장병 코로나 방역 수칙 안내</td> 
+                    <td >21.09.21</td> 
+                   
+                    </tr>
+
+                    <tr>
+                    <td >군장병 코로나 방역 수칙 안내</td> 
+                    <td >21.09.25</td> 
+                  
+                    </tr>
+
+
+                    <tr>  <td >군장병 코로나 방역 수칙 안내</td> 
+                    <td>21.09.15</td>    </tr>
+
+                    <tr>  <td >군장병 코로나 방역 수칙 안내</td> 
+                    <td>21.09.15</td>    </tr>
+
+                    <tr>  <td >군장병 코로나 방역 수칙 안내</td> 
+                    <td>21.09.15</td>    </tr>
+                    
+                    <tr>  <td >군장병 코로나 방역 수칙 안내</td> 
+                    <td>21.09.15</td>    </tr>
+
+                    <tr>  <td >군장병 코로나 방역 수칙 안내</td> 
+                    <td>21.09.15</td>    </tr>
+
+                    <tr>  <td >군장병 코로나 방역 수칙 안내</td> 
+                    <td>21.09.15</td>    </tr>
+
+                    <tr>  <td >군장병 코로나 방역 수칙 안내</td> 
+                    <td>21.09.15</td>    </tr>
+
+                    <tr>  <td style={bottomLine} >군장병 코로나 방역 수칙 안내</td> 
+                    <td style={bottomLine}>21.09.15</td>    </tr>
+                   
+                                
+                   
+                </tbody>
+            </table>
             </div>
         </div>
+
+        <div className="FselectBox">
+                <button>{"<"}</button>  
+             <button >1</button>  
+             <button >2</button>  
+             <button > 3</button>  
+             <button >4</button>  
+             <button>5</button>  
+             <button>{">"}</button>  
+             </div>
+             </div>
+             </>
+
+        
     );
 };
+
 
 export default Forum;

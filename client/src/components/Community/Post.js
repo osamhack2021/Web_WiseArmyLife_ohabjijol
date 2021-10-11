@@ -3,7 +3,7 @@ import React from 'react';
 const Post = () => {
     return (
         <div>
-            포스트화면
+            게시글 읽기
         </div>
     );
 };
