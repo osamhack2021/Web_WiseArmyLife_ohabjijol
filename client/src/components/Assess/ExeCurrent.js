@@ -32,7 +32,7 @@ const ExeCurrent = (props) => {
         axios.get(`/management/${newTarget}/checkinfo?date=${newDate}`)
         .then(res=>{
             setDataList(res.data.data.userinfo);
-            console.log(dataList)
+            console.log(res.data.data.userinfo)
         })
     },[date,target])
 
@@ -52,9 +52,9 @@ const ExeCurrent = (props) => {
         console.log(data)
         axios.patch(`/management/${target}/scores`,data)
         .then(res=>{
-            
+            console.log(res.data)
         })
-
+        
         axios.get(`/management/${target}/checkinfo?date=${date}`)
         .then(res=>{
             setDataList(res.data.data.userinfo);
@@ -95,9 +95,7 @@ const ExeCurrent = (props) => {
                 <h2 className='backback' onClick={onOff}>뒤로가기</h2>
                 </div>
 
-                
-{/* 일단 그냥 이렇게 해놀겡 */}
-
+        
            
         
       

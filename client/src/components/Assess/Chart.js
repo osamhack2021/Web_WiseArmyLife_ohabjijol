@@ -56,15 +56,55 @@ const config = {
 };
 
 export default function MyChart() {
-  const chartRef = useRef();
+    const chartRef = useRef();
 
-  useEffect(() => {
-    const canvas = chartRef.current.getContext("2d");
+    useEffect(()=>{
+        const canvas = chartRef.current.getContext("2d");
 
-    
+        new Chart(canvas, config);
 
-    new Chart(canvas, config);
-  }, []);
+        async function getEvents() {
+            const res1 = await axios.get(`/assessment/shooting/result`)
+            const res2 = await axios.get(`/assessment/cBR/result`)
+            const res3 = await axios.get(`/assessment/firstAid/result`)
+            const res4 = await axios.get(`/assessment/individualBattle/result`)
+            const res5 = await axios.get(`/assessment/speciality/result`)
+            const res6 = await axios.get(`/assessment/strength/result`)
+
+            if(res1.data.data ===null){
+                res1.data.data = []
+            }
+            if(res2.data.data ===null){
+                res2.data.data = []
+            }
+            if(res3.data.data ===null){
+                res3.data.data = []
+            }
+            if(res4.data.data ===null){
+                res4.data.data = []
+            }
+            if(res5.data.data ===null){
+                res5.data.data = []
+            }
+            if(res6.data.data ===null){
+                res6.data.data = []
+            }
+            
+            
+            const getData = [
+                res1.data.data,
+                res2.data.data,
+                res3.data.data,
+                res4.data.data,
+                //res5.data.data,
+                res6.data.data
+            ];
+            console.log(getData)
+
+
+        }
+        getEvents()
+    },[])
 
   return <canvas className="chartCanvas" ref={chartRef} />;
 }
