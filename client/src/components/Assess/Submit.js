@@ -47,14 +47,14 @@ const Submit = (props) => {
             axios.post(`/assessment/${target}/application`,data)
             .then(res=>{
                 console.log(res.data)
-                if(res.data.success === 'true'){
+                if(res.data.success === true){
                     alert('신청완료')
                     window.location.replace("/assess")
                 }else{
-                    alert(`${res.data.data}`)
+                    alert(`${res.data.data.message}`)
                 }
         }).catch(()=>{
-            alert('문자열 오류')
+            alert('기타 오류')
         })
         }
     }
@@ -67,6 +67,7 @@ const Submit = (props) => {
             </div>
             <div className="bigCalendar">
                 <FullCalendar
+                        onRangeChange={onRangeChange}
                         schedulerLicenseKey="GPL-My-Project-Is-Open-Source"
                         defaultView="dayGridMonth"
                         displayEventTime={true}

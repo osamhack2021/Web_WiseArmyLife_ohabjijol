@@ -128,10 +128,10 @@
   border-radius: 80px;
   background-color: #ffd265;
 
-  padding-top: 100px;
+  padding-top: 50px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 39px;
+  
 
 }
 
@@ -140,6 +140,7 @@
 .assessText{
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 30px;
   width: 330px;
   text-align: center;
   align-content: center;

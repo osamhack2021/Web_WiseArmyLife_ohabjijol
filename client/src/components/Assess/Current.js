@@ -79,7 +79,7 @@ const Current = (props) => {
                 return(
                     <div className="Yresult">
                         <span>{res.date}</span>
-                        <span>{res.time}{res.score !== -1 ? ( res.score) : null}</span>
+                        <span>{res.time}{res.score !== -1 ? <span> ({res.score})</span> : null}</span>
                     </div>
                 )
             })}
