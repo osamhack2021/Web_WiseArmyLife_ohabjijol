@@ -146,6 +146,8 @@ const Forum = () => {
                    
                 </tbody>
             </table>
+        
+    
             </div>
         </div>
 

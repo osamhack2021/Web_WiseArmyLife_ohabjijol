@@ -40,9 +40,13 @@
 
 
 
-/*태그 css */
+/*태그 css
+  내부의 태그도 이용 가능
 
+  부모가 속한 태그 / 클래스 or id  / 선택하고자 하는 태그
+  div  //   .FselectBox  or #entire   //    span
 
+*/
 
 
 
