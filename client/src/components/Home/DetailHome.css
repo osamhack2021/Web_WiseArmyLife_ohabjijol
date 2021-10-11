@@ -33,7 +33,11 @@
 }
 
 .content {
+    align-content: center;
+    margin-right: auto;
+    margin-left: auto;
     text-align: center;
+    
 }
 
 .bigBox {
@@ -47,11 +51,11 @@
 .bigBox2 {
   display: grid;
   display: inline-grid;
-  grid-template-columns:  1fr 1fr 1fr;
+  grid-template-columns:  1fr 1fr;
   text-align: center;
   align-content: center;
   margin-bottom: 100px;
-  margin-left: 320px;
+  
 }
 
 .shoot{
