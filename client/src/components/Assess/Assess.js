@@ -85,14 +85,14 @@ const Assess = () => {
             ...res5.data.data,
             ...res6.data.data
         ];
-
+        console.log(getData)
         const inDateList = getData.map( res=> {
             return {
-                target : res.target,
                 date : new Date(res.date),
-                title : res.target+" " +res.time+" "+res.number_of_applicant+"/"+res.applicant_capacity,
+                title : res.time+" "+res.number_of_applicant+"/"+res.applicant_capacity,
                 expired : res.expired,
-                allDay:true
+                allDay:true,
+                dd: res.date
             }
         })
         setAllEvents([...inDateList])

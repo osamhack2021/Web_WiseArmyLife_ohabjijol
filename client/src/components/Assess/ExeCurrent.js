@@ -52,9 +52,9 @@ const ExeCurrent = (props) => {
         console.log(data)
         axios.patch(`/management/${target}/scores`,data)
         .then(res=>{
-            console.log(res.data)
+            
         })
-        
+
         axios.get(`/management/${target}/checkinfo?date=${date}`)
         .then(res=>{
             setDataList(res.data.data.userinfo);
