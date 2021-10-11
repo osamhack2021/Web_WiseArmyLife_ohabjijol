@@ -11,6 +11,7 @@ const My = () => {
     useEffect(() => {
         axios.get('/profile')
         .then(res => {
+            console.log(res.data)
             if(res.data.success===true){
                 console.log(res.data)
                 const {name,militaryNumber,position} = res.data

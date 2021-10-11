@@ -4,7 +4,7 @@ import axios from 'axios';
 const Result = () => {
 
     useEffect(()=>{
-        axios.get()
+        
     })
 
     return (

@@ -32,7 +32,7 @@ const Page = ({match}) => {
     }
 
     const onConsole = ()=>{
-        console.log(data)
+        console.log(data.post_10.rows)
     }
 
     const test = useRef(null);
@@ -72,6 +72,8 @@ const Page = ({match}) => {
         setPost(false)
     }
 
+    let index =0;
+
     return (
         <div>
             
@@ -80,21 +82,42 @@ const Page = ({match}) => {
 
             <div>
                 {data.maxPage !==0 ?
-                    rows.map(res=>{
-                        console.log(res)
-                        return (
                             <div className="pageBox">
                                 <hr className='pageHr'/>
                                 <div>
+                                    <span className='pageHader'>No.1</span>
                                     <span className='pageHader1'>제목</span>
                                     <span className='pageHader2'>날짜</span>
                                     <span className='pageHader3'>작성자</span>
                                 </div>
-                                <div onClick={gogoPost}> 글!! id값 : {res.id}</div>
-                                <button onClick={()=> onRemove(res.id)}>X</button>
+                                <div  className='pageBoard'>
+                                    <div>
+                                        <hr className='pageBoardHr' />
+                                        <div>
+                                        {
+                                            data.post_10.rows.map(res=>{
+                                                index += parseInt(1); 
+                                                return(
+                                                    <div className='postpost'>
+                                                        <span className='postIndex'>
+                                                            <span>{index} </span>
+                                                        </span>
+                                                        <span className='postTitle'>
+                                                            <span>{res.title} </span>
+                                                        </span>
+                                                        <span className='postCreateAt'>
+                                                            <span>{res.createdAt} </span>
+                                                        </span>
+                                                    </div>
+                                                )
+                                            })
+                                        }
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        )
-                    })
+                                
+                    
                 :<div>없음</div>}
             </div>
             

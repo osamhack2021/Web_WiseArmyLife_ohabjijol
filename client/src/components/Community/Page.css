@@ -34,3 +34,40 @@
     color: #000000;
     font-family: "Nanum Square EB";
 }
+
+.pageBoard{
+    align-content: flex-start;
+}
+
+.pageHader{
+    font-size: 30px;
+    color: #000000;
+    font-family: "Nanum Square EB";
+    padding-right: 100px;
+}
+.pageBoard{
+    padding-top: 10px;
+    font-size: 30px;
+}
+
+.pageBoardHr{
+    margin-left: 50px;
+    margin-right: 50px;
+    color: rgb(167, 167, 167);
+    border-color: rgb(167, 167, 167);
+}
+
+.postpost{
+    text-align: left;
+    margin-left: 50px;
+}
+
+.postIndex{
+    width: 200px;
+    height: 100px;
+    margin-left: 30px;
+    
+}
+.postTitle{
+    width: 300px;
+}

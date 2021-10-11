@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useRef} from 'react';
 
 import axios from 'axios';
 import './ss.css'
@@ -11,24 +11,44 @@ import interactionPlugin from "@fullcalendar/interaction";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import resourceTimeGridPlugin from "@fullcalendar/resource-timegrid";
 import { toDateString } from '../../Custom/toDateString';
+import ExeCurrent from './ExeCurrent'
+import PublicRoute from './../../Custom/PublicRoute';
+import { Link, Route, Switch, BrowserRouter as Router } from "react-router-dom";
+
 
 
 
 const ExeSubmit = (props) => {
 
     const {allEvents,onRangeChange} = props;
-
-
+    const [check,setCheck] = useState(false)
+        
+    const [go,setGo] = useState({
+        target:"",
+        date:""
+    })
     const onConsole = (e)=>{
         console.log(allEvents)
+        setCheck(true)
     }
 
     //신청인원확인
-    const eventClick = (event)=>{
-        const date =toDateString(event.event._instance.range.start)
-        const target = (event.event._def.title.split(" ")[0])
-        alert(`${date} 신청인원확인하기`)
-        window.location.href = `/assess/exeCurrent?target=${target}&date=${date}`;
+    const eventClick = async (event)=>{
+        const newDate =toDateString(event.event._instance.range.start)
+        const newTarget = (event.event._def.title.split(" ")[0])
+        //setCheck(true)
+        setCheck(true)
+
+        setGo({
+            ...go,
+            target:newTarget,
+            date:newDate
+        })
+        sessionStorage.setItem('target', newTarget)
+        sessionStorage.setItem('date', newDate)
+        
+        alert(`${newDate} 신청인원확인하기`)
+
     }
 
     // 이벤트 작성
@@ -68,40 +88,52 @@ const ExeSubmit = (props) => {
                 }
             }
         }
-
-        
-       
     }
-
+    const onOn = ()=>{
+        setCheck(true)
+    }
+    const onOff =()=>{
+        setCheck(false)
+    }
+    
     return (
-        <div className="assessBox">
-            <div className="bigCalendar">
-                <FullCalendar
-                    schedulerLicenseKey="GPL-My-Project-Is-Open-Source"
-                    defaultView="dayGridMonth"
-                    displayEventTime={true}
-                    header={{
-                        left: "prev,next today",
-                        center: "title",
-                        right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek"
-                    }}
-                    selectable={true}
-                    plugins={[
-                        dayGridPlugin,
-                        interactionPlugin,
-                        timeGridPlugin,
-                        resourceTimeGridPlugin
-                    ]}
-                    eventClick={eventClick}
-                    events={allEvents}
-                    select={onCalenderClick}
-                    eventLimit={3}
-                />
+        <div>
+            {check===false ?
+            <div className="assessBox">
+                <div className="bigCalendar">
+                    <FullCalendar
+                        schedulerLicenseKey="GPL-My-Project-Is-Open-Source"
+                        defaultView="dayGridMonth"
+                        displayEventTime={true}
+                        header={{
+                            left: "prev,next today",
+                            center: "title",
+                            right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek"
+                        }}
+                        selectable={true}
+                        plugins={[
+                            dayGridPlugin,
+                            interactionPlugin,
+                            timeGridPlugin,
+                            resourceTimeGridPlugin
+                        ]}
+                        eventClick={eventClick}
+                        events={allEvents}
+                        select={onCalenderClick}
+                        eventLimit={3}
+                    />
+                </div>
+                <button onClick={onOn}>콘솔</button>
             </div>
-            <button onClick={onConsole}>콘솔</button>
+            
+            :
+            <div>
+                <Router>
+                    <Route to="/assess" render={ () => <ExeCurrent target={go.target} onOff={onOff} date={go.date} />}  /> {/*동일 */}
+                </Router>
+            </div>
+            }
         </div>
-        
-        
     );
 };
 

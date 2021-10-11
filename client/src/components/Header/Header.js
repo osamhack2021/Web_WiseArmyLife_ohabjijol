@@ -98,7 +98,7 @@ const Header = () => {
                         <AuthRoute path="/my" auth={isLogin} render={ () => <My />} />
                         <AuthRoute path="/letter" auth={isLogin} render={ () => <Letter />} />
                         <PublicRoute path="/auth" restricted={true} auth={isLogin} component={Auth} />
-                        <PublicRoute path="/dashboard" restricted={false} auth={isLogin} component={DashBoard} />
+                        <PublicRoute path="/" restricted={false} auth={isLogin} component={DashBoard} />
 
                         
                     </Switch>
