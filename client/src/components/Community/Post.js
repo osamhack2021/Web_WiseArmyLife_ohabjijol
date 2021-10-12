@@ -3,6 +3,8 @@ import { Link, Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import { useEffect } from 'react';
 import  axios  from 'axios';
 
+
+
 const Post = (props) => {
 
     const {match,history} = props
@@ -32,6 +34,8 @@ const Post = (props) => {
             <button onClick={()=>console.log(forumId)}>콘솔</button>
             <button onClick={onRemove}>삭제하기</button>
             <button onClick={onEdit}>수정하기</button>
+            <input placeholder='coment'/>
+            <button>댓글작성</button>
             <button onClick={()=>history.goBack()}>돌아가기</button>
         </div>
     );
