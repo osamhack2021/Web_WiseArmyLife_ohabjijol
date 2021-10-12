@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Route } from 'react-router';
 import { Link } from 'react-router-dom';
 
-
 const Forum = () => {
 
     const [data,setData] = useState({

@@ -20,7 +20,9 @@ class App extends Component {
     return (
       <div>
         <Header />
+        <div className="footerFixed">
         <Footer />
+        </div>
       
       </div>
     );
