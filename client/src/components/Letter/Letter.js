@@ -49,7 +49,6 @@ const Letter = () => {
         .then(res=>{
             console.log(res.data)
         })
-
         setNewpost(false);
     }
 
@@ -65,7 +64,7 @@ const Letter = () => {
                 <input placeholder='title' name="title" value={inputs.title} onChange={(e)=>setInputs({...inputs,title:e.value})}/>
                 <input placeholder='content' name="content" value={inputs.content} onChange={(e)=>setInputs({...inputs,content:e.value})}/>
                 <button onClick={onPost}>보내기</button>
-            
+                <button onClick={()=>setNewpost(false)}>뒤로가기</button>
             </div>
             }
         </div>

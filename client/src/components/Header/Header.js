@@ -2,7 +2,6 @@ import React, {useState ,useEffect} from "react";
 import { Link, Route, Switch, BrowserRouter as Router } from "react-router-dom";
  import Login from '../Login/Login';
 import DetailHome from "../Home/DetailHome";
-import Community from '../Community/Community';
 import Assess from "../Assess/Assess";
 import './Header.css';
 import My from "../My/My";

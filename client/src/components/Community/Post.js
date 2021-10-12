@@ -24,10 +24,14 @@ const Post = (props) => {
 
         history.goBack()
     }
+    const onEdit = ()=>{
+        
+    }
     return (
         <div>
             <button onClick={()=>console.log(forumId)}>콘솔</button>
             <button onClick={onRemove}>삭제하기</button>
+            <button onClick={onEdit}>수정하기</button>
             <button onClick={()=>history.goBack()}>돌아가기</button>
         </div>
     );
