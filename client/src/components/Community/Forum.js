@@ -4,6 +4,14 @@ import { Route } from 'react-router';
 import { Link } from 'react-router-dom';
 
 
+/**
+ *  post('/community/:forumId/:postId/comment')
+    댓글 수정, 삭제:put('/community/:forumId/:postId/:commentId')
+    대댓글: post('/community/:forumId/:postId/:commentId')
+    댓글 등록: content
+ 
+ */
+
 const Forum = () => {
 
     const [data,setData] = useState({

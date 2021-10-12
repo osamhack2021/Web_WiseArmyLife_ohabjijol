@@ -37,11 +37,3 @@
     display: inline-block;
     padding-left: 200px;
   }
-
-  .footerFixed{
-    inherits: inherit;
-    position:absolute;
-    margin-top: 983px;
-    width: 100%;
-    margin-bottom: 0%; 
-  }
