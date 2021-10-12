@@ -15,24 +15,24 @@ const Current = () => {
 
     return (
         <>
-        <div className="content">
+        <div className="Ccontent">
 
       <h2 style={hTwoStyle}>신청결과확인 +</h2>
 
 
-      <div className="result">
+      <div className="Cresult">
           <span>2021.10.08</span>
           <span>18:00~19:00</span>
           <span>확인중</span>
       </div>
 
-      <div className="result">
+      <div className="Cresult">
           <span>2021.10.07</span>
           <span>13:00~15:00</span>
           <span>승인</span>
       </div>
 
-      <div className="result">
+      <div className="Cresult">
           <span>2021.10.09</span>
           <span>13:00~14:00</span>
           <span>미승인</span>

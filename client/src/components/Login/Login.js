@@ -61,7 +61,7 @@ function Login() {
                     <span className="textPw">비밀번호</span>
                     <input className="inputPw" type='password' name='input_pw' value={inputPw} onChange={handleInputPw} />
                 </div>
-                <div className="buttonList">
+                <div className="LbuttonList">
                     <span className="loginButton" type='button' onClick={onClickLogin}>로그인</span>
                     <Link className="loginButton" to="/auth">회원가입</Link>
                 </div>

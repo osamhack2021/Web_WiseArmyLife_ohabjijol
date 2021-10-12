@@ -19,7 +19,7 @@ const DetailHome = () => {
                                 <p className="shoot">사격</p>
                                 <div className="shootDetail">사격 평가 일정 안내 및 신청</div>
                             </div>
-                            <div className="smallBox">
+                            <div className="smallBox">```~
                                 <p className="shoot">정신전력평가</p>
                                 <div className="shootDetail">정신전력 평가 일정 안내 및 신청</div>
                             </div>

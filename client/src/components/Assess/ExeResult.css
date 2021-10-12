@@ -1,4 +1,4 @@
-.entireTwo{
+.ERentireTwo{
     background-color:#f7e4b8 ;
     width: 1280px;
     height: 510px;
@@ -10,7 +10,7 @@
 }
 
 
-.resultRegister{
+.ERresultRegister{
     margin-top: 160px;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -25,7 +25,7 @@
 
 
 
-.resultTable {
+.ERresultTable {
        margin-bottom: 108px;
        margin-left: 50px;
     font-size: 30px;
@@ -41,11 +41,11 @@
 
 }
 
-.selectBox{
+.ERselectBox{
     text-align: center;
 }
 
-.container {
+.ERcontainer {
     display: grid;
     grid-template-columns: 15px 15px 15px 15px 15px ;
     text-align: center;
@@ -54,7 +54,7 @@
 
 }
 
-.buttonGroup{
+.ERbuttonGroup{
     text-align: center;
     padding: 10px;
     margin:10px;

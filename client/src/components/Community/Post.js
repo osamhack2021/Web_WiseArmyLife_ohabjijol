@@ -7,10 +7,10 @@ const Post = () => {
 
     return (
         <>
-              <h2>공지사항 +</h2>
+              <h2 className = "PhTwo">공지사항 +</h2>
 
               <div className={styles.content}>
-               <h3>군장병 코로나 방역수칙 안내</h3>
+               <h3 className="PhThree">군장병 코로나 방역수칙 안내</h3>
                <div>코로나 19방역수칙에 대해 안내합니다.
                    <br></br> 휴가 및 외박 후 자가 격리  
                    <br></br> - 부대 복귀 하루 전 PCR검사 실시

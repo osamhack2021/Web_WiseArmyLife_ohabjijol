@@ -21,17 +21,7 @@
    
   }
   
-  .Ftable{
-   border-top: 3px solid black;
-   border-bottom: 3px solid black;
-   width: 1140px;
-   text-align: center;
-   margin-left: 0px;
 
-  
-  
-  
-  }
   
   
   .FselectBox{
@@ -52,7 +42,7 @@
 
 
 
-h2{
+.FnoticeH{
   font-size: 30px;
   font-family: "Nanum Square EB";
   text-align: center;
@@ -78,34 +68,4 @@ margin: 10px;
   }
 
 
-  table{
-    font-size: 30px;
-    font-family: "Nanum Square EB";
-   
-  }
-
-  thead{
-    padding-top:20px;
-    padding-bottom:20px;
-
-  }
-
-  th{
-    height : 40px;
-    padding-bottom: 10px;
-    border-bottom:1px solid white;
-  }
-
-  tbody{
-    font-size: 25px;
-    font-family: Nanum Square B;
-    padding-top:20px;
-    padding-bottom:20px;
-
-  }
-
-  td{
-    padding-top:20px;
-    padding-bottom:20px;
-    border-bottom: 1px solid gray;  
-  }
+ 

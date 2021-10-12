@@ -5,7 +5,7 @@ const NewPost = () => {
 
     return (
         <>
-        <h2> 공지사항 +</h2>
+        <h2 className="NPhTwo"> 공지사항 +</h2>
  
         <div className={styles.content}>
           <div className={styles.contentTop}>

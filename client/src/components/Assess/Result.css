@@ -1,4 +1,4 @@
-.content{
+.Rcontent{
     background-color: #fff6e1;
     width: 69%;
     margin-left: 15%;
@@ -9,7 +9,7 @@
       
 }
 
-.result{
+.Rresult{
     width: 80%;
     text-align: center;
     
@@ -24,7 +24,7 @@
    height: 70px;
     border: 1px solid #000000;}
 
-span.result{
+div .Rresult span{
     border-left: 2px solid black;
     border-right: 2px solid black;
 }

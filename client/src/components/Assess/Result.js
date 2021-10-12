@@ -14,26 +14,26 @@ const Result = () => {
 
     return (
         <>
-        <div className="content">
+        <div className="Rcontent">
 
       <h2 style={hTwoStyle}> 평가결과 +</h2>
 
 
-      <div className="result">
+      <div className="Rresult">
           <span>체력</span>
           <span>2021.10.14</span>
           <span>16:00~17:00</span>
           <span>A</span>
       </div>
 
-      <div className="result">
+      <div className="Rresult">
       <span>사격</span>
           <span>2021.09.30</span>
           <span>18:00~19:00</span>
           <span>B</span>
       </div>
 
-      <div className="result">
+      <div className="Rresult">
       <span>구급법</span>
           <span>2021.09.07</span>
           <span>15:00~16:00</span>

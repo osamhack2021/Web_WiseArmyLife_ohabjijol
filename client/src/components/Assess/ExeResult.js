@@ -22,10 +22,10 @@ const ExeResult = () => {
 
     return (
         <>
-        <div className = "entireTwo">
-        <h2 className="resultRegister">  결과등록 +  </h2>
+        <div className = "ERentireTwo">
+        <h2 className="ERresultRegister">  결과등록 +  </h2>
        
-         <table className="resultTable">
+         <table className="ERresultTable">
              <thead>
                  <tr>
                      <th style={tableStyle}>군번</th>  
@@ -57,7 +57,7 @@ const ExeResult = () => {
 
              </div>
 
-             <div className="buttonGroup">
+             <div className="ERbuttonGroup">
              <button style={buttonStyle}>{"<"}</button>  
              <button style={buttonStyle}>1</button>  
              <button style={buttonStyle}>2</button>  

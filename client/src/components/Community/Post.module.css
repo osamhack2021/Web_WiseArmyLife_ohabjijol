@@ -1,10 +1,10 @@
-h2 {
+.PhTwo {
     font-size: 30px;
   text-align: center;
   font-family: "Nanum Square EB";
   }
   
-  h3 {
+  .PhThree {
     width:1140px;
     text-align: left;
     padding-left: 20px;

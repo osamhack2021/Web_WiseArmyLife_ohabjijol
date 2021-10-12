@@ -43,10 +43,10 @@ const Assess = () => {
     
     return (
         <div>
-            <h2 className="basicTitle">병기본평가 +</h2>
+            <h2 className="AbasicTitle">병기본평가 +</h2>
 
-            <span className="basicList" >
-                <span className="margin270"></span>
+            <span className="AbasicList" >
+                <span className="Amargin270"></span>
                 <input onChange={onChange} id="scale0" class="scale" name="scale" type="radio" value="shooting" />
                 <label for="scale0" class="button">사격</label>
                 <input onChange={onChange} id="scale1" class="scale" name="scale" type="radio" value="spirit" />
@@ -64,10 +64,10 @@ const Assess = () => {
             {isExecutive ?
             <div>
                 <Router>
-                    <div className="assessLinkBox">
-                        <Link className="assessLink" to="/assess/exeSubmit">평가일정등록 </Link>
-                        <Link className="assessLink" to="/assess/exeCurrent">신청인원확인 </Link>
-                        <Link className="assessLink" to="/assess/exeResult">평가결과등록 </Link>
+                    <div className="AassessLinkBox">
+                        <Link className="AassessLink" to="/assess/exeSubmit">평가일정등록 </Link>
+                        <Link className="AassessLink" to="/assess/exeCurrent">신청인원확인 </Link>
+                        <Link className="AassessLink" to="/assess/exeResult">평가결과등록 </Link>
                     </div>
 
                     <Switch>
@@ -81,7 +81,7 @@ const Assess = () => {
             :
             <div>
                 <Router>
-                    <div className="assessLinkBox">
+                    <div className="AassessLinkBox">
                         <Link className="assessLink" to="/assess/submit">평가일정등록 </Link>
                         <Link className="assessLink" to="/assess/current">신청인원확인 </Link>
                         <Link className="assessLink" to="/assess/result">평가결과등록 </Link>

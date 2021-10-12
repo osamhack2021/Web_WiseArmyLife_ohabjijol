@@ -10,10 +10,10 @@ const ExeCurrent = () => {
 
     return (
         <>
-        <div className = "entire">
-           <h2 className="peopleCheck">  인원확인 +  </h2>
+        <div className = "ECentire">
+           <h2 className="ECpeopleCheck">  인원확인 +  </h2>
           
-            <table className="currentConfirm">
+            <table className="ECcurrentConfirm">
                 <thead>
                     <tr>
                         <th style={tableStyle}>군번</th>  
@@ -35,7 +35,7 @@ const ExeCurrent = () => {
 
                 </div>
 
-                <div className="selectBox">
+                <div className="ECselectBox">
                 <button>{"<"}</button>  
              <button>1</button>  
              <button>2</button>  
