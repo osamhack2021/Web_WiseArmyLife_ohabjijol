@@ -82,36 +82,41 @@ const Forum = () => {
         borderBottomWidth: "0px",
     }
 
-    table{
-        font-size: 30px;
-        font-family: "Nanum Square EB";
+    const  Ntable = {
+        borderTop: "3px solid black",
+        borderBottom: "3px solid black",
+        width: "1140px",
+        textAlign:"center",
+                marginLeft:" 0px",
+        fontSize: "30px",
+        fontFamily: "Nanum Square EB",
        
       }
     
-      thead{
-        padding-top:20px;
-        padding-bottom:20px;
+      const  Nthead = {
+        paddingTop:"20px",
+        paddingBottom:"20px",
     
       }
     
-      th{
-        height : 40px;
-        padding-bottom: 10px;
-        border-bottom:1px solid white;
+      const  Nth = {
+        height : "40px",
+        paddingBottom: "10px",
+        borderBottom:"1px solid white",
       }
     
-      tbody{
-        font-size: 25px;
-        font-family: Nanum Square B;
-        padding-top:20px;
-        padding-bottom:20px;
+      const  Ntbody = {
+        fontSize:"25px",
+        fontFamily: "Nanum Square B",
+        paddingTop:"20px",
+        paddingBottom:"20px",
     
       }
     
-      td{
-        padding-top:20px;
-        padding-bottom:20px;
-        border-bottom: 1px solid gray;  
+      const  Ntd = {
+        paddingTop:"20px",
+        paddingBottom:"20px",
+        borderBottom: "1px solid gray",  
       }
 
 
@@ -131,46 +136,46 @@ const Forum = () => {
 
        <div className={styles.Fcontent}>
            <div id="table">
-           { <table className={styles.Ftable}>
-                <thead>
-                    <th>    제목     </th>
-                    <th>    날짜     </th>
+           { <table style={Ntable}>
+                <thead style={Nthead}>
+                    <th style={Nth}>    제목     </th>
+                    <th style={Nth}>    날짜     </th>
                                   </thead>
               
-                <tbody >
+                <tbody style={Ntbody}>
                     <tr>
-                    <td >군장병 코로나 방역 수칙 안내</td> 
-                    <td >21.09.21</td> 
+                    <td style={Ntd} >군장병 코로나 방역 수칙 안내</td> 
+                    <td style={Ntd} >21.09.21</td> 
                    
                     </tr>
 
                     <tr>
-                    <td >군장병 코로나 방역 수칙 안내</td> 
-                    <td >21.09.25</td> 
+                    <td style={Ntd} >군장병 코로나 방역 수칙 안내</td> 
+                    <td style={Ntd} >21.09.25</td> 
                   
                     </tr>
 
 
-                    <tr>  <td >군장병 코로나 방역 수칙 안내</td> 
-                    <td>21.09.15</td>    </tr>
+                    <tr>  <td style={Ntd} >군장병 코로나 방역 수칙 안내</td> 
+                    <td style={Ntd}>21.09.15</td>    </tr>
 
-                    <tr>  <td >군장병 코로나 방역 수칙 안내</td> 
-                    <td>21.09.15</td>    </tr>
+                    <tr>  <td style={Ntd} >군장병 코로나 방역 수칙 안내</td> 
+                    <td style={Ntd}> 21.09.15</td>    </tr>
 
-                    <tr>  <td >군장병 코로나 방역 수칙 안내</td> 
-                    <td>21.09.15</td>    </tr>
+                    <tr>  <td style={Ntd}>군장병 코로나 방역 수칙 안내</td> 
+                    <td style={Ntd}>21.09.15</td>    </tr>
                     
-                    <tr>  <td >군장병 코로나 방역 수칙 안내</td> 
-                    <td>21.09.15</td>    </tr>
+                    <tr>  <td style={Ntd} >군장병 코로나 방역 수칙 안내</td> 
+                    <td style={Ntd}>21.09.15</td>    </tr>
 
-                    <tr>  <td >군장병 코로나 방역 수칙 안내</td> 
-                    <td>21.09.15</td>    </tr>
+                    <tr>  <td style={Ntd} >군장병 코로나 방역 수칙 안내</td> 
+                    <td style={Ntd}>21.09.15</td>    </tr>
 
-                    <tr>  <td >군장병 코로나 방역 수칙 안내</td> 
-                    <td>21.09.15</td>    </tr>
+                    <tr>  <td style={Ntd}>군장병 코로나 방역 수칙 안내</td> 
+                    <td style={Ntd}> 21.09.15</td>    </tr>
 
-                    <tr>  <td >군장병 코로나 방역 수칙 안내</td> 
-                    <td>21.09.15</td>    </tr>
+                    <tr>  <td style={Ntd}>군장병 코로나 방역 수칙 안내</td> 
+                    <td style={Ntd}>21.09.15</td>    </tr>
 
                     <tr>  <td style={bottomLine} >군장병 코로나 방역 수칙 안내</td> 
                     <td style={bottomLine}>21.09.15</td>    </tr>
