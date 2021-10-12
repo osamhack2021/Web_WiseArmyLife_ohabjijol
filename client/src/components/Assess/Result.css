@@ -12,17 +12,19 @@
 .Rresult{
     width: 80%;
     text-align: center;
-    
     background-color:#ffe4a2;
-   display: grid;
-  grid-template-columns:330px 330px 330px 130px;
-  font-size: 25px;
-  font-family: 'Times New Roman', Times, serif;
+    display: grid;
+    grid-template-columns:300px 300px 300px 150px;
+    font-size: 25px;
+    font-family: 'Times New Roman', Times, serif;
     margin-left: 10%;
-      margin-right: 10%;
-     margin-bottom: 20px;
-   height: 70px;
-    border: 1px solid #000000;}
+    margin-right: 10%;
+    margin-bottom: 20px;
+    height: 50px;
+    border: 1px solid #000000;
+    justify-content: center;
+   
+}
 
 div .Rresult span{
     border-left: 2px solid black;
