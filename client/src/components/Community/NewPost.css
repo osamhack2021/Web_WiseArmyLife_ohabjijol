@@ -1,0 +1,86 @@
+h2 {
+    font-size: 30px;
+    font-family: "Nanum Square EB";
+    text-align:center;
+  }
+  
+  .content{
+      text-align: left;
+    padding: 50px;
+     width: 1280px;
+  height: 970px;
+  border-radius: 50px;
+  background-color: #fffacb;
+  margin-left: 15%;
+  margin-right:15%;
+  justify-content: center;
+  
+  }
+  
+  .contentTop {
+    display:grid;
+    grid-template-columns: 50px 840px;
+    height:50px;
+    padding-bottom: 20px;
+    background-color: white;
+    padding-left: 10px;
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+  
+  
+   
+    
+  }
+  
+  div .contentTop input{
+    border:0;
+    background-color: white;
+    margin:0;
+    padding-left:20;
+    width:800px;
+  
+  }
+  
+  div #mainContent input {
+  
+    background-color: white;
+    border:0;
+  
+    height:900px;
+    border-top: 1px solid black;
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-bottom: 70px;
+    height: 700px;
+  }
+  
+  div .content button{
+    font-size: 25px;
+  font-family: "Nanum Square B";
+  width: 181px;
+  height: 60px;
+  border-radius: 30px;
+  background-color: #fff492;
+  border: 2px solid #000000;
+  margin-left: 550px;
+  margin-right: 550px;
+  }
+  
+  .buttonList{
+    margin-left:40%;
+    margin-top: 100px;
+  }
+  
+  
+  div .buttonList button{
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #fffacb;
+    border: 3px solid #fdf06d;
+    font-size: 25px;
+    margin: 10px;    
+  }
+  
