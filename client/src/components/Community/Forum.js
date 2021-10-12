@@ -2,7 +2,7 @@ import React,{useRef,useState,useEffect} from 'react';
 import axios from 'axios';
 import { Route } from 'react-router';
 import { Link } from 'react-router-dom'; 
-import "./Forum.css";
+import styles from "./Forum.module.css";
 
 
 
@@ -96,9 +96,9 @@ const Forum = () => {
        <h2>공지사항 +</h2>
 
 
-       <div className="Fcontent">
+       <div className={styles.Fcontent}>
            <div id="table">
-            <table className="Ftable">
+            <table className={styles.Ftable}>
                 <thead>
                     <th>    제목     </th>
                     <th>    날짜     </th>
@@ -151,7 +151,7 @@ const Forum = () => {
             </div>
         </div>
 
-        <div className="FselectBox">
+        <div className={styles.FselectBox}>
                 <button>{"<"}</button>  
              <button >1</button>  
              <button >2</button>  

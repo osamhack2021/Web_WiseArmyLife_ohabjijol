@@ -31,7 +31,11 @@ const Post = () => {
                    <div>군장병 코로나 방역수칙 안내</div> 
                </div>
 
+               <div className="pSelectBox">
+
                <button>글 목록 </button>
+
+               </div>
 
 
         </>
