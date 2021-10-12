@@ -80,6 +80,9 @@ const Forum = () => {
 
     const bottomLine = {
         borderBottomWidth: "0px",
+        paddingTop:"20px",
+        paddingBottom:"20px",
+
     }
 
     const  Ntable = {
@@ -131,7 +134,7 @@ const Forum = () => {
 
        
     
-       <h2 className="FnoticeH">공지사항 +</h2>
+       <h2 className={styles.FnoticeH}>공지사항 +</h2>
 
 
        <div className={styles.Fcontent}>
