@@ -1,0 +1,73 @@
+h2 {
+    font-size: 30px;
+  text-align: center;
+  font-family: "Nanum Square EB";
+  }
+  
+  h3 {
+    width:1140px;
+    text-align: left;
+    padding-left: 20px;
+    border-top: 1px solid black;
+    padding-top: 20px;
+    font-size: 30px;
+    font-family: "Nanum Square EB";
+  
+  }
+  
+  .content {
+    background-color: #FFFACB;
+    width:70%;
+    margin-left: 15%;
+    margin-right: 15%;
+    padding-left: 40px;
+    padding-right: 60px;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    margin-bottom: 120px;
+    height: 960px;
+    font-size: 25px;
+    font-family: "Nanum Square B";
+    
+  
+  }
+  
+  .moveNext {
+    border-top: 1px solid #c4c4c4;
+    width: 1140px;
+    font-size: 25px;
+    font-family: "Nanum Square B";
+    text-align: left;
+    padding-left: 40px;
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    height: 75px;
+    margin-left: 380px;
+  
+  }
+  
+  .movePrevious {
+     width: 1140px;
+     border-bottom: 1px solid #c4c4c4;
+     font-size: 25px;
+     font-family: "Nanum Square B";
+     text-align: left;
+     padding-left: 40px;
+     display: grid;
+     grid-template-columns: 420px 1fr;
+     margin-bottom: 120px;
+     margin-left: 380px;
+  
+  }
+  
+  button {
+  margin-left: 1400px;
+  width: 130px;
+  height: 60px;
+  border-radius: 5px;
+  background-color: #fffacb;
+  border: 3px solid #fdf06d;
+  font-size: 25px;
+  font-family: "Nanum Square B"
+  
+  }
