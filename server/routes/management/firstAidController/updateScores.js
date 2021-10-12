@@ -26,7 +26,7 @@ updateScores = async (req,res)=>{
        failNum = 0;
        var failInfo = [];
        body.scoreAndId.forEach(element => {
-            FirstAidEvent.update({score : element.score},{where : {UserId : element.UserId}}).then(res=>{
+            FirstAidEvent.update({score : element.score},{where : {militaryNumber : element.UserId}}).then(res=>{
                seccessNum =seccessNum+1;
            }).catch(err=>{
                failNum = failNum + 1;

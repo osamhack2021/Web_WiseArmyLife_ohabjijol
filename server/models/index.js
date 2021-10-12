@@ -43,13 +43,13 @@ db.MentalForce = MentalForce;
 db.Question = Question;
 
 
-const ShootingEvent = sequelize.define('ShootingEvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},}, { timestamps: false });
-const MentalForceEvent = sequelize.define('MentalForceEvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},type : {type : DataTypes.INTEGER}}, { timestamps: false });
-const FirstAidEvent =  sequelize.define('FirstAidEvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},}, { timestamps: false });
-const CBREvent =  sequelize.define('CBREvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},}, { timestamps: false });
-const SpecialityEvent =  sequelize.define('SpecialityEvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},}, { timestamps: false });
-const StrengthEvent =  sequelize.define('StrengthEvent', {pushUpscore: {type : DataTypes.INTEGER,defaultValue : -1},sitUpscore: {type : DataTypes.INTEGER,defaultValue : -1},runningscore: {type : DataTypes.INTEGER,defaultValue : -1}}, { timestamps: false });
-const IndividualBattleEvent =  sequelize.define('IndividualBattleEvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},}, { timestamps: false });
+const ShootingEvent = sequelize.define('ShootingEvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},militaryNumber: {type: Sequelize.STRING(20),}}, { timestamps: false });
+const MentalForceEvent = sequelize.define('MentalForceEvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},type : {type : DataTypes.INTEGER},militaryNumber: {type: Sequelize.STRING(20),}}, { timestamps: false });
+const FirstAidEvent =  sequelize.define('FirstAidEvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},militaryNumber: {type: Sequelize.STRING(20),}}, { timestamps: false });
+const CBREvent =  sequelize.define('CBREvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},militaryNumber: {type: Sequelize.STRING(20),}}, { timestamps: false });
+const SpecialityEvent =  sequelize.define('SpecialityEvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},militaryNumber: {type: Sequelize.STRING(20),}}, { timestamps: false });
+const StrengthEvent =  sequelize.define('StrengthEvent', {pushUpscore: {type : DataTypes.INTEGER,defaultValue : -1},sitUpscore: {type : DataTypes.INTEGER,defaultValue : -1},runningscore: {type : DataTypes.INTEGER,defaultValue : -1},militaryNumber: {type: Sequelize.STRING(20),}}, { timestamps: false });
+const IndividualBattleEvent =  sequelize.define('IndividualBattleEvent', {score: {type : DataTypes.INTEGER,defaultValue : -1},militaryNumber: {type: Sequelize.STRING(20),}}, { timestamps: false });
 
 
 const ExamEvent = sequelize.define('ExamEvent', {type : {type : DataTypes.INTEGER}, orderQ : {type : DataTypes.INTEGER,}}, { timestamps: false });

@@ -89,6 +89,7 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
                     const addFirstAidEvent =  FirstAidEvent.create({
                         UserId: req.user.id,
                         FirstAidId: firstAidid,
+                        militaryNumber : req.user.militaryNumber,
                     });
 
                     updateFirstAid = FirstAid.update({ expired: 'Full' }, {

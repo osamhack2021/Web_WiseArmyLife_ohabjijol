@@ -26,7 +26,7 @@ updateScores = async (req,res)=>{
        failNum = 0;
        var failInfo = [];
        req.body.scoreAndId.forEach(element => {
-            ShootingEvent.update({score : element.score},{where : {UserId : element.UserId}}).then(res=>{
+            ShootingEvent.update({score : element.score},{where : {militaryNumber : element.UserId}}).then(res=>{
                seccessNum =seccessNum+1;
            }).catch(err=>{
                failNum = failNum + 1;
@@ -36,7 +36,6 @@ updateScores = async (req,res)=>{
            inputNum = inputNum + 1;
        });
 
-       
         sendsuccess = {
             success : true,  
             data : {inputCnt :inputNum,successCnt : successNum, failCnt : failNum , ErrorInfo : failInfo}          

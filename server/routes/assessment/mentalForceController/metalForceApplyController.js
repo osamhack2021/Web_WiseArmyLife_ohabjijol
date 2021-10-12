@@ -89,6 +89,7 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
                     const addMentalForceEvent =  MentalForceEvent.create({
                         UserId: req.user.id,
                         MentalForceId: mentalForceid,
+                        militaryNumber : req.user.militaryNumber,
                     });
 
                     const updateMentalForce = MentalForce.update({ expired: 'Full' }, {

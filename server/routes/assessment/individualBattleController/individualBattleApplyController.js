@@ -89,6 +89,7 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
                     const addIndividualBattleEvent =  IndividualBattleEvent.create({
                         UserId: req.user.id,
                         IndividualBattleId: individualBattleid,
+                        militaryNumber : req.user.militaryNumber,
                     });
 
                     const updateIndividualBattle = IndividualBattle.update({ expired: 'Full' }, {

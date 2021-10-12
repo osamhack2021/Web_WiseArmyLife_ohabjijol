@@ -200,8 +200,10 @@ const Auth = () => {
 
                     {
                         isExecutive == false ||  isExecutive == null
-                        ? <div>
-                            <input className="idInput" placeholder="직책" disabled name="position" value={position} onClick = {checkisExecutive} onChange={onChange} /></div>
+                        ? isExecutive == null?<div>
+                            <input className="idInput" placeholder="직책" disabled name="position" value={position} onClick = {checkisExecutive} onChange={onChange} /></div>:
+                            <div>
+                            <input className="idInput" placeholder="직책" name="position" value={position} onClick = {checkisExecutive} onChange={onChange} /></div>
                             : <div>
 
                                 <input className="exeTypeInput" type="radio" name="selectEx1" onClick={set1} />

@@ -26,7 +26,7 @@ updateScores = async (req,res)=>{
        failNum = 0;
        var failInfo = [];
        req.body.scoreAndId.forEach(element => {
-            CBREvent.update({score : element.score},{where : {UserId : element.UserId}}).then(res=>{
+            CBREvent.update({score : element.score},{where : {militaryNumber : element.UserId}}).then(res=>{
                seccessNum =seccessNum+1;
            }).catch(err=>{
                failNum = failNum + 1;

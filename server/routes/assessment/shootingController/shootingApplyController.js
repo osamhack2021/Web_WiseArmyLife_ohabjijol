@@ -89,7 +89,10 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
                     const addShootingEvent =  ShootingEvent.create({
                         UserId: req.user.id,
                         ShootingId: shootingid,
+                        militaryNumber : req.user.militaryNumber,
                     });
+
+                console.log(req.user.militaryNumber);
 
                     const updateShooting = Shooting.update({ expired: 'Full' }, {
                         where: {
