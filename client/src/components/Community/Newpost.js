@@ -6,17 +6,7 @@ const Newpost = (props) => {
     const {onOne,forumId} = props
 
     
-    const onPost = () =>{
-        const post ={
-            title:"title",
-            content:"content"
-        }
-        console.log(post)
-        axios.post(`/community/${forumId}/post`,post)
-        .then(res=>{
-            console.log(res.data)
-        })
-    }
+    
     
     return (
         <div>
