@@ -1,5 +1,5 @@
 import React from 'react';
-import "./NewPost.css";
+import styles from "./NewPost.module.css";
 
 const NewPost = () => {
 
@@ -7,8 +7,8 @@ const NewPost = () => {
         <>
         <h2> 공지사항 +</h2>
  
-        <div className="content">
-          <div className="contentTop">
+        <div className={styles.content}>
+          <div className={styles.contentTop}>
             <h3>제목 : </h3>
             <input type="text" name="title" placeholder="제목을 입력하십시오."/>
        </div>
@@ -20,7 +20,7 @@ const NewPost = () => {
                     <button>등록</button>
         </div>
  
- <div className="buttonList">
+ <div className={styles.buttonList}>
  <button>{"<"}</button>  
              <button >1</button>  
              <button >2</button>  

@@ -60,7 +60,7 @@ h2 {
   
   }
   
-  div #pSelectBox button {
+  div .SelectBox button {
   margin-left: 1400px;
   width: 130px;
   height: 60px;

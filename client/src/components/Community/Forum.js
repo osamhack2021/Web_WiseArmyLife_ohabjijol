@@ -98,7 +98,7 @@ const Forum = () => {
 
        <div className={styles.Fcontent}>
            <div id="table">
-            <table className={styles.Ftable}>
+           { <table className={styles.Ftable}>
                 <thead>
                     <th>    제목     </th>
                     <th>    날짜     </th>
@@ -146,7 +146,7 @@ const Forum = () => {
                    
                 </tbody>
             </table>
-        
+}
     
             </div>
         </div>
