@@ -86,17 +86,23 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
 
                 if (isupdate[0]) {
 
-                    const addShootingEvent = await ShootingEvent.create({
+                    const addShootingEvent =  ShootingEvent.create({
                         UserId: req.user.id,
                         ShootingId: shootingid,
+                        militaryNumber : req.user.militaryNumber,
                     });
 
-                    await Shooting.update({ expired: 'Full' }, {
+                console.log(req.user.militaryNumber);
+
+                    const updateShooting = Shooting.update({ expired: 'Full' }, {
                         where: {
                             [Op.and]: [{ id: shootingid },  db.sequelize.literal('applicant_capacity = number_of_applicant') ],
                         }
 
                     });
+
+                    await Promise.all([addShootingEvent,updateShooting]);
+
                     sendsuccess = {
                         success: true,
                         data: "success"

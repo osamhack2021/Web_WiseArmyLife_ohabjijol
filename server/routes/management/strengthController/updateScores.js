@@ -26,7 +26,7 @@ updateScores = async (req,res)=>{
        failNum = 0;
        var failInfo = [];
        body.scoreAndId.forEach(element => {
-            StrengthEvent.update({pushUpscore : element.pushUpscore,sitUpscore : element.sitUpscore,runningUpscore : element.runningscore},{where : {UserId : element.UserId}}).then(res=>{
+            StrengthEvent.update({pushUpscore : element.pushUpscore,sitUpscore : element.sitUpscore,runningUpscore : element.runningscore},{where : {militaryNumber : element.UserId}}).then(res=>{
                seccessNum =seccessNum+1;
            }).catch(err=>{
                failNum = failNum + 1;

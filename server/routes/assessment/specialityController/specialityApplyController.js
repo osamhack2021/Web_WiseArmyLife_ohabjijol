@@ -45,6 +45,7 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
             where: {
                 UserId: req.user.id,
                 SpecialityId: specialityid,
+                militaryNumber : req.user.militaryNumber,
             },
 
         });
@@ -86,17 +87,20 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
 
                 if (isupdate[0]) {
 
-                    const addSpecialityEvent = await SpecialityEvent.create({
+                    const addSpecialityEvent =  SpecialityEvent.create({
                         UserId: req.user.id,
                         SpecialityId: specialityid,
                     });
 
-                    await Speciality.update({ expired: 'Full' }, {
+                    const updateSpeciality = Speciality.update({ expired: 'Full' }, {
                         where: {
                             [Op.and]: [{ id: specialityid },  db.sequelize.literal('applicant_capacity = number_of_applicant') ],
                         }
 
                     });
+
+                    await Promise.all([addSpecialityEvent,updateSpeciality])
+
                     sendsuccess = {
                         success: true,
                         data: "success"
