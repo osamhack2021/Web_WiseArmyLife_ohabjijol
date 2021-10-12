@@ -82,6 +82,38 @@ const Forum = () => {
         borderBottomWidth: "0px",
     }
 
+    table{
+        font-size: 30px;
+        font-family: "Nanum Square EB";
+       
+      }
+    
+      thead{
+        padding-top:20px;
+        padding-bottom:20px;
+    
+      }
+    
+      th{
+        height : 40px;
+        padding-bottom: 10px;
+        border-bottom:1px solid white;
+      }
+    
+      tbody{
+        font-size: 25px;
+        font-family: Nanum Square B;
+        padding-top:20px;
+        padding-bottom:20px;
+    
+      }
+    
+      td{
+        padding-top:20px;
+        padding-bottom:20px;
+        border-bottom: 1px solid gray;  
+      }
+
 
     
     return (
@@ -93,7 +125,8 @@ const Forum = () => {
 
 
        
-       <h2>공지사항 +</h2>
+    
+       <h2 className="FnoticeH">공지사항 +</h2>
 
 
        <div className={styles.Fcontent}>
