@@ -14,6 +14,8 @@ import DashBoard from "../DashBoard";
 import axios from "axios";
 import Newpost from './../Community/Newpost';
 import Post from './../Community/Post';
+import Page from './../Community/Page';
+import Forum from './../Community/Forum';
 
 
 const Header = () => {
@@ -94,9 +96,13 @@ const Header = () => {
                             <Login />
                             )}
                         />
+                        <Route exact path="/Community/:forumId/:page?" component={Page} />
+                        <Route exact path="/Community" component={Forum} />
+
                         <Route exact path="/Community/newpost:id" render={(props)=> <Newpost key={props} />} />
                         <PublicRoute path="/community/:forumId/v/:postId" restricted={false} auth={isLogin}  component={Post} /> {/*이건 홈페이지에서 인덱스 치고 들어갈때를 위한 라우터 */}
-                        <PublicRoute path="/community/:forumId?/:pageIndex?" restricted={false} auth={isLogin}  component={Community} /> {/*동일 */}
+                        <PublicRoute path="/community/:forumId" restricted={false} auth={isLogin}  component={Forum} /> {/*동일 */}
+                        <PublicRoute path="/community/:forumId/:pageIndex" restricted={false} auth={isLogin}  component={Page} /> {/*동일 */}
                         <PublicRoute path="/assess" restricted={false} auth={isLogin} component={Assess} />
                         <AuthRoute path="/my" auth={isLogin} render={ () => <My />} />
                         <AuthRoute path="/letter" auth={isLogin} render={ () => <Letter />} />

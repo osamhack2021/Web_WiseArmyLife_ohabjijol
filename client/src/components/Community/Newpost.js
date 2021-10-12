@@ -12,7 +12,7 @@ const Newpost = (props) => {
         <div>
             <input placeholder='title'/>
             <input placeholder='content' />
-            <button onClick={onPost}>작성완료</button>
+        ㅇㅈㅈ암ㅇ즤
             <button onClick={onOne}>돌아가기</button>
         </div>
     );

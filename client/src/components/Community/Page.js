@@ -4,7 +4,6 @@ import { Link, Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import Post from './Post';
 import Community from './Community';
 import './Page.css'
-import Newpost from './Newpost';
 
 
 const Page = ({match}) => {
