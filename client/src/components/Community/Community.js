@@ -14,8 +14,7 @@ const Community = ({match}) => {
 
     return (
         <div>
-            <Route exact path="/Community/newpost:id" render={(props)=> <Newpost key={props.match.params.id} />} />
-            <Route exact path="/Community/:forumId/v/postIndex" render={(props)=>(Page)} />
+            <Route exact path="/Community/newpost" render={(props)=> <Newpost key={props.match.params.id} />} />
             <Route exact path="/Community/:forumId/:page?" component={Page} />
             <Route exact path="/Community" component={Forum} />
         </div>

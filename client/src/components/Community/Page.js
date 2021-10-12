@@ -6,6 +6,7 @@ import Community from './Community';
 import './Page.css'
 import Newpost from './Newpost';
 
+
 const Page = ({match}) => {
 
     const forumId = match.url[11]
@@ -16,16 +17,16 @@ const Page = ({match}) => {
             rows:[]
         }
     });
-    const [post,setPost] =useState(1)
+    const [newpost,setNewpost] =useState(false)
     const [inputs,setInputs] =useState({
         title:'',
         content:''
     })
     const {title,content} = inputs;
     const {rows} = data.post_10;
+
     const onChange = (e)=>{
         const {name,value} = e.target
-
         setInputs({
             ...inputs,
             [name]:value
@@ -33,7 +34,7 @@ const Page = ({match}) => {
     }
 
     const onConsole = ()=>{
-        console.log(data.post_10.rows)
+        console.log(data)
     }
 
     const test = useRef(null);
@@ -58,39 +59,56 @@ const Page = ({match}) => {
 
     let index =0;
 
-    const onOne = (e)=>{
-        e.preventDefault()
-        setPost(1)
+
+    const onPost = () =>{
+        const post ={
+            title:title,
+            content:content
+        }
+        console.log(post)
+        axios.post(`/community/${forumId}/post`,post)
+        .then(res=>{
+            console.log(res.data)
+        })
+        setNewpost(false)
+        window.location.href = `/community/${forumId}`;
     }
-    const onTwo = (e)=>{
-        e.preventDefault()
-        setPost(2)
-    }
-    const onThree = (e)=>{
-        e.preventDefault()
-        setPost(3)
-    }
+
     return (
         <div>
-            <h2>게시판 +</h2>
-            <button onClick={onOne}>1</button>
-            <button onClick={onTwo}>2</button>
-            <button onClick={onThree}>3</button>
-            
-            {post===1 ?
+            { newpost===false ?
+                //여기는 글안쓸때 화면
             <div>
-                <div>게시글리스트</div>
-                <div onClick={onTwo}>글쓰기</div>
+                <h2>게시판 +</h2>
+                
+                
+                <div>
+                    {data.post_10.rows.map(res=>{
+                        return(
+                            <div>
+                                <Link to={`/community/${forumId}/v/${res.id}`}>{res.title}</Link>
+                            </div>
+                        )
+                    })}
+                </div>
+                
+                <div>
+                    <button onClick={()=>setNewpost(true)}>글쓰기</button>
+                </div>
+                <Link to={`/community`}>포럼으로</Link>
             </div>
-            :null}
-            
-            {post===2 ?
-            <Newpost forumId={forumId} onOne={onOne}/>
-            :null}
+            :
+                // 여기부터 글쓰기화면
+            <div>
+                <div>글을쓰자 !! </div>
+                <input placeholder='title' name="title" value={title} onChange={onChange}/>
+                <input placeholder='content' name="content" value={content} onChange={onChange}/>
+                <button onClick={onPost}>작성완료</button>
+                <button onClick={()=>setNewpost(false)}>뒤로가기</button>
 
-            {post===3 ?
-            <Post onOne={onOne}/>
-            :null}
+            </div>
+            }
+            
         </div>
     );
 };

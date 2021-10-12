@@ -1,9 +1,14 @@
 import React from 'react';
+import { Link, Route, Switch, BrowserRouter as Router } from "react-router-dom";
 
-const Post = () => {
+const Post = (props) => {
+
+    const {id,ForumId,history} = props
+    
+
     return (
         <div>
-            포스트화면
+            <button onClick={()=>history.goBack()}>돌아가기</button>
         </div>
     );
 };
