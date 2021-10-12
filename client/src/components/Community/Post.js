@@ -10,15 +10,24 @@ const Post = (props) => {
     const {forumId,postId} = match.params    
 
     useEffect(()=>{
-        axios.get(`/community/${forumId}/v/${postId}`)
+        axios.get(`/community/${forumId}/post/v/${postId}`)
         .then(res=>{
             console.log(res.data)
         })
     
     })
+    const onRemove = ()=>{
+        axios.delete(`/community/${forumId}/post/v/${postId}`)
+        .then(res=>{
+            console.log(res.data)
+        })
+
+        history.goBack()
+    }
     return (
         <div>
             <button onClick={()=>console.log(forumId)}>콘솔</button>
+            <button onClick={onRemove}>삭제하기</button>
             <button onClick={()=>history.goBack()}>돌아가기</button>
         </div>
     );
