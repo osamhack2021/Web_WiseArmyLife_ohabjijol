@@ -1,15 +1,5 @@
   .Fcontent {
-     width:70%;
-   display: inline-block;
-   padding-top: 80px;
-   padding-bottom: 50px;
-   margin-left: 15%;
-   margin-right: 15%;
-   padding-left: 100px;
-   width: 1280px;
-   height: 975px;
-   border-radius: 50px;
-   background-color: #fffacb;
+   
  
   
   
@@ -57,13 +47,7 @@
 
   
 div .FselectBox button {
-    width: 60px;
-height: 60px;
-border-radius: 5px;
-background-color: #fffacb;
-border: 3px solid #fdf06d;
-font-size: 25px;
-margin: 10px;
+    
 
   }
 

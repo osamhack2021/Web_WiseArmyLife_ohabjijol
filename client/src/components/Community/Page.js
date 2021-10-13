@@ -8,47 +8,13 @@ import './Page.css'
 
 const Page = ({match}) => {
 
-    const  Ntable = {
-        borderTop: "3px solid black",
-        borderBottom: "3px solid black",
-        width: "1140px",
-        textAlign:"center",
-                marginLeft:" 0px",
-        fontSize: "30px",
-        fontFamily: "Nanum Square EB",
-       
-    }
-    
-    const  Nthead = {
-      paddingTop:"20px",
-      paddingBottom:"20px",
-
-    }
-
-    const  Nth = {
-      height : "40px",
-      paddingBottom: "10px",
-      borderBottom:"1px solid white",
-    }
-
-    const  Ntbody = {
-      fontSize:"25px",
-      fontFamily: "Nanum Square B",
-      paddingTop:"20px",
-      paddingBottom:"20px",
-      
-
-    }
-
     const  Ntd = {
-      paddingTop:"20px",
-      paddingBottom:"20px",
-      borderBottom: "1px solid gray",  
+      
     }
 
     const forumId = match.url[11]
     const [data,setData] = useState({
-        maxPage:999,
+        maxPage:1,
         post_10:{
             count:0,
             rows:[]
@@ -59,6 +25,7 @@ const Page = ({match}) => {
         title:'',
         content:''
     })
+    const [index,setIndex] = useState(1)
     const {title,content} = inputs;
     const {rows} = data.post_10;
 
@@ -76,7 +43,7 @@ const Page = ({match}) => {
 
     const test = useRef(null);
     useEffect(() => {
-        axios.get(`/community/${forumId}/1`)
+        axios.get(`/community/${forumId}/${index}`)
         .then(res =>{
             console.log(res.data)
             test.current = res.data.data
@@ -94,8 +61,15 @@ const Page = ({match}) => {
         })
     }
 
-    let index =0;
-
+    const PageChange = (id)=>{
+        setIndex(id);
+        axios.get(`/community/${forumId}/${id}`)
+        .then(res =>{
+            console.log(res.data)
+            setData(test.current)
+        })
+        .catch(err =>console.log(err))
+    }
 
     const onPost = () =>{
         const post ={
@@ -117,6 +91,16 @@ const Page = ({match}) => {
 
     }
 
+    const indexRendering = () => {
+        const result = [];
+        const length = data !==null ? data.maxPage : 1
+        console.log(data)
+        for (let i = 0; i < length; i++) {
+          result.push(<button id={i} onClick={()=> PageChange(i+1)} className="pageButton">{i+1}</button>  );
+        }
+        return result;
+      };
+
     return (
         <div>
             { newpost===false ?
@@ -125,43 +109,50 @@ const Page = ({match}) => {
                 <>
                     <div id="entire">
                     <h2 className={styles.FnoticeH}>공지사항 +</h2>
-                        <div className={styles.Fcontent}>
-                            <div id="table">
-                                { <table style={Ntable}>
-                                        <thead style={Nthead}>
-                                            <th style={Nth}>    제목     </th>
-                                            <th style={Nth}>    날짜     </th>
-                                                        </thead>
-                                        <tbody style={Ntbody}>
-                                            {data.post_10.rows.map(res=>{
-                                                            return(
-                                                                <tr>  <td style={Ntd} ><Link to={`/community/${forumId}/v/${res.id}`}>{res.title}</Link></td> 
-                                                                <td style={Ntd}>{res.createdAt}</td>    </tr>
-                                                            )
-                                                        })}
-                                            <tr> 
-                                            <td style={bottomLine}></td>    </tr>
-                                        </tbody>
-                                    </table>
-                                }
-                            </div>
-                        </div>
-                        <div className={styles.FselectBox}>
-                            <button>{"<"}</button>  
-                            <button >1</button>  
-                            <button >2</button>  
-                            <button > 3</button>  
-                            <button >4</button>  
-                            <button>5</button>  
-                            <button>{">"}</button>  
+                        <div className='fContentBox'>
+                            <div className='Fcontent'>
+                                <div id="table">
+                                    { <table className='Ntable'>
+                                            <thead className='Nthead'>
+                                                <th className='Nth'>    제목     </th>
+                                                <th className='Nth'>    작성시간     </th>
+                                            </thead>
+                                            <tbody className='pageBody'>
+                                                {data.post_10.rows.map(res=>{
+                                                    //2021 -10- 13T 11:11:28.000Z   3번2 
+                                                    let create ;
+                                                    if (res.createdAt.substr(8,2) == new Date().getDate()){
+                                                        let time = parseInt(res.createdAt.substr(11,2)) +parseInt(9)
+                                                        if(time >=24){
+                                                            time -=24
+                                                        }
+                                                        create = time+res.createdAt.substr(13,6) 
+                                                    }else{
+                                                        create = res.createdAt.substr(2,8) + " "+ res.createdAt.substr(11,8) 
+                                                    }
+                                                    
+                                                    return(
+                                                        <tr>  <td className='Ntd' ><Link className='pageTitleLink' to={`/community/${forumId}/v/${res.id}`}>{res.title}</Link></td> 
+                                                        <td className='Ntd'>{create}</td>    </tr>
+                                                    )
+                                                })}
+                                                <tr> 
+                                                <td style={bottomLine}></td>    </tr>
+                                            </tbody>
+                                        </table>
+                                    }
+                                </div>
+                        <div >
+                            <button className="pageButton">{"<"}</button>  
+                            { indexRendering() }
+                            <button className="pageButton">{">"}</button>  
+                            <button className='pageButton' onClick={()=>setNewpost(true)}>글쓰기</button>
                         </div>
                     </div>
-                </>
-                <div>
-                    <button onClick={()=>setNewpost(true)}>글쓰기</button>
                 </div>
-                <Link to={`/community`}>포럼으로</Link>
             </div>
+        </>
+    </div>
             :
                 // 여기부터 글쓰기화면
             <div>

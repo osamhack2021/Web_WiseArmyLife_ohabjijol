@@ -101,7 +101,9 @@ const Forum = () => {
                     return(
                         <div>
                             <Link to={`/community/${row.id}`}>{row.forumName}</Link>
+                            {isExecutive ?
                             <button id={row.id} onClick={ ()=> onRemove(row.id)}> X </button>
+                            :null}
                         </div>
                     )
                 })}
