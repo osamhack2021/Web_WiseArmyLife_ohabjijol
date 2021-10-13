@@ -1,7 +1,6 @@
 import React,{useEffect,useState,useRef} from 'react';
 import axios from 'axios';
-import { Link, Route, Switch, BrowserRouter as Router } from "react-router-dom";
-import Post from './Post';
+import { Link } from "react-router-dom";
 import styles from "./Forum.module.css";
 import './Page.css'
 
@@ -108,7 +107,7 @@ const Page = ({match}) => {
             <div>
                 <>
                     <div id="entire">
-                    <h2 className={styles.FnoticeH}>공지사항 +</h2>
+                        <h2 className={styles.FnoticeH}>공지사항 +</h2>
                         <div className='fContentBox'>
                             <div className='Fcontent'>
                                 <div id="table">
@@ -155,8 +154,8 @@ const Page = ({match}) => {
             </div>
             :
             <>
-                <div className={styles.content}>
-                    <div className={styles.contentTop}>
+                <div >
+                    <div>
                         <h3 className='newpostTitle'>제목 : </h3>
                         <input className='newpostInput' name="title" value={title} onChange={onChange} placeholder="제목을 입력하십시오."/>
                     </div>
