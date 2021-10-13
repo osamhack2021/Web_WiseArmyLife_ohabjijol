@@ -8,6 +8,44 @@ import './Page.css'
 
 const Page = ({match}) => {
 
+    const  Ntable = {
+        borderTop: "3px solid black",
+        borderBottom: "3px solid black",
+        width: "1140px",
+        textAlign:"center",
+                marginLeft:" 0px",
+        fontSize: "30px",
+        fontFamily: "Nanum Square EB",
+       
+    }
+    
+    const  Nthead = {
+      paddingTop:"20px",
+      paddingBottom:"20px",
+
+    }
+
+    const  Nth = {
+      height : "40px",
+      paddingBottom: "10px",
+      borderBottom:"1px solid white",
+    }
+
+    const  Ntbody = {
+      fontSize:"25px",
+      fontFamily: "Nanum Square B",
+      paddingTop:"20px",
+      paddingBottom:"20px",
+      
+
+    }
+
+    const  Ntd = {
+      paddingTop:"20px",
+      paddingBottom:"20px",
+      borderBottom: "1px solid gray",  
+    }
+
     const forumId = match.url[11]
     const [data,setData] = useState({
         maxPage:999,
@@ -79,143 +117,46 @@ const Page = ({match}) => {
 
     }
 
-    const  Ntable = {
-        borderTop: "3px solid black",
-        borderBottom: "3px solid black",
-        width: "1140px",
-        textAlign:"center",
-                marginLeft:" 0px",
-        fontSize: "30px",
-        fontFamily: "Nanum Square EB",
-       
-      }
-    
-      const  Nthead = {
-        paddingTop:"20px",
-        paddingBottom:"20px",
-    
-      }
-    
-      const  Nth = {
-        height : "40px",
-        paddingBottom: "10px",
-        borderBottom:"1px solid white",
-      }
-    
-      const  Ntbody = {
-        fontSize:"25px",
-        fontFamily: "Nanum Square B",
-        paddingTop:"20px",
-        paddingBottom:"20px",
-    
-      }
-    
-      const  Ntd = {
-        paddingTop:"20px",
-        paddingBottom:"20px",
-        borderBottom: "1px solid gray",  
-      }
     return (
         <div>
             { newpost===false ?
                 //여기는 글안쓸때 화면
             <div>
-                <h2>게시판 +</h2>
-                
-                (
-
-
-<>
-
-<div id="entire">
-
-
-
-
-<h2 className={styles.FnoticeH}>공지사항 +</h2>
-
-
-<div className={styles.Fcontent}>
-<div id="table">
-{ <table style={Ntable}>
-        <thead style={Nthead}>
-            <th style={Nth}>    제목     </th>
-            <th style={Nth}>    날짜     </th>
-                        </thead>
-    
-        <tbody style={Ntbody}>
-            <tr>
-            <td style={Ntd} >군장병 코로나 방역 수칙 안내</td> 
-            <td style={Ntd} >21.09.21</td> 
-        
-            </tr>
-
-            <tr>
-            <td style={Ntd} >군장병 코로나 방역 수칙 안내</td> 
-            <td style={Ntd} >21.09.25</td> 
-        
-            </tr>
-
-
-            <tr>  <td style={Ntd} >군장병 코로나 방역 수칙 안내</td> 
-            <td style={Ntd}>21.09.15</td>    </tr>
-
-            <tr>  <td style={Ntd} >군장병 코로나 방역 수칙 안내</td> 
-            <td style={Ntd}> 21.09.15</td>    </tr>
-
-            <tr>  <td style={Ntd}>군장병 코로나 방역 수칙 안내</td> 
-            <td style={Ntd}>21.09.15</td>    </tr>
-            
-            <tr>  <td style={Ntd} >군장병 코로나 방역 수칙 안내</td> 
-            <td style={Ntd}>21.09.15</td>    </tr>
-
-            <tr>  <td style={Ntd} >군장병 코로나 방역 수칙 안내</td> 
-            <td style={Ntd}>21.09.15</td>    </tr>
-
-            <tr>  <td style={Ntd}>군장병 코로나 방역 수칙 안내</td> 
-            <td style={Ntd}> 21.09.15</td>    </tr>
-
-            <tr>  <td style={Ntd}>군장병 코로나 방역 수칙 안내</td> 
-            <td style={Ntd}>21.09.15</td>    </tr>
-
-            <tr>  <td style={bottomLine} >군장병 코로나 방역 수칙 안내</td> 
-            <td style={bottomLine}>21.09.15</td>    </tr>
-        
-                        
-        
-        </tbody>
-    </table>
-}
-
-    </div>
-</div>
-
-<div className={styles.FselectBox}>
-        <button>{"<"}</button>  
-    <button >1</button>  
-    <button >2</button>  
-    <button > 3</button>  
-    <button >4</button>  
-    <button>5</button>  
-    <button>{">"}</button>  
-    </div>
-    </div>
-    </>
-
-
-);
-                
-                <h1>dwdawawd</h1>
-                <div>
-                    {data.post_10.rows.map(res=>{
-                        return(
-                            <div>
-                                <Link to={`/community/${forumId}/v/${res.id}`}>{res.title}</Link>
+                <>
+                    <div id="entire">
+                    <h2 className={styles.FnoticeH}>공지사항 +</h2>
+                        <div className={styles.Fcontent}>
+                            <div id="table">
+                                { <table style={Ntable}>
+                                        <thead style={Nthead}>
+                                            <th style={Nth}>    제목     </th>
+                                            <th style={Nth}>    날짜     </th>
+                                                        </thead>
+                                        <tbody style={Ntbody}>
+                                            {data.post_10.rows.map(res=>{
+                                                            return(
+                                                                <tr>  <td style={Ntd} ><Link to={`/community/${forumId}/v/${res.id}`}>{res.title}</Link></td> 
+                                                                <td style={Ntd}>{res.createdAt}</td>    </tr>
+                                                            )
+                                                        })}
+                                            <tr> 
+                                            <td style={bottomLine}></td>    </tr>
+                                        </tbody>
+                                    </table>
+                                }
                             </div>
-                        )
-                    })}
-                </div>
-                
+                        </div>
+                        <div className={styles.FselectBox}>
+                            <button>{"<"}</button>  
+                            <button >1</button>  
+                            <button >2</button>  
+                            <button > 3</button>  
+                            <button >4</button>  
+                            <button>5</button>  
+                            <button>{">"}</button>  
+                        </div>
+                    </div>
+                </>
                 <div>
                     <button onClick={()=>setNewpost(true)}>글쓰기</button>
                 </div>
