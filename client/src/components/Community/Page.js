@@ -142,29 +142,32 @@ const Page = ({match}) => {
                                         </table>
                                     }
                                 </div>
-                        <div >
-                            <button className="pageButton">{"<"}</button>  
-                            { indexRendering() }
-                            <button className="pageButton">{">"}</button>  
-                            <button className='pageButton' onClick={()=>setNewpost(true)}>글쓰기</button>
+                                <div>
+                                    <button className="pageButton">{"<"}</button>  
+                                    { indexRendering() }
+                                    <button className="pageButton">{">"}</button>  
+                                    <button className='pageButton' onClick={()=>setNewpost(true)}>글쓰기</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </>
             </div>
-        </>
-    </div>
             :
-                // 여기부터 글쓰기화면
-            <div>
-                <div>글을쓰자 !! </div>
-                <input placeholder='title' name="title" value={title} onChange={onChange}/>
-                <input placeholder='content' name="content" value={content} onChange={onChange}/>
-                <button onClick={onPost}>작성완료</button>
-                <button onClick={()=>setNewpost(false)}>뒤로가기</button>
-
-            </div>
+            <>
+                <div className={styles.content}>
+                    <div className={styles.contentTop}>
+                        <h3 className='newpostTitle'>제목 : </h3>
+                        <input className='newpostInput' name="title" value={title} onChange={onChange} placeholder="제목을 입력하십시오."/>
+                    </div>
+                    <div id="mainContent">
+                        <input name="content" value={content} onChange={onChange} placeholder="내용을 입력하십시오."/>
+                    </div>
+                    <button onClick={onPost}>등록</button>
+                    <button onClick={()=>setNewpost(false)}>뒤로가기</button>
+                </div>
+            </>
             }
-            
         </div>
     );
 };
