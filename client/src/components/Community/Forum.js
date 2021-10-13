@@ -85,6 +85,9 @@ const Forum = () => {
     
     return (
         <div>
+            
+
+
             <h2>커뮤니티+ </h2>
             {isExecutive ?
             <div>

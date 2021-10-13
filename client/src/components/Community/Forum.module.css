@@ -1,0 +1,71 @@
+  .Fcontent {
+     width:70%;
+   display: inline-block;
+   padding-top: 80px;
+   padding-bottom: 50px;
+   margin-left: 15%;
+   margin-right: 15%;
+   padding-left: 100px;
+   width: 1280px;
+   height: 975px;
+   border-radius: 50px;
+   background-color: #fffacb;
+ 
+  
+  
+  }
+
+  #table {
+    display: flex;
+    justify-content: center;
+   
+  }
+  
+
+  
+  
+  .FselectBox{
+    padding:50px;
+    text-align:center;
+    
+  }
+
+
+
+/*태그 css
+  내부의 태그도 이용 가능
+
+  부모가 속한 태그 / 클래스 or id  / 선택하고자 하는 태그
+  div  //   .FselectBox  or #entire   //    span
+
+*/
+
+
+
+.FnoticeH {
+  font-size: 30px;
+  font-family: "Nanum Square EB";
+  text-align: center;
+  margin-top: 120px;
+  margin-bottom: 120px;
+}
+
+
+
+
+
+
+  
+div .FselectBox button {
+    width: 60px;
+height: 60px;
+border-radius: 5px;
+background-color: #fffacb;
+border: 3px solid #fdf06d;
+font-size: 25px;
+margin: 10px;
+
+  }
+
+
+ 

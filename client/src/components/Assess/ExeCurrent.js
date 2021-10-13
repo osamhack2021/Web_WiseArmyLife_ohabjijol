@@ -57,6 +57,7 @@ const ExeCurrent = (props) => {
         console.log(data)
         axios.patch(`/management/${target}/scores`,data)
         .then(res=>{
+            console.log(res.data)
             if(res.data.success === true){
                 alert("등록성공")
             }else{
