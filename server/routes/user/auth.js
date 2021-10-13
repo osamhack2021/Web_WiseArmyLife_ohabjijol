@@ -59,10 +59,6 @@ router.post('/login', isNotLoggedIn, async (req, res, next) => {
                 console.error(loginError);
                 return next(loginError);
             }
-            cachedUser = user;
-            // return res.redirect('/');
-            console.log('로그인 성공');
-
             const data = {
                 isExecutive: req.user.executive,
             };
@@ -73,8 +69,6 @@ router.post('/login', isNotLoggedIn, async (req, res, next) => {
 });
 
 router.get('/logout', isLoggedIn, (req, res) => {
-    cachedUser.user = null;
-    delete cachedUser.user;
     req.logout();
     req.session.destroy();
     res.json({ success: true, data: null });

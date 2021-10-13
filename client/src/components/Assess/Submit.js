@@ -16,6 +16,9 @@ import resourceTimeGridPlugin from "@fullcalendar/resource-timegrid";
 
 
 
+
+
+
 const Submit = (props) => {
 
     const {target,allEvents,onRangeChange} = props;
@@ -30,7 +33,7 @@ const Submit = (props) => {
 
         //setAllEvents([...allEvents,newEvent])
     
-    
+    //
     const onClick = (e)=>{
         const target = e.event._def.title.split(" ")[0]
         const data = {
@@ -51,10 +54,11 @@ const Submit = (props) => {
                     alert(`${res.data.data.message}`)
                 }
         }).catch(()=>{
-            alert('기타 오류')
+            alert('문자열 오류')
         })
         }
     }
+
     
     return (
         <div className="assessBox">
