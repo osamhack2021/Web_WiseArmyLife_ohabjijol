@@ -2,6 +2,5 @@
 
 1. font 맞추기 !!!   psd 랑 똑같이 만드는 작업.
 2. 메인 페이지 슬라이드 만들기 react slide  
-3. Error 404 페이지 만들기!  완료
-4. 코드 이쁘게 만들기!!
-5. community 페이지 만들기.
+3. community _ page 게시판 목록! 만들기
+4. Mypage 만들기!!!

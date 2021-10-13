@@ -54,7 +54,7 @@ const Page = ({match}) => {
             <button onClick={onPost}>글쓰기</button>
         </div>
 
-        <div>게시글 목록</div> 
+        <div>게시판 목록</div> 
         </>
 
 

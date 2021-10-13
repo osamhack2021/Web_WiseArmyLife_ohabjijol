@@ -70,6 +70,10 @@ const Header = () => {
                         <Link className="text-link" to="/letter">
                             <div>마음의편지</div>
                         </Link>
+                        <Link>
+                            <div></div>
+                        </Link>
+                        
                         {isLogin ? 
                         (
                             <div className="text-link" onClick={onLogout}>로그아웃</div>
