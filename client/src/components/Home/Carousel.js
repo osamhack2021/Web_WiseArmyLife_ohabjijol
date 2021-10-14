@@ -4,6 +4,8 @@ import Slider from "react-slick";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
+// slick 관련 2개 모듈새로 다운받아야함!   npm install react-slick --save Or yarn add react-slick  //  npm install slick-carousel
+
 const Container = styled.div`
   overflow:hidden;
 `;
@@ -48,6 +50,7 @@ export default class SimpleSlider extends Component {
       slidesToScroll: 1,
       arrows: true,
       centerMode: false,
+      pauseOnFocus : false,
     };
     return (
       <Container>
