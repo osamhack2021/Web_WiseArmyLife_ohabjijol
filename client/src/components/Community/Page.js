@@ -156,10 +156,10 @@ const Page = ({match}) => {
             <>
                 <div >
                     <div>
-                        <h3 className='newpostTitle'>제목 : </h3>
-                        <input className='newpostInput' name="title" value={title} onChange={onChange} placeholder="제목을 입력하십시오."/>
+                        <h3>제목 : </h3>
+                        <input name="title" value={title} onChange={onChange} placeholder="제목을 입력하십시오."/>
                     </div>
-                    <div id="mainContent">
+                    <div >
                         <input name="content" value={content} onChange={onChange} placeholder="내용을 입력하십시오."/>
                     </div>
                     <button onClick={onPost}>등록</button>
