@@ -4,7 +4,7 @@
     text-align:center;
   }
   
-  .content{
+  .NPcontent{
       text-align: left;
     padding: 50px;
      width: 1280px;
@@ -17,7 +17,7 @@
   
   }
   
-  .contentTop {
+  .NPcontentTop {
     display:grid;
     grid-template-columns: 50px 840px;
     height:50px;
@@ -33,7 +33,7 @@
     
   }
   
-  div .contentTop input{
+  .NPinputOne{
     border:0;
     background-color: white;
     margin:0;
@@ -42,7 +42,7 @@
   
   }
   
-  div #mainContent input {
+  .NPinputTwo{
   
     background-color: white;
     border:0;
@@ -55,8 +55,8 @@
     margin-bottom: 70px;
     height: 700px;
   }
-  
-  div .content button{
+ 
+  .NPbuttonOne{
     font-size: 25px;
   font-family: "Nanum Square B";
   width: 181px;
@@ -68,13 +68,13 @@
   margin-right: 15%;
   }
   
-  .buttonList{
+  .NPbuttonList{
     margin-left:40%;
     margin-top: 100px;
   }
   
   
-  div .buttonList button{
+  .NPbuttonTwo{
     width: 50px;
     height: 50px;
     border-radius: 5px;

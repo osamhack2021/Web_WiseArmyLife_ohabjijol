@@ -2,7 +2,7 @@ import React,{useRef,useState,useEffect} from 'react';
 import axios from 'axios';
 import { Route } from 'react-router';
 import { Link } from 'react-router-dom'; 
-import styles from "./Forum.module.css";
+import "./Forum.css";
 
 
 
@@ -78,49 +78,6 @@ const Forum = () => {
     }
 
 
-    const bottomLine = {
-        borderBottomWidth: "0px",
-        paddingTop:"20px",
-        paddingBottom:"20px",
-
-    }
-
-    const  Ntable = {
-        borderTop: "3px solid black",
-        borderBottom: "3px solid black",
-        width: "1140px",
-        textAlign:"center",
-                marginLeft:" 0px",
-        fontSize: "30px",
-        fontFamily: "Nanum Square EB",
-       
-      }
-    
-      const  Nthead = {
-        paddingTop:"20px",
-        paddingBottom:"20px",
-    
-      }
-    
-      const  Nth = {
-        height : "40px",
-        paddingBottom: "10px",
-        borderBottom:"1px solid white",
-      }
-    
-      const  Ntbody = {
-        fontSize:"25px",
-        fontFamily: "Nanum Square B",
-        paddingTop:"20px",
-        paddingBottom:"20px",
-    
-      }
-    
-      const  Ntd = {
-        paddingTop:"20px",
-        paddingBottom:"20px",
-        borderBottom: "1px solid gray",  
-      }
 
 
     
@@ -134,54 +91,54 @@ const Forum = () => {
 
        
     
-       <h2 className={styles.FnoticeH}>공지사항 +</h2>
+       <h2 className="FnoticeH">공지사항 +</h2>
 
 
-       <div className={styles.Fcontent}>
+       <div className="Fcontent">
            <div id="table">
-           { <table style={Ntable}>
-                <thead style={Nthead}>
-                    <th style={Nth}>    제목     </th>
-                    <th style={Nth}>    날짜     </th>
+           { <table className = "FNtable">
+                <thead className = "FNthead">
+                    <th className = "FNth">    제목     </th>
+                    <th className = "FNth">    날짜     </th>
                                   </thead>
               
-                <tbody style={Ntbody}>
+                <tbody className = "FNtbody">
                     <tr>
-                    <td style={Ntd} >군장병 코로나 방역 수칙 안내</td> 
-                    <td style={Ntd} >21.09.21</td> 
+                    <td className = "FNtd" >군장병 코로나 방역 수칙 안내</td> 
+                    <td className = "FNtd" >21.09.21</td> 
                    
                     </tr>
 
                     <tr>
-                    <td style={Ntd} >군장병 코로나 방역 수칙 안내</td> 
-                    <td style={Ntd} >21.09.25</td> 
+                    <td className = "FNtd" >군장병 코로나 방역 수칙 안내</td> 
+                    <td className = "FNtd" >21.09.25</td> 
                   
                     </tr>
 
 
-                    <tr>  <td style={Ntd} >군장병 코로나 방역 수칙 안내</td> 
-                    <td style={Ntd}>21.09.15</td>    </tr>
+                    <tr>  <td className = "FNtd" >군장병 코로나 방역 수칙 안내</td> 
+                    <td className = "FNtd">21.09.15</td>    </tr>
 
-                    <tr>  <td style={Ntd} >군장병 코로나 방역 수칙 안내</td> 
-                    <td style={Ntd}> 21.09.15</td>    </tr>
+                    <tr>  <td className = "FNtd" >군장병 코로나 방역 수칙 안내</td> 
+                    <td className = "FNtd"> 21.09.15</td>    </tr>
 
-                    <tr>  <td style={Ntd}>군장병 코로나 방역 수칙 안내</td> 
-                    <td style={Ntd}>21.09.15</td>    </tr>
+                    <tr>  <td className = "FNtd">군장병 코로나 방역 수칙 안내</td> 
+                    <td className = "FNtd">21.09.15</td>    </tr>
                     
-                    <tr>  <td style={Ntd} >군장병 코로나 방역 수칙 안내</td> 
-                    <td style={Ntd}>21.09.15</td>    </tr>
+                    <tr>  <td className = "FNtd" >군장병 코로나 방역 수칙 안내</td> 
+                    <td className = "FNtd">21.09.15</td>    </tr>
 
-                    <tr>  <td style={Ntd} >군장병 코로나 방역 수칙 안내</td> 
-                    <td style={Ntd}>21.09.15</td>    </tr>
+                    <tr>  <td className = "FNtd" >군장병 코로나 방역 수칙 안내</td> 
+                    <td className = "FNtd">21.09.15</td>    </tr>
 
-                    <tr>  <td style={Ntd}>군장병 코로나 방역 수칙 안내</td> 
-                    <td style={Ntd}> 21.09.15</td>    </tr>
+                    <tr>  <td className = "FNtd">군장병 코로나 방역 수칙 안내</td> 
+                    <td className = "FNtd"> 21.09.15</td>    </tr>
 
-                    <tr>  <td style={Ntd}>군장병 코로나 방역 수칙 안내</td> 
-                    <td style={Ntd}>21.09.15</td>    </tr>
+                    <tr>  <td className = "FNtd">군장병 코로나 방역 수칙 안내</td> 
+                    <td className = "FNtd">21.09.15</td>    </tr>
 
-                    <tr>  <td style={bottomLine} >군장병 코로나 방역 수칙 안내</td> 
-                    <td style={bottomLine}>21.09.15</td>    </tr>
+                    <tr>  <td className = "FbottomLine" >군장병 코로나 방역 수칙 안내</td> 
+                    <td className = "FbottomLine">21.09.15</td>    </tr>
                    
                                 
                    
@@ -192,14 +149,14 @@ const Forum = () => {
             </div>
         </div>
 
-        <div className={styles.FselectBox}>
-                <button>{"<"}</button>  
-             <button >1</button>  
-             <button >2</button>  
-             <button > 3</button>  
-             <button >4</button>  
-             <button>5</button>  
-             <button>{">"}</button>  
+        <div className="FselectBox">
+                <button className="FbuttonOne">{"<"}</button>  
+             <button className="FbuttonOne">1</button>  
+             <button className="FbuttonOne">2</button>  
+             <button className="FbuttonOne"> 3</button>  
+             <button className="FbuttonOne">4</button>  
+             <button className="FbuttonOne">5</button>  
+             <button className="FbuttonOne">{">"}</button>  
              </div>
              </div>
              </>
