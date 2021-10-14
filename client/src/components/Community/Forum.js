@@ -1,8 +1,15 @@
 import React,{useRef,useState,useEffect} from 'react';
 import axios from 'axios';
-import { Route } from 'react-router';
 import { Link } from 'react-router-dom';
 
+
+/**
+ *  post('/community/:forumId/:postId/comment')
+    댓글 수정, 삭제:put('/community/:forumId/:postId/:commentId')
+    대댓글: post('/community/:forumId/:postId/:commentId')
+    댓글 등록: content
+ 
+ */
 
 const Forum = () => {
 
@@ -18,11 +25,16 @@ const Forum = () => {
         forumName:''
     })
     
-    const test = useRef(0);
     const {forumName} = inputs;
-
+    
+    const test = useRef(0);
     useEffect(() => {
-        if(sessionStorage.getItem('isExecutive')=== true)
+        const Tf = sessionStorage.getItem('isExecutive')
+        if(Tf === 'true'){
+            setIsExecutive(true)
+        }else{
+            setIsExecutive(false)
+        }
 
             axios.get('/Community')
             .then(res =>{
@@ -34,7 +46,6 @@ const Forum = () => {
             })
         }
     ,[data])
-
     const onClick = ()=>{
         axios.post('/Community/forumAdd',{
             'forumName':inputs.forumName
@@ -49,7 +60,6 @@ const Forum = () => {
             }
         })
     }
-
     const onChange = (e)=>{
         const {name,value} = e.target;
 
@@ -58,15 +68,8 @@ const Forum = () => {
             [name]:value
         })
     }
-    const onConsole= ()=>{
-        console.log(rows);
-    }
-
-    const goPage  = (id)=>{
-        const defaultPageIndex=1
-        document.location.href = `/community/${id}/${defaultPageIndex}`
-    }
     const onRemove = (id)=>{
+        console.log(id)
         axios.delete(`/community/${id}`)
         .then(res=>{
             console.log(res.data)
@@ -81,15 +84,25 @@ const Forum = () => {
     
     return (
         <div>
-            <input name="forumName" value={forumName} onChange={onChange} />
-            <button onClick={onClick} >포럼만들기</button>
-            <button onClick={onConsole}>콘솔</button>
+            
+
+
+            <h2>커뮤니티+ </h2>
+            {isExecutive ?
+            <div>
+                <input name="forumName" value={forumName} onChange={onChange} />
+                <button onClick={onClick} >포럼만들기</button>
+            </div>
+            :null}
+
             <div>
                 {rows.map(row =>{
                     return(
                         <div>
-                            <span onClick={ ()=> goPage(row.id)}>{row.forumName}</span>
-                            <button id={row.id} onClick={onRemove}> X </button>
+                            <Link to={`/community/${row.id}`}>{row.forumName}</Link>
+                            {isExecutive ?
+                            <button id={row.id} onClick={ ()=> onRemove(row.id)}> X </button>
+                            :null}
                         </div>
                     )
                 })}

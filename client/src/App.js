@@ -6,6 +6,7 @@ import Footer from './components/Footer/Footer';
 
 
 
+
 class App extends Component {
   constructor (props) {
     super(props);
@@ -20,7 +21,9 @@ class App extends Component {
     return (
       <div>
         <Header />
+        <div className="footerFixed">
         <Footer />
+        </div>
       
       </div>
     );

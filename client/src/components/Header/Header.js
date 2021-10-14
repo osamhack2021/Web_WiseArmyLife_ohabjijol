@@ -2,7 +2,6 @@ import React, {useState ,useEffect} from "react";
 import { Link, Route, Switch, BrowserRouter as Router } from "react-router-dom";
  import Login from '../Login/Login';
 import DetailHome from "../Home/DetailHome";
-import Community from '../Community/Community';
 import Assess from "../Assess/Assess";
 import './Header.css';
 import My from "../My/My";
@@ -12,6 +11,9 @@ import Letter from "../Letter/Letter";
 import Auth from '../Login/Auth';
 import DashBoard from "../DashBoard";
 import axios from "axios";
+import Post from './../Community/Post';
+import Page from './../Community/Page';
+import Forum from './../Community/Forum';
 
 
 const Header = () => {
@@ -92,14 +94,17 @@ const Header = () => {
                             <Login />
                             )}
                         />
-                        <PublicRoute path="/community/:forumId/v/:postId" restricted={false} auth={isLogin}  component={Community} /> {/*이건 홈페이지에서 인덱스 치고 들어갈때를 위한 라우터 */}
-                        <PublicRoute path="/community/:forumId?/:pageIndex?" restricted={false} auth={isLogin}  component={Community} /> {/*동일 */}
+                        <Route exact path="/Community/:forumId/:page?" component={Page} />
+                        <Route exact path="/Community" component={Forum} />
+
+                        <PublicRoute path="/community/:forumId/v/:postId" restricted={false} auth={isLogin}  component={Post} /> {/*이건 홈페이지에서 인덱스 치고 들어갈때를 위한 라우터 */}
+                        <PublicRoute path="/community/:forumId" restricted={false} auth={isLogin}  component={Forum} /> {/*동일 */}
+                        <PublicRoute path="/community/:forumId/:pageIndex" restricted={false} auth={isLogin}  component={Page} /> {/*동일 */}
                         <PublicRoute path="/assess" restricted={false} auth={isLogin} component={Assess} />
                         <AuthRoute path="/my" auth={isLogin} render={ () => <My />} />
                         <AuthRoute path="/letter" auth={isLogin} render={ () => <Letter />} />
                         <PublicRoute path="/auth" restricted={true} auth={isLogin} component={Auth} />
                         <PublicRoute path="/" restricted={false} auth={isLogin} component={DashBoard} />
-
                         
                     </Switch>
                 </Router>

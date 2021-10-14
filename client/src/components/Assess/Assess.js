@@ -4,7 +4,6 @@ import './ss.css'
 import './Assess.css'
 import { Link, Route, Switch, BrowserRouter as Router } from "react-router-dom";
 import ExeCurrent from './ExeCurrent';
-import ExeResult from './ExeResult';
 import ExeSubmit from './ExeSubmit';
 import Current from './Current';
 import Result from './Result';
@@ -25,6 +24,8 @@ const targetList = [
 const Assess = () => {
     //
     const [isExecutive,setIsExecutive] = useState(false)
+
+
     const [allEvents, setAllEvents] = useState([]);
 
 
@@ -35,6 +36,7 @@ const Assess = () => {
         }else{
             setIsExecutive(false)
         }
+        
         async function getEvents() {
             
             const res1 =  axios.get(`/assessment/shooting`)
@@ -123,7 +125,6 @@ const Assess = () => {
 
                     <Switch>
                         <Route path="/assess/exeCurrent" component={ExeCurrent}/>
-                        <Route path="/assess/exeResult" component={ExeResult}/>
                         <Route path="/assess" render={ () => <ExeSubmit onRangeChange={onRangeChange} allEvents={allEvents} />}/>
                     </Switch>
                 </Router>
@@ -144,11 +145,6 @@ const Assess = () => {
                 </Router>
             </div>
             }
-
-            
-           
-
-            
         </div>
 
 

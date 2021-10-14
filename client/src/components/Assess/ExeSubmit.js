@@ -12,7 +12,6 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import resourceTimeGridPlugin from "@fullcalendar/resource-timegrid";
 import { toDateString } from '../../Custom/toDateString';
 import ExeCurrent from './ExeCurrent'
-import PublicRoute from './../../Custom/PublicRoute';
 import { Link, Route, Switch, BrowserRouter as Router } from "react-router-dom";
 
 
