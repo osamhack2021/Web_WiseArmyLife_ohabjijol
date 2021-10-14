@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-// slick 관련 2개 모듈새로 다운받아야함!   npm install react-slick --save Or yarn add react-slick  //  npm install slick-carousel
+// slick 관련 2개 모듈새로 다운받아야함!   npm install react-slick --save Or yarn add react-slick  //  npm install slick-carousel  yarn add styled-components
 
 const Container = styled.div`
   overflow:hidden;
@@ -23,11 +23,11 @@ const ImageContainer = styled.div`
 const Image = styled.img`
 max-width:100%;
 max-height:100%;
-width:980px;
-height:300px;
+width:1280px;
+height:600px;
 `;
 
-const imgUrl = require('./A.png');
+const imgUrl = require("./A.png");
 
 const imgUrlTwo = require('./B.png');
 

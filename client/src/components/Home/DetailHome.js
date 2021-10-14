@@ -1,4 +1,5 @@
 import React from 'react';
+import SimpleSlider from './Carousel';
 import './DetailHome.css'
 
 const DetailHome = () => {
@@ -6,9 +7,10 @@ const DetailHome = () => {
 
     return (
         <React.Fragment>
+         
             <div middleWrap>
                 <div className="topBanner">
-                    <img src="img/wal.jpg" alt="상위 배너 사진" />
+                    <img src="img/wal.jpg" alt="상위 배너 사진" />   <SimpleSlider/>
                 </div>
         
                 <div className="content" id="first">
