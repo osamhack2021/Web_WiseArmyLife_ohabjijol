@@ -64,9 +64,10 @@ router.delete('/:forumId', isLoggedIn, isExecutive, async (req, res, next) => {
         const currentForumId = req.params.forumId;
         const currentForum = await Forum.findOne({ where: { id: currentForumId } });
         if (currentForum) {
-            await Post.findAll({ attributes: ['postId'], where: { ForumId: currentForumId } })
+            await Post.findAll({ attributes: ['posterId'], where: { ForumId: currentForumId } })
                 .then(postId => {
                     if (postId.length == 0) {
+                        console.log("aa");
                         return res.json({ success: true, data: null });
                     }
                     return Comment.destroy({ where: { PostId: postId } });
