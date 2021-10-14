@@ -1,0 +1,9 @@
+.sliderImg{
+    align-items: center;
+    text-align: center;
+    width: 30%;
+    padding-left: 30%;
+    padding-right: 30%;
+    height: 700px;
+    background-color: gainsboro;
+}

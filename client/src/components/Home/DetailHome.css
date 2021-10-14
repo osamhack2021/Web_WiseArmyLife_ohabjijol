@@ -1,14 +1,35 @@
-.smallBox{
+.smallBoxFirst{
       
   width: 400px;
   height: 300px;
-  border-radius: 80px;
+  border-radius: 50px;
   background-color: #ffd265;
-
   margin: 10px;
   margin-bottom: 39px;
   
 }
+
+.smallBox{
+      
+  width: 400px;
+  height: 300px;
+  border-radius: 50px;
+  background-color: #fdf06d;;
+  margin: 10px;
+  margin-bottom: 39px;
+  
+}
+
+.rightDown{
+  font-size: 37px;
+  font-family: "Nanum Square B";
+  padding-top: 50px;
+  padding-right: 20px;
+  text-align: right;
+
+  
+}
+
 .smallBoxLast{
     margin-left: 50px;
     width: 625px;
@@ -17,7 +38,7 @@
     border-bottom-right-radius: 30px;
     border-top-left-radius: 70px;
     border-top-right-radius: 70px;
-    background-color: #ffd265;
+    background-color: #fdf06d;
     margin: 20px;
 }
 .middleTitle{
@@ -33,11 +54,7 @@
 }
 
 .content {
-    align-content: center;
-    margin-right: auto;
-    margin-left: auto;
     text-align: center;
-    
 }
 
 .bigBox {
@@ -46,16 +63,16 @@
   grid-template-columns: 1fr 1fr 1fr;
   text-align: center;
   align-content: center;
-  margin-bottom: 100px;
+ 
 }
 .bigBox2 {
   display: grid;
   display: inline-grid;
-  grid-template-columns:  1fr 1fr;
+  grid-template-columns:  1fr 1fr ;
   text-align: center;
   align-content: center;
   margin-bottom: 100px;
-  
+
 }
 
 .shoot{
