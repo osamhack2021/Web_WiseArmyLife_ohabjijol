@@ -43,6 +43,7 @@ const ExeCurrent = (props) => {
 
 
     const onScore = (militaryNumber)=>{
+        if(target!="strength"){
         const score = prompt("점수입력 : ")
         const data =
             {       
@@ -68,7 +69,45 @@ const ExeCurrent = (props) => {
         .then(res=>{
             setDataList(res.data.data.userinfo);
             console.log(dataList)
+        })}
+        else{
+
+            const pushUpscore = prompt("팔굽혀펴기 점수입력 : ")
+            const sitUpscore = prompt("윗몸 점수입력 : ")
+            const runningscore = prompt("뜀걸음 점수입력 : ")
+
+        const data =
+            {       
+                date : date,
+                scoreAndId : [
+                    {
+                        "UserId":militaryNumber,
+                        "sitUpscore":sitUpscore,
+                        "pushUpscore":pushUpscore,
+                        "runningscore":runningscore
+
+                    }
+                ]
+            }
+        console.log(data)
+        axios.patch(`/management/${target}/scores`,data)
+        .then(res=>{
+            if(res.data.success === true){
+                alert("등록성공")
+            }else{
+                alert("등록실패")
+            }
         })
+        
+        axios.get(`/management/${target}/checkinfo?date=${date}`)
+        .then(res=>{
+            setDataList(res.data.data.userinfo);
+            console.log(dataList)
+        })
+
+        }
+
+
     }
     const onCon = ()=>{
         console.log(dataList)
@@ -90,6 +129,7 @@ const ExeCurrent = (props) => {
                 </thead>
                 <tbody>
                     {dataList.map(data=>{
+                        if(target=="strength"){data.score = (data.pushUpscore+data.sitUpscore+data.runningscore)/3}
                         return (
                             <tr>
                                 <td style={tableStyle}>{data.militaryNumber}</td>

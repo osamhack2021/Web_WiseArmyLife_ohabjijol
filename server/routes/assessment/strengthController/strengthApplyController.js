@@ -45,7 +45,6 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
             where: {
                 UserId: req.user.id,
                 StrengthId: strengthid,
-                militaryNumber : req.user.militaryNumber,
             },
 
         });
@@ -90,6 +89,8 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
                     const addStrengthEvent =  StrengthEvent.create({
                         UserId: req.user.id,
                         StrengthId: strengthid,
+                        militaryNumber : req.user.militaryNumber,
+
                     });
 
                     const updateStrength = Strength.update({ expired: 'Full' }, {
