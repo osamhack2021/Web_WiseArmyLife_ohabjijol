@@ -11,7 +11,7 @@ updateScores = async (req,res)=>{
         
 
 
-        const findData = await Strength.findOne({where : {date : body.date}});
+        const findData = await Strength.findOne({where : {date : req.body.date}});
         if(findData == null){
 
             const senderror = {
@@ -25,8 +25,8 @@ updateScores = async (req,res)=>{
        successNum = 0;
        failNum = 0;
        var failInfo = [];
-       body.scoreAndId.forEach(element => {
-            StrengthEvent.update({pushUpscore : element.pushUpscore,sitUpscore : element.sitUpscore,runningUpscore : element.runningscore},{where : {militaryNumber : element.UserId}}).then(res=>{
+       req.body.scoreAndId.forEach(element => {
+            StrengthEvent.update({pushUpscore : element.pushUpscore,sitUpscore : element.sitUpscore,runningscore : element.runningscore},{where : {militaryNumber : element.UserId}}).then(res=>{
                seccessNum =seccessNum+1;
            }).catch(err=>{
                failNum = failNum + 1;

@@ -45,7 +45,7 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
             where: {
                 UserId: req.user.id,
                 SpecialityId: specialityid,
-                militaryNumber : req.user.militaryNumber,
+                
             },
 
         });
@@ -90,6 +90,7 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
                     const addSpecialityEvent =  SpecialityEvent.create({
                         UserId: req.user.id,
                         SpecialityId: specialityid,
+                        militaryNumber : req.user.militaryNumber,
                     });
 
                     const updateSpeciality = Speciality.update({ expired: 'Full' }, {

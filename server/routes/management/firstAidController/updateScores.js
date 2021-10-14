@@ -11,7 +11,7 @@ updateScores = async (req,res)=>{
         
 
 
-        const findData = await FirstAid.findOne({where : {date : body.date}});
+        const findData = await FirstAid.findOne({where : {date : req.body.date}});
         if(findData == null){
 
             const senderror = {
@@ -25,7 +25,7 @@ updateScores = async (req,res)=>{
        successNum = 0;
        failNum = 0;
        var failInfo = [];
-       body.scoreAndId.forEach(element => {
+       req.body.scoreAndId.forEach(element => {
             FirstAidEvent.update({score : element.score},{where : {militaryNumber : element.UserId}}).then(res=>{
                seccessNum =seccessNum+1;
            }).catch(err=>{

@@ -45,7 +45,6 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
             where: {
                 UserId: req.user.id,
                 CBRId: cBRid,
-                militaryNumber : req.user.militaryNumber,
             },
 
         });
@@ -90,6 +89,8 @@ ApplyAssessment = async (req, res) => {  // front구현 완료되면 post로 받
                     const addCBREvent =  CBREvent.create({
                         UserId: req.user.id,
                         CBRId: cBRid,
+                        militaryNumber : req.user.militaryNumber,
+
                     });
 
                     const updateCBR =  CBR.update({ expired: 'Full' }, {
