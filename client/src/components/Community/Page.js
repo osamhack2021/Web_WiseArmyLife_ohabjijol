@@ -7,26 +7,18 @@ import './Page.css'
 
 const Page = ({match}) => {
 
-    const  Ntd = {
-      
-    }
-
-    const forumId = match.url[11]
+    const forumId = match.params.forumId
     const [data,setData] = useState({
-        maxPage:1,
-        post_10:{
-            count:0,
-            rows:[]
-        }
+        maxPage:0,
+        rows:[]
     });
+    const index = useRef(1)
     const [newpost,setNewpost] =useState(false)
     const [inputs,setInputs] =useState({
         title:'',
         content:''
     })
-    const [index,setIndex] = useState(1)
     const {title,content} = inputs;
-    const {rows} = data.post_10;
 
     const onChange = (e)=>{
         const {name,value} = e.target
@@ -42,12 +34,15 @@ const Page = ({match}) => {
 
     const test = useRef(null);
     useEffect(() => {
-        axios.get(`/community/${forumId}/${index}`)
+        axios.get(`/community/${forumId}/${index.current}`)
         .then(res =>{
             console.log(res.data)
             test.current = res.data.data
             if(test.current.maxPage !== data.maxPage){
-                setData(test.current)
+                setData({
+                    maxPage : res.data.data.maxPage,
+                    rows:res.data.data.post_10.rows
+                })
             }
         })
         .catch(err =>console.log(err))
@@ -61,11 +56,13 @@ const Page = ({match}) => {
     }
 
     const PageChange = (id)=>{
-        setIndex(id);
-        axios.get(`/community/${forumId}/${id}`)
+        axios.get(`/community/${forumId}/${index.current}`)
         .then(res =>{
             console.log(res.data)
-            setData(test.current)
+            setData({
+                maxPage : res.data.data.maxPage,
+                rows:res.data.data.post_10.rows
+            })
         })
         .catch(err =>console.log(err))
     }
@@ -100,41 +97,55 @@ const Page = ({match}) => {
         return result;
       };
 
+    const listRendering = ()=>{
+        const result = [];
+
+        data.rows.map(res=>{
+            //2021 -10- 13T 11:11:28.000Z   3번2 
+            let create ;
+            if (res.createdAt.substr(8,2) == new Date().getDate()){
+                let time = parseInt(res.createdAt.substr(11,2)) +parseInt(9)
+                if(time >=24){
+                    time -=24
+                }
+                create = time+res.createdAt.substr(13,6) 
+            }else{
+                create = res.createdAt.substr(2,8) + " "+ res.createdAt.substr(11,8) 
+            }
+            
+            result.push(<tr>  <td className='Ntd' ><Link className='pageTitleLink' to={`/community/${forumId}/v/${res.id}`}>{res.title}</Link></td> 
+            <td className='Ntd'>{create}</td>    </tr>)
+            return null
+        })
+        return result;
+     }
+ 
     return (
         <div>
             { newpost===false ?
                 //여기는 글안쓸때 화면
             <div>
                 <>
+                {
+                    data.rows.map(res=>{
+                        console.log(1)
+                       return 1;
+                    })
+                }
+                
                     <div id="entire">
                         <h2 className={styles.FnoticeH}>공지사항 +</h2>
                         <div className='fContentBox'>
                             <div className='Fcontent'>
                                 <div id="table">
+                                    
                                     { <table className='Ntable'>
                                             <thead className='Nthead'>
                                                 <th className='Nth'>    제목     </th>
                                                 <th className='Nth'>    작성시간     </th>
                                             </thead>
                                             <tbody className='pageBody'>
-                                                {data.post_10.rows.map(res=>{
-                                                    //2021 -10- 13T 11:11:28.000Z   3번2 
-                                                    let create ;
-                                                    if (res.createdAt.substr(8,2) == new Date().getDate()){
-                                                        let time = parseInt(res.createdAt.substr(11,2)) +parseInt(9)
-                                                        if(time >=24){
-                                                            time -=24
-                                                        }
-                                                        create = time+res.createdAt.substr(13,6) 
-                                                    }else{
-                                                        create = res.createdAt.substr(2,8) + " "+ res.createdAt.substr(11,8) 
-                                                    }
-                                                    
-                                                    return(
-                                                        <tr>  <td className='Ntd' ><Link className='pageTitleLink' to={`/community/${forumId}/v/${res.id}`}>{res.title}</Link></td> 
-                                                        <td className='Ntd'>{create}</td>    </tr>
-                                                    )
-                                                })}
+                                                { listRendering() }
                                                 <tr> 
                                                 <td style={bottomLine}></td>    </tr>
                                             </tbody>
@@ -142,7 +153,7 @@ const Page = ({match}) => {
                                     }
                                 </div>
                                 <div>
-                                    <button className="pageButton">{"<"}</button>  
+                                    <button onClick={onConsole} className="pageButton">{"<"}</button>  
                                     { indexRendering() }
                                     <button className="pageButton">{">"}</button>  
                                     <button className='pageButton' onClick={()=>setNewpost(true)}>글쓰기</button>

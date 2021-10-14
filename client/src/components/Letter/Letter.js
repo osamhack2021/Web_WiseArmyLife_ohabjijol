@@ -31,7 +31,8 @@ const Letter = () => {
     })
     const pageIndex = useRef(1)
     useEffect(() => { //battalion or company
-        axios.get(`/letter/company/${pageIndex.current}`)
+        console.log(onWhere)
+        axios.get(`/letter/${onWhere}/${pageIndex.current}`)
         .then(res => {
             console.log(res.data)
             test.current = res.data.data;
