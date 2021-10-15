@@ -1,6 +1,8 @@
 import React from 'react';
-import SimpleSlider from './Carousel';
+import SimpleSlider from './Slider';
 import './DetailHome.css'
+import slider from "./Slider.js";
+import Slider from './Slider';
 
 const DetailHome = () => {
    
@@ -10,8 +12,7 @@ const DetailHome = () => {
          
             <div middleWrap>
                 <div className="topBanner">
-                    <img src="img/wal.jpg" alt="상위 배너 사진" />   <SimpleSlider/>
-                </div>
+                    <img src="img/wal.jpg" alt="상위 배너 사진" />   <Slider/>                </div>
         
                 <div className="content" id="first">
                     <div>

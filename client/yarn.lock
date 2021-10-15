@@ -9884,6 +9884,11 @@ react-scripts@^4.0.3:
   optionalDependencies:
     fsevents "^2.1.3"
 
+react-simple-image-slider@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/react-simple-image-slider/-/react-simple-image-slider-2.2.0.tgz#23bc5d34223762f0870a6ff38e69afd97e2236ee"
+  integrity sha512-VO4FdUHV5hllWUNiO0p0AZI94MI25PJCEGKXr3GkfdgHqohNQFmLvfEJGGkfMA7A2ggV5rJBiootOnHB3JIybw==
+
 react-slick@^0.28.1:
   version "0.28.1"
   resolved "https://registry.yarnpkg.com/react-slick/-/react-slick-0.28.1.tgz#12c18d991b59432df9c3757ba540a227b3fb85b9"
