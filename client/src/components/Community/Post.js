@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import  axios  from 'axios';
 import { useState } from 'react';
 import './post.css'
-
+import ReactHtmlParser from 'react-html-parser'
 
 const Post = (props) => {
 
@@ -77,7 +77,7 @@ const Post = (props) => {
                     <h3 className="POhThree">{data.currentPost.title}</h3>
                     <hr className='titlebuttonBar' />
                     <div>{
-                        data.currentPost.content
+                        ReactHtmlParser(data.currentPost.content)
                         }
                     </div>
                 </div>
