@@ -64,9 +64,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 const syncShootingAssessment = require('./routes/assessment/shootingController/shootingassessmentsync');
+const db = require('./models');
 
 schedule.scheduleJob('0 0 14 * * *',syncShootingAssessment);
-
 
 
 //라우팅
@@ -88,12 +88,17 @@ app.use(function(req, res, next) {
 });
 
 
+ 
+
+
+
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
+  
   // render the error page
   res.status(err.status || 500);
   res.render('error');

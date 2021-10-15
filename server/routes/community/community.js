@@ -6,13 +6,14 @@ const { isLoggedIn } = require('../user/check_login');
 const { isExecutive } = require('../user/check_is_executive');
 const { Post, Forum } = require('../../models');
 const ForumRouter = require('./forum');
-
+const { Op } = require('sequelize');
 
 const router = express.Router();
 
 router.get('/', isLoggedIn, async (req, res) => {
     try {
         const allForum = await Forum.findAndCountAll({
+            where:{id:{[Op.gte] : 3}},
             include: [{
                 model: Post,
                 limit: 1,
@@ -23,6 +24,7 @@ router.get('/', isLoggedIn, async (req, res) => {
         const data = {
             allForum: allForum,
         }
+        console.log(data.allForum.rows);
         res.json({ success: true, data });
     } catch (err) {
         console.error(err);
