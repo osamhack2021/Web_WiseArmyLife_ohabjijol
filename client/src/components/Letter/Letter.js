@@ -31,7 +31,8 @@ const Letter = () => {
     })
     const pageIndex = useRef(1)
     useEffect(() => { //battalion or company
-        axios.get(`/letter/company/${pageIndex.current}`)
+        console.log(onWhere)
+        axios.get(`/letter/${onWhere}/${pageIndex.current}`)
         .then(res => {
             console.log(res.data)
             test.current = res.data.data;
@@ -41,17 +42,25 @@ const Letter = () => {
     },[onWhere])
     
     const onPost = ()=>{
-        const data = {
-            title:inputs.title,
-            content:inputs.content
+        const goData = {
+            "title":inputs.title,
+            "content":inputs.content
         }
-        axios.post(`/letter/${onWhere}/post`,data)
+        console.log(goData)
+        axios.post(`/letter/${onWhere}/post`,goData)
         .then(res=>{
             console.log(res.data)
         })
         setNewpost(false);
     }
 
+    const onChange = (e)=>{
+        const {name,value} =e.target;
+        setInputs({
+            ...inputs,
+            [name]:value
+        })
+    }
     return (
         <div>
             {newpost===false ? <div>
@@ -61,8 +70,8 @@ const Letter = () => {
             </div>
             :
             <div>
-                <input placeholder='title' name="title" value={inputs.title} onChange={(e)=>setInputs({...inputs,title:e.value})}/>
-                <input placeholder='content' name="content" value={inputs.content} onChange={(e)=>setInputs({...inputs,content:e.value})}/>
+                <input placeholder='title' name="title" value={inputs.title} onChange={onChange}/>
+                <input placeholder='content' name="content" value={inputs.content} onChange={onChange}/>
                 <button onClick={onPost}>보내기</button>
                 <button onClick={()=>setNewpost(false)}>뒤로가기</button>
             </div>

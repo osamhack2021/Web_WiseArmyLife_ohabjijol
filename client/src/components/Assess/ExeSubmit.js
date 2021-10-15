@@ -26,10 +26,6 @@ const ExeSubmit = (props) => {
         target:"",
         date:""
     })
-    const onConsole = (e)=>{
-        console.log(allEvents)
-        setCheck(true)
-    }
 
     //신청인원확인
     const eventClick = async (event)=>{
@@ -72,14 +68,12 @@ const ExeSubmit = (props) => {
                         time:time
                     }
                     if(time !=="" && time !==null && applicant_capacity !== "" && applicant_capacity !==null){
-                        console.log(data)
                         axios.post(`/management/${goTarget}/assessment`,data)
                         .then(res=>{
                             if(res.data.success===true){
                                 alert('등록 성공')
                                 window.location.replace("/assess")
                             }else{
-                                console.log(res.data)
                                 alert(`${res.data.data}`)
                             }
                         })
@@ -123,7 +117,6 @@ const ExeSubmit = (props) => {
                         eventLimit={3}
                     />
                 </div>
-                <button onClick={onOn}>콘솔</button>
             </div>
             
             :
