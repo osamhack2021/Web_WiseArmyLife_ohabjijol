@@ -3,7 +3,7 @@ import "./ExeLetter.css";
 
 //LetterBoard 안에 있는 boards 가져와서 부르면 좋은데 ㅠ
 
-const FreeBoard = () => {
+const ExeLetter = () => {
 
     return (
         <>
@@ -42,7 +42,7 @@ const FreeBoard = () => {
     );
 };
 
-export default FreeBoard;
+export default ExeLetter;
 
 
 // 간부가 마편 답장 써주는 페이지~~~

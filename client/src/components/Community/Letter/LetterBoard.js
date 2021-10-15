@@ -1,5 +1,5 @@
 import React from 'react';
-import BoardItem from '../Test/App6_BoardItem';
+import BoardItem from '../../Test/App6_BoardItem';
 
 const LetterBoard = () => {
 
