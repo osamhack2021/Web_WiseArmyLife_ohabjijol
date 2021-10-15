@@ -10,7 +10,7 @@ const CommentRouter = require('./comment');
 const { isLoggedIn } = require('../user/check_login');
 const { User, Post, Comment } = require('../../models');
 
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 const dir = ('./uploadFiles');
 
 if (!fs.existsSync(dir)) fs.mkdirSync(dir);
@@ -41,7 +41,7 @@ router.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
                 content: req.body.content,
                 img: req.body.url,
                 UserId: req.user.id,
-                ForumId: res.locals.forumId,
+                ForumId: req.params.forumId,
             });
             const data = {
                 post: post,
@@ -58,6 +58,8 @@ router.route('/v/:postId')
         try {
             console.log('포스트 읽어짐');
             const currentPostId = req.params.postId;
+            console.log('포스트 읽어짐' , currentPostId);
+
             const currentPost = await Post.findOne({
                 where: { id: currentPostId },
                 include: [{
@@ -74,15 +76,12 @@ router.route('/v/:postId')
                 },
                 ],
             })
-                .then(result => {
-                    const data = {
-                        currentPost: currentPost,
-                    }
-                        res.json({success: true, data }); // parentId.deletedAt 컬럼에 값 존재 시 삭제된 메세지 뜨게 할 것
-                })
-                .catch(error => {
-                    res.json({success: false, data: null });
-                })
+               
+            const data = {
+                currentPost: currentPost,
+            }
+                return res.json({success: true, data });
+
         } catch (error) {
             console.error(error);
             next(error);

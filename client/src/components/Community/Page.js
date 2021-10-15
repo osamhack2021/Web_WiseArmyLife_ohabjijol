@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link } from "react-router-dom";
 import styles from "./Forum.module.css";
 import './Page.css'
-
+import './newpost.css'
 
 const Page = ({match}) => {
 
@@ -126,13 +126,6 @@ const Page = ({match}) => {
                 //여기는 글안쓸때 화면
             <div>
                 <>
-                {
-                    data.rows.map(res=>{
-                        console.log(1)
-                       return 1;
-                    })
-                }
-                
                     <div id="entire">
                         <h2 className={styles.FnoticeH}>공지사항 +</h2>
                         <div className='fContentBox'>
@@ -142,7 +135,7 @@ const Page = ({match}) => {
                                     { <table className='Ntable'>
                                             <thead className='Nthead'>
                                                 <th className='Nth'>    제목     </th>
-                                                <th className='Nth'>    작성시간     </th>
+                                                <th className='Nth'>    날짜     </th>
                                             </thead>
                                             <tbody className='pageBody'>
                                                 { listRendering() }
@@ -165,15 +158,15 @@ const Page = ({match}) => {
             </div>
             :
             <>
-                <div >
-                    <div>
+                <div className="NPcontent">
+                    <div className="NPcontentTop">
                         <h3>제목 : </h3>
-                        <input name="title" value={title} onChange={onChange} placeholder="제목을 입력하십시오."/>
+                        <input className = "NPinputOne"  name="title" value={title} onChange={onChange} placeholder="제목을 입력하십시오."/>
                     </div>
-                    <div >
-                        <input name="content" value={content} onChange={onChange} placeholder="내용을 입력하십시오."/>
+                    <div id="mainContent">
+                        <input className = "NPinputTwo" name="content" value={content} onChange={onChange} placeholder="내용을 입력하십시오."/>
                     </div>
-                    <button onClick={onPost}>등록</button>
+                    <button  className="NPbuttonOne" onClick={onPost}>등록</button>
                     <button onClick={()=>setNewpost(false)}>뒤로가기</button>
                 </div>
             </>
