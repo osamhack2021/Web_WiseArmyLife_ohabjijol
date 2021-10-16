@@ -40,7 +40,7 @@ const Post = (props) => {
         axios.get(`/community/${forumId}/post/v/${postId}`)
         .then(res=>{
             setData(res.data.data)
-            console.log(res.data.data)
+            console.log(res.data.data.currentPost)
         })
     
     },[])
@@ -88,19 +88,19 @@ const Post = (props) => {
                 </div>
 
                 <div className="POmoveNext">
-                    <div>이전글</div>
-                    {data.exPost !== null ?
-                    <div><Link to={`/community/${forumId}/v/${parseInt(postId)-1}`}>{data.currentPost.title}</Link></div>
-                        :null
+                    <div>다음글</div>
+                    {data.currentPost.nextPostId !== -1 ?
+                    <div><Link to={`/community/${forumId}/v/${data.currentPost.nextPostId}`}>{data.currentPost.nextPosttitle}</Link></div>
+                        :<div>{data.currentPost.nextPosttitle}</div>
                     }
                     
                 </div>
 
                 <div className="POmovePrevious">
-                    <div>다음글</div>
-                    {data.nextPost !== null ?
-                    <div>{data.currentPost.title}</div>
-                        :null
+                    <div>이전글</div>
+                    {data.currentPost.prevPostId !== -1 ?
+                    <div><Link to={`/community/${forumId}/v/${data.currentPost.prevPostId}`}>{data.currentPost.prevPosttitle}</Link></div>
+                    :<div>{data.currentPost.prevPosttitle}</div>
                     }
                     
                 </div>
