@@ -41,8 +41,8 @@ const Post = (props) => {
         .then(res=>{
             setData(res.data.data)
             console.log(res.data.data)
-            console.log(res.data.data.currentPost.User.name)
-            if(res.data.data.currentPost.User.userId === sessionStorage.getItem('user_id')){
+            console
+            if(res.data.data.currentPost.User.name === sessionStorage.getItem('user_id')){
                 console.log('21333333333333')
             }
         })
