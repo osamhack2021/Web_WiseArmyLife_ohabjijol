@@ -157,7 +157,8 @@ const Page = ({match}) => {
                                     <button onClick={onConsole} className="pageButton">{"<"}</button>  
                                     { indexRendering() }
                                     <button className="pageButton">{">"}</button>  
-                                    <button className='pageButton' onClick={()=>setNewpost(true)}>글쓰기</button>
+
+                                    {sessionStorage.getItem('isExecutive')==='true' || data.forumName !== '공지사항' ?<button className='pageButton' onClick={()=>setNewpost(true)}>글쓰기</button>:null}
                                 </div>
                             </div>
                         </div>
