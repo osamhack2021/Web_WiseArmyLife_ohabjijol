@@ -6,12 +6,12 @@ updateScores = async (req,res)=>{
 
     try{
 
-        // req.body.date = '2021-10-21';
-        // req.body.scoreAndId = [{UserId:1,score:70},{UserId:2,score :30}];
+        req.body.date = '2021-10-21';
+        req.body.scoreAndId = [{UserId:1,score:70},{UserId:2,score :30}];
         
 
 
-        const findData = await Shooting.findOne({where : {date : req.body.date}});
+        const findData = await Shooting.findOne({where : {date : body.date}});
         if(findData == null){
 
             const senderror = {
@@ -25,8 +25,8 @@ updateScores = async (req,res)=>{
        successNum = 0;
        failNum = 0;
        var failInfo = [];
-       req.body.scoreAndId.forEach(element => {
-            ShootingEvent.update({score : element.score},{where : {militaryNumber : element.UserId}}).then(res=>{
+       body.scoreAndId.forEach(element => {
+            ShootingEvent.update({score : element.score},{where : {UserId : element.UserId}}).then(res=>{
                seccessNum =seccessNum+1;
            }).catch(err=>{
                failNum = failNum + 1;
@@ -36,6 +36,7 @@ updateScores = async (req,res)=>{
            inputNum = inputNum + 1;
        });
 
+       
         sendsuccess = {
             success : true,  
             data : {inputCnt :inputNum,successCnt : successNum, failCnt : failNum , ErrorInfo : failInfo}          

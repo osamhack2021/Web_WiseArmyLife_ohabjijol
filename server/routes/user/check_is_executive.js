@@ -5,7 +5,7 @@ exports.isExecutive = (req, res, next) => {
     if (req.user.executive) {
         next();
     } else {
-        console.log(req.user.executive);
+        console.log('간부아님');
         const data = {
             message: "Not Executive",
         }
@@ -16,7 +16,7 @@ exports.isNotExecutive = (req, res, next) => {
     if (!req.user.executive) {
         next();
     } else {
-        console.log(req.user.executive,req.user);
+        console.log('간부임');
         const data = {
             message: "병사만 접근 가능함",
         }

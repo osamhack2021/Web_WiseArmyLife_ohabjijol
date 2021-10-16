@@ -6,7 +6,7 @@ const getShootingInfo = require('./shootingController/shootinginfoController');
 const getShootingResult = require('./shootingController/shootingresultController');
 const ApplyAssessment = require('./shootingController/shootingApplyController');
 const CancelApply = require('./shootingController/shootingCancelController');
-
+const syncShootingAssessment = require('./shootingController/shootingassessmentsync');
 
 router.route('/').get(getShootingInfo);
 router.use(isLoggedIn,isNotExecutive);
