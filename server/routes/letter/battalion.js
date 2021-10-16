@@ -17,7 +17,7 @@ router.get('/:pageIndex', isLoggedIn, checkBattalionCommander, async (req, res, 
         let page = Math.max(1, parseInt(req.params.pageIndex));
         const limit = 10;
         let skip = (page - 1) * limit;
-        let postCount = Post.count({ where: { ForumId: letterForumId } });
+        let postCount = await Post.count({ where: { ForumId: letterForumId } });
            
                 const maxPage = Math.ceil(postCount / limit);
                 const post_10 = await Post.findAndCountAll({

@@ -3,14 +3,14 @@
 const express = require('express');
 
 const { isLoggedIn, isExecutive } = require('../user/check_login');
-const { User, Post, Comment } = require('../../models');
+const { User, Post, Comment, Forum } = require('../../models');
 const PostRouter = require('./post');
 
 const router = express.Router({mergeParams: true});
 router.use('/post', isLoggedIn, PostRouter);
 router.get('/:pageIndex', isLoggedIn, async (req, res) => {
     try {
-        
+        const forumName = await Forum.findOne({where: {id: req.params.forumId}, attributes: ['forumName']});
         console.log('포럼 들어와짐');
         let page = Math.max(1, parseInt(req.params.pageIndex));
         const limit = 10;
@@ -32,6 +32,7 @@ router.get('/:pageIndex', isLoggedIn, async (req, res) => {
             offset: skip,
         });
         const data = {
+            forumName: forumName,
             post_10: post_10,
             maxPage: maxPage,
         }
