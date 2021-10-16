@@ -1,0 +1,98 @@
+.NPhTwo {
+    font-size: 30px;
+    font-family: "Nanum Square EB";
+    text-align:center;
+  }
+  
+  .NPcontent{
+    margin-top: 200px;
+    margin-bottom: 200px;
+    text-align: left;
+    align-content: center;
+    padding: 50px;
+    width: 1280px;
+    height: auto;
+    border-radius: 50px;
+    background-color: #fffacb;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    
+  }
+  
+  .NPcontentTop {
+    display:grid;
+    grid-template-columns: 50px 840px;
+    height:50px;
+    padding-bottom: 20px;
+    background-color: white;
+    width: 1280px;
+    
+    margin-right: 15%;
+  
+  
+   
+    
+  }
+  
+  .NPinputOne{
+    font-size: 20px;
+    border:0;
+    background-color: white;
+    margin:0;
+    padding-left:20;
+    width:800px;
+    
+  }
+  
+  .NPinputTwo{
+  
+    background-color: white;
+    border:0;
+    font-size: 20px;
+    height:900px;
+    border-top: 1px solid black;
+    width: 70%;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-bottom: 70px;
+    height: 700px;
+  }
+ 
+  .NPbuttonOne{
+    font-size: 25px;
+  font-family: "Nanum Square B";
+  width: 181px;
+  height: 60px;
+  border-radius: 30px;
+  background-color: #fff492;
+  border: 2px solid #000000;
+  margin-left: 800px;
+  }
+  .NPbuttonOne2{
+    font-size: 25px;
+    font-family: "Nanum Square B";
+    width: 181px;
+    height: 60px;
+    border-radius: 30px;
+    background-color: #fff492;
+    border: 2px solid #000000;
+    margin-left: 50px;
+  }
+  
+  .NPbuttonList{
+    margin-left:40%;
+    margin-top: 100px;
+  }
+  
+  
+  .NPbuttonTwo{
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    background-color: #fffacb;
+    border: 3px solid #fdf06d;
+    font-size: 25px;
+    margin: 10px;    
+  }
+  

@@ -1,0 +1,17 @@
+.sliderImg{
+    align-items: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 320px;
+}
+
+.phoneImage{
+    width: auto;
+    padding: auto;
+    text-align: center;
+    align-content: center;
+}
+.slick-slider{
+    z-index: -1;
+}

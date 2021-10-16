@@ -2,11 +2,24 @@
 
 const express = require('express');
 const router = express.Router();
+const ShootingRouter = require('./shooting');
+const CBRRouter = require('./cBR');
+const FirstAidRouter = require('./firstAid');
+const IndividualBattleRouter = require('./individualBattle');
+const SpecialityRouter = require('./speciality');
+const StrengthRouter = require('./strength');
 
-router.route('/')
-.get(async (req,res)=>{   
- return res.redirect('/assessment/shooting');
-});
+
+router.use('/shooting',ShootingRouter);
+router.use('/cBR',CBRRouter);
+router.use('/firstAid',FirstAidRouter);
+router.use('/individualBattle',IndividualBattleRouter);
+router.use('/speciality',SpecialityRouter);
+router.use('/strength',StrengthRouter);
+    
+
+
+
 
 
 module.exports = router;

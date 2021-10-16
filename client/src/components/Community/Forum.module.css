@@ -1,0 +1,20 @@
+
+  #table {
+    display: flex;
+    justify-content: center;
+   
+  }
+  
+  .FselectBox{
+    padding:50px;
+    text-align:center;
+    
+  }
+
+.FnoticeH {
+  font-size: 30px;
+  font-family: "Nanum Square EB";
+  text-align: center;
+  margin-top: 120px;
+  margin-bottom: 120px;
+}

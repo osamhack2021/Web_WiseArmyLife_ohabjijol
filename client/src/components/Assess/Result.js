@@ -1,52 +1,14 @@
-import React from 'react';
-import "./Result.css";
+import React,{useEffect} from 'react';
+import axios from 'axios';
+import Chart from "./Chart";
+import './Chart.css'
 
 const Result = () => {
 
-    const hTwoStyle = {
-        padding:"20px",
-        margin:"20px",
-        fontSize:"30px",
-        fontFamily:"Nanum Square EB",
-    }
-
- 
-
     return (
-        <>
-        <div className="Rcontent">
-
-      <h2 style={hTwoStyle}> 평가결과 +</h2>
-
-
-      <div className="Rresult">
-          <span>체력</span>
-          <span>2021.10.14</span>
-          <span>16:00~17:00</span>
-          <span>A</span>
-      </div>
-
-      <div className="Rresult">
-      <span>사격</span>
-          <span>2021.09.30</span>
-          <span>18:00~19:00</span>
-          <span>B</span>
-      </div>
-
-      <div className="Rresult">
-      <span>구급법</span>
-          <span>2021.09.07</span>
-          <span>15:00~16:00</span>
-          <span>C</span>
-      </div>
-
-
-<span id="abc">※ A등급: 특급전사(조기진급) / B등급: 진급가능 / C등급 이하: 진급 누락</span>
-
-
-
-      </div>
-      </>
+        <div className='chartFirst'>
+            <Chart id="chart"/>
+        </div>
     );
 };
 

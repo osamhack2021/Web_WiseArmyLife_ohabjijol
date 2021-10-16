@@ -1,0 +1,125 @@
+.POhTwo {
+    font-size: 30px;
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  font-family: "Nanum Square EB";
+  }
+  
+  .POhThree {
+    width:1140px;
+    text-align: left;
+    padding-left: 20px;
+    padding-top: 20px;
+    font-size: 30px;
+    font-family: "Nanum Square EB";
+  
+  }
+  .titleTopBar{
+      color: black;
+      size:  5px;
+      border-color: black;
+      font-size: 30px;
+  }
+  
+  .POcontent {
+    background-color: #FFFACB;
+    
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-bottom: 40px;
+
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    
+    height: 960px;
+    font-size: 25px;
+    border-radius: 100px;
+    font-family: "Nanum Square B";
+  }
+  .titlebuttonBar{
+        margin-bottom: 50px;
+  }
+  
+  .POmoveNext {
+    border-top: 1px solid #c4c4c4;
+    align-content: center;
+    font-size: 25px;
+    font-family: "Nanum Square B";
+    text-align: left;
+    padding-left: 40px;
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    height: 75px;
+    margin-left: 22%;
+    
+    margin-right: 20%;
+  }
+  
+  .POmovePrevious {
+     
+     border-bottom: 1px solid #c4c4c4;
+     font-size: 25px;
+     font-family: "Nanum Square B";
+     text-align: left;
+     padding-left: 40px;
+     padding-bottom: 20px;
+     display: grid;
+     grid-template-columns: 420px 1fr;
+     margin-bottom: 40px;
+     
+    margin-left: 22%;
+    margin-right: 20%
+  
+  }
+  .postEditBtn{
+    width: 100px;
+    height: 60px;
+    border-radius: 5px;
+    background-color: #fffacb;
+    border: 3px solid #fdf06d;
+    margin-right: 57px;
+    margin-left: 20%;
+    font-size: 25px;
+    color: #000000;
+    font-family: "Nanum Square B";
+  }
+  .postDeleteBtn{
+    width: 100px;
+    height: 60px;
+    border-radius: 5px;
+    background-color: #fffacb;
+    border: 3px solid #fdf06d;
+    font-size: 25px;
+    color: #000000;
+    font-family: "Nanum Square B";
+  }
+  .editDelete{
+    margin-bottom: 50px;
+    text-align: center;
+    margin-left: 30%;
+  }
+
+  .BackToList{
+    font-size: 25px;
+    margin-left: 72%;
+    width: 130px;
+    height: 60px;
+    border-radius: 5px;
+    background-color: #fffacb;
+    border: 3px solid #fdf06d;
+    margin-bottom: 200px;
+  }
+.PObutton{
+  margin-left: 1400px;
+  width: 130px;
+  height: 60px;
+  border-radius: 5px;
+  background-color: #fffacb;
+  border: 3px solid #fdf06d;
+  font-size: 25px;
+  font-family: "Nanum Square B"
+  
+  }

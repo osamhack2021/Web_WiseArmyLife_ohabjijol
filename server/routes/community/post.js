@@ -10,7 +10,7 @@ const CommentRouter = require('./comment');
 const { isLoggedIn } = require('../user/check_login');
 const { User, Post, Comment } = require('../../models');
 
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 const dir = ('./uploadFiles');
 
 if (!fs.existsSync(dir)) fs.mkdirSync(dir);
@@ -40,8 +40,8 @@ router.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
                 title: req.body.title,
                 content: req.body.content,
                 img: req.body.url,
-                UserId: req.user.id,
-                ForumId: res.locals.forumId,
+                posterId: req.user.id,
+                ForumId: req.params.forumId,
             });
             const data = {
                 post: post,
@@ -56,7 +56,10 @@ router.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
 router.route('/v/:postId')
     .get(isLoggedIn, async (req, res, next) => {
         try {
+            console.log('포스트 읽어짐');
             const currentPostId = req.params.postId;
+            console.log('포스트 읽어짐' , currentPostId);
+
             const currentPost = await Post.findOne({
                 where: { id: currentPostId },
                 include: [{
@@ -73,15 +76,13 @@ router.route('/v/:postId')
                 },
                 ],
             })
-                .then(result => {
-                    const data = {
-                        currentPost: currentPost,
-                    }
-                        res.json({success: true, data }); // parentId.deletedAt 컬럼에 값 존재 시 삭제된 메세지 뜨게 할 것
-                })
-                .catch(error => {
-                    res.json({success: false, data: null });
-                })
+            currentPost.userId = req.user.militaryNumber;
+            const data = {
+                currentPost: currentPost,
+            }
+            console.log(data);
+                return res.json({success: true, data });
+
         } catch (error) {
             console.error(error);
             next(error);
@@ -89,9 +90,10 @@ router.route('/v/:postId')
     })
     .delete(isLoggedIn, async (req, res, next) => {
         try {
+            console.log('게시글 삭제');
             let currentPostId = req.params.postId;
             let currentPost = await Post.findOne({ where: { id: currentPostId } });
-            if (currentPost.UserId === req.user.id) {
+            if (currentPost.posterId === req.user.id) {
                 Post.destroy({ where: { id: currentPostId } })
                 Comment.destroy({ where: { postComment: currentPostId } })
                     .then(result => {
@@ -117,6 +119,7 @@ router.route('/v/:postId')
     })// 게시글 삭제
     .put(isLoggedIn, async (req, res, next) => {
         try {
+            console.log('게시글 수정');
             let currentPostId = req.params.postId;
             const postBody = req.body;
             let currentPost = await Post.findOne({ where: { id: currentPostId } })

@@ -1,7 +1,6 @@
-import React, {Component} from "react";
+import React, {Component,useRef} from "react";
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import {App} from "./components/Home/Slider";
 
 
 
@@ -19,9 +18,12 @@ class App extends Component {
 
     return (
       <div>
-      
+        <div className="headerWrap">
         <Header />
+        </div>
+        <div className="footerFixed">
         <Footer />
+        </div>
       
       </div>
     );

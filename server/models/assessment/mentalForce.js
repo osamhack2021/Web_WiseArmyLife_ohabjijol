@@ -48,7 +48,7 @@ module.exports = class MentalForce extends Sequelize.Model {
     static associate(db) {
 
       db.MentalForce.belongsToMany(db.User , {through : db.MentalForceEvent});
-      db.MentalForce.belongsToMany(db.Question , {through : db.ExamEvent});
+      db.MentalForce.belongsToMany(db.Question , {through : db.ExamEvent, otherKey : 'type'});
 
     }
   };

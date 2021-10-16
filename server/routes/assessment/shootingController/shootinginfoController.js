@@ -25,7 +25,7 @@ getShootingInfo = async (req, res) => {
         }
 
         const shootingdata = await Shooting.findAll({        
-            attributes : ['date','expired','applicant_capacity','number_of_applicant'],
+            attributes : ['date','time','expired','applicant_capacity','number_of_applicant'],
             where : {
                 date : { [Op.gte] : thismonth , [Op.lt] : nextmonth},
             },
@@ -37,11 +37,10 @@ getShootingInfo = async (req, res) => {
 
         const resobject = {
             success : true,
-            data : shootingdata,
-
+            data : shootingdata
         }
 
-        return res.json(resobject); // json 형식으로 원하는 달 사격데이터 전송      
+        return res.json(resobject); // json 형식으로 원하는 달 사격데이터 전송
 
 
     }

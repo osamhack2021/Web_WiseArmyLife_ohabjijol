@@ -31,12 +31,17 @@ function Login() {
                 alert('로그인 실패')
             }else if(res.data.success === true) {
                 // id, pw 모두 일치 userId = userId1, msg = undefined
-                console.log('======================','로그인 성공')
                 sessionStorage.setItem('user_id', inputId)
-                
-                // const exe = res.data.data.isExcutive
-                const exe = true
-                sessionStorage.setItem('isExecutive', exe)
+                console.log(res.data.data)
+
+                const exe = res.data.data.isExecutive
+                //const exe = false
+                if (exe === 0 ){
+                    sessionStorage.setItem('isExecutive', false)
+                }else{
+                    sessionStorage.setItem('isExecutive', true)
+                }
+
                 document.location.href = '/'
             }
             // 작업 완료 되면 페이지 이동(새로고침)
@@ -61,7 +66,7 @@ function Login() {
                     <span className="textPw">비밀번호</span>
                     <input className="inputPw" type='password' name='input_pw' value={inputPw} onChange={handleInputPw} />
                 </div>
-                <div className="LbuttonList">
+                <div className="buttonList">
                     <span className="loginButton" type='button' onClick={onClickLogin}>로그인</span>
                     <Link className="loginButton" to="/auth">회원가입</Link>
                 </div>

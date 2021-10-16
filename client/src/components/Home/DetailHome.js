@@ -1,18 +1,16 @@
 import React from 'react';
-import SimpleSlider from './Slider';
 import './DetailHome.css'
-import slider from "./Slider.js";
-import Slider from './Slider';
+import SimpleSlider from './SimpleSlider';
 
 const DetailHome = () => {
    
 
     return (
         <React.Fragment>
-         
             <div middleWrap>
                 <div className="topBanner">
-                    <img src="img/wal.jpg" alt="상위 배너 사진" />   <Slider/>                </div>
+                    <SimpleSlider />
+                </div>
         
                 <div className="content" id="first">
                     <div>

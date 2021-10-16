@@ -6,13 +6,10 @@ createAssessment = async (req,res)=>{
 
     try{
        
-        const body = {
-            date : "2021-10-21", // 21년 10월 26
-            applicant_capacity : 3,
-        }
+        
 
-        console.log(body.date);
-        var gettime = new Date(body.date);
+        console.log(req.body.date);
+        var gettime = new Date(req.body.date);
         var Nowtime = new Date();
         Nowtime.setHours(Nowtime.getHours()+9);
         Nowtime.setHours(0); // 21년 10월 25
@@ -31,15 +28,17 @@ createAssessment = async (req,res)=>{
             return res.json(senderror);
         }
 
+        
        
         const createShootingAssessment = await Shooting.findOrCreate({
             where : {
-                date : body.date,
+                date : req.body.date,
                 
             },
             defaults : {
-                date : body.date,
-                applicant_capacity : body.applicant_capacity,
+                date : req.body.date,
+                time : req.body.time,
+                applicant_capacity : req.body.applicant_capacity,
                 number_of_applicant : 0,
                 expired:"Applying"
             }

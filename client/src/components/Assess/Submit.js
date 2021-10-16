@@ -1,77 +1,93 @@
-import React,{useEffect,useState} from 'react';
+import React,{useEffect,useState, Component} from 'react';
 import axios from 'axios';
 import './ss.css'
 import './Assess.css'
 
-// 여긴 진중 수정
-import format from "date-fns/format";
-import getDay from "date-fns/getDay";
-import parse from "date-fns/parse";
-import startOfWeek from "date-fns/startOfWeek";
-import { Calendar, dateFnsLocalizer } from "react-big-calendar";
-import "react-big-calendar/lib/css/react-big-calendar.css";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 
+import { toDateString } from '../../Custom/toDateString';
 
-const locales = {
-    "en-US": require("date-fns/locale/en-US"),
-};
-const localizer = dateFnsLocalizer({
-    format,
-    parse,
-    startOfWeek,
-    getDay,
-    locales,
-});
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import interactionPlugin from "@fullcalendar/interaction";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import resourceTimeGridPlugin from "@fullcalendar/resource-timegrid";
 
 
 
-const events = [
-];
+
+
+
 
 
 const Submit = (props) => {
 
-    const {target} = props;
-    const [post, setPost] = useState({ start:null,end:null,date:null, applicant_capacity:null});
-    const [allEvents, setAllEvents] = useState(events);
-
+    const {target,allEvents,onRangeChange} = props;
+    
+    const [inputs,setInputs] = useState({
+        date:null,
+        time:null,
+        applicantText:null
+    })
+    const [inputDate,setInputDate]= useState(null)
     //db등록 
-    function handleAddEvent() {
-        const data = {
-            time:`${post.start}~${post.end}`,
-            date:post.date,
-            applicant_capacity:post.applicant_capacity
-        }
-        axios.post(`/assessment/${target}/application`,data)
-        setPost({
-            ...post,
-            start:null,
-            end:null,
-            date:null,
-            applicant_capacity:null
-        })
-        axios.get(`/assessment/${target}`)
-        .then(res =>{
-            const {date,title,expired} = res.data.data;
-            const newEvent ={
-                date:date,
-                
-            }
-        })
 
         //setAllEvents([...allEvents,newEvent])
-    }
+    
     //
+    const onClick = (e)=>{
+        const target = e.event._def.title.split(" ")[0]
+        const data = {
+            'date': e.event._def.extendedProps.dd
+        }
+        console.log(target)
+        
+        let conf = window.confirm(`신청종목 : ${target} 날짜 : ${data.date} 신청하기`)
 
- 
+        if (conf){
+            axios.post(`/assessment/${target}/application`,data)
+            .then(res=>{
+                console.log(res.data)
+                if(res.data.success === true){
+                    alert('신청완료')
+                    window.location.replace("/assess")
+                }else{
+                    alert(`${res.data.data.message}`)
+                }
+        }).catch(()=>{
+            alert('기타 오류')
+        })
+        }
+    }
+
+    
     return (
-        <div>
+        <div className="assessBox">
+            <div className="assessTextBox">
+                <div className="assessText">응시 희망 날짜 및 시간</div>
+            </div>
             <div className="bigCalendar">
-                <Calendar localizer={localizer} events={allEvents} startAccessor="date" endAccessor="date" 
-                style={{ height: 500, margin: "50px"}}  views={['month']} />
-
+                <FullCalendar
+                        onRangeChange={onRangeChange}
+                        schedulerLicenseKey="GPL-My-Project-Is-Open-Source"
+                        defaultView="dayGridMonth"
+                        displayEventTime={true}
+                        header={{
+                            left: "prev,next today",
+                            center: "title",
+                            right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek"
+                        }}
+                        selectable={true}
+                        plugins={[
+                            dayGridPlugin,
+                            interactionPlugin,
+                            timeGridPlugin,
+                            resourceTimeGridPlugin
+                        ]}
+                        eventClick={onClick}
+                        events={allEvents}
+                        //select={onCalenderClick}
+                        eventLimit={3}
+                    />
             </div>
         </div>
     );
