@@ -121,8 +121,12 @@ const Page = ({match}) => {
                 create = res.createdAt.substr(2,8) + " "+ res.createdAt.substr(11,8) 
             }
 
-            result.push(<tr>  <td className='Ntd' ><Link className='pageTitleLink' to={`/community/${forumId}/v/${res.id}`}>{res.title}</Link></td> 
-            <td className='Ntd'>{create}</td>    </tr>)
+            result.push(
+            <tr>  
+                <th className='Nth1' ><Link className='pageTitleLink' to={`/community/${forumId}/v/${res.id}`}>{res.title}</Link></th> 
+                <th className='Nth2'>{create}</th>    
+                <th className='Nth3'>{res.User.name}</th>    
+            </tr>)
             return null
         })
         return result;
@@ -136,14 +140,16 @@ const Page = ({match}) => {
                 <>
                     <div id="entire">
                         <h2 className={styles.FnoticeH}>{data.forumName}  +</h2>
+                        <button onClick={()=>console.log(data.rows)}>콘솔</button>
                         <div className='fContentBox'>
                             <div className='Fcontent'>
                                 <div id="table">
                                     
                                     { <table className='Ntable'>
-                                            <thead className='Nthead'>
-                                                <th className='Nth'>    제목     </th>
-                                                <th className='Nth'>    날짜     </th>
+                                            <thead className='Nthead2'>
+                                                <th className='Nth1'>    제목     </th>
+                                                <th className='Nth2'>    날짜     </th>
+                                                <th className='Nth3'>    작성자     </th>
                                             </thead>
                                             <tbody className='pageBody'>
                                                 { listRendering() }
