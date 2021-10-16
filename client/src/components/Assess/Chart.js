@@ -155,14 +155,12 @@ export default function MyChart() {
 
         
         async function getEvents() {
-            const ress1 = axios.get(`/assessment/shooting/result`)
-            const ress2 = axios.get(`/assessment/cBR/result`)
-            const ress3 = axios.get(`/assessment/firstAid/result`)
-            const ress4 = axios.get(`/assessment/individualBattle/result`)
-            const ress5 = axios.get(`/assessment/speciality/result`)
-            const ress6 = axios.get(`/assessment/strength/result`)
-
-            let [res1,res2,res3,res4,res5,res6] = await Promise.all([ress1,ress2,ress3,ress4,ress5,ress6])
+            const res1 = await axios.get(`/assessment/shooting/result`)
+            const res2 = await axios.get(`/assessment/cBR/result`)
+            const res3 = await axios.get(`/assessment/firstAid/result`)
+            const res4 = await axios.get(`/assessment/individualBattle/result`)
+            const res5 = await axios.get(`/assessment/speciality/result`)
+            const res6 = await axios.get(`/assessment/strength/result`)
 
             if(res1.data.data ===null){
                 res1.data.data = []

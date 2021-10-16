@@ -52,7 +52,6 @@ router.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
             next(error);
         }
     });
-
 router.route('/v/:postId')
     .get(isLoggedIn, async (req, res, next) => {
         try {
@@ -80,7 +79,7 @@ router.route('/v/:postId')
             const data = {
                 currentPost: currentPost,
             }
-                return res.json({success: true, data });
+                res.json({success: true, data });
 
         } catch (error) {
             console.error(error);
@@ -109,7 +108,7 @@ router.route('/v/:postId')
                 const data = {
                     message: '게시글 삭제실패',
                 }
-                return res.json({ success: false, data });
+                res.json({ success: false, data });
             }
         } catch (error) {
             console.error(error);
@@ -144,7 +143,7 @@ router.route('/v/:postId')
                 const data = {
                     message: '없는 게시글 입니다',
                 }
-                return res.json({ success: false, data });
+                res.json({ success: false, data });
             }
         } catch (error) {
             console.error(error);
@@ -152,6 +151,6 @@ router.route('/v/:postId')
         }
     });// 게시글 수정
 
-router.use('/comment', CommentRouter);
+router.use('/v/:postId/comment', CommentRouter);
 
 module.exports = router;

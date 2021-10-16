@@ -5,12 +5,9 @@ const express = require('express');
 const { Post, User } = require('../../models');
 const { isLoggedIn } = require('../user/check_login');
 
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 // post로 넘겨 받을 것
 router.route('/')
-    .get(checkPostId, isLoggedIn, (req, res, next) => {
-        console.log("댓글 get");
-    } )
     .post(checkPostId, isLoggedIn, async (req, res, next) => {
         try {
             const currentPost = res.locals.post; // postId는 url로 받아옴
