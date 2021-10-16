@@ -9,6 +9,7 @@ const CommentRouter = require('./comment');
 
 const { isLoggedIn } = require('../user/check_login');
 const { User, Post, Comment } = require('../../models');
+const {Op} = require('sequelize');
 
 const router = express.Router({mergeParams: true});
 const dir = ('./uploadFiles');
@@ -52,7 +53,6 @@ router.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
             next(error);
         }
     });
-
 router.route('/v/:postId')
     .get(isLoggedIn, async (req, res, next) => {
         try {
@@ -60,7 +60,7 @@ router.route('/v/:postId')
             const currentPostId = req.params.postId;
             console.log('포스트 읽어짐' , currentPostId);
 
-            const currentPost = await Post.findOne({
+            let currentPost = await Post.findOne({
                 where: { id: currentPostId },
                 include: [{
                     model: User,
@@ -75,12 +75,45 @@ router.route('/v/:postId')
                     }],
                 },
                 ],
+            });
+
+            const prevPost = await Post.findOne({
+                where : {ForumId: req.params.forumId,
+                    id : {[Op.lt] : currentPostId},
+                },
+                    attributes: ['id','title'],
+                    order : [['id','DESC']]
             })
+
+            const nextPost = await Post.findOne({
+                where : {ForumId: req.params.forumId,
+                    id : {[Op.gt] : currentPostId},
+                },
+                attributes: ['id','title']
+                
+            })
+
+        
+            if(prevPost!=null){
+            currentPost.dataValues.prevPostId = prevPost.dataValues.id;
+            currentPost.dataValues.prevPosttitle = prevPost.dataValues.title;
+            }else{
+                currentPost.dataValues.prevPostId = -1;
+            currentPost.dataValues.prevPosttitle = "이전글이 존재하지 않습니다.";
+
+            }
+            if(nextPost!=null){
+            currentPost.dataValues.nextPostId = nextPost.dataValues.id;
+            currentPost.dataValues.nextPosttitle = nextPost.dataValues.title;
+            }else{
+                currentPost.dataValues.nextPostId = -1;
+            currentPost.dataValues.nextPosttitle = "다음글이 존재하지 않습니다.";
+            }
             currentPost.userId = req.user.militaryNumber;
             const data = {
                 currentPost: currentPost,
             }
-            console.log(data);
+            
                 return res.json({success: true, data });
 
         } catch (error) {
@@ -110,7 +143,7 @@ router.route('/v/:postId')
                 const data = {
                     message: '게시글 삭제실패',
                 }
-                return res.json({ success: false, data });
+                res.json({ success: false, data });
             }
         } catch (error) {
             console.error(error);
@@ -145,7 +178,7 @@ router.route('/v/:postId')
                 const data = {
                     message: '없는 게시글 입니다',
                 }
-                return res.json({ success: false, data });
+                res.json({ success: false, data });
             }
         } catch (error) {
             console.error(error);
@@ -153,6 +186,6 @@ router.route('/v/:postId')
         }
     });// 게시글 수정
 
-router.use('/comment', CommentRouter);
+router.use('/v/:postId/comment', CommentRouter);
 
 module.exports = router;
