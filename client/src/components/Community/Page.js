@@ -14,7 +14,8 @@ const Page = ({match}) => {
     const forumId = match.params.forumId
     const [data,setData] = useState({
         maxPage:0,
-        rows:[]
+        rows:[],
+        forumName:""
     });
     const index = useRef(1)
     const [newpost,setNewpost] =useState(false)
@@ -45,7 +46,8 @@ const Page = ({match}) => {
             if(test.current.maxPage !== data.maxPage){
                 setData({
                     maxPage : res.data.data.maxPage,
-                    rows:res.data.data.post_10.rows
+                    rows:res.data.data.post_10.rows,
+                    forumName:res.data.data.post_10.forumName
                 })
             }
         })
@@ -132,7 +134,7 @@ const Page = ({match}) => {
             <div>
                 <>
                     <div id="entire">
-                        <h2 className={styles.FnoticeH}>공지사항 +</h2>
+                        <h2 className={styles.FnoticeH}>{data.forumName}  +</h2>
                         <div className='fContentBox'>
                             <div className='Fcontent'>
                                 <div id="table">

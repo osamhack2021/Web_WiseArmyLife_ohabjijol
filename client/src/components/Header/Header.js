@@ -139,7 +139,7 @@ const Header = () => {
 
                         <Ta />
 
-                        <Link className="text-link" to="/letter">
+                        <Link onClick={()=>link(1)} className="text-link" to="/community/1">
                             <div>마음의편지</div>
                         </Link>
                         {isLogin ? 
