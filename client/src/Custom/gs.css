@@ -12,11 +12,6 @@
     margin-right: 40px;
   }
   
-  .container:hover{
-    box-shadow: 5px 5px 20px #ccc;
-    transition: box-shadow 0.3s linear;
-    border-radius: 70px;
-  }
   .menu-trigger {
     background-color: rgb(43, 226, 89);
     cursor: pointer;

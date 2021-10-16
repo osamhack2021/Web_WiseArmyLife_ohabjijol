@@ -166,6 +166,7 @@ const Page = ({match}) => {
             </div>
             :
             <>
+                <h2 className={styles.FnoticeH}>{data.forumName}  +</h2>
                 <div className="NPcontent">
                     <div className="NPcontentTop">
                         <h3>제목 : </h3>
