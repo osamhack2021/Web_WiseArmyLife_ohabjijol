@@ -65,12 +65,20 @@
   background-color: rgb(43, 226, 89);
 }
 
+
+
 .text-link{
   font-family: "Nanum Square B";
   text-decoration: none;
   color: black;
   padding-bottom: 20px;
   cursor: pointer;
+  border-radius: 70px;
+}
+
+.text-link:hover{
+  box-shadow: 5px 5px 20px #ccc;
+  transition: box-shadow 0.3s linear;
 }
 
 .headerWrap{

@@ -109,10 +109,6 @@ function Ta2() {
                 <li>
                     <Link onClick={()=>link(2)} to={`/community/2`}>대대 마음의 편지</Link>
                 </li>
-
-
-                
-
           </ul>
         </nav>
       </div>

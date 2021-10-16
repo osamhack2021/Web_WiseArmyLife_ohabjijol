@@ -8,6 +8,10 @@
   margin-bottom: 39px;
   
 }
+.smallBoxFirst:hover{
+  box-shadow: 5px 5px 20px #ccc;
+  transition: box-shadow 0.3s linear;
+}
 
 .smallBox{
       
@@ -18,6 +22,12 @@
   margin: 10px;
   margin-bottom: 39px;
   
+}
+
+.smallBox:hover{
+  box-shadow: 5px 5px 20px #ccc;
+  
+  transition: box-shadow 0.3s linear;
 }
 
 .rightDown{
@@ -40,6 +50,12 @@
     border-top-right-radius: 70px;
     background-color: #fdf06d;
     margin: 20px;
+}
+
+.smallBoxLast:hover{
+  box-shadow: 5px 5px 20px #ccc;
+  
+  transition: box-shadow 0.3s linear;
 }
 .middleTitle{
   margin-top: 159px;
