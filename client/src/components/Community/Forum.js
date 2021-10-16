@@ -11,8 +11,7 @@ import { Link } from 'react-router-dom';
  
  */
 
-const Forum = () => {
-
+const Forum = (props) => {
     const [data,setData] = useState({
         'count':100, // 100이면 오류
         'rows':[]
@@ -35,15 +34,16 @@ const Forum = () => {
         }else{
             setIsExecutive(false)
         }
-
-            axios.get('/Community')
-            .then(res =>{
-                test.current=res.data.data.allForum;
-                
-                if(test.current.count != data.count){
-                    setData(test.current)
-                }
-            })
+        
+        axios.get('/Community')
+        .then(res =>{
+            test.current=res.data.data.allForum;
+            
+            if(test.current.count != data.count){
+                setData(test.current)
+            }
+        })
+        
         }
     ,[data])
     const onClick = ()=>{
