@@ -12,3 +12,6 @@
     text-align: center;
     align-content: center;
 }
+..slick-slider{
+    z-index: -1;
+}
