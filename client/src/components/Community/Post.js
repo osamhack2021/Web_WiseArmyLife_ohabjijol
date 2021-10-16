@@ -113,24 +113,25 @@ const Post = (props) => {
 
                     
                     <div className='commentBox'>
+                        <input className='commentInput' onChange={onChange} value={comment} placeholder='coment'/>
+                        <button className='commentBtn' onClick={onCommit}>댓글작성</button>
                         <div className='commentList'>
                             {
                                 commentList.map(res=>{
                                     return (
                                         <div>dd</div>
-                                    )
-                                })
-                             }
+                                        )
+                                    })
+                                }
                         </div>
                     </div>
 
+                                <button onClick={()=>console.log(data)}>콘솔</button>
         </>
 
         
 
-            <button onClick={()=>console.log(data)}>콘솔</button>
-            <button onClick={onCommit}>댓글작성</button>
-            <input onChange={onChange} value={comment} placeholder='coment'/>
+            
         </div>
     );
 };

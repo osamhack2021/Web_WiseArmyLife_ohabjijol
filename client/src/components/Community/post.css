@@ -146,7 +146,7 @@
     border-radius: 5px;
     background-color: #fffacb;
     border: 3px solid #fdf06d;
-    margin-bottom: 200px;
+    margin-bottom: 72px;
   }
 .PObutton{
   margin-left: 1400px;
@@ -161,10 +161,25 @@
   }
 
   .commentBox{
-    width: 1400px;
-    height: 500px;
+    border-radius: 100px;
+    width: 960px;
+    min-height: 200px;
+    height: auto;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    background-color:  #FFFACB;
+    background-color:  #fffacbb8;
+  }
+
+  .commentInput{
+    width: 500px;
+    font-size: 25px;
+    margin-right: 100px;
+    margin-top: 40px;
+  }
+  .commentBtn{
+    border-radius: 5px;
+    background-color: #fffacb;
+    border: 3px solid #fdf06d;
+    font-size: 25px;
   }
