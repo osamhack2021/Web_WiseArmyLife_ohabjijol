@@ -37,3 +37,7 @@
   padding-bottom: 20px;
   cursor: pointer;
 }
+
+.headerWrap{
+  min-height: 1214px;
+}

@@ -11,7 +11,7 @@
     align-content: center;
     padding: 50px;
     width: 1280px;
-    height: 970px;
+    height: auto;
     border-radius: 50px;
     background-color: #fffacb;
     margin-left: auto;
@@ -26,9 +26,8 @@
     height:50px;
     padding-bottom: 20px;
     background-color: white;
-    padding-left: 10px;
-    width: 70%;
-    margin-left: 15%;
+    width: 1280px;
+    
     margin-right: 15%;
   
   
@@ -68,8 +67,17 @@
   border-radius: 30px;
   background-color: #fff492;
   border: 2px solid #000000;
-  margin-left: 15%;
-  margin-right: 15%;
+  margin-left: 800px;
+  }
+  .NPbuttonOne2{
+    font-size: 25px;
+    font-family: "Nanum Square B";
+    width: 181px;
+    height: 60px;
+    border-radius: 30px;
+    background-color: #fff492;
+    border: 2px solid #000000;
+    margin-left: 50px;
   }
   
   .NPbuttonList{
