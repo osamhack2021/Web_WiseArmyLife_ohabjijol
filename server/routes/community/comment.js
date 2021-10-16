@@ -8,7 +8,10 @@ const { isLoggedIn } = require('../user/check_login');
 const router = express.Router();
 // post로 넘겨 받을 것
 router.route('/')
-    .post(checkPostId, isLoggedIn, checkPostId, async (req, res, next) => {
+    .get(checkPostId, isLoggedIn, (req, res, next) => {
+        console.log("댓글 get");
+    } )
+    .post(checkPostId, isLoggedIn, async (req, res, next) => {
         try {
             const currentPost = res.locals.post; // postId는 url로 받아옴
             req.body.commenterId = req.user.id;
