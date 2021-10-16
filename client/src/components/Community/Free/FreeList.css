@@ -1,0 +1,149 @@
+#FList
+{
+  text-align: center;
+  align-items: center;
+}
+  
+.FLhTwo {
+    text-align: center;
+    font-size: 30px;
+  font-family: "Nanum Square EB";
+  margin-top: 120px;
+  margin-bottom: 120px;
+}
+  
+  
+  .FLcontent {
+     width:70%;
+   display: inline-block;
+   padding-top: 80px;
+   padding-bottom: 50px;
+   margin-left: 15%;
+   margin-right: 15%;
+     width: 1280px;
+   height: 975px;
+   border-radius: 50px;
+   background-color: #f9ffca;
+ 
+  
+  
+  }
+
+  #FreeListTable {
+    display: flex;
+    justify-content: center;
+   
+  }
+  
+
+  
+  
+  .FLselectBox{
+    padding:50px;
+    text-align:center;
+    padding-top: 70px;
+    margin-bottom: 100px;
+    
+  }
+
+
+  
+  .FLbuttonFirst {
+    width: 60px;
+height: 60px;
+border-radius: 5px;
+background-color: #f9ffca;
+border: 3px solid #eefd6d;
+font-size: 25px;
+margin: 10px;
+margin-left: 350px;
+
+  }
+
+  
+.FLbuttonOne {
+    width: 60px;
+height: 60px;
+border-radius: 5px;
+
+font-size: 25px;
+margin: 10px;
+
+background-color: #f9ffca;
+border: 3px solid #eefd6d;
+  }
+
+  
+ .FLbottomLine {
+    border-bottom-width: 0px;
+    padding-top: 20px;
+    padding-bottom: 20px  ;
+
+}
+
+
+.FLbottomLineOne {
+   border-bottom-width: 0px;
+   padding-top: 20px;
+   padding-bottom: 20px  ;
+   text-align: left;
+   padding-left: 20px;
+
+}
+
+
+.FLtable  {
+    border-top:  3px solid black  ;
+    border-bottom:  3px solid black  ;
+    width:  1140px  ;
+    text-align: center  ;
+            margin-left:  0px  ;
+    font-size:  30px  ;
+    font-family:  Nanum Square EB  ;
+   
+  }
+
+.FLthead  {
+    padding-top: 20px  ;
+    padding-bottom: 20px  ;
+
+  }
+
+.FLth  {
+    height :  40px  ;
+    padding:  20px  ;
+    border-bottom: 1px solid white  ;
+  }
+
+.FLtbody  {
+    font-size: 25px  ;
+    font-family:  Nanum Square B  ;
+    padding-top: 25px  ;
+    padding-bottom: 25px  ;
+
+  }
+
+ .FLtd  {
+    padding-top: 20px  ;
+    padding-bottom: 20px  ;
+    border-bottom:  1px solid gray  ;  
+  }
+
+  .FLtdOne {
+    padding-top: 20px  ;
+    padding-bottom: 20px  ;
+    border-bottom:  1px solid gray  ;  
+    text-align: left;
+    padding-left: 20px;
+  }
+ 
+.FLbuttonTwo {
+  width: 120px;
+  height: 60px;
+  border-radius: 5px;
+  background-color: #f9ffca;
+  border: 3px solid #eefd6d;
+  font-size: 25px;
+  margin: 10px;
+  margin-left: 250px;
+}
