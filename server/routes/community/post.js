@@ -40,7 +40,7 @@ router.post('/', isLoggedIn, upload2.none(), async (req, res, next) => {
                 title: req.body.title,
                 content: req.body.content,
                 img: req.body.url,
-                UserId: req.user.id,
+                posterId: req.user.id,
                 ForumId: req.params.forumId,
             });
             const data = {

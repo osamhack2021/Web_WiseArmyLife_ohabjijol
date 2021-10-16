@@ -1,7 +1,7 @@
 "use strict"
 
 const express = require('express');
-
+const app = require('../../app');
 const { isLoggedIn } = require('../user/check_login');
 const { isNotExecutive } = require('../user/check_is_executive');
 const { Post, Forum } = require('../../models');
@@ -10,30 +10,29 @@ const PostRouter = require('../community/post');
 const router = express.Router();
 
 
+
 router.get('/:pageIndex', isLoggedIn, checkBattalionCommander, async (req, res, next) => {
     try {
-        const letterForumId = await Forum.findOne({ where: { forumName: '대대 마음의 편지' }, attributes: ['id'], });
+        
+        const letterForumId = 2;
         let page = Math.max(1, parseInt(req.params.pageIndex));
         const limit = 10;
         let skip = (page - 1) * limit;
-        let postCount = Post.count({ where: { ForumId: letterForumId } })
-            .then(async result => { 
+        let postCount = await Post.count({ where: { ForumId: letterForumId } });
+           
                 const maxPage = Math.ceil(postCount / limit);
                 const post_10 = await Post.findAndCountAll({
-                    where: { ForumId: letterForumId, poster: req.user.id },
+                    where: { ForumId: letterForumId, posterId: req.user.id },
                     limit: limit,
                     order: [['createdAt', 'DESC']],
-                    skip: skip,
+                    offset: skip,
                 });
                 const data = {
                     post_10: post_10,
                     maxPage: maxPage,
                 }
                 return res.json({ success: true, data }); // post_10.count에는 post개수, .rows에는 post의 정보가 들어있음
-            })
-            .catch(err => {
-                res.json({ success: false, data: null }); // 비어있을 경우
-            });
+            
     } catch (error) {
         console.error(error);
         next(error);
@@ -41,28 +40,25 @@ router.get('/:pageIndex', isLoggedIn, checkBattalionCommander, async (req, res, 
 });
 router.get('/:pageIndex', isLoggedIn, isNotExecutive, async (req, res, next) => {
     try {
-        const letterForumId = await Forum.findOne({ where: { forumName: '대대 마음의 편지' }, attributes: ['id'], });
+        const letterForumId = 2;
         let page = Math.max(1, parseInt(req.params.pageIndex));
         const limit = 10;
         let skip = (page - 1) * limit;
         let postCount = await Post.count({ where: { ForumId: letterForumId } })
-            .then(async result => {
+            
                 const maxPage = Math.ceil(postCount / limit);
                 const post_10 = await Post.findAndCountAll({
-                    where: { ForumId: letterForumId, poster: req.user.id },
+                    where: { ForumId: letterForumId, posterId: req.user.id },
                     limit: limit,
                     order: [['createdAt', 'DESC']],
-                    skip: skip,
+                    offset: skip,
                 });
                 const data = {
                     post_10: post_10,
                     maxPage: maxPage,
                 }
                 return res.json({ success: true, data }); // post_10.count에는 post개수, .rows에는 post의 정보가 들어있음
-            })
-            .catch(err => {
-                res.json({ success: false, data: null }); // 비어있을 경우
-            });
+            
     } catch (error) {
         console.error(error);
         next(error);
@@ -83,6 +79,24 @@ function checkBattalionCommander(req, res, next) {
     }
 }
 
-router.use('/post', isLoggedIn, PostRouter);
+router.use('/post', isLoggedIn, async (req, res, next) => {
+    try {
+
+
+        const post = await Post.create({
+            title: req.body.title,
+            content: req.body.content,
+            posterId: req.user.id,
+            ForumId: 2,
+        });
+        const data = {
+            post: post,
+        }
+        res.json({ success: true, data });
+    } catch (error) {
+        console.error(error);
+        next(error);
+    }
+});
 
 module.exports = router;
