@@ -117,7 +117,7 @@ const Page = ({match}) => {
             }else{
                 create = res.createdAt.substr(2,8) + " "+ res.createdAt.substr(11,8) 
             }
-            
+
             result.push(<tr>  <td className='Ntd' ><Link className='pageTitleLink' to={`/community/${forumId}/v/${res.id}`}>{res.title}</Link></td> 
             <td className='Ntd'>{create}</td>    </tr>)
             return null
