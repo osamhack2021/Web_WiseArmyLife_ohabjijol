@@ -76,10 +76,11 @@ router.route('/v/:postId')
                 },
                 ],
             })
-               
+            currentPost.userId = req.user.militaryNumber;
             const data = {
                 currentPost: currentPost,
             }
+            console.log(data);
                 return res.json({success: true, data });
 
         } catch (error) {
@@ -92,7 +93,7 @@ router.route('/v/:postId')
             console.log('게시글 삭제');
             let currentPostId = req.params.postId;
             let currentPost = await Post.findOne({ where: { id: currentPostId } });
-            if (currentPost.UserId === req.user.id) {
+            if (currentPost.posterId === req.user.id) {
                 Post.destroy({ where: { id: currentPostId } })
                 Comment.destroy({ where: { postComment: currentPostId } })
                     .then(result => {
