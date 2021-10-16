@@ -9,7 +9,7 @@ import ReactHtmlParser from 'react-html-parser'
 const Post = (props) => {
 
     const {match,history} = props
-    
+    const [isPoster,setIsPoster] = useState(false)
     const {forumId,postId} = match.params    
 
     const [comment,setComment] = useState('')
@@ -41,6 +41,10 @@ const Post = (props) => {
         .then(res=>{
             setData(res.data.data)
             console.log(res.data.data)
+            console.log(res.data.data.currentPost.User.name)
+            if(res.data.data.currentPost.User.userId === sessionStorage.getItem('user_id')){
+                console.log('21333333333333')
+            }
         })
     
     },[])

@@ -90,7 +90,8 @@
 
 .Nthead{
     padding-top:20px;
-    padding-bottom:20px
+    padding-bottom:20px;
+    grid-template-columns: 420px 1fr;
 }
 
       

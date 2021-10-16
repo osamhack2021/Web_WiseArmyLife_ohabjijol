@@ -60,7 +60,8 @@ const Page = ({match}) => {
     }
 
     const PageChange = (id)=>{
-        axios.get(`/community/${forumId}/${index.current}`)
+        index.current = id
+        axios.get(`/community/${forumId}/${id}`)
         .then(res =>{
             console.log(res.data)
             setData({
@@ -96,7 +97,7 @@ const Page = ({match}) => {
         const length = data !==null ? data.maxPage : 1
         console.log(data)
         for (let i = 0; i < length; i++) {
-          result.push(<button id={i} onClick={()=> PageChange(i+1)} className="pageButton">{i+1}</button>  );
+          result.push(<button id={i} onClick={()=> PageChange(parseInt(i)+parseInt(1))} className="pageButton">{i+1}</button>  );
         }
         return result;
       };
@@ -178,7 +179,6 @@ const Page = ({match}) => {
                         onChange={ ( event, editor ) => {
                             const data = editor.getData();
                             setInputs({...inputs,content:data})
-                            console.log( { event, editor, data } );
                         } }
                         onBlur={ ( event, editor ) => {
                             console.log( 'Blur.', editor );
