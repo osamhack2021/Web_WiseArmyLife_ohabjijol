@@ -5,13 +5,13 @@ import  axios  from 'axios';
 import { useState } from 'react';
 import './post.css'
 import ReactHtmlParser from 'react-html-parser'
-
+import './newpost.css'
 const Post = (props) => {
 
     const {match,history} = props
-    
+    const [isPoster,setIsPoster] = useState(false)
     const {forumId,postId} = match.params    
-
+    const [commentList,setCommetList] = useState([])
     const [comment,setComment] = useState('')
     const [data,setData] = useState({
         currentPost : {
@@ -40,9 +40,13 @@ const Post = (props) => {
         axios.get(`/community/${forumId}/post/v/${postId}`)
         .then(res=>{
             setData(res.data.data)
-            console.log(res.data.data.currentPost)
+            console.log(res.data.data)
+            
+            setCommetList(res.data.data.currentPost.Comments)
+            if(res.data.data.currentPost.User.name === sessionStorage.getItem('user_id')){
+                console.log('21333333333333')
+            }
         })
-    
     },[])
     const onRemove = ()=>{
         axios.delete(`/community/${forumId}/post/v/${postId}`)
@@ -53,22 +57,24 @@ const Post = (props) => {
 
         history.goBack()
     }
-    const onEdit = ()=>{
-        
-    }
+    
     const onCommit = ()=>{
         const data = {
             "comment":comment
         }
-
-        axios.post(`/community/${forumId}/${postId}/comment`,data)
+        console.log('보내는내용')
+        console.log(data)
+        axios.post(`/community/${forumId}/post/v/${postId}/comment`,data)
         .then(res=>{
             console.log(res.data)
         })
     }
+    const onChange = (e)=>{
+        const {name,value} = e.target;
+        setComment(value)
+    }
+    
     return (
-
-
         <div>
             <>
                 <h2 className = "POhTwo"> </h2>
@@ -83,46 +89,49 @@ const Post = (props) => {
                 </div>
                 
                 <div className='editDelete'>
-                <button className='postEditBtn' onClick={onEdit}>수정</button>
+                
                 <button className='postDeleteBtn' onClick={onRemove}>삭제</button>
                 </div>
 
                 <div className="POmoveNext">
-                    <div>다음글</div>
-                    {data.currentPost.nextPostId !== -1 ?
-                    <div><Link to={`/community/${forumId}/v/${data.currentPost.nextPostId}`}>{data.currentPost.nextPosttitle}</Link></div>
-                        :<div>{data.currentPost.nextPosttitle}</div>
+                    <div>이전글</div>
+                    {data.currentPost.prevPostId !== -1 ?
+                    <div><Link className='text-link' onClick={()=>document.location.href = `/community/${forumId}/v/${data.currentPost.prevPostId}`} to={`/community/${forumId}/v/${data.currentPost.prevPostId}`}>{data.currentPost.prevPosttitle}</Link></div>
+                        :null
                     }
                     
                 </div>
 
                 <div className="POmovePrevious">
-                    <div>이전글</div>
-                    {data.currentPost.prevPostId !== -1 ?
-                    <div><Link to={`/community/${forumId}/v/${data.currentPost.prevPostId}`}>{data.currentPost.prevPosttitle}</Link></div>
-                    :<div>{data.currentPost.prevPosttitle}</div>
+                    <div>다음글</div>
+                    {data.currentPost.nextPostId !== -1 ?
+                    <div><Link className='text-link' onClick={()=>document.location.href = `/community/${forumId}/v/${data.currentPost.nextPostId}`} to={`/community/${forumId}/v/${data.currentPost.nextPostId}`}>{data.currentPost.nextPosttitle}</Link></div>
+                        :null
                     }
-                    
                 </div>
-                <button className='BackToList' onClick={()=>history.goBack()}>글 목록</button>
+                <button className='BackToList' onClick={()=>document.location.href = `/community/${forumId}`}>글 목록</button>
 
+                    
+                    <div className='commentBox'>
+                        <input className='commentInput' onChange={onChange} value={comment} placeholder='coment'/>
+                        <button className='commentBtn' onClick={onCommit}>댓글작성</button>
+                        <div className='commentList'>
+                            {
+                                commentList.map(res=>{
+                                    return (
+                                        <div>dd</div>
+                                        )
+                                    })
+                                }
+                        </div>
+                    </div>
 
-
-               
-
-               <div className="POSelectBox">
-
-
-               </div>
-
-
+                                <button onClick={()=>console.log(data)}>콘솔</button>
         </>
 
         
 
-            <button onClick={()=>console.log(data)}>콘솔</button>
-            <button onClick={onCommit}>댓글작성</button>
-            <input onChange={(data)=>setComment(data.value)} value={comment} placeholder='coment'/>
+            
         </div>
     );
 };

@@ -15,3 +15,11 @@
 .slick-slider{
     z-index: -1;
 }
+
+
+.slick-slider:hover{
+    box-shadow: 5px 5px 20px #ccc;
+  transition: box-shadow 0.3s linear;
+  
+}
+

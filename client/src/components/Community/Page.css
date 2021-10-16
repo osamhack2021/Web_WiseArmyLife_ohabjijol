@@ -1,3 +1,6 @@
+
+
+
 .pageBox{
     align-content: center;
     text-align: center;
@@ -82,23 +85,44 @@
     border-top: 3px solid black;
     border-bottom: 3px solid black;
     width: 1140px;
-    text-align:center;
-    
+    grid-template-columns: 1fr 0.5fr 1.5fr;
     font-size: 30px;
     font-family: "Nanum Square EB";
 }
 
 .Nthead{
+    display: grid;
     padding-top:20px;
-    padding-bottom:20px
+    padding-bottom:20px;
 }
 
       
-.Nth{
+.Nth{display: grid;
     height : 40px;
     border-bottom : 2px solid gray;
     padding-bottom : 10px;
     
+}
+.Nth1{
+    height : 40px;
+    padding-left: 54px;
+    border-bottom : 2px solid gray;
+    padding-bottom : 10px;
+    margin-left: 300px;
+}
+.Nth2{
+    width: 100px;
+    padding-left: 500px;
+    height : 40px;
+    border-bottom : 2px solid gray;
+    padding-bottom : 10px;
+    margin-left: 300px;
+}
+.Nth3{
+    height : 40px;
+    border-bottom : 2px solid gray;
+    padding-bottom : 10px;
+    margin-left: 300px;
 }
 
 .Fcontent{
