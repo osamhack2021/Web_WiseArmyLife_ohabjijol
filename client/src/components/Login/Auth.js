@@ -155,6 +155,13 @@ const Auth = () => {
         })
     }
 
+    const set4 = () => {
+        setInputs({
+            ...inputs,
+            position: "대대장"
+        })
+    }
+
     const checkisExecutive = ()=>{
         if(isExecutive===undefined){
             return alert("병사 간부 구분을 먼저 선택하세요");
@@ -209,7 +216,9 @@ const Auth = () => {
                                 <input className="exeTypeInput" type="radio" name="selectEx1" onClick={set2} />
                                 <span className="exeTypeText">중대장</span>
                                 <input className="exeTypeInput" type="radio" name="selectEx1" onClick={set3} />
-                                <span className="exeTypeText">대대장/주임원사</span>
+                                <span className="exeTypeText">주임원사</span>
+                                <input className="exeTypeInput" type="radio" name="selectEx1" onClick={set4} />
+                                <span className="exeTypeText">대대장</span>
 
                             </div>
                     }

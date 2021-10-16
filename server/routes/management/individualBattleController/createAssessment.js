@@ -8,7 +8,6 @@ createAssessment = async (req,res)=>{
        
         
 
-        console.log(req.body.date);
         var gettime = new Date(req.body.date);
         var Nowtime = new Date();
         Nowtime.setHours(Nowtime.getHours()+9);
@@ -18,7 +17,6 @@ createAssessment = async (req,res)=>{
         Nowtime.setUTCMilliseconds(0);
 
 
-        console.log(gettime,Nowtime );
         if(gettime <= Nowtime){
     
             const senderror = {
@@ -45,7 +43,6 @@ createAssessment = async (req,res)=>{
 
         });
 
-        console.log(createIndividualBattleAssessment[1]);
 
         const isExist = !createIndividualBattleAssessment[1];
         

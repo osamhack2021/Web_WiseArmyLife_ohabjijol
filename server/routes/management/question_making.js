@@ -18,15 +18,12 @@ const examQuestionNumber = 20; // 병사에게 보여줄 문제 수
 router.route('/') // 주소는 알아서 바꾸세요
     .get(isLoggedIn, checkIsNotExecutive, async (req, res, next) => {
         try {
-            console.log('병사면 들어옴');
-            //////////////////////////////////
             const examCount = await Question.count({});
             if (examCount) {
                 const examQuestion = await Question.findAll({ order: sequelize.literal('rand()'), limit: examQuestionNumber });
                 const data = {
                     examQuestion: examQuestion,
                 };
-                console.log(examQuestion[0].dataValues);
                 return res.json({ success: true, data });
             } else {
                 return res.json({ success: false, data: null });
@@ -106,7 +103,6 @@ function checkIsNotExecutive(req, res, next) {
             next();
         }
         else {
-            console.log('여기가 실행됨');
             next('route');
         }
     } catch (error) {

@@ -13,7 +13,6 @@ checkApplicant = async (req, res) => {
             attributes: ['id'],
         });
 
-        //console.log(findIndividualBattle);
 
         if (findIndividualBattle == null) {
             const senderror = {

@@ -13,7 +13,6 @@ checkApplicant = async (req, res) => {
             attributes: ['id'],
         });
 
-        //console.log(findCBR);
 
         if (findCBR == null) {
             const senderror = {

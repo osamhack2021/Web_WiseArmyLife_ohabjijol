@@ -6,6 +6,8 @@
   background-color: #ffd265;
   margin: 10px;
   margin-bottom: 39px;
+  box-shadow: 0 6px 8px -4px black;
+  
   
 }
 
@@ -17,6 +19,7 @@
   background-color: #fdf06d;;
   margin: 10px;
   margin-bottom: 39px;
+  box-shadow: 0 6px 8px -4px black;
   
 }
 
@@ -40,10 +43,15 @@
     border-top-right-radius: 70px;
     background-color: #fdf06d;
     margin: 20px;
+    box-shadow: 0 6px 8px -4px black;
+
+
+
 }
 .middleTitle{
   margin-top: 159px;
   margin-bottom: 109px;
+  font-size: 35px;
 }
 .topBanner {
   margin-top: 50px;

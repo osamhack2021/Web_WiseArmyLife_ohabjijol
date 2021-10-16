@@ -120,6 +120,8 @@
   padding-bottom: 100px;
   background-color: white;
   border-radius: 80px;
+  box-shadow: 0 4px 4px -2px rgb(255, 255, 255);
+
 }
 
 .assessBox{
@@ -131,6 +133,7 @@
   padding-top: 50px;
   margin-left: auto;
   margin-right: auto;
+  box-shadow: 0 6px 8px -4px black;
   
 
 }

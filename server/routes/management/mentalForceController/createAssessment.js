@@ -50,7 +50,6 @@ createAssessment = async (req, res) => {
 
 
 
-        console.log(createMentalForceAssessment[1]);
 
         const isExist = !createMentalForceAssessment[1];
 
@@ -90,7 +89,6 @@ createAssessment = async (req, res) => {
                             j++;
                     })
 
-                    console.log(i);
 
                 }
 
