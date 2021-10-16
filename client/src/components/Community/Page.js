@@ -140,7 +140,6 @@ const Page = ({match}) => {
                 <>
                     <div id="entire">
                         <h2 className={styles.FnoticeH}>{data.forumName}  +</h2>
-                        <button onClick={()=>console.log(data.rows)}>콘솔</button>
                         <div className='fContentBox'>
                             <div className='Fcontent'>
                                 <div id="table">

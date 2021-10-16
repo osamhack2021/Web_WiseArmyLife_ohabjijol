@@ -58,7 +58,7 @@
   
   .POcontent {
     background-color: #FFFACB;
-    
+    box-shadow: 15px 15px 15px #ccc;
     margin-left: 20%;
     margin-right: 20%;
     margin-bottom: 40px;
@@ -131,6 +131,12 @@
     font-size: 25px;
     color: #000000;
     font-family: "Nanum Square B";
+
+  }
+  .postDeleteBtn:hover{
+    box-shadow: 15px 15px 15px #ccc;
+    transition: box-shadow 0.3s linear;
+  
   }
   .editDelete{
     margin-bottom: 50px;
@@ -148,6 +154,10 @@
     border: 3px solid #fdf06d;
     margin-bottom: 72px;
   }
+  .BackToList:hover{
+    box-shadow: 15px 15px 15px #ccc;
+    transition: box-shadow 0.3s linear;
+  }
 .PObutton{
   margin-left: 1400px;
   width: 130px;
@@ -156,8 +166,8 @@
   background-color: #fffacb;
   border: 3px solid #fdf06d;
   font-size: 25px;
-  font-family: "Nanum Square B"
-  
+  font-family: "Nanum Square B";
+  box-shadow: 15px 15px 15px 15px #ccc;
   }
 
   .commentBox{
@@ -169,6 +179,7 @@
     margin-left: auto;
     margin-right: auto;
     background-color:  #fffacbb8;
+    box-shadow: 15px 15px 15px #ccc;
   }
 
   .commentInput{
@@ -182,4 +193,8 @@
     background-color: #fffacb;
     border: 3px solid #fdf06d;
     font-size: 25px;
+  }
+  .commentBtn:hover{
+    box-shadow: 15px 15px 15px #ccc;
+    transition: box-shadow 0.3s linear;
   }

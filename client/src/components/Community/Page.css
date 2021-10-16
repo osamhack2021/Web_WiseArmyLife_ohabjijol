@@ -126,7 +126,7 @@
 }
 
 .Fcontent{
-    
+    box-shadow: 15px 15px 15px #ccc;
     width:70%;
     display: inline-block;
     padding-top: 80px;
@@ -144,6 +144,7 @@
     align-content: center;
     margin-left: auto;
     margin-right: auto;
+    
 }
 
 .pageBody{
@@ -153,8 +154,13 @@
     font-family: "Nanum Square B"
     
 }
-
+.pageButton:hover{
+    box-shadow: 5px 5px 20px #ccc;
+    transition: box-shadow 0.3s linear;
+    
+  }
 .pageButton{
+    border-radius:30px;
     width: auto;
     padding-left: 20px;
     padding-right: 20px;
