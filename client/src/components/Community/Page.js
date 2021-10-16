@@ -68,7 +68,8 @@ const Page = ({match}) => {
             console.log(res.data)
             setData({
                 maxPage : res.data.data.maxPage,
-                rows:res.data.data.post_10.rows
+                rows:res.data.data.post_10.rows,
+                forumName:res.data.data.post_10.forumName
             })
         })
         .catch(err =>console.log(err))
