@@ -79,6 +79,7 @@ const Forum = (props) => {
                 alert('삭제실패')
             }
         })
+        document.location.href = '/Community'
     }
 
     
