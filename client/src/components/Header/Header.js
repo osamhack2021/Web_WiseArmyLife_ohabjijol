@@ -62,21 +62,14 @@ function Ta() {
           className={`menu ${isActive ? "active" : "inactive"}`}
         >
           <ul>
-                {rows.map(res=>{
-                    return(
-                        <li>
-                            <Link onClick={()=>link(res.id)} to={`/community/${res.id}`}>{res.forumName}</Link>
-                        </li>
-                    )
-                })
-                }
-                {(sessionStorage.getItem('isExecutive') === 'true') ?
-                <li>
-                    <Link  to={`/community`}>게시판 추가/삭제</Link>
-                </li>:null
-
-                }
-
+              {rows.map(res=>{
+                  return(
+                      <li>
+                          <Link onClick={()=>link(res.id)} to={`/community/${res.id}`}>{res.forumName}</Link>
+                      </li>
+                  )
+              })
+            }
           </ul>
         </nav>
       </div>

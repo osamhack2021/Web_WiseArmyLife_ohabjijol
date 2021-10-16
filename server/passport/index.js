@@ -32,16 +32,12 @@ passport.use('local-login', new LocalStrategy({
 ));
 
 passport.serializeUser((user, done) => {
-    done(null, user.id);
+    done(null, user);
 });
 
-passport.deserializeUser((id, done) => {
-    User.findOne({ where: { id } })
-        .then(user => {
-            done(null, user);
-        })
-        .catch(err => done(err));
-
+passport.deserializeUser((user, done) => {
+    console.log(user);
+    done(null, user);
 });
 
 module.exports = passport;

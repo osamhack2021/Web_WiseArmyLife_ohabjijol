@@ -54,7 +54,7 @@ const Submit = (props) => {
                     alert(`${res.data.data.message}`)
                 }
         }).catch(()=>{
-            alert('문자열 오류')
+            alert('기타 오류')
         })
         }
     }

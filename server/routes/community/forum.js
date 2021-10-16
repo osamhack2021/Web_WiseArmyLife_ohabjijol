@@ -10,7 +10,7 @@ const router = express.Router({mergeParams: true});
 router.use('/post', isLoggedIn, PostRouter);
 router.get('/:pageIndex', isLoggedIn, async (req, res) => {
     try {
-        
+        const forumName = await Forum.findOne({where: {id: req.params.forumId}, attributes: ['forumName']});
         console.log('포럼 들어와짐');
         let page = Math.max(1, parseInt(req.params.pageIndex));
         const limit = 10;
@@ -36,6 +36,7 @@ router.get('/:pageIndex', isLoggedIn, async (req, res) => {
         post_10.forumName = ForumName.dataValues.forumName;
 
         const data = {
+            forumName: forumName,
             post_10: post_10,
             maxPage: maxPage,
         }
