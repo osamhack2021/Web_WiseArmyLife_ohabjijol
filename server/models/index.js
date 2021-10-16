@@ -97,8 +97,6 @@ IndividualBattle.associate(db);
 MentalForce.associate(db);
 Question.associate(db);
 
-Forum.findOrCreate({where: { forumName : "중대 마음의 편지"}});
-Forum.findOrCreate({where: { forumName : "대대 마음의 편지"}});
 
 
 
