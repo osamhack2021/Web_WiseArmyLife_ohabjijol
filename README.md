@@ -78,10 +78,7 @@ $ yarn start or npm run start
 
 ### 팀 정보 (Team Information)
 
-김용진
-허승범
-이진중
-최태현 
+
 
 
 ***
