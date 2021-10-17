@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from 'react';
 import axios from 'axios';
 import './My.css'
+import {ProgressBar}  from 'react-bootstrap'
 
 const My = () => {
     const [data,setData] = useState({
@@ -39,6 +40,13 @@ const My = () => {
                     이름 : {data.name}
                 </div>
             </div>
+            <div className='myPageBox'>
+                <div>
+                
+                군생활계산기 : <progress className='progressBar' value="55" max="100"></progress> 55%
+                </div>
+            </div>
+            
             <div className='myPageBox'>
                 <div>
                     직책 : {data.position}

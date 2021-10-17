@@ -30,3 +30,10 @@
     cursor: pointer;
     
 }
+
+.progressBar{
+    display: inline-block;
+    width: 520px;
+    height: 21px;
+    
+}
