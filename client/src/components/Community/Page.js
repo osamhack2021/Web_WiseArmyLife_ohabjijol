@@ -42,6 +42,9 @@ const Page = ({match}) => {
         if(forumId==='1'){
             axios.get(`/letter/company/${index.current}`)
             .then(res =>{
+                if(res.data.success==false){
+                    alert('접근불가능')
+                }
                 console.log(res.data)
                 test.current = res.data.data
             if(test.current.maxPage !== data.maxPage){
@@ -58,6 +61,9 @@ const Page = ({match}) => {
         }else if(forumId==='2'){
             axios.get(`/letter/battalion/${index.current}`)
             .then(res =>{
+                if(res.data.success==false){
+                    alert('접근불가능')
+                }
                 console.log(res.data)
                 test.current = res.data.data
             if(test.current.maxPage !== data.maxPage){
@@ -73,6 +79,7 @@ const Page = ({match}) => {
             axios.get(`/community/${forumId}/${index.current}`)
             .then(res =>{
                 console.log(res.data)
+                
                 test.current = res.data.data
             if(test.current.maxPage !== data.maxPage){
                 setData({
