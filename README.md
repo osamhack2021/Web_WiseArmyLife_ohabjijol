@@ -90,10 +90,10 @@ $ yarn start or npm run start
 ### 팀 정보 (Team Information)
 팀 오합지졸
 
-Kim Yong Jin  (hi653@naver.com), Github Id: codrare    
-hong gil dong (hong999@gmail.com), Github Id: gildong999
-Hu Seung Beom (hsb0423@naver.com), Github Id: hsb990423
-
+Kim Yong Jin  (hi653@naver.com), Github Id: codrare     
+hong gil dong (hong999@gmail.com), Github Id: gildong999   
+Hu Seung Beom (hsb0423@naver.com), Github Id: hsb990423   
+Choi Tae Hyun (didls1643@naver.com) Github Id: taehyun08   
 
 ***
 
