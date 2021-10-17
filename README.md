@@ -1,9 +1,9 @@
-슬기로운병영생활   Project name or Logo @@필수@@
+슬기로운병영생활   Project name or Logo 
 ==============
 ***
 
 
-### 프로젝트 소개  @@필수@@
+### 프로젝트 소개
 
 #### 목적 
 군 장병들이 병영생활을 함에 있어 편리함을 제공해줄 수 있는 소규모의 대대급 혹은 중대급 커뮤니티
@@ -11,7 +11,7 @@
 그 외에도 마음의 편지, 자유게시판등 소통의 창구로서의 역할도 수행함.
 
 
-***
+
 
 #### 기대효과
 
@@ -23,20 +23,22 @@
 
 ***
 
-### 기능 설명  @@필수@@
+### 기능 설명 
+
+
 
 ***
 
 
 
-### 컴퓨터 구성 / 필수 조건 안내(Prerequisites)  @@필수@@
+### 컴퓨터 구성 / 필수 조건 안내(Prerequisites)
 ECMAScript 6 지원 브라우저 사용
 권장: Google Chrome 버젼 77 이상
 
 
 ***
 
-### 기술스택(Technique UseD)  @@필수@@
+### 기술스택(Technique UseD) 
 Server(back-end)
 nodejs, php, java 등 서버 언어 버전
 express, laravel, sptring boot 등 사용한 프레임워크
