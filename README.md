@@ -1,6 +1,5 @@
 슬기로운병영생활   Project name or Logo    
-  <img src="./LOGO.png" width="70%"  ></img> <br/>
-
+<img src="./LOGO.png" width="70%"  ></img> <br/>
 ===========================================
 
 ***
