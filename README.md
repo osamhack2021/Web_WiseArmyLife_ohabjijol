@@ -1,4 +1,4 @@
- 슬기로운병영생활   Project name or Logo
+ 슬기로운병영생활   Project name or Logo   
  ![Project Logo](./Project Logo.png)
 ==============
 ***
