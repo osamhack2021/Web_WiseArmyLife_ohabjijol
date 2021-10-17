@@ -42,9 +42,13 @@ ECMAScript 6 지원 브라우저 사용
 
 ### 기술스택(Technique UseD) 
 Server(back-end)   
+
 nodejs/ express 프레임 워크를 활용
+
 passport.js 를 통한 로그인 인증 구현
+
 MYSQL 과 Sequelize ORM을 통한 데이터베이스 구축
+
 AWS RDS를 통한 데이터베이스 서버 운영
 
 <img src="./back.jpg" width="70%"  ></img> <br/>
