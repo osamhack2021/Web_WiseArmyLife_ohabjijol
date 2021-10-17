@@ -39,10 +39,27 @@ const Page = ({match}) => {
 
     const test = useRef(null);
     useEffect(() => {
-        axios.get(`/community/${forumId}/${index.current}`)
-        .then(res =>{
-            console.log(res.data)
-            test.current = res.data.data
+        if(forumId==='1'){
+            axios.get(`/letter/company/${index.current}`)
+            .then(res =>{
+                console.log(res.data)
+                test.current = res.data.data
+            if(test.current.maxPage !== data.maxPage){
+                setData({
+                    maxPage : res.data.data.maxPage,
+                    rows:res.data.data.post_10.rows,
+                    forumName:res.data.data.post_10.forumName
+
+                })
+
+            }
+            })
+            .catch(err =>console.log(err))
+        }else if(forumId==='2'){
+            axios.get(`/letter/battalion/${index.current}`)
+            .then(res =>{
+                console.log(res.data)
+                test.current = res.data.data
             if(test.current.maxPage !== data.maxPage){
                 setData({
                     maxPage : res.data.data.maxPage,
@@ -50,9 +67,24 @@ const Page = ({match}) => {
                     forumName:res.data.data.post_10.forumName
                 })
             }
-        })
-        .catch(err =>console.log(err))
-    },[data])
+            })
+            .catch(err =>console.log(err))
+        }else{
+            axios.get(`/community/${forumId}/${index.current}`)
+            .then(res =>{
+                console.log(res.data)
+                test.current = res.data.data
+            if(test.current.maxPage !== data.maxPage){
+                setData({
+                    maxPage : res.data.data.maxPage,
+                    rows:res.data.data.post_10.rows,
+                    forumName:res.data.data.post_10.forumName
+                })
+            }
+            })
+            .catch(err =>console.log(err))
+        }
+    },[data,index])
 
     const onRemove = (id)=>{
         axios.delete(`/community/${forumId}/v/${id}`)
@@ -63,17 +95,7 @@ const Page = ({match}) => {
 
     const PageChange = (id)=>{
         index.current = id
-        axios.get(`/community/${forumId}/${id}`)
-        .then(res =>{
-            console.log(res.data)
-            setData({
-                maxPage : res.data.data.maxPage,
-                rows:res.data.data.post_10.rows,
-                forumName:res.data.data.post_10.forumName
-            })
-        })
-        .catch(err =>console.log(err))
-    }
+        }
 
     const onPost = () =>{
         const post ={
@@ -123,9 +145,9 @@ const Page = ({match}) => {
 
             result.push(
             <tr>  
-                <th className='Nth1m' ><Link className='pageTitleLink' to={`/community/${forumId}/v/${res.id}`}>{res.title}</Link></th> 
+                <th className='Nth1m' ><Link className='pageTitleLink' to={`/community/${forumId}/v/${res.id}`}>{res.title}{res.commentCount !== null ? (res.commentCount):null}</Link></th> 
                 <th className='Nth2m'>{create}</th>    
-                <th className='Nth3m'>{res.User.name}</th>    
+                <th className='Nth3m'>{forumId!=='1'&&forumId!=='2' ?  res.User.name : "익명" }</th>    
             </tr>)
             return null
         })
@@ -139,7 +161,9 @@ const Page = ({match}) => {
             <div>
                 <>
                     <div id="entire">
-                        <h2 className={styles.FnoticeH}>{data.forumName}  +</h2>
+                        <h2 className={styles.FnoticeH}>{data.forumName !==undefined ? data.forumName : 
+                        forumId ==='1' ?  "중대 마음의 편지" : "대대 마음의 편지"
+                        }  +</h2>
                         <div className='fContentBox'>
                             <div className='Fcontent'>
                                 <div id="table">
