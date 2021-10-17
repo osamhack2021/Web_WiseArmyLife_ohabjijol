@@ -56,11 +56,15 @@ AWS RDS를 통한 데이터베이스 서버 운영
 
     
 Client(Front-end)
+
 [react.js](https://ko.reactjs.org/){:target="_blank"}
-react.js 프레임 워크를 활용
-chart.js 을 이용한 평가결과 그래프 그리기
-CKEdit 게시글 작성시 편리한 툴바 제공
-Fullcalendar.js 달력을 이용한 병기본평가 관리
+
+[Fullcalendar](https://fullcalendar.io/){:target="_blank"}
+
+[CKEditor](https://ckeditor.com/){:target="_blank"}
+
+[Chart.js](https://www.chartjs.org/){:target="_blank"}
+
 
 
 
