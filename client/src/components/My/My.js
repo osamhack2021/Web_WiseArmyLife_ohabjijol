@@ -1,5 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import axios from 'axios';
+import './My.css'
 
 const My = () => {
     const [data,setData] = useState({
@@ -27,15 +28,26 @@ const My = () => {
     },[])
 
     return (
-        <div>
-            <div>
-                군번 : {data.militaryNumber} 
+        <div className='myPageBoard'>
+            <div className='myPageBox'>
+                <div>
+                    군번 : {data.militaryNumber} 
+                </div>
             </div>
-            <div>
-                이름 : {data.name}
+            <div className='myPageBox'>
+                <div>
+                    이름 : {data.name}
+                </div>
             </div>
-            <div>
-                직책 : {data.position}
+            <div className='myPageBox'>
+                <div>
+                    직책 : {data.position}
+                </div>
+            </div>
+            <div className='myPageBox'>
+                <div>
+                    비밀번호변경 : <input className='changePwInput'/> <button className='changePwBtn'>변경하기</button>
+                </div>
             </div>
         </div>
     );
