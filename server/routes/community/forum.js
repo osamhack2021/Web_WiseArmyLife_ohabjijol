@@ -20,22 +20,29 @@ router.get('/:pageIndex', isLoggedIn, async (req, res) => {
         if(postCount === 0){
             return res.json({success: true, data: null}); // 작성된 글이 없을 경우
         } else {
-        const post_10 = await Post.findAndCountAll({
+
+    
+        const [post_10,ForumName] = await Promise.all([Post.findAndCountAll({
             where: { forumId: req.params.forumId },
             include: [{
                 model: User,
                 attributes: ['id', 'militaryNumber', 'name'],
-            },
-            ],
+            },],
             order: [['createdAt', 'DESC']],
             limit: limit,
             offset: skip,
-        });
+        }),Forum.findOne({where:{id :req.params.forumId },attributes : ['forumName']})]);
+
+        post_10.forumName = ForumName.dataValues.forumName;
+
         const data = {
             forumName: forumName,
             post_10: post_10,
             maxPage: maxPage,
         }
+
+ 
+
         res.json({success: true, data });
     }
     } catch (err) {

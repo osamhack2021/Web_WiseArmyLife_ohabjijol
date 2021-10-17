@@ -1,3 +1,37 @@
+
+@font-face {
+  font-family: "NanumSquareEB";       
+  src: url("./../../font/NanumSquareEB.ttf"); 
+}
+@font-face {
+  font-family: "NanumSquare_acB";       
+  src: url("./../../font/NanumSquare_acB.ttf"); 
+}
+@font-face {
+  font-family: "NanumSquare_acEB";       
+  src: url("./../../font/NanumSquare_acEB.ttf"); 
+}
+@font-face {
+  font-family: "NanumSquare_acL";       
+  src: url("./../../font/NanumSquare_acL.ttf"); 
+}
+@font-face {
+  font-family: "NanumSquare_acR";       
+  src: url("./../../font/NanumSquare_acR.ttf"); 
+}
+@font-face {
+  font-family: "NanumSquareB";       
+  src: url("./../../font/NanumSquareB.ttf"); 
+}
+@font-face {
+  font-family: "NanumSquareL";       
+  src: url("./../../font/NanumSquareL.ttf"); 
+}
+@font-face {
+  font-family: "NanumSquareR";       
+  src: url("./../../font/NanumSquareR.ttf"); 
+}
+
 .POhTwo {
     font-size: 30px;
   text-align: center;
@@ -24,7 +58,7 @@
   
   .POcontent {
     background-color: #FFFACB;
-    
+    box-shadow: 15px 15px 15px #ccc;
     margin-left: 20%;
     margin-right: 20%;
     margin-bottom: 40px;
@@ -86,7 +120,9 @@
     color: #000000;
     font-family: "Nanum Square B";
   }
+
   .postDeleteBtn{
+    margin-left: 20%;
     width: 100px;
     height: 60px;
     border-radius: 5px;
@@ -95,6 +131,12 @@
     font-size: 25px;
     color: #000000;
     font-family: "Nanum Square B";
+
+  }
+  .postDeleteBtn:hover{
+    box-shadow: 15px 15px 15px #ccc;
+    transition: box-shadow 0.3s linear;
+  
   }
   .editDelete{
     margin-bottom: 50px;
@@ -110,7 +152,11 @@
     border-radius: 5px;
     background-color: #fffacb;
     border: 3px solid #fdf06d;
-    margin-bottom: 200px;
+    margin-bottom: 72px;
+  }
+  .BackToList:hover{
+    box-shadow: 15px 15px 15px #ccc;
+    transition: box-shadow 0.3s linear;
   }
 .PObutton{
   margin-left: 1400px;
@@ -120,6 +166,35 @@
   background-color: #fffacb;
   border: 3px solid #fdf06d;
   font-size: 25px;
-  font-family: "Nanum Square B"
-  
+  font-family: "Nanum Square B";
+  box-shadow: 15px 15px 15px 15px #ccc;
+  }
+
+  .commentBox{
+    border-radius: 100px;
+    width: 960px;
+    min-height: 200px;
+    height: auto;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    background-color:  #fffacbb8;
+    box-shadow: 15px 15px 15px #ccc;
+  }
+
+  .commentInput{
+    width: 500px;
+    font-size: 25px;
+    margin-right: 100px;
+    margin-top: 40px;
+  }
+  .commentBtn{
+    border-radius: 5px;
+    background-color: #fffacb;
+    border: 3px solid #fdf06d;
+    font-size: 25px;
+  }
+  .commentBtn:hover{
+    box-shadow: 15px 15px 15px #ccc;
+    transition: box-shadow 0.3s linear;
   }

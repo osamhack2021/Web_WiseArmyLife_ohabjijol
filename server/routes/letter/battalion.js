@@ -10,6 +10,7 @@ const PostRouter = require('../community/post');
 const router = express.Router();
 
 
+
 router.get('/:pageIndex', isLoggedIn, checkBattalionCommander, async (req, res, next) => {
     try {
         
@@ -21,7 +22,11 @@ router.get('/:pageIndex', isLoggedIn, checkBattalionCommander, async (req, res, 
            
                 const maxPage = Math.ceil(postCount / limit);
                 const post_10 = await Post.findAndCountAll({
+<<<<<<< HEAD
                     where: { ForumId: letterForumId, posterId: req.user.id },
+=======
+                    where: { ForumId: letterForumId},
+>>>>>>> eb1f3103a19e71b28cc6d72d33d6351356e7ddbd
                     limit: limit,
                     order: [['createdAt', 'DESC']],
                     offset: skip,

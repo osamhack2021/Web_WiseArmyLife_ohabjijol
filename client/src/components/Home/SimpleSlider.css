@@ -14,4 +14,16 @@
 }
 .slick-slider{
     z-index: -1;
+<<<<<<< HEAD
 }
+=======
+}
+
+
+.slick-slider:hover{
+    box-shadow: 5px 5px 20px #ccc;
+  transition: box-shadow 0.3s linear;
+  
+}
+
+>>>>>>> eb1f3103a19e71b28cc6d72d33d6351356e7ddbd

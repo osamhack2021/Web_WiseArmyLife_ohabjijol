@@ -22,7 +22,7 @@ const AuthRouter = require("./routes/user/auth");
 const CommunityRouter = require("./routes/community/community");
 const LetterRouter = require("./routes/letter");
 
-const { sequelize, Shooting } = require('./models');
+const { sequelize, Forum} = require('./models');
 const AssessmentRouter = require("./routes/assessment"); 
 //const ShootingRouter = require("./routes/assessment/shooting");
 const MangementRouter = require('./routes/management');
@@ -38,8 +38,12 @@ nunjucks.configure('views', {
   watch: true,
 });
 
+
 sequelize.sync({ force: false })
   .then(() => {
+  Forum.findOrCreate({where: { forumName : "중대 마음의 편지"}});
+  Forum.findOrCreate({where: { forumName : "대대 마음의 편지"}});
+
     console.log('database connected');
   })
   .catch((err) => {

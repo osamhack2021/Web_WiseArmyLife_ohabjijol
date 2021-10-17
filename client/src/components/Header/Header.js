@@ -62,6 +62,7 @@ function Ta() {
           className={`menu ${isActive ? "active" : "inactive"}`}
         >
           <ul>
+<<<<<<< HEAD
               {rows.map(res=>{
                   return(
                       <li>
@@ -70,6 +71,55 @@ function Ta() {
                   )
               })
             }
+=======
+                {rows.map(res=>{
+                    return(
+                        <li>
+                            <Link onClick={()=>link(res.id)} to={`/community/${res.id}`}>{res.forumName}</Link>
+                        </li>
+                    )
+                })
+                }
+                {(sessionStorage.getItem('isExecutive') === 'true') ?
+                <li>
+                    <Link  to={`/community`}>게시판 추가/삭제</Link>
+                </li>:null
+
+                }
+
+          </ul>
+        </nav>
+      </div>
+    </div>
+  );
+}
+
+function Ta2() {
+    const dropdownRef = useRef(null);
+    const [isActive, setIsActive] = useDetectOutsideClick(dropdownRef, false);
+
+    const onClick = () => {
+        setIsActive(!isActive)
+    };
+
+  return (
+    <div className="container">
+      <div className="menu-container">
+        <button onClick={onClick} className="menu-trigger">
+          <span>마음의 편지</span>
+        </button>
+        <nav
+          ref={dropdownRef}
+          className={`menu ${isActive ? "active" : "inactive"}`}
+        >
+          <ul>
+                <li>
+                    <Link onClick={()=>link(1)} to={`/community/1`}>중대 마음의 편지</Link>
+                </li>
+                <li>
+                    <Link onClick={()=>link(2)} to={`/community/2`}>대대 마음의 편지</Link>
+                </li>
+>>>>>>> eb1f3103a19e71b28cc6d72d33d6351356e7ddbd
           </ul>
         </nav>
       </div>
@@ -132,9 +182,13 @@ const Header = () => {
 
                         <Ta />
 
+<<<<<<< HEAD
                         <Link className="text-link" to="/letter">
                             <div>마음의편지</div>
                         </Link>
+=======
+                        <Ta2 />
+>>>>>>> eb1f3103a19e71b28cc6d72d33d6351356e7ddbd
                         {isLogin ? 
                         (
                             <div className="text-link" onClick={onLogout}>로그아웃</div>
@@ -162,7 +216,11 @@ const Header = () => {
                         <Route exact path="/Community" component={Forum} />
 
                         <PublicRoute path="/community/:forumId/v/:postId" restricted={false} auth={isLogin}  component={Post} /> {/*이건 홈페이지에서 인덱스 치고 들어갈때를 위한 라우터 */}
+<<<<<<< HEAD
                         <PublicRoute path="/community/:forumId" restricted={false} auth={isLogin}   render={ (props) => <Forum id={props}/> } /> {/*동일 */}
+=======
+                        <PublicRoute path="/community/:forumId" restricted={false} auth={isLogin}   render={ (props) => <Forum id={props.match.params.id}/> } /> {/*동일 */}
+>>>>>>> eb1f3103a19e71b28cc6d72d33d6351356e7ddbd
                         <PublicRoute path="/community/:forumId/:pageIndex" restricted={false} auth={isLogin}  component={Page} /> {/*동일 */}
                         <PublicRoute path="/assess" restricted={false} auth={isLogin} component={Assess} />
                         <AuthRoute path="/my" auth={isLogin} render={ () => <My />} />

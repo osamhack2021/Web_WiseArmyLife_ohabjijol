@@ -1,5 +1,6 @@
 import React,{useEffect,useState,useRef, useReducer} from 'react';
 import axios from 'axios';
+import Page from './../Community/Page'
 
 /**
  *  마편 get('/company/:pageIndex')
@@ -67,6 +68,7 @@ const Letter = () => {
                 <button onClick={()=>setOnWhere('company')}>중대</button>
                 <button onClick={()=>setOnWhere('battalion')}>대대</button>
                 <button onClick={()=>setNewpost(true)}>글쓰기</button>
+                <Page />
             </div>
             :
             <div>

@@ -4,7 +4,7 @@ const express = require('express');
 
 const { isLoggedIn } = require('../user/check_login');
 const { isExecutive } = require('../user/check_is_executive');
-const { Post, Forum } = require('../../models');
+const { Post, Forum ,Comment} = require('../../models');
 const ForumRouter = require('./forum');
 const { Op } = require('sequelize');
 
@@ -13,7 +13,11 @@ const router = express.Router();
 router.get('/', isLoggedIn, async (req, res) => {
     try {
         const allForum = await Forum.findAndCountAll({
+<<<<<<< HEAD
             where:{id:{[Op.gte] : 3}},
+=======
+            where: { id: { [Op.gte]: 3 } },
+>>>>>>> eb1f3103a19e71b28cc6d72d33d6351356e7ddbd
             include: [{
                 model: Post,
                 limit: 1,
@@ -66,28 +70,18 @@ router.delete('/:forumId', isLoggedIn, isExecutive, async (req, res, next) => {
         const currentForumId = req.params.forumId;
         const currentForum = await Forum.findOne({ where: { id: currentForumId } });
         if (currentForum) {
-            await Post.findAll({ attributes: ['posterId'], where: { ForumId: currentForumId } })
-                .then(postId => {
-                    if (postId.length == 0) {
-                        console.log("aa");
-                        return res.json({ success: true, data: null });
-                    }
-                    return Comment.destroy({ where: { PostId: postId } });
-                })
-                .catch(err => {
-                    console.error(err);
-                    next(error);
-                });
-            Post.destroy({ where: { ForumId: currentForumId } });
-            Forum.destroy({ where: { id: currentForumId } })
-                .then(result => {
-                    console.log('삭제 성공');
-                    res.json({ success: true, data: null });
-                })
-                .catch(error => {
-                    console.error(error);
-                    next(error);
-                });
+            const postId = await Post.findAll({ attributes: ['posterId'], where: { ForumId: currentForumId } })
+
+            if (postId.length == 0) {
+                Forum.destroy({ where: { id: currentForumId } })
+                console.log('삭제 성공');
+
+                return res.json({ success: true, data: null });
+            }
+            Promise.all([Comment.destroy({ where: { PostId: postId } }), Post.destroy({ where: { ForumId: currentForumId } }), Forum.destroy({ where: { id: currentForumId } })])
+            console.log('삭제 성공');
+            res.json({ success: true, data: null });
+
         }
         else {
             const data = {
@@ -105,7 +99,7 @@ router.put('/:forumId', isLoggedIn, isExecutive, async (req, res, next) => {
         const currentForumId = req.params.forumId;
         const currentForum = await Forum.findOne({ where: { id: currentForumId } });
         if (currentForum) {
-            await Forum.updata({ forumName: req.body.forumName }, { where: { id: currentForumId }});
+            await Forum.updata({ forumName: req.body.forumName }, { where: { id: currentForumId } });
             return res.json({ success: true, data: null });
         }
         else {

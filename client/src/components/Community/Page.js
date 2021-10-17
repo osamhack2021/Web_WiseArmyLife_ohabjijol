@@ -14,7 +14,8 @@ const Page = ({match}) => {
     const forumId = match.params.forumId
     const [data,setData] = useState({
         maxPage:0,
-        rows:[]
+        rows:[],
+        forumName:""
     });
     const index = useRef(1)
     const [newpost,setNewpost] =useState(false)
@@ -38,19 +39,59 @@ const Page = ({match}) => {
 
     const test = useRef(null);
     useEffect(() => {
-        axios.get(`/community/${forumId}/${index.current}`)
-        .then(res =>{
-            console.log(res.data)
-            test.current = res.data.data
+        if(forumId==='1'){
+            axios.get(`/letter/company/${index.current}`)
+            .then(res =>{
+                if(res.data.success==false){
+                    alert('접근불가능')
+                }
+                console.log(res.data)
+                test.current = res.data.data
             if(test.current.maxPage !== data.maxPage){
                 setData({
                     maxPage : res.data.data.maxPage,
-                    rows:res.data.data.post_10.rows
+                    rows:res.data.data.post_10.rows,
+                    forumName:res.data.data.post_10.forumName
+
+                })
+
+            }
+            })
+            .catch(err =>console.log(err))
+        }else if(forumId==='2'){
+            axios.get(`/letter/battalion/${index.current}`)
+            .then(res =>{
+                if(res.data.success==false){
+                    alert('접근불가능')
+                }
+                console.log(res.data)
+                test.current = res.data.data
+            if(test.current.maxPage !== data.maxPage){
+                setData({
+                    maxPage : res.data.data.maxPage,
+                    rows:res.data.data.post_10.rows,
+                    forumName:res.data.data.post_10.forumName
                 })
             }
-        })
-        .catch(err =>console.log(err))
-    },[data])
+            })
+            .catch(err =>console.log(err))
+        }else{
+            axios.get(`/community/${forumId}/${index.current}`)
+            .then(res =>{
+                console.log(res.data)
+                
+                test.current = res.data.data
+            if(test.current.maxPage !== data.maxPage){
+                setData({
+                    maxPage : res.data.data.maxPage,
+                    rows:res.data.data.post_10.rows,
+                    forumName:res.data.data.post_10.forumName
+                })
+            }
+            })
+            .catch(err =>console.log(err))
+        }
+    },[data,index])
 
     const onRemove = (id)=>{
         axios.delete(`/community/${forumId}/v/${id}`)
@@ -60,16 +101,8 @@ const Page = ({match}) => {
     }
 
     const PageChange = (id)=>{
-        axios.get(`/community/${forumId}/${index.current}`)
-        .then(res =>{
-            console.log(res.data)
-            setData({
-                maxPage : res.data.data.maxPage,
-                rows:res.data.data.post_10.rows
-            })
-        })
-        .catch(err =>console.log(err))
-    }
+        index.current = id
+        }
 
     const onPost = () =>{
         const post ={
@@ -96,7 +129,7 @@ const Page = ({match}) => {
         const length = data !==null ? data.maxPage : 1
         console.log(data)
         for (let i = 0; i < length; i++) {
-          result.push(<button id={i} onClick={()=> PageChange(i+1)} className="pageButton">{i+1}</button>  );
+          result.push(<button id={i} onClick={()=> PageChange(parseInt(i)+parseInt(1))} className="pageButton">{i+1}</button>  );
         }
         return result;
       };
@@ -116,9 +149,13 @@ const Page = ({match}) => {
             }else{
                 create = res.createdAt.substr(2,8) + " "+ res.createdAt.substr(11,8) 
             }
-            
-            result.push(<tr>  <td className='Ntd' ><Link className='pageTitleLink' to={`/community/${forumId}/v/${res.id}`}>{res.title}</Link></td> 
-            <td className='Ntd'>{create}</td>    </tr>)
+
+            result.push(
+            <tr>  
+                <th className='Nth1m' ><Link className='pageTitleLink' to={`/community/${forumId}/v/${res.id}`}>{res.title}{res.commentCount !== null ? (res.commentCount):null}</Link></th> 
+                <th className='Nth2m'>{create}</th>    
+                <th className='Nth3m'>{forumId!=='1'&&forumId!=='2' ?  res.User.name : "익명" }</th>    
+            </tr>)
             return null
         })
         return result;
@@ -131,15 +168,18 @@ const Page = ({match}) => {
             <div>
                 <>
                     <div id="entire">
-                        <h2 className={styles.FnoticeH}>공지사항 +</h2>
+                        <h2 className={styles.FnoticeH}>{data.forumName !==undefined ? data.forumName : 
+                        forumId ==='1' ?  "중대 마음의 편지" : "대대 마음의 편지"
+                        }  +</h2>
                         <div className='fContentBox'>
                             <div className='Fcontent'>
                                 <div id="table">
                                     
                                     { <table className='Ntable'>
-                                            <thead className='Nthead'>
-                                                <th className='Nth'>    제목     </th>
-                                                <th className='Nth'>    날짜     </th>
+                                            <thead className='Nthead2'>
+                                                <th className='Nth1'>    제목     </th>
+                                                <th className='Nth2'>    날짜     </th>
+                                                <th className='Nth3'>    작성자     </th>
                                             </thead>
                                             <tbody className='pageBody'>
                                                 { listRendering() }
@@ -153,7 +193,8 @@ const Page = ({match}) => {
                                     <button onClick={onConsole} className="pageButton">{"<"}</button>  
                                     { indexRendering() }
                                     <button className="pageButton">{">"}</button>  
-                                    <button className='pageButton' onClick={()=>setNewpost(true)}>글쓰기</button>
+
+                                    {sessionStorage.getItem('isExecutive')==='true' || data.forumName !== '공지사항' ?<button className='pageButton' onClick={()=>setNewpost(true)}>글쓰기</button>:null}
                                 </div>
                             </div>
                         </div>
@@ -162,6 +203,7 @@ const Page = ({match}) => {
             </div>
             :
             <>
+                <h2 className={styles.FnoticeH}>{data.forumName}  +</h2>
                 <div className="NPcontent">
                     <div className="NPcontentTop">
                         <h3>제목 : </h3>
@@ -178,7 +220,10 @@ const Page = ({match}) => {
                         onChange={ ( event, editor ) => {
                             const data = editor.getData();
                             setInputs({...inputs,content:data})
+<<<<<<< HEAD
                             console.log( { event, editor, data } );
+=======
+>>>>>>> eb1f3103a19e71b28cc6d72d33d6351356e7ddbd
                         } }
                         onBlur={ ( event, editor ) => {
                             console.log( 'Blur.', editor );

@@ -76,6 +76,7 @@ const Submit = (props) => {
                             center: "title",
                             right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek"
                         }}
+                        datesSet={onRangeChange}
                         selectable={true}
                         plugins={[
                             dayGridPlugin,
