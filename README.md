@@ -80,6 +80,8 @@ $ yarn start or npm run start
 ### 팀 정보 (Team Information)
 팀 오합지졸
 
+김용진  codrare (hi653@naver.com)
+
 
 
 ***
