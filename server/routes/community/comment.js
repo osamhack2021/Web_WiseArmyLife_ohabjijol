@@ -10,13 +10,12 @@ const router = express.Router({mergeParams: true});
 router.route('/')
     .post(checkPostId, isLoggedIn, async (req, res, next) => {
         try {
-            const currentPost = res.locals.post; // postId는 url로 받아옴
-            req.body.commenterId = req.user.id;
-            req.body.postComment = currentPost.postId;
+            const currentPostId = req.params.postId // postId는 url로 받아옴
+            let currentPost = await Post.findOne({where: {id: currentPostId}});
             const comment = await Comment.create({
                 comment: req.body.comment,
                 commenterId: req.user.id,
-                postComment: currentPost.postId,
+                postComment : currentPostId,
             });
             currentPost.commentCount++;
             const data = {
@@ -31,7 +30,6 @@ router.route('/')
 router.route('/:commentId')
     .put(checkPostId, isLoggedIn, async (req, res, next) => {
         try {
-            const currentPost = res.locals.post;
             const currentCommentId = req.params.commentId;
             const commentBody = req.body;
             if (currentPost.UserId === req.user.id)
@@ -66,7 +64,8 @@ router.route('/:commentId')
     })
     .delete(checkPostId, isLoggedIn, async (req, res, next) => {
         try {
-            const currentPost = res.locals.post;
+            const currentPostId = req.params.postId
+            let currentPost = await Post.findOne({where: {id: currentPostId}});
             const currentCommentId = req.params.commentId;
             const currentComment = await Comment.findOne({ where: { id: currentCommentId } });
             if (currentComment.UserId === req.user.id) {
@@ -92,14 +91,13 @@ router.route('/:commentId')
     })
     .post(checkPostId, isLoggedIn, async (req, res, next) => {
         try {
-            const currentPost = res.locals.post;
+            const currentPostId = req.params.postId
+            let currentPost = await Post.findOne({where: {id: currentPostId}});
             const currentCommentId = req.params.commentId;
-            req.body.commenterId = req.user.id;
-            req.body.postComment = currentPost.postId;
             const comment = await Comment.create({
                 comment: req.body.comment,
                 commenterId: req.user.id,
-                postComment: currentPost.postId,
+                PostId: currentPostId,
                 parentComment: currentCommentId,
             });
             currentPost.commentCount++;

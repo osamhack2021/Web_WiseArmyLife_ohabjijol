@@ -8,7 +8,7 @@ const fs = require('fs');
 const CommentRouter = require('./comment');
 
 const { isLoggedIn } = require('../user/check_login');
-const { User, Post, Comment } = require('../../models');
+const { User, Post, Comment, Forum } = require('../../models');
 const {Op} = require('sequelize');
 
 const router = express.Router({mergeParams: true});
@@ -58,25 +58,27 @@ router.route('/v/:postId')
         try {
             console.log('포스트 읽어짐');
             const currentPostId = req.params.postId;
-            console.log('포스트 읽어짐' , currentPostId);
-
-            let currentPost = await Post.findOne({
+            
+            const currentPost = await Post.findAll({
                 where: { id: currentPostId },
                 include: [{
                     model: User,
                     attributes: ['name'],
+                    required: true,
                 },
                 {
                     model: Comment,
-                    attributes: ['comment', 'createdAt'],
+                    where: { postComment: 1 },
+                    required: true,
                     include: [{
                         model: User,
+                        required: true,
                         attributes: ['name'],
                     }],
                 },
                 ],
             });
-
+            console.log(currentPost);
             const prevPost = await Post.findOne({
                 where : {ForumId: req.params.forumId,
                     id : {[Op.lt] : currentPostId},
