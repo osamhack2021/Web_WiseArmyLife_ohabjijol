@@ -9,12 +9,12 @@ const My = () => {
     });
 
     useEffect(() => {
-        axios.get('/profile')
+        axios.get('/auth/profile')
         .then(res => {
             console.log(res.data)
             if(res.data.success===true){
                 console.log(res.data)
-                const {name,militaryNumber,position} = res.data
+                const {name,militaryNumber,position} = res.data.data
                 setData({
                     name:name,
                     militaryNumber:militaryNumber,

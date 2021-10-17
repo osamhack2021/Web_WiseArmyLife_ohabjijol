@@ -6,8 +6,7 @@
   background-color: #ffd265;
   margin: 10px;
   margin-bottom: 39px;
-  box-shadow: 0 6px 8px -4px black;
-
+  box-shadow: 10px 10px 5px #ccc;
   
 }
 .smallBoxFirst:hover{
@@ -24,13 +23,12 @@
   background-color: #fdf06d;;
   margin: 10px;
   margin-bottom: 39px;
-  box-shadow: 0 6px 8px -4px black;
+  box-shadow: 10px 10px 5px #ccc;
   
 }
 
 .smallBox:hover{
   box-shadow: 5px 5px 20px #ccc;
-
   transition: box-shadow 0.3s linear;
 }
 
@@ -53,7 +51,7 @@
     border-top-left-radius: 70px;
     border-top-right-radius: 70px;
     background-color: #fdf06d;
-    box-shadow: 30px 30px 20px #ccc;
+    box-shadow: 10px 10px 5px #ccc;
     margin: 20px;
     box-shadow: 0 6px 8px -4px black;
 

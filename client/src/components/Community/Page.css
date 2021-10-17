@@ -104,6 +104,7 @@
     
 }
 .Nth1{
+    width: 700px;
     height : 40px;
     padding-left: 54px;
     border-bottom : 2px solid gray;
@@ -111,14 +112,39 @@
     margin-left: 300px;
 }
 .Nth2{
-    width: 100px;
-    padding-left: 500px;
+    width: 300px;
+    padding-left: 0px;
     height : 40px;
     border-bottom : 2px solid gray;
     padding-bottom : 10px;
     margin-left: 300px;
 }
 .Nth3{
+    width:300px;
+    height : 40px;
+    border-bottom : 2px solid gray;
+    padding-bottom : 10px;
+    margin-left: 300px;
+}
+
+.Nth1m{
+    width: 700px;
+    height : 40px;
+    padding-left: 54px;
+    border-bottom : 2px solid gray;
+    padding-bottom : 10px;
+    margin-left: 300px;
+}
+.Nth2m{
+    width: 300px;
+    padding-left: 0px;
+    height : 40px;
+    border-bottom : 2px solid gray;
+    padding-bottom : 10px;
+    margin-left: 300px;
+}
+.Nth3m{
+    width:300px;
     height : 40px;
     border-bottom : 2px solid gray;
     padding-bottom : 10px;
@@ -126,7 +152,7 @@
 }
 
 .Fcontent{
-    
+    box-shadow: 15px 15px 15px #ccc;
     width:70%;
     display: inline-block;
     padding-top: 80px;
@@ -144,6 +170,7 @@
     align-content: center;
     margin-left: auto;
     margin-right: auto;
+    
 }
 
 .pageBody{
@@ -153,8 +180,13 @@
     font-family: "Nanum Square B"
     
 }
-
+.pageButton:hover{
+    box-shadow: 5px 5px 20px #ccc;
+    transition: box-shadow 0.3s linear;
+    
+  }
 .pageButton{
+    border-radius:30px;
     width: auto;
     padding-left: 20px;
     padding-right: 20px;
