@@ -1,4 +1,4 @@
- <img src="./Logo.png" height="70px"></img> <br/>
+ <img src="./LOGO.png" height="70px"></img> <br/>
  슬기로운병영생활   Project name or Logo    
 
 ===========================================
