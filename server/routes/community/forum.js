@@ -18,7 +18,10 @@ router.get('/:pageIndex', isLoggedIn, async (req, res) => {
         let postCount = await Post.count({where: {ForumId: req.params.forumId}});
         const maxPage = Math.ceil(postCount/limit);
         if(postCount === 0){
-            return res.json({success: true, data: null}); // 작성된 글이 없을 경우
+            const data = {
+                forumName: forumName,
+            }
+            return res.json({success: true, data: data}); // 작성된 글이 없을 경우
         } else {
 
     

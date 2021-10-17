@@ -220,10 +220,6 @@ const Page = ({match}) => {
                         onChange={ ( event, editor ) => {
                             const data = editor.getData();
                             setInputs({...inputs,content:data})
-<<<<<<< HEAD
-                            console.log( { event, editor, data } );
-=======
->>>>>>> eb1f3103a19e71b28cc6d72d33d6351356e7ddbd
                         } }
                         onBlur={ ( event, editor ) => {
                             console.log( 'Blur.', editor );

@@ -5,11 +5,7 @@ import  axios  from 'axios';
 import { useState } from 'react';
 import './post.css'
 import ReactHtmlParser from 'react-html-parser'
-<<<<<<< HEAD
-
-=======
 import './newpost.css'
->>>>>>> eb1f3103a19e71b28cc6d72d33d6351356e7ddbd
 const Post = (props) => {
 
     const {match,history} = props

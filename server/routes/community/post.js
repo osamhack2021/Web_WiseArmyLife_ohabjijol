@@ -113,12 +113,8 @@ router.route('/v/:postId')
             const data = {
                 currentPost: currentPost,
             }
-<<<<<<< HEAD
-                res.json({success: true, data });
-=======
             
                 return res.json({success: true, data });
->>>>>>> eb1f3103a19e71b28cc6d72d33d6351356e7ddbd
 
         } catch (error) {
             console.error(error);

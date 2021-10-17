@@ -73,17 +73,10 @@
   color: black;
   padding-bottom: 20px;
   cursor: pointer;
-<<<<<<< HEAD
-}
-
-.headerWrap{
-  min-height: 1214px;
-=======
   border-radius: 70px;
 }
 
 
 .headerWrap{
   min-height: 1137px;
->>>>>>> eb1f3103a19e71b28cc6d72d33d6351356e7ddbd
 }

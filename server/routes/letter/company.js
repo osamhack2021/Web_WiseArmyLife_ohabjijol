@@ -20,11 +20,7 @@ router.get('/:pageIndex', isLoggedIn, checkCompanyCommander, async (req, res, ne
             
                 const maxPage = Math.ceil(postCount / limit);
                 const post_10 = await Post.findAndCountAll({
-<<<<<<< HEAD
-                    where: { ForumId: letterForumId, posterId: req.user.id },
-=======
                     where: { ForumId: letterForumId},
->>>>>>> eb1f3103a19e71b28cc6d72d33d6351356e7ddbd
                     limit: limit,
                     order: [['createdAt', 'DESC']],
                     offset: skip,

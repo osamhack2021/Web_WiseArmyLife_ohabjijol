@@ -13,11 +13,7 @@ const router = express.Router();
 router.get('/', isLoggedIn, async (req, res) => {
     try {
         const allForum = await Forum.findAndCountAll({
-<<<<<<< HEAD
-            where:{id:{[Op.gte] : 3}},
-=======
             where: { id: { [Op.gte]: 3 } },
->>>>>>> eb1f3103a19e71b28cc6d72d33d6351356e7ddbd
             include: [{
                 model: Post,
                 limit: 1,
