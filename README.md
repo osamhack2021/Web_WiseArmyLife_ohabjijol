@@ -1,5 +1,5 @@
 슬기로운병영생활   Project name or Logo 
-![Alt LOGO](./LOGO.png)
+<img src="./LOGO.png" width="200px" heigh="70px" backgroundColor="white" alt="Logo Image" > </img> <br/>
 ==============
 ***
 
