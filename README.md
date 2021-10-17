@@ -1,5 +1,5 @@
 슬기로운병영생활   Project name or Logo 
-[LOGO](./LOGO.png)
+![Alt LOGO](./LOGO.png)
 ==============
 ***
 
