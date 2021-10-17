@@ -80,7 +80,8 @@ $ yarn start or npm run start
 ### 팀 정보 (Team Information)
 팀 오합지졸
 
-김용진  codrare (hi653@naver.com)
+Kim Yong Jin  (hi653@naver.com), Github Id: codrare
+hong gil dong (hong999@gmail.com), Github Id: gildong999
 
 
 
