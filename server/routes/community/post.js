@@ -59,26 +59,22 @@ router.route('/v/:postId')
             console.log('포스트 읽어짐');
             const currentPostId = req.params.postId;
             
-            const currentPost = await Post.findAll({
+            const currentPost = await Post.findOne({
                 where: { id: currentPostId },
                 include: [{
                     model: User,
-                    attributes: ['name'],
-                    required: true,
-                },
-                {
-                    model: Comment,
-                    where: { postComment: 1 },
-                    required: true,
-                    include: [{
-                        model: User,
-                        required: true,
-                        attributes: ['name'],
-                    }],
-                },
-                ],
+                    attributes: ['name', 'militaryNumber'],
+                }]
             });
             console.log(currentPost);
+            const comments = await Comment.findAll({
+                where: {postComment: currentPostId}, 
+                include: [{
+                    model: User, 
+                    attributes: ['name', 'militaryNumber']
+                }]
+            });
+            console.log(comments);
             const prevPost = await Post.findOne({
                 where : {ForumId: req.params.forumId,
                     id : {[Op.lt] : currentPostId},
