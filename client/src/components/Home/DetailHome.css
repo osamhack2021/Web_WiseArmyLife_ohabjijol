@@ -6,10 +6,12 @@
   background-color: #ffd265;
   margin: 10px;
   margin-bottom: 39px;
-  box-shadow: 30px 30px 20px #ccc;
+  box-shadow: 0 6px 8px -4px black;
+
   
 }
 .smallBoxFirst:hover{
+  
   box-shadow: 5px 5px 20px #ccc;
   transition: box-shadow 0.3s linear;
 }
@@ -22,13 +24,13 @@
   background-color: #fdf06d;;
   margin: 10px;
   margin-bottom: 39px;
-  box-shadow: 30px 30px 20px #ccc;
+  box-shadow: 0 6px 8px -4px black;
   
 }
 
 .smallBox:hover{
   box-shadow: 5px 5px 20px #ccc;
-  
+
   transition: box-shadow 0.3s linear;
 }
 
