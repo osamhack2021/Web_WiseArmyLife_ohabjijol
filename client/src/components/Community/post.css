@@ -152,7 +152,7 @@
     border-radius: 5px;
     background-color: #fffacb;
     border: 3px solid #fdf06d;
-    margin-bottom: 72px;
+    
   }
   .BackToList:hover{
     box-shadow: 15px 15px 15px #ccc;
@@ -171,22 +171,37 @@
   }
 
   .commentBox{
-    border-radius: 100px;
+    border-radius: 30px;
     width: 960px;
     min-height: 200px;
     height: auto;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 50px;
     background-color:  #fffacbb8;
     box-shadow: 15px 15px 15px #ccc;
   }
-
+.commentList{
+  padding-top: 30px;
+  width: 80%;
+  margin: 10%;
+}
   .commentInput{
     width: 500px;
     font-size: 25px;
     margin-right: 100px;
     margin-top: 40px;
+  }
+  .commentTr{
+    
+    margin: 30px;
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+    grid-template-columns: 1fr 1fr;
+  }
+  .commentTh{
+    
   }
   .commentBtn{
     border-radius: 5px;
@@ -197,4 +212,31 @@
   .commentBtn:hover{
     box-shadow: 15px 15px 15px #ccc;
     transition: box-shadow 0.3s linear;
+  }
+
+  .commentContent{
+    
+    border-bottom : 2px solid gray;
+    margin-right: 400px;
+    font-size: 25px;
+  }
+  .commentHr{
+    size: 5px;
+    width: 800px;
+  }
+  .commentName{
+    width: 227px;
+    border-bottom : 2px solid gray;
+    font-size: 25px;
+  }
+
+  .commentInputBox{
+    text-align: center;
+    height: 100px;
+    background-color: #fffacb;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 30px;
+    box-shadow: 15px 15px 15px #ccc;
   }
