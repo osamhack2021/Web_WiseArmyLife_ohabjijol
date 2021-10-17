@@ -2,7 +2,7 @@
 
 const express = require('express');
 
-const { Post, User } = require('../../models');
+const { Post, User, Comment } = require('../../models');
 const { isLoggedIn } = require('../user/check_login');
 
 const router = express.Router({mergeParams: true});
