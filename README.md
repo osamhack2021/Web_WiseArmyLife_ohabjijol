@@ -57,13 +57,13 @@ AWS RDS를 통한 데이터베이스 서버 운영
     
 Client(Front-end)
 
-[react.js](https://ko.reactjs.org/){:target="_blank"}
+[react.js](https://ko.reactjs.org/)
 
-[Fullcalendar](https://fullcalendar.io/){:target="_blank"}
+[Fullcalendar](https://fullcalendar.io/)
 
-[CKEditor](https://ckeditor.com/){:target="_blank"}
+[CKEditor](https://ckeditor.com/)
 
-[Chart.js](https://www.chartjs.org/){:target="_blank"}
+[Chart.js](https://www.chartjs.org/)
 
 
 
