@@ -1,6 +1,5 @@
-![LOGO](./Project Logo.png)
-슬기로운병영생활   Project name or Logo 
-
+ 슬기로운병영생활   Project name or Logo 
+ ![LOGO](./Project Logo.png)
 ==============
 ***
 
