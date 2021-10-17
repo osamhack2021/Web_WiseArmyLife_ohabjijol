@@ -123,9 +123,9 @@ const Page = ({match}) => {
 
             result.push(
             <tr>  
-                <th className='Nth1' ><Link className='pageTitleLink' to={`/community/${forumId}/v/${res.id}`}>{res.title}</Link></th> 
-                <th className='Nth2'>{create}</th>    
-                <th className='Nth3'>{res.User.name}</th>    
+                <th className='Nth1m' ><Link className='pageTitleLink' to={`/community/${forumId}/v/${res.id}`}>{res.title}</Link></th> 
+                <th className='Nth2m'>{create}</th>    
+                <th className='Nth3m'>{res.User.name}</th>    
             </tr>)
             return null
         })

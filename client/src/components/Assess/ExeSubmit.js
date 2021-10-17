@@ -111,6 +111,8 @@ const ExeSubmit = (props) => {
                             timeGridPlugin,
                             resourceTimeGridPlugin
                         ]}
+                        datesSet={onRangeChange}
+                        eventChange={onRangeChange}
                         eventClick={eventClick}
                         events={allEvents}
                         select={onCalenderClick}

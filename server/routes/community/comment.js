@@ -14,7 +14,7 @@ router.route('/')
             req.body.commenterId = req.user.id;
             req.body.postComment = currentPost.postId;
             const comment = await Comment.create({
-                content: req.body.content,
+                comment: req.body.comment,
                 commenterId: req.user.id,
                 postComment: currentPost.postId,
             });
@@ -97,7 +97,7 @@ router.route('/:commentId')
             req.body.commenterId = req.user.id;
             req.body.postComment = currentPost.postId;
             const comment = await Comment.create({
-                content: req.body.content,
+                comment: req.body.comment,
                 commenterId: req.user.id,
                 postComment: currentPost.postId,
                 parentComment: currentCommentId,
