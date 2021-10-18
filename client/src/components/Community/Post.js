@@ -42,7 +42,7 @@ const Post = (props) => {
             setData(res.data.data)
             console.log(res.data.data)
             
-            //setCommetList(res.data.data.currentPost.Comments)
+            setCommetList(res.data.data.currentPost.Comments)
             if(res.data.data.currentPost.User.name === sessionStorage.getItem('user_id')){
                 console.log('21333333333333')
             }
@@ -73,8 +73,10 @@ const Post = (props) => {
         console.log(data)
         axios.post(`/community/${forumId}/post/v/${postId}/comment`,data)
         .then(res=>{
-            console.log(res.data)
+            
         })
+        document.location.href = `/community/${forumId}/v/${postId}`
+
     }
     const onChange = (e)=>{
         const {name,value} = e.target;
@@ -124,14 +126,14 @@ const Post = (props) => {
                         <table className='commentList'>
                             <tr className='commentTr'>
                                 <th className='commentContent'>내용</th>
-                                <th className='commentName'>글쓴이</th>
+                                <th className='commentName'>작성자</th>
                             </tr>
                             {
                                 commentList.map(res=>{
                                     return (
                                         <tr className='commentTr'>
-                                            <th className='commentContent'>{res.content}</th>
-                                            <th className='commentName'>{res.name}</th>
+                                            <th className='commentContent'>{res.comment}</th>
+                                            <th className='commentName'>{res.User.name}</th>
                                         </tr>
                                         )
                                     })
@@ -140,7 +142,7 @@ const Post = (props) => {
                     </div>
                     <div className='commentInputBox'>
                             <input className='commentInput' onChange={onChange} value={comment} placeholder='coment'/>
-                            <button className='commentBtn' onClick={onCommitState}>댓글작성</button>
+                            <button className='commentBtn' onClick={onCommit}>댓글작성</button>
                     </div>
                                 <button onClick={()=>console.log(data)}>콘솔</button>
         </>
