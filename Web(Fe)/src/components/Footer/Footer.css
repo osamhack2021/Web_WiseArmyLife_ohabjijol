@@ -1,0 +1,50 @@
+
+@font-face {
+  font-family: "NanumSquareEB";       
+  src: url("./../../font/NanumSquareEB.ttf"); 
+}
+
+  .footerContainer {
+    background-color: #414141;
+    font-size: 25px;
+    list-style-type: none;
+    margin-bottom: 0%;
+    height: 60px;
+    color:white;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    
+  }
+  
+  .footerTwo {
+    max-width: 1920px;
+    display: grid;
+    display: inline-grid;
+    grid-template-columns: 200px 500px 200px 200px;
+    text-align: center;
+    align-content: center;
+    width: 100%;
+    padding-right: 100px;
+    
+  }
+  
+  .footer1 {
+    font-family: "Nanum Square EB";
+    display: inline-block;
+    padding-left: 200px;
+  }
+  .footer2 {
+    font-family: "Nanum Square EB";
+    display: inline-block;
+    padding-left: 400px;
+  }
+  .footer3 {
+    font-family: "Nanum Square EB";
+    display: inline-block;
+    padding-left: 200px;
+  }
+  .footer4 {
+    font-family: "Nanum Square EB";
+    display: inline-block;
+    padding-left: 200px;
+  }

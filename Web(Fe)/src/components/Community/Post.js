@@ -1,0 +1,175 @@
+import React from 'react';
+import { Link, Route, Switch, BrowserRouter as Router } from "react-router-dom";
+import { useEffect } from 'react';
+import  axios  from 'axios';
+import { useState } from 'react';
+import './post.css'
+import ReactHtmlParser from 'react-html-parser'
+import './newpost.css'
+const Post = (props) => {
+
+    const {match,history} = props
+    const [isPoster,setIsPoster] = useState(false)
+    const {forumId,postId} = match.params    
+    const [commentList,setCommetList] = useState([])
+    const [comment,setComment] = useState('')
+    const [data,setData] = useState({
+        currentPost : {
+            ForumId: null,
+            User: null,
+            commentCount: null,
+            content: null,
+            createdAt: null,
+            id: null,
+            img: null,
+            posterId: null,
+            title: null,
+            updatedAt: null
+        },
+        exPost :{
+            title: null,
+            url:null
+        },
+        nextPost :{
+            title: null,
+            url:null
+        }
+
+    })
+    useEffect(()=>{
+        axios.get(`/community/${forumId}/post/v/${postId}`)
+        .then(res=>{
+            setData(res.data.data)
+            console.log(res.data.data)
+            
+            setCommetList(res.data.data.currentPost.Comments)
+            if(res.data.data.currentPost.User.name === sessionStorage.getItem('user_id')){
+                console.log('21333333333333')
+            }
+        })
+    },[])
+    const onRemove = ()=>{
+        axios.delete(`/community/${forumId}/post/v/${postId}`)
+        .then(res=>{
+            console.log(res.data)
+        })
+        .catch(err =>console.log(err))
+
+        history.goBack()
+    }
+    
+    const onCommitState = ()=>{
+        setCommetList([...commentList,{
+            name:sessionStorage.getItem('user_id'),
+            content:comment
+        }])
+        setComment('')
+    }
+    const onCommit = ()=>{
+        const data = {
+            "comment":comment
+        }
+        console.log('보내는내용')
+        console.log(data)
+        axios.post(`/community/${forumId}/post/v/${postId}/comment`,data)
+        .then(res=>{
+            
+        })
+        document.location.href = `/community/${forumId}/v/${postId}`
+
+    }
+    const onChange = (e)=>{
+        const {name,value} = e.target;
+        setComment(value)
+    }
+    
+    return (
+        <div>
+            <>
+                <h2 className = "POhTwo"> </h2>
+                <div className="POcontent">
+                    <hr  className='titleTopBar'/>
+                    <h3 className="POhThree">{data.currentPost.title}</h3>
+                    <hr className='titlebuttonBar' />
+                    <div>{
+                        ReactHtmlParser(data.currentPost.content)
+                        }
+                    </div>
+                </div>
+                
+                <div className='editDelete'>
+                
+                <button className='postDeleteBtn' onClick={onRemove}>삭제</button>
+                </div>
+
+                <div className="POmoveNext">
+                    
+                    <div>이전글</div>
+                    {
+                        forumId ===1 || forumId === 2 ? 
+
+                        <>
+                        {data.currentPost.prevPostId !== -1 ?
+                        <div><Link className='text-link' onClick={()=>document.location.href = `/community/${forumId}/v/${data.currentPost.prevPostId}`} to={`/community/${forumId}/v/${data.currentPost.prevPostId}`}>{data.currentPost.prevPosttitle}</Link></div>
+                            :null
+                        }
+                        </>
+
+                    :null
+                    }
+                    
+                </div>
+
+                <div className="POmovePrevious">
+                    <div>다음글</div>
+                    {
+                        forumId ===1 || forumId === 2 ? 
+                        
+                        <>
+                        {data.currentPost.nextPostId !== -1 ?
+                        <div><Link className='text-link' onClick={()=>document.location.href = `/community/${forumId}/v/${data.currentPost.nextPostId}`} to={`/community/${forumId}/v/${data.currentPost.nextPostId}`}>{data.currentPost.nextPosttitle}</Link></div>
+                            :null
+                        }
+                        </> 
+                        
+                        : null
+                    }
+                    
+                </div>
+                <button className='BackToList' onClick={()=>document.location.href = `/community/${forumId}`}>글 목록</button>
+
+                    
+                    <div className='commentBox'>
+                        
+                        <table className='commentList'>
+                            <tr className='commentTr'>
+                                <th className='commentContent'>내용</th>
+                                <th className='commentName'>작성자</th>
+                            </tr>
+                            {
+                                commentList.map(res=>{
+                                    return (
+                                        <tr className='commentTr'>
+                                            <th className='commentContent'>{res.comment}</th>
+                                            <th className='commentName'>{res.User.name}</th>
+                                        </tr>
+                                        )
+                                    })
+                                }
+                        </table>
+                    </div>
+                    <div className='commentInputBox'>
+                            <input className='commentInput' onChange={onChange} value={comment} placeholder='coment'/>
+                            <button className='commentBtn' onClick={onCommit}>댓글작성</button>
+                    </div>
+                                <button onClick={()=>console.log(data)}>콘솔</button>
+        </>
+
+        
+
+            
+        </div>
+    );
+};
+
+export default Post;

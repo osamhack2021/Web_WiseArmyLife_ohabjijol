@@ -1,0 +1,25 @@
+.sliderImg{
+    align-items: center;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 320px;
+}
+
+.phoneImage{
+    width: auto;
+    padding: auto;
+    text-align: center;
+    align-content: center;
+}
+.slick-slider{
+    z-index: -1;
+}
+
+
+.slick-slider:hover{
+    box-shadow: 5px 5px 20px #ccc;
+  transition: box-shadow 0.3s linear;
+  
+}
+

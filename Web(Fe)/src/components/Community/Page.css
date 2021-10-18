@@ -1,0 +1,215 @@
+
+
+
+.pageBox{
+    align-content: center;
+    text-align: center;
+    width: 1341px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(225, 248, 140);
+    border-radius: 30px;
+    padding-bottom: 100px;
+    padding-top: 50px;
+}
+
+.pageHr{
+    margin: 50px;
+    color: black;
+    border-color: black;
+}
+
+.pageHader1{
+    padding-right: 650px;
+    font-size: 30px;
+    color: #000000;
+    font-family: "Nanum Square EB";
+}
+.pageHader2{
+    padding-right: 150px;
+    font-size: 30px;
+    color: #000000;
+    font-family: "Nanum Square EB";
+}
+.pageHader3{
+    font-size: 30px;
+    color: #000000;
+    font-family: "Nanum Square EB";
+}
+
+.pageBoard{
+    align-content: flex-start;
+}
+
+.pageHader{
+    font-size: 30px;
+    color: #000000;
+    font-family: "Nanum Square EB";
+    padding-right: 100px;
+}
+.pageBoard{
+    padding-top: 10px;
+    font-size: 30px;
+}
+
+.pageBoardHr{
+    margin-left: 50px;
+    margin-right: 50px;
+    color: rgb(167, 167, 167);
+    border-color: rgb(167, 167, 167);
+}
+
+.postpost{
+    text-align: left;
+    margin-left: 50px;
+}
+
+.postIndex{
+    width: 200px;
+    height: 100px;
+    margin-left: 30px;
+    
+}
+.postTitle{
+    width: 300px;
+}
+
+.PageWriteButton{
+    width: 80px;
+}
+
+.Ntable{
+    
+    
+    border-top: 3px solid black;
+    border-bottom: 3px solid black;
+    width: 1140px;
+    grid-template-columns: 1fr 0.5fr 1.5fr;
+    font-size: 30px;
+    font-family: "Nanum Square EB";
+}
+
+.Nthead{
+    display: grid;
+    padding-top:20px;
+    padding-bottom:20px;
+}
+
+      
+.Nth{display: grid;
+    height : 40px;
+    border-bottom : 2px solid gray;
+    padding-bottom : 10px;
+    
+}
+.Nth1{
+    width: 700px;
+    height : 40px;
+    padding-left: 54px;
+    border-bottom : 2px solid gray;
+    padding-bottom : 10px;
+    margin-left: 300px;
+}
+.Nth2{
+    width: 300px;
+    padding-left: 0px;
+    height : 40px;
+    border-bottom : 2px solid gray;
+    padding-bottom : 10px;
+    margin-left: 300px;
+}
+.Nth3{
+    width:300px;
+    height : 40px;
+    border-bottom : 2px solid gray;
+    padding-bottom : 10px;
+    margin-left: 300px;
+}
+
+.Nth1m{
+    width: 700px;
+    height : 40px;
+    padding-left: 54px;
+    border-bottom : 2px solid gray;
+    padding-bottom : 10px;
+    margin-left: 300px;
+}
+.Nth2m{
+    width: 300px;
+    padding-left: 0px;
+    height : 40px;
+    border-bottom : 2px solid gray;
+    padding-bottom : 10px;
+    margin-left: 300px;
+}
+.Nth3m{
+    width:300px;
+    height : 40px;
+    border-bottom : 2px solid gray;
+    padding-bottom : 10px;
+    margin-left: 300px;
+}
+
+.Fcontent{
+    box-shadow: 15px 15px 15px #ccc;
+    width:70%;
+    display: inline-block;
+    padding-top: 80px;
+    padding-bottom: 50px;
+    padding-left: 100px;
+    margin-bottom: 50px;
+    width: 1280px;
+    border-radius: 50px;
+    height: auto;
+    background-color: #fffacb;
+}
+
+.fContentBox{
+    text-align: center;
+    align-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+.pageBody{
+    font-size:25px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-family: "Nanum Square B"
+    
+}
+.pageButton:hover{
+    box-shadow: 5px 5px 20px #ccc;
+    transition: box-shadow 0.3s linear;
+    
+  }
+.pageButton{
+    border-radius:30px;
+    width: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 60px;
+    border-radius: 5px;
+    background-color: #fffacb;
+    border: 3px solid #fdf06d;
+    font-size: 25px;
+    margin: 10px;
+}
+
+.Ntd{
+    padding-top:20px;
+    padding-bottom:20px;
+    border-bottom: 1px solid gray;
+}
+.pageTitleLink{
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+}
+
+.ck-editor__editable:not(.ck-editor__nested-editable) {
+    min-height: 400px;
+    margin-bottom: 75px;
+}
