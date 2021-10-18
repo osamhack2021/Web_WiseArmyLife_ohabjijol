@@ -58,6 +58,13 @@ const Post = (props) => {
         history.goBack()
     }
     
+    const onCommitState = ()=>{
+        setCommetList([...commentList,{
+            name:sessionStorage.getItem('user_id'),
+            content:comment
+        }])
+        setComment('')
+    }
     const onCommit = ()=>{
         const data = {
             "comment":comment
@@ -66,8 +73,10 @@ const Post = (props) => {
         console.log(data)
         axios.post(`/community/${forumId}/post/v/${postId}/comment`,data)
         .then(res=>{
-            console.log(res.data)
+            
         })
+        document.location.href = `/community/${forumId}/v/${postId}`
+
     }
     const onChange = (e)=>{
         const {name,value} = e.target;
@@ -94,38 +103,65 @@ const Post = (props) => {
                 </div>
 
                 <div className="POmoveNext">
+                    
                     <div>이전글</div>
-                    {data.currentPost.prevPostId !== -1 ?
-                    <div><Link className='text-link' onClick={()=>document.location.href = `/community/${forumId}/v/${data.currentPost.prevPostId}`} to={`/community/${forumId}/v/${data.currentPost.prevPostId}`}>{data.currentPost.prevPosttitle}</Link></div>
-                        :null
+                    {
+                        forumId ===1 || forumId === 2 ? 
+
+                        <>
+                        {data.currentPost.prevPostId !== -1 ?
+                        <div><Link className='text-link' onClick={()=>document.location.href = `/community/${forumId}/v/${data.currentPost.prevPostId}`} to={`/community/${forumId}/v/${data.currentPost.prevPostId}`}>{data.currentPost.prevPosttitle}</Link></div>
+                            :null
+                        }
+                        </>
+
+                    :null
                     }
                     
                 </div>
 
                 <div className="POmovePrevious">
                     <div>다음글</div>
-                    {data.currentPost.nextPostId !== -1 ?
-                    <div><Link className='text-link' onClick={()=>document.location.href = `/community/${forumId}/v/${data.currentPost.nextPostId}`} to={`/community/${forumId}/v/${data.currentPost.nextPostId}`}>{data.currentPost.nextPosttitle}</Link></div>
-                        :null
+                    {
+                        forumId ===1 || forumId === 2 ? 
+                        
+                        <>
+                        {data.currentPost.nextPostId !== -1 ?
+                        <div><Link className='text-link' onClick={()=>document.location.href = `/community/${forumId}/v/${data.currentPost.nextPostId}`} to={`/community/${forumId}/v/${data.currentPost.nextPostId}`}>{data.currentPost.nextPosttitle}</Link></div>
+                            :null
+                        }
+                        </> 
+                        
+                        : null
                     }
+                    
                 </div>
                 <button className='BackToList' onClick={()=>document.location.href = `/community/${forumId}`}>글 목록</button>
 
                     
                     <div className='commentBox'>
-                        <input className='commentInput' onChange={onChange} value={comment} placeholder='coment'/>
-                        <button className='commentBtn' onClick={onCommit}>댓글작성</button>
-                        <div className='commentList'>
+                        
+                        <table className='commentList'>
+                            <tr className='commentTr'>
+                                <th className='commentContent'>내용</th>
+                                <th className='commentName'>작성자</th>
+                            </tr>
                             {
                                 commentList.map(res=>{
                                     return (
-                                        <div>dd</div>
+                                        <tr className='commentTr'>
+                                            <th className='commentContent'>{res.comment}</th>
+                                            <th className='commentName'>{res.User.name}</th>
+                                        </tr>
                                         )
                                     })
                                 }
-                        </div>
+                        </table>
                     </div>
-
+                    <div className='commentInputBox'>
+                            <input className='commentInput' onChange={onChange} value={comment} placeholder='coment'/>
+                            <button className='commentBtn' onClick={onCommit}>댓글작성</button>
+                    </div>
                                 <button onClick={()=>console.log(data)}>콘솔</button>
         </>
 

@@ -12,7 +12,11 @@ const defaultConfig = {
         fill: false,
         borderColor: "Red",
         showLine: true,
-        data: [
+        data: [{x:2,y:60},
+          {x:4,y:45},
+          {x:7,y:75},
+          {x:9,y:100},
+          {x:10,y:90},
         ]
       },
       {
@@ -29,6 +33,11 @@ const defaultConfig = {
         borderColor: "Yellow",
         showLine: true,
         data: [
+          {x:1,y:60},
+          {x:2,y:80},
+          {x:5,y:90},
+          {x:7,y:90},
+          {x:9,y:100},
         ]
       },
       {
@@ -45,6 +54,11 @@ const defaultConfig = {
         borderColor: "Purple",
         showLine: true,
         data: [
+          {x:2,y:70},
+          {x:4,y:90},
+          {x:7,y:100},
+          {x:9,y:95},
+          {x:10,y:100},
         ]
       },
       {
@@ -225,7 +239,7 @@ export default function MyChart() {
 
             if(test.current !== getData.length){
                 test.current = getData.length
-                setData(getData)
+                // setData(getData)
             }
             console.log(test.current)
             
