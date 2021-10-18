@@ -41,9 +41,9 @@
 
 ### 컴퓨터 구성 / 필수 조건 안내(Prerequisites)
 ECMAScript 6 지원 브라우저 사용
-권장: Google Chrome 버젼 77 이상
-React는 Internet Explorer 9과 상위 버전을 포함한 모든 주요 브라우저를 지원
-Ckeditor은 인터넷 익스플로러 11을 제외한 모든 주요 브라우저를 지원
+권장: Google Chrome 버젼 77 이상    
+React는 Internet Explorer 9과 상위 버전을 포함한 모든 주요 브라우저를 지원      
+Ckeditor은 인터넷 익스플로러 11을 제외한 모든 주요 브라우저를 지원     
 
 
 ***
