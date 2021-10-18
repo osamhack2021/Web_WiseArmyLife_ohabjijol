@@ -27,6 +27,12 @@
 
 ### 기능 설명 
 
++ 병 기본 신청 및 결과 확인
+
++ 마음의 편지 작성
+
++ 커뮤니티 이용
+
 
 
 ***
@@ -36,6 +42,7 @@
 ### 컴퓨터 구성 / 필수 조건 안내(Prerequisites)
 ECMAScript 6 지원 브라우저 사용
 권장: Google Chrome 버젼 77 이상
+React는 Internet Explorer 9과 상위 버전을 포함한 모든 주요 브라우저를 지원
 
 
 ***
@@ -57,14 +64,14 @@ AWS RDS를 통한 데이터베이스 서버 운영
     
 #### Client(Front-end)
 
-[react.js](https://ko.reactjs.org/)
+[react.js](https://ko.reactjs.org/)   
+리액트 라이브러리를 이용하여 UI제작
+[Fullcalendar](https://fullcalendar.io/)     
+병 기본을 신청함에 있어 달력을 위한 컴포넌트
+[CKEditor](https://ckeditor.com/)      
 
-[Fullcalendar](https://fullcalendar.io/)
-
-[CKEditor](https://ckeditor.com/)
-
-[Chart.js](https://www.chartjs.org/)
-
+[Chart.js](https://www.chartjs.org/)     
+병 기본 결과를 차트로 출력해내기 위한 컴포넌트
 
 
 
