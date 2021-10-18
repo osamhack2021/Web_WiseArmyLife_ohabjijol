@@ -74,7 +74,7 @@ router.delete('/:forumId', isLoggedIn, isExecutive, async (req, res, next) => {
 
                 return res.json({ success: true, data: null });
             }
-            Promise.all([Comment.destroy({ where: { PostId: postId } }), Post.destroy({ where: { ForumId: currentForumId } }), Forum.destroy({ where: { id: currentForumId } })])
+            Promise.all([Comment.destroy({ where: { postComment: postId } }), Post.destroy({ where: { ForumId: currentForumId } }), Forum.destroy({ where: { id: currentForumId } })])
             console.log('삭제 성공');
             res.json({ success: true, data: null });
 
