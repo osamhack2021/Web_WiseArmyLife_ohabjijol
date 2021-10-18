@@ -8,7 +8,7 @@ const fs = require('fs');
 const CommentRouter = require('./comment');
 
 const { isLoggedIn } = require('../user/check_login');
-const { User, Post, Comment } = require('../../models');
+const { User, Post, Comment, Forum } = require('../../models');
 const {Op} = require('sequelize');
 
 const router = express.Router({mergeParams: true});
@@ -58,25 +58,26 @@ router.route('/v/:postId')
         try {
             console.log('포스트 읽어짐');
             const currentPostId = req.params.postId;
-            console.log('포스트 읽어짐' , currentPostId);
-
-            let currentPost = await Post.findOne({
+            const [currentPost, comments] = await Promise.all([Post.findOne({
                 where: { id: currentPostId },
+                raw: true,
+                nest: true,
                 include: [{
                     model: User,
-                    attributes: ['name'],
-                },
-                {
-                    model: Comment,
-                    attributes: ['comment', 'createdAt'],
-                    include: [{
-                        model: User,
-                        attributes: ['name'],
-                    }],
-                },
-                ],
-            });
-
+                    attributes: ['name', 'militaryNumber'],
+                }]
+            }),Comment.findAll({
+                where: {postComment: currentPostId},
+                raw: true,
+                nest: true,
+                include: [{
+                    model: User,
+                    attributes: ['name', 'militaryNumber'],
+                }]
+            })]);
+            console.log(currentPost);
+            console.log(comments);
+           currentPost.Comments = comments;
             const prevPost = await Post.findOne({
                 where : {ForumId: req.params.forumId,
                     id : {[Op.lt] : currentPostId},
@@ -95,19 +96,19 @@ router.route('/v/:postId')
 
         
             if(prevPost!=null){
-            currentPost.dataValues.prevPostId = prevPost.dataValues.id;
-            currentPost.dataValues.prevPosttitle = prevPost.dataValues.title;
+            currentPost.prevPostId = prevPost.id;
+            currentPost.prevPosttitle = prevPost.title;
             }else{
-                currentPost.dataValues.prevPostId = -1;
-            currentPost.dataValues.prevPosttitle = "이전글이 존재하지 않습니다.";
+                currentPost.prevPostId = -1;
+            currentPost.prevPosttitle = "이전글이 존재하지 않습니다.";
 
             }
             if(nextPost!=null){
-            currentPost.dataValues.nextPostId = nextPost.dataValues.id;
-            currentPost.dataValues.nextPosttitle = nextPost.dataValues.title;
+            currentPost.nextPostId = nextPost.id;
+            currentPost.nextPosttitle = nextPost.title;
             }else{
-                currentPost.dataValues.nextPostId = -1;
-            currentPost.dataValues.nextPosttitle = "다음글이 존재하지 않습니다.";
+                currentPost.nextPostId = -1;
+            currentPost.nextPosttitle = "다음글이 존재하지 않습니다.";
             }
             currentPost.userId = req.user.militaryNumber;
             const data = {
