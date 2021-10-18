@@ -103,20 +103,38 @@ const Post = (props) => {
                 </div>
 
                 <div className="POmoveNext">
+                    
                     <div>이전글</div>
-                    {data.currentPost.prevPostId !== -1 ?
-                    <div><Link className='text-link' onClick={()=>document.location.href = `/community/${forumId}/v/${data.currentPost.prevPostId}`} to={`/community/${forumId}/v/${data.currentPost.prevPostId}`}>{data.currentPost.prevPosttitle}</Link></div>
-                        :null
+                    {
+                        forumId ===1 || forumId === 2 ? 
+
+                        <>
+                        {data.currentPost.prevPostId !== -1 ?
+                        <div><Link className='text-link' onClick={()=>document.location.href = `/community/${forumId}/v/${data.currentPost.prevPostId}`} to={`/community/${forumId}/v/${data.currentPost.prevPostId}`}>{data.currentPost.prevPosttitle}</Link></div>
+                            :null
+                        }
+                        </>
+
+                    :null
                     }
                     
                 </div>
 
                 <div className="POmovePrevious">
                     <div>다음글</div>
-                    {data.currentPost.nextPostId !== -1 ?
-                    <div><Link className='text-link' onClick={()=>document.location.href = `/community/${forumId}/v/${data.currentPost.nextPostId}`} to={`/community/${forumId}/v/${data.currentPost.nextPostId}`}>{data.currentPost.nextPosttitle}</Link></div>
-                        :null
+                    {
+                        forumId ===1 || forumId === 2 ? 
+                        
+                        <>
+                        {data.currentPost.nextPostId !== -1 ?
+                        <div><Link className='text-link' onClick={()=>document.location.href = `/community/${forumId}/v/${data.currentPost.nextPostId}`} to={`/community/${forumId}/v/${data.currentPost.nextPostId}`}>{data.currentPost.nextPosttitle}</Link></div>
+                            :null
+                        }
+                        </> 
+                        
+                        : null
                     }
+                    
                 </div>
                 <button className='BackToList' onClick={()=>document.location.href = `/community/${forumId}`}>글 목록</button>
 
