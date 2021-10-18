@@ -101,9 +101,9 @@ $ yarn start or npm run start
 팀 오합지졸
 
 Kim Yong Jin  (hi653@naver.com), Github Id: codrare     
-Lee jin jung (hereokay88@gmail.com), Github Id: hereokay88
+Lee jin jung (hereokay88@gmail.com), Github Id: hereokay88    
 Hu Seung Beom (hsb0423@naver.com), Github Id: hsb990423   
-Choi Tae Hyun (didls1643@naver.com) Github Id: taehyun08   
+Choi Tae Hyun (didls1643@naver.com) Github Id: taehyun08     
 
 ***
 
