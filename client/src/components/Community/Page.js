@@ -39,6 +39,13 @@ const Page = ({match}) => {
 
     const test = useRef(null);
     useEffect(() => {
+        const Tf = sessionStorage.getItem('isExecutive')
+        if(Tf === 'true'){
+            setIsExecutive(true)
+        }else{
+            setIsExecutive(false)
+        }
+
         if(forumId==='1'){
             axios.get(`/letter/company/${index.current}`)
             .then(res =>{
@@ -160,7 +167,14 @@ const Page = ({match}) => {
         })
         return result;
      }
- 
+     const [isExecutive,setIsExecutive] = useState(false)
+     
+     const delPage = ()=>{
+        axios.delete(`/community/${forumId}`)
+        .then(res=>{
+            console.log(res.data)
+        })
+     }
     return (
         <div>
             { newpost===false ?
@@ -234,6 +248,13 @@ const Page = ({match}) => {
                 </div>
             </>
             }
+            {isExecutive === true ?
+            
+            <>
+            <button onClick={delPage}>게시판 삭제하기</button>
+            </>
+
+        :null}
         </div>
     );
 };
