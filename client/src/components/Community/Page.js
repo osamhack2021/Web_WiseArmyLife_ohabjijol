@@ -174,6 +174,8 @@ const Page = ({match}) => {
         .then(res=>{
             console.log(res.data)
         })
+        window.location.href = `/`;
+        alert('삭제성공')
      }
     return (
         <div>
@@ -251,7 +253,7 @@ const Page = ({match}) => {
             {isExecutive === true ?
             
             <>
-            <button onClick={delPage}>게시판 삭제하기</button>
+            <button className='NPbuttonOne' onClick={delPage}>게시판 삭제하기</button>
             </>
 
         :null}
