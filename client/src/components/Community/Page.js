@@ -253,7 +253,7 @@ const Page = ({match}) => {
             {isExecutive === true ?
             
             <>
-            <button className='NPbuttonOne' onClick={delPage}>게시판 삭제하기</button>
+            <button className='NPbuttonOne22' onClick={delPage}>게시판 삭제하기</button>
             </>
 
         :null}
