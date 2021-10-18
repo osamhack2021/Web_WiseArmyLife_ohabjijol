@@ -69,6 +69,18 @@
   border: 2px solid #000000;
   margin-left: 800px;
   }
+  .NPbuttonOne22{
+    font-size: 25px;
+    font-family: "Nanum Square B";
+    width:250px;
+    height: 60px;
+    border-radius: 30px;
+    background-color: #fff492;
+    border: 2px solid #000000;
+    margin-left: 65%;
+    margin-top: 100px;
+    box-shadow: 5px 5px 10px #ccc;
+  }
   .NPbuttonOne2{
     font-size: 25px;
     font-family: "Nanum Square B";

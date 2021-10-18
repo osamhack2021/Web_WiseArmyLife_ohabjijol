@@ -87,7 +87,7 @@ function Ta() {
                 }
                 {(sessionStorage.getItem('isExecutive') === 'true') ?
                 <li>
-                    <Link onClick={makePage} to={`/#`}>게시판 추가/삭제</Link>
+                    <Link onClick={makePage} to={`/#`}>게시판 추가하기</Link>
                 </li>:null
 
                 }
