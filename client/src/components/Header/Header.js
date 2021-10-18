@@ -51,6 +51,21 @@ function Ta() {
         setIsActive(!isActive)
     };
 
+    const makePage = ()=>{
+        const name = prompt('커뮤니티 이름을 입력해주세요:')
+        axios.post('/Community/forumAdd',{
+            'forumName':name
+        })
+        .then(res =>{
+            console.log(res.data)
+            if(res.data.success === true){
+                alert('추가성공!')
+                document.location.href = '/'
+            }else{
+                alert(res.data.data.message)
+            }
+        })
+    }
   return (
     <div className="container">
       <div className="menu-container">
@@ -72,7 +87,7 @@ function Ta() {
                 }
                 {(sessionStorage.getItem('isExecutive') === 'true') ?
                 <li>
-                    <Link  to={`/community`}>게시판 추가/삭제</Link>
+                    <Link onClick={makePage} to={`/#`}>게시판 추가/삭제</Link>
                 </li>:null
 
                 }
