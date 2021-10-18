@@ -65,13 +65,13 @@ AWS RDS를 통한 데이터베이스 서버 운영
 #### Client(Front-end)
 
 [react.js](https://ko.reactjs.org/)   
-리액트 라이브러리를 이용하여 UI제작
+리액트 라이브러리를 이용하여 UI제작     
 [Fullcalendar](https://fullcalendar.io/)     
-병 기본을 신청함에 있어 달력을 위한 컴포넌트
+병 기본을 신청함에 있어 달력을 위한 컴포넌트     
 [CKEditor](https://ckeditor.com/)      
 
 [Chart.js](https://www.chartjs.org/)     
-병 기본 결과를 차트로 출력해내기 위한 컴포넌트
+병 기본 결과를 차트로 출력해내기 위한 컴포넌트    
 
 
 
