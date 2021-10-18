@@ -41,7 +41,7 @@ ECMAScript 6 지원 브라우저 사용
 ***
 
 ### 기술스택(Technique UseD) 
-Server(back-end)   
+#### Server(back-end)   
 
 nodejs/ express 프레임 워크를 활용
 
@@ -55,7 +55,7 @@ AWS RDS를 통한 데이터베이스 서버 운영
 
 
     
-Client(Front-end)
+#### Client(Front-end)
 
 [react.js](https://ko.reactjs.org/)
 
