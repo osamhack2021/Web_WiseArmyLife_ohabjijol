@@ -54,7 +54,7 @@ Ckeditor은 인터넷 익스플로러 11을 제외한 모든 주요 브라우저
 ***
 
 ### 기술스택(Technique UseD) 
-#### *Server(back-end)   
+#### + Server(back-end)   
 
 nodejs/ express 프레임 워크를 활용
 
@@ -68,7 +68,7 @@ AWS RDS를 통한 데이터베이스 서버 운영
 
 
     
-#### *Client(Front-end)
+#### + Client(Front-end)
 
 [react.js](https://ko.reactjs.org/)   
 리액트 라이브러리를 이용하여 UI제작     
