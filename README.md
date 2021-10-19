@@ -84,7 +84,7 @@ AWS RDS를 통한 데이터베이스 서버 운영
 ### 설치안내 (Installation Process)
 
 ```
-$ git clone git주소
+$ git clone https://github.com/osamhack2021/Web_WiseArmyLife_ohabjijol.git
 $ yarn or npm install
 $ yarn start or npm run start
 ```
