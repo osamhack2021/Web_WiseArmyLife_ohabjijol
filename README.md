@@ -69,8 +69,8 @@ AWS RDS를 통한 데이터베이스 서버 운영
 리액트 라이브러리를 이용하여 UI제작     
 [Fullcalendar](https://fullcalendar.io/)     
 병 기본을 신청함에 있어 달력을 위한 컴포넌트     
-[CKEditor](https://ckeditor.com/)      
-
+[CKEditor](https://ckeditor.com/)        
+게시판을 제작하는데 도움을 주는 컴포넌트     
 [Chart.js](https://www.chartjs.org/)     
 병 기본 결과를 차트로 출력해내기 위한 컴포넌트    
 
@@ -119,9 +119,3 @@ Choi Tae Hyun (didls1643@naver.com) Github Id: taehyun08
 ### 저작권 및 사용권 정보 (Copyleft / End User License)
 MIT
 This project is licensed under the terms of the MIT license.
-
-※ 라이선스 비교표(클릭)
-
-※ Github 내 라이선스 키워드(클릭)
-
-※ [참조] Github license의 종류와 나에게 맞는 라이선스 선택하기(클릭)
