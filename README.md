@@ -44,7 +44,7 @@
  
 React는 Internet Explorer 9과 상위 버전을 포함한 모든 주요 브라우저를 지원      
 Ckeditor은 인터넷 익스플로러 11을 제외한 모든 주요 브라우저를 지원     
-![Mysql 전제조건] (https://dev.mysql.com/doc/mysql-monitor/8.0/en/prereqs-install-reference.html
+![Mysql 전제조건] (https://dev.mysql.com/doc/mysql-monitor/8.0/en/prereqs-install-reference.html)   
 
 권장: Google Chrome 버젼 77 이상   
 
