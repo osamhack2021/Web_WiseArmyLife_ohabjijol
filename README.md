@@ -111,8 +111,7 @@ $ npm install
 $ cd ../'Web(Fe)' 
 $ npm install --save --legacy-peer-deps
 $ cd ..
-$ npm install concurrently
-$ npm run dev
+$ npm install
 ```
 
 
@@ -120,13 +119,11 @@ $ npm run dev
 
 
 ### 프로젝트 사용법 (Getting Started) 
+```
+$ npm run dev
+```
 
-
-마크다운 문법을 이용하여 자유롭게 기재
-
-잘 모를 경우 구글 검색 - 마크다운 문법 https://post.naver.com/viewer/postView.nhn?volumeNo=24627214&memberNo=42458017
-
-편한 마크다운 에디터를 찾아서 사용 샘플 에디터 https://stackedit.io/app#
+npm run dev를 통해 서버와 클라이언트 동시 실행
 
 ***
 
