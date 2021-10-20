@@ -38,7 +38,7 @@
 + 마음의 편지 작성
 
 익명성이 보장되는 인터넷 특성을 활용한 마음의 편지<br/>
-<img src="./img/letter.png" width="70%"  ></img> <br/>
+<img src="./img/Letter.png" width="70%"  ></img> <br/>
 
 + 커뮤니티 이용
 
