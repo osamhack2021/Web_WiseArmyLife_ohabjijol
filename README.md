@@ -78,7 +78,7 @@ MYSQL 과 Sequelize ORM을 통한 데이터베이스 구축
 
 AWS RDS를 통한 데이터베이스 서버 운영
 
-<img src="./back.jpg" width="70%"  ></img> <br/>
+<img src="./img/back.jpg" width="70%"  ></img> <br/>
 
 
     
@@ -93,7 +93,7 @@ AWS RDS를 통한 데이터베이스 서버 운영
 [Chart.js](https://www.chartjs.org/)     
 병 기본 결과를 차트로 출력해내기 위한 컴포넌트   
 
-<img src="./Front.jpg" width="70%"    ></img>  <br/>
+<img src="./img/Front.jpg" width="70%"    ></img>  <br/>
 
 
 
