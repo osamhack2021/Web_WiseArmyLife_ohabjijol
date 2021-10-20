@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "client": "cd client && yarn start",
-    "server": "cd server && npm start",
+    "client": "cd Web\\(Fe\\) && yarn start",
+    "server": "cd Web\\(Be\\) && npm start",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
   "repository": {

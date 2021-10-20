@@ -1,26 +1,27 @@
 {
-    "development": {
-      "username": "root",
-      "password": "qkwlek12!!",
-      "database": "nodejs",
-      "port": 3306,
-      "host": "127.0.0.1",
+  "development": {
+    "username": "admin",
+    "password": "ohapjijol",
+    "database": "soldier_info",
+    "port" : 3312,
+    "host": "osamdb.coc7mr48b01b.us-east-2.rds.amazonaws.com",
+    "dialect": "mysql",
+    "logging" : false
+  },
+  "test": {
+      "username": "admin",
+      "password": "ohapjijol",
+      "database": "soldier_info",
+      "port" : 3312,
+      "host": "osamdb.coc7mr48b01b.us-east-2.rds.amazonaws.com",
       "dialect": "mysql"
     },
-    "test": {
-      "username": "root",
-      "password": "qkwlek12!!",
-      "database": "nodejs",
-      "port": 3306,
-      "host": "127.0.0.1",
-      "dialect": "mysql"
-    },
-    "production": {
-      "username": "root",
-      "password": "qkwlek12!!",
-      "database": "nodejs",
-      "port": 3306,
-      "host": "127.0.0.1",
+  "production": {
+      "username": "admin",
+      "password": "ohapjijol",
+      "database": "soldier_info",
+      "port" : 3312,
+      "host": "osamdb.coc7mr48b01b.us-east-2.rds.amazonaws.com",
       "dialect": "mysql"
     }
-  }
+}
