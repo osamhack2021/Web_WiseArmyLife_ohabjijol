@@ -92,8 +92,13 @@ AWS RDS를 통한 데이터베이스 서버 운영
 
 ```
 $ git clone https://github.com/osamhack2021/Web_WiseArmyLife_ohabjijol.git
-$ yarn or npm install
-$ yarn start or npm run start
+$ cd client
+$ npm install
+$ cd ../server
+$ npm install
+$ cd ..
+$ npm install concurrently
+$ yarn dev
 ```
 
 
