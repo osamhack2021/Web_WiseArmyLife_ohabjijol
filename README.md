@@ -92,10 +92,10 @@ AWS RDS를 통한 데이터베이스 서버 운영
 
 ```
 $ git clone https://github.com/osamhack2021/Web_WiseArmyLife_ohabjijol.git
-$ cd client
+$ cd 'Web(Be)'
 $ npm install
-$ cd ../server
-$ npm install
+$ cd ../'Web(Fe)' 
+$ npm install --save --legacy-peer-deps
 $ cd ..
 $ npm install concurrently
 $ yarn dev
