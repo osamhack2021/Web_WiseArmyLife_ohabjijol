@@ -143,5 +143,5 @@ Choi Tae Hyun (didls1643@naver.com) Github Id: taehyun08
 
 
 ### 저작권 및 사용권 정보 (Copyleft / End User License)
-MIT
+[MIT](https://en.wikipedia.org/wiki/MIT_License)          
 This project is licensed under the terms of the MIT license.
