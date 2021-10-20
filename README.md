@@ -119,17 +119,6 @@ $ npm run dev
 ***
 
 
-### 프로젝트 사용법 (Getting Started) 
-
-
-마크다운 문법을 이용하여 자유롭게 기재
-
-잘 모를 경우 구글 검색 - 마크다운 문법 https://post.naver.com/viewer/postView.nhn?volumeNo=24627214&memberNo=42458017
-
-편한 마크다운 에디터를 찾아서 사용 샘플 에디터 https://stackedit.io/app#
-
-***
-
 
 ### 팀 정보 (Team Information)
 팀 오합지졸
