@@ -112,7 +112,7 @@ $ cd ../'Web(Fe)'
 $ npm install --save --legacy-peer-deps
 $ cd ..
 $ npm install concurrently
-$ yarn dev
+$ npm run dev
 ```
 
 
