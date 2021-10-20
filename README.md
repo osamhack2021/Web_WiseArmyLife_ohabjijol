@@ -118,15 +118,6 @@ $ npm install
 ***
 
 
-### 프로젝트 사용법 (Getting Started) 
-```
-$ npm run dev
-```
-
-npm run dev를 통해 서버와 클라이언트 동시 실행
-
-***
-
 
 ### 팀 정보 (Team Information)
 팀 오합지졸
