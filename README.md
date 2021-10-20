@@ -1,4 +1,4 @@
-<img src="./LOGO.png" width="70%"  ></img> <br/>
+<img src="./img/LOGO.png" width="70%"  ></img> <br/>
 슬기로운병영생활      
 ===========================================
 
@@ -29,10 +29,24 @@
 
 + 병 기본 신청 및 결과 확인
 
+캘린더를 이용한 편리한 평가생성 및 신청
+<img src="./img/newAssess.png" width="70%"  ></img> <br/>
+
+결과를 한눈에 볼 수 있는 그래프
+<img src="./img/resultGraph.png" width="70%"  ></img> <br/>
+
 + 마음의 편지 작성
+
+익명성이 보장되는 인터넷 특성을 활용한 마음의 편지
+<img src="./img/letter.png" width="70%"  ></img> <br/>
 
 + 커뮤니티 이용
 
+간부는 자유롭게 필요한 게시판을 생성/삭제
+<img src="./img/addBoard.png" width="70%"  ></img> <br/>
+
+자유롭게 소통가능한 커뮤니티
+<img src="./img/board.png" width="70%"  ></img> <br/>
 
 
 ***
